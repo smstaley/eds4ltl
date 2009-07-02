@@ -478,6 +478,21 @@ End Note\\
 \end{tabbing}
 \myqed\\[\lgap]
 
+\begin{equation}\label{E:impEvent}
+p \Rightarrow \Diamond p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Diamond$}\\[\lgap]
+  \> \>   $p \lor \bigcirc\Diamond p$\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
+  \> \>   $p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \begin{equation}\label{E:IdemEvent}
 \textbf{Idempotency of $\Diamond$:}\quad \Diamond\Diamond p \equiv \Diamond p
