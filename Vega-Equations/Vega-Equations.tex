@@ -1,0 +1,243 @@
+% David Vega and Stan Warford
+% Pepperdine University
+% File: Vega-Paper
+
+\documentclass[fleqn, leqno]{article}
+
+\usepackage{times}
+\usepackage{amsmath, amsthm, amssymb,latexsym}
+
+\newcommand{\lgap}{2pt}                             % Line gap
+\newcommand{\llgap}{6pt}                            % Larger line gap
+\newcommand{\lllgap}{32pt}                          % Largest line gap for students to write in
+\newcommand{\mymathindent}{24pt}                      % Indentation for math tabbing
+\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
+\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
+\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
+\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
+\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
+
+% Thanks to David Gries for sharing the following macros
+% Macros for quantifications.
+\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
+\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
+\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
+\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
+\newcommand{\all}{\forall}                          % Universal quantification
+\newcommand{\ext}{\exists}                          % Existential quantification
+
+\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\until}{\;\mathcal{U}\;}
+
+% Macros for proof hints
+\newcommand{\Gll} {\langle}                         % Open hint
+\newcommand{\Ggg} {\rangle}                         % Close hint
+\newlength{\Glllength}                              % Length of open hint symbol
+\settowidth{\Glllength}{$.\Gll$}
+\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
+\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
+\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
+\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
+
+
+% Single and double quotes
+\newcommand{\Lq}{\mbox{`}}
+\newcommand{\Rq}{\mbox{'}}
+\newcommand{\Lqq}{\mbox{``}}
+\newcommand{\Rqq}{\mbox{''}}
+
+\oddsidemargin  0.0in
+\evensidemargin 0.0in
+\textwidth      6.0in
+\headheight     0.0in
+\topmargin      0.0in
+\textheight=8.5in
+\parindent=0in
+\pagestyle{plain}
+
+\title{An Equational Deductive System\\for Linear Temporal Logic}
+\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
+   Computer Science Department\\
+   Pepperdine University\\
+   Malibu, CA 90265
+   \and
+   J. Stanley Warford\\
+   Computer Science Department\\
+   Pepperdine University\\
+   Malibu, CA 90265}
+\date{} % Required for no date to appear in heading
+
+\begin{document}
+\maketitle
+
+
+\begin{equation}\label{E:selfDual}
+\textbf{Axiom, Self-dual:}\quad \bigcirc\lnot p \equiv \lnot\bigcirc p
+\end{equation}
+
+\begin{equation}\label{E:distNextImp}
+\textbf{Axiom, Distributivity of $\bigcirc$ over $\Rightarrow$:}\quad \bigcirc (p \Rightarrow q) \equiv \bigcirc p \Rightarrow \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:nextTruth}
+\textbf{Axiom, Truth:}\quad \bigcirc true \equiv true
+\end{equation}
+
+\begin{equation}\label{E:linearity}
+\textbf{Linearity:}\quad \bigcirc p \equiv \lnot\bigcirc\lnot p
+\end{equation}
+
+\begin{equation}\label{E:nextFalse}
+\textbf{Falsehood:}\quad \bigcirc false \equiv false
+\end{equation}
+
+\begin{equation}\label{E:distNextOr}
+\textbf{Distributivity of $\bigcirc$ over $\lor$:}\quad \bigcirc (p \lor q) \equiv \bigcirc p \lor \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:distNextAnd}
+\textbf{Distributivity of $\bigcirc$ over $\land$:}\quad \bigcirc (p \land q) \equiv \bigcirc p \land \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:distNextEquiv}
+\textbf{Distributivity of $\bigcirc$ over $\equiv$:}\quad \bigcirc (p \equiv q) \equiv \bigcirc p \equiv \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:distNextUntil}
+\textbf{Axiom, Distributivity of $\bigcirc$ over $\until$:}\quad \bigcirc (p \until q) \equiv \bigcirc p \until \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:expansionUntil}
+\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \bigcirc (p \until q))
+\end{equation}
+
+Note: we will take the following 6 expressions of until (which we know to be correct) as axioms for now:\\
+
+\begin{equation}\label{E:untilOrImp}
+\textbf{Axiom:}\quad (p \until r) \lor (q \until r) \Rightarrow (p \lor q) \until r
+\end{equation}
+
+\begin{equation}\label{E:untilAndImp}
+\textbf{Axiom:}\quad p \until (q \land r) \Rightarrow (p \until q) \land (p \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Axiom:}\quad (p \land q) \until r \equiv (p \until r) \land (q \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilOrEquiv}
+\textbf{Axiom:}\quad p \until (q \lor r) \equiv (p \until q) \lor (p \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilIdem}
+\textbf{Axiom:}\quad p \until (p \until q) \equiv p \until q
+\end{equation}
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Axiom:}\quad (p \until q) \until q \equiv p \until q
+\end{equation}
+
+End Note\\
+
+\begin{equation}\label{E:defEvent}
+\textbf{Axiom, Definition of $\Diamond$:}\quad \Diamond p \equiv true \until p
+\end{equation}
+
+\begin{equation}\label{E:untilImpEvent}
+\textbf{Axiom:}\quad p \until q \Rightarrow \Diamond q
+\end{equation}
+
+\begin{equation}\label{E:nextEvent}
+\textbf{Axiom:}\quad \bigcirc p \Rightarrow \Diamond p
+\end{equation}
+
+
+\begin{equation}\label{E:expansionEvent}
+\textbf{Expansion of $\Diamond$:}\quad \Diamond p \equiv p \lor \bigcirc\Diamond p
+\end{equation}
+
+\begin{equation}\label{E:impEvent}
+p \Rightarrow \Diamond p
+\end{equation}
+
+\begin{equation}\label{E:IdemEvent}
+\textbf{Idempotency of $\Diamond$:}\quad \Diamond\Diamond p \equiv \Diamond p
+\end{equation}
+
+\begin{equation}\label{E:dNextEvent}
+\bigcirc\Diamond p \equiv \Diamond\bigcirc p
+\end{equation}
+
+Note: Figure out what to do with the next 2 theorems, as well as devise something for $\Diamond$ over $\Rightarrow$.\\
+
+\begin{equation}\label{E:distEventOr}
+\Diamond(p \lor q) \equiv \Diamond p \lor \Diamond q
+\end{equation}
+
+\begin{equation}\label{E:distEventAnd}
+\Diamond(p \land q) \Rightarrow \Diamond p \land \Diamond q
+\end{equation}
+
+End Note.\\
+
+\begin{equation}\label{E:defAlways}
+\textbf{Axiom, Definition of $\Box$:}\quad \Box p \equiv \lnot\Diamond\lnot p
+\end{equation}
+
+\begin{equation}\label{E:dualAlways}
+\textbf{Dual of $\Box$:}\quad \lnot\Box p \equiv \Diamond\lnot p
+\end{equation}
+
+\begin{equation}\label{E:dualEvent}
+\textbf{Dual of $\Diamond$:}\quad \lnot\Diamond p \equiv \Box\lnot p
+\end{equation}
+
+\begin{equation}\label{E:expansionEvent}
+\textbf{Expansion of $\Box$:}\quad \Box p \equiv p \land \bigcirc\Box p
+\end{equation}
+
+\begin{equation}\label{E:IdemAlways}
+\textbf{Idempotency of $\Box$:}\quad \Box\Box p \equiv \Box p
+\end{equation}
+
+\begin{equation}\label{E:dNextAlways}
+\bigcirc\Box p \equiv \Box\bigcirc p
+\end{equation}
+
+\begin{equation}\label{E:ImpAlways}
+\Box p \Rightarrow p
+\end{equation}
+
+\begin{equation}\label{E:ImpAlwaysE}
+\Box p \Rightarrow \Diamond p
+\end{equation}
+
+\begin{equation}\label{E:ImpAlwaysN}
+\Box p \Rightarrow \bigcirc p
+\end{equation}
+
+\begin{equation}\label{E:ImpAlwaysNA}
+\Box p \Rightarrow \bigcirc\Box p
+\end{equation}
+
+\begin{equation}\label{E:excludedMid}
+\textbf{Excluded Middle:}\quad \Diamond p \lor \Box\lnot p
+\end{equation}
+
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Distributivity of $\Box$ over $\Rightarrow$:}\quad \Box (p \Rightarrow q) \Rightarrow (\Box p \Rightarrow \Box q)
+\end{equation}
+
+\begin{equation}\label{E:distAlwaysAnd}
+\textbf{Distributivity of $\Box$ over $\land$:}\quad \Box (p \land q) \equiv (\Box p \land \Box q)
+\end{equation}
+
+\begin{equation}\label{E:distAlwaysOr}
+\textbf{Distributivity of $\Box$ over $\lor$:}\quad (\Box p \lor \Box q) \Rightarrow \Box (p \lor q)
+\end{equation}
+
+
+
+\end{document}
