@@ -1,0 +1,620 @@
+% David Vega and Stan Warford
+% Pepperdine University
+% File: Vega-Paper
+
+\documentclass[fleqn, leqno]{article}
+
+\usepackage{times}
+\usepackage{amsmath, amsthm, amssymb,latexsym}
+
+\newcommand{\lgap}{2pt}                             % Line gap
+\newcommand{\llgap}{6pt}                            % Larger line gap
+\newcommand{\lllgap}{32pt}                          % Largest line gap for students to write in
+\newcommand{\mymathindent}{24pt}                      % Indentation for math tabbing
+\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
+\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
+\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
+\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
+\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
+
+% Thanks to David Gries for sharing the following macros
+% Macros for quantifications.
+\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
+\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
+\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
+\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
+\newcommand{\all}{\forall}                          % Universal quantification
+\newcommand{\ext}{\exists}                          % Existential quantification
+
+\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\until}{\;\mathcal{U}\;}
+
+% Macros for proof hints
+\newcommand{\Gll} {\langle}                         % Open hint
+\newcommand{\Ggg} {\rangle}                         % Close hint
+\newlength{\Glllength}                              % Length of open hint symbol
+\settowidth{\Glllength}{$.\Gll$}
+\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
+\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
+\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
+\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
+
+% Single and double quotes
+\newcommand{\Lq}{\mbox{`}}
+\newcommand{\Rq}{\mbox{'}}
+\newcommand{\Lqq}{\mbox{``}}
+\newcommand{\Rqq}{\mbox{''}}
+
+\oddsidemargin  0.0in
+\evensidemargin 0.0in
+\textwidth      6.0in
+\headheight     0.0in
+\topmargin      0.0in
+\textheight=8.5in
+\parindent=0in
+\pagestyle{plain}
+
+\title{An Equational Deductive System\\for Linear Temporal Logic}
+\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
+   Computer Science Department\\
+   Pepperdine University\\
+   Malibu, CA 90265
+   \and
+   J. Stanley Warford\\
+   Computer Science Department\\
+   Pepperdine University\\
+   Malibu, CA 90265}
+\date{} % Required for no date to appear in heading
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract.
+This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
+This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
+This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
+This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
+\end{abstract}
+
+\thispagestyle{plain}
+
+\section{Introduction}
+
+Propositional calculus is a formal system of logic based on the unary operator $\lnot$, the binary operators $\land$, $\lor$, $\impl$
+(also written $\rightarrow$),  $\equiv$ (also written $\leftrightarrow$), variables (lowercase letters $p$, $q$, \dots), and the
+constants $true$ and $false$.
+Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics.
+In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
+program correctness with a new logic based on an equational style.
+This equational deductive system has been the basis of textbooks by Kaldewaij \cite{Kald}, Cohen \cite{Cohen}, and Gries \cite{LADM}.\\
+
+Equational-style logic systems, $\mathcal{E}$
+Several logi
+The use of a set of rules is necessary to preserve the truth-value of the given expression.
+The simplest expression, an atom, can be either true or false. 
+Atoms may be operated on by unary operators, such as negation: $\lnot$, or by binary infix operators, which describe the relationships between atoms of an expression.
+These may include such operators as $and \land$ and $or \lor$.\\
+
+1 paragraph on predicate calculus using phrase: first-order predicate logic\\
+
+Predicate Calculus, also called First Order Logic, is a system of deduction which builds on propositional calculus by adding quantifiers that can operate over variables.  These quantifiers include ``for all'' $\forall$ and ``there exists'' $\exists$, which allow statements to be made such as ``All x have property y''.\\
+
+\section{Background}
+
+\subsection{Hilbert-style Logic Systems}
+
+$\mathcal{H}$ frequently specifies syntactically correct combinations of operators, variables, and constants as well-formed formulas
+according to a grammar.
+Hilbert-style logic systems are different from equational-style logic systems in several regards.  The underlying principles of logic remain the same between the two systems, but the nuances of each style lend certain distinct advantages to both.  For example, subproofs are more easily included in Hilbert-style proofs.  The most distinguishing feature of Hilbert-style logic systems is the heavy use of Natural deduction.  Natural deduction has no axioms, as all inference rules of Natural deduction have premises.  The main inference rules of Natural deduction are $\Rightarrow$-I and $\Rightarrow$-E, which are used to introduce and eliminate implications respectively.\\
+
+Hilbert-style logic systems are the deductive logic systems traditionally used in mathematics.  The underlying principles between Hilbert-style systems, $\mathcal{H}$, and the equational deductive system, $\mathcal{E}$, are the same, but the philosophy that guides the use of each are different.  This lends certain distinct advantages to both.  For example, $\mathcal{H}$ relies heavily on the use of implication is all proof-steps, as can be seen from the following deductive axioms and deductive rule seen below:\\
+
+\textbf{Axiom 1:}
+\[
+\vdash (A \rightarrow (B \rightarrow A))
+\]
+\textbf{Axiom 2:}
+\[
+\vdash (A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))
+\]
+\textbf{Axiom 3:}
+\[
+\vdash (\lnot B \rightarrow \lnot A) \rightarrow (A \rightarrow B)
+\]
+
+The deductive rule of inference used in Hilbert-style logic systems is Modus Ponens:\\
+
+\textbf{Modus Ponens:}
+\[
+\frac{\vdash A, \quad \vdash A \rightarrow B}{\vdash B}
+\]
+
+--More on Hilbert style (including the turnstile $\vdash$ )\\
+
+Note: Reproduce deductive axioms and rule MP.\\
+
+Note: Need to re-do proof in $\mathcal{H}$!!\\
+
+Note: Characterize Hilbert system as the logic used in mathematics\\
+
+True in all states vs pairwise equal for all interpretations (Theorem 2.16!!).  Pairwise (ben-ari's): equivalent.  $\equiv$ as logical equivalence.  (Give an example with a table!)\\
+
+The following proof is an example of a proof in the Hilbert style.\\
+
+\begin{tabbing}
+(99.99.9)$\;$\=(m)$\;$\=\kill
+(3.45)\>\textbf{Distributivity of $\lor$ over $\land$ :}\quad $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$\\[\lgap]
+\end{tabbing}
+
+\begin{proof}
+$p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$
+\begin{enumerate}
+ \item $(p\lor q)\land (p\lor r)\equiv p\lor q\equiv p\lor r\equiv p\lor q\lor p\lor r$ \hfill Substitution, (3.35) Golden Rule
+ \item $p\lor q\lor p\lor r\equiv p\lor q\lor r$ \hfill (3.26) Idempotency of $\lor$
+ \item $p\lor q\lor r\equiv p\lor (q\equiv r\equiv q\lor r)$ \hfill (3.27) Distributivity of $\lor$ over $\equiv$
+ \item $p\lor (q\equiv r\equiv q\lor r)\equiv p\lor (q\land r)$ \hfill (3.35) Golden Rule
+ \item $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$ \hfill Transitivity 1, 2, 3, 4, 5
+\end{enumerate}
+\end{proof}
+
+\subsection{Equational Deductive Systems}
+
+Note: Call this the Equational $\mathcal{E}$\\[\lgap]
+In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
+programs correctness with a new logic based on an equational style.
+This equational deductive system has been the basis of textbooks by Kaldewaij \cite{Kald}, Cohen \cite{Cohen}, and Gries \cite{LADM},
+the last of which is used in the Math 220/221 sequence for computer science majors at Pepperdine.\\
+
+The equational deductive system relies on the following four proof rules:\\[\lgap]
+
+Note: these 1st 3 are the deductive axioms\\
+\textbf{Reflexivity:}
+\[
+x=x
+\]
+\textbf{Symmetry:}
+\[
+(x=y) = (y=x)
+\]
+\textbf{Transitivity:}
+\[
+\frac{X=Y, \quad Y=Z}{X=Z}
+\]
+\hfill\\
+Note: Call this the deductive rule\\ 
+\textbf{Leibniz:}
+\[
+\frac{X=Y}{E[z:=X]=E[z:=Y]}
+\]
+
+where the square bracket indicates textual substitution of expression $X$ for variable $z$ and substitution
+of expression $Y$ for variable $z$.
+Roughly speaking, Leibniz allows for the substitution of equals for equals in a proof step.
+The general form of a proof step is:
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \=  \kill
+  \> \>   $E[z:=X]$\\[\lgap]
+  \> $=$  \>  \Hint{$X=Y$} \\[\lgap]
+  \> \>   $E[z:=Y]$
+\end{tabbing}
+
+The proof below is of the same theorem that was proved in the previous section on Hilbert-style proofs, but in the equational style.  The proof is based on the following previously proved theorems:\\
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \=  \kill
+(3.26)\>\textbf{Axiom, Idempotency of $\lor$ :}\quad $p\lor p \equiv p$\\[\lgap]
+(3.27)\>\textbf{Axiom, Distributivity of $\lor$ over $\equiv$ :}\quad $p\lor (q\equiv r)\equiv p\lor q\equiv p\lor r$\\[\lgap]
+(3.35)\>\textbf{Axiom, Golden rule:}\quad $p\land q\equivs p\equivs q\equivs p\lor q$\\[\lgap]
+\end{tabbing}
+
+Here is the proof.
+
+\begin{tabbing}
+(99.99.9)$\;$\=(m)$\;$\=\kill
+(3.45)\>\textbf{Distributivity of $\lor$ over $\land$ :}\quad $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$\\[\lgap]
+\hspace{\mymathindent} \= $= \;$ \=  \kill
+  \> \>   $(p\lor q)\land (p\lor r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.35) Golden Rule} \\[\lgap]
+  \> \>   $p\lor q\equiv p\lor r\equiv p\lor q\lor p\lor r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$} \\[\lgap]
+  \> \>   $p\lor q\equiv p\lor r\equiv p\lor q\lor r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.27) Distributivity of $\lor$ over $\equiv$} \\[\lgap]
+  \> \>   $p\lor (q\equiv r\equiv q\lor r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.35) Golden Rule} \\[\lgap]
+  \> \>   $p\lor (q\land r)$\\[\lgap]
+\end{tabbing}
+
+
+Although the equational deductive system of proofs is being adopted gradually by the computer science research community,
+it is extremely slow to be adopted at the undergraduate level. The problem is two-fold.\\
+
+First, a fair amount of technical
+detail must be mastered before the system can be taught, and many computer science educators do not have the requisite
+knowledge of formal logic systems, much less the equational deductive system.
+Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction to
+formal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a more
+formal treatment of logic appropriate for computer science.\\
+
+Second, even when formal logic is taught at a depth necessary to apply it to program proofs, the older Hilbert style
+still dominates.
+The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely on the equational deductive system. 
+More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.
+The principle investigator \cite{Warf} has worked with David Gries \cite{Gries} from Cornell University to promote
+the equational deductive system at the undergraduate level.\\
+
+\subsection{Temporal Logic}
+
+Temporal logic is the logic of parallel computation, that is, computations that happen concurrently
+with the multicore processing chips that are becoming more popular in personal computers.
+Programs are inherently more difficult to test and to prove correct when they employ concurrency.\\
+
+Most treatments of temporal logic are deductive systems that follow the Hilbert style.
+Two common deductive systems are the Gentzen system $\mathcal{G}$ and the Hilbert system $\mathcal{H}$. 
+In Gentzen systems there is one axiom and many rules, while in a Hilbert system there are
+several axioms but only one rule.\\
+
+In the same way that conjunction $\land$, disjunction $\lor$, and negation $\neg$ are operators
+in propositional calculus, and the existential quantifier $\ext$, and the universal quantifier $\all$
+are abelian monoids in predicate calculus, the primitive operators in temporal logic are $\square$, $\bigcirc$,
+and $\Diamond$. Roughly speaking, $\square$ is interpreted as ``always'', $\bigcirc$ is interpreted as ``next'',
+and $\Diamond$ is interpreted as ``eventually'' when temporal logic is applied to concurrent programs. \cite{Ben2}\\
+
+Note: Describe Ben-Ari's deductive system $\mathcal{L}$, which he calls linear-time propositional temporal logic.\\
+
+The primitive operators of $\mathcal{L}$ are $\square$ and $\bigcirc$, while $\Diamond$ is defined as the dual of $\square$.  However, the standard LTL has the binary operator ``Until'', which is used in most cases along with $\bigcirc$ to define $\square$ and then $\diamond$.  This is an important distinction because the choice of primitives (there must be at least 2) will determine the axioms of the logic system, and therefore, the proofs of its theorems.\\
+
+The axioms of $\mathcal{L}$ are:
+\begin{tabbing}
+$\quad\;$\=\hspace{3in}\=\kill
+0. \> PC \> tralala\\[\lgap]
+1. \> Distribution of $\square$ over $\rightarrow$\\[\lgap]
+2. \> Distribution of $\bigcirc$ over $\rightarrow$\\[\lgap]
+3. \> Expansion of $\square$\\[\lgap]
+4. \> Induction\\[\lgap]
+5. \> Linearity\\[\lgap]
+\end{tabbing}
+
+Note: Perhaps discuss other deductive temporal logic systems?\\
+
+\section{The Equational Temporal System}
+
+Ben-Ari \cite{Ben} gives a deductive system $\mathcal{L}$ for temporal logic, but it is a
+natural deductive system in the Hilbert style of $\mathcal{G}$ and $\mathcal{H}$. This project is to develop a complete system of
+temporal logic but using the equational deductive system based on the four proof rules described
+in the first section. The system will consist of a small number of axioms and a larger number of
+theorems. Because the proof rules in the equational deductive system are different from those
+in $\mathcal{L}$, the proofs will be different as well.\\
+
+Note: Explain/use: The domain of discourse\\
+
+Note: primitives!  Lets use $\bigcirc$ and $\mathcal{U}$\\
+
+Note: lets look at until in mathcal: $\mathcal{U}$\\
+
+
+
+\subsection{The Axioms and Theorems}
+
+Note: below is our auto-label system for axioms and theorems.\\
+
+\begin{equation}\label{E:selfDual}
+\textbf{Axiom, Self-dual:}\quad \bigcirc\lnot p \equiv \lnot\bigcirc p
+\end{equation}
+
+\begin{equation}\label{E:distNextImp}
+\textbf{Axiom, Distributivity of $\bigcirc$ over $\Rightarrow$:}\quad \bigcirc (p \Rightarrow q) \equiv \bigcirc p \Rightarrow \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:nextTruth}
+\textbf{Axiom, Truth:}\quad \bigcirc true \equiv true
+\end{equation}
+
+\begin{equation}\label{E:linearity}
+\textbf{Linearity:}\quad \bigcirc p \equiv \lnot\bigcirc\lnot p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc p \equiv \lnot\bigcirc\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \bigcirc\lnot p, \bigcirc p$} \\[\lgap]
+  \> \>   $\lnot\bigcirc p \equiv \bigcirc\lnot p$
+\end{tabbing}
+which is (\ref{E:selfDual}). \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:nextFalse}
+\textbf{Falsehood:}\quad \bigcirc false \equiv false
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc false \equiv false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$} \\[\lgap]
+  \> \>   $\bigcirc\lnot true \equiv \lnot true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := true, \bigcirc\lnot true$}\\[\lgap]
+  \> \>   $\lnot\bigcirc\lnot true \equiv true$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distNextOr}
+\textbf{Distributivity of $\bigcirc$ over $\lor$:}\quad \bigcirc (p \lor q) \equiv \bigcirc p \lor \bigcirc q
+\end{equation}
+
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $\bigcirc$(p $\lor$ q)\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+	\> \>   $\bigcirc$($\lnot$p $\Rightarrow$ q)\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\bigcirc$ over $\Rightarrow$}\\[\lgap]
+	\> \>   $\bigcirc\lnot$p $\Rightarrow$ $\bigcirc$q\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+	\> \>   $\lnot\bigcirc\lnot$p $\lor$ $\bigcirc$q\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
+	\> \>   $\bigcirc$p $\lor$ $\bigcirc$q
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:distNextAnd}
+\textbf{Distributivity of $\bigcirc$ over $\land$:}\quad \bigcirc (p \land q) \equiv \bigcirc p \land \bigcirc q
+\end{equation}
+
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
+  \> \>   $\bigcirc (\lnot\lnot p \lor \lnot\lnot q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
+  \> \>   $\bigcirc (\lnot(\lnot p \lor \lnot q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\lnot p \lor \lnot q$)}\\[\lgap]
+  \> \>   $\lnot\bigcirc (\lnot p \lor \lnot q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \lnot p, \lnot q$}\\[\lgap]
+  \> \>   $\lnot (\bigcirc\lnot p \lor \bigcirc \lnot q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) twice}\\[\lgap]
+  \> \>   $\lnot(\lnot\bigcirc p \lor \lnot\bigcirc q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
+  \> \>   $\lnot\lnot(\bigcirc p \land \bigcirc q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> \>   $\bigcirc p \land \bigcirc q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distNextEquiv}
+\textbf{Distributivity of $\bigcirc$ over $\equiv$:}\quad \bigcirc (p \equiv q) \equiv \bigcirc p \equiv \bigcirc q
+\end{equation}
+
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc (p \equiv q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
+  \> \>   $\bigcirc ((p \Rightarrow q) \land (q \Rightarrow p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\bigcirc$ over $\land$}\\[\lgap]
+  \> \>   $\bigcirc (p \Rightarrow q) \land \bigcirc (p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\bigcirc$ over $\Rightarrow$}\\[\lgap]
+  \> \>   $(\bigcirc p \Rightarrow \bigcirc q) \land (\bigcirc q \Rightarrow \bigcirc p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
+  \> \>   $\bigcirc p \equiv \bigcirc q$
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distNextUntil}
+\textbf{Axiom, Distributivity of $\bigcirc$ over $\until$:}\quad \bigcirc (p \until q) \equiv \bigcirc p \until \bigcirc q
+\end{equation}
+
+\begin{equation}\label{E:expansionUntil}
+\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \bigcirc (p \until q))
+\end{equation}
+
+Note: we will take the following 6 expressions of until (which we know to be correct) as axioms for now:\\
+
+\begin{equation}\label{E:untilOrImp}
+\textbf{Axiom:}\quad (p \until r) \lor (q \until r) \Rightarrow (p \lor q) \until r
+\end{equation}
+
+\begin{equation}\label{E:untilAndImp}
+\textbf{Axiom:}\quad p \until (q \land r) \Rightarrow (p \until q) \land (p \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Axiom:}\quad (p \land q) \until r \equiv (p \until r) \land (q \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilOrEquiv}
+\textbf{Axiom:}\quad p \until (q \lor r) \equiv (p \until q) \lor (p \until r)
+\end{equation}
+
+\begin{equation}\label{E:untilIdem}
+\textbf{Axiom:}\quad p \until (p \until q) \equiv p \until q
+\end{equation}
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Axiom:}\quad (p \until q) \until q \equiv p \until q
+\end{equation}
+
+End Note\\
+
+\begin{equation}\label{E:defEvent}
+\textbf{Axiom, Definition of $\Diamond$:}\quad \Diamond p \equiv true \until p
+\end{equation}
+
+\begin{equation}\label{E:untilImpEvent}
+\textbf{Axiom:}\quad p \until q \Rightarrow \Diamond q
+\end{equation}
+
+\begin{equation}\label{E:nextEvent}
+\textbf{Axiom:}\quad \bigcirc p \Rightarrow \Diamond p
+\end{equation}
+
+
+\begin{equation}\label{E:expansionEvent}
+\textbf{Expansion of $\Diamond$:}\quad \Diamond p \equiv p \lor \bigcirc\Diamond p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $true \until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $p \lor (true \land \bigcirc(true \until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $p \lor (true \land \bigcirc\Diamond p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
+  \> \>   $p \lor \bigcirc\Diamond p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:IdemEvent}
+\textbf{Idempotency of $\Diamond$:}\quad \Diamond\Diamond p \equiv \Diamond p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Diamond\Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$, with $p := \Diamond p$}\\[\lgap]
+  \> \>   $true \until \Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $true \until (true \until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilIdem}) with $p,q := true,p$}\\[\lgap]
+  \> \>   $true \until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $\Diamond p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:dNextEvent}
+\bigcirc\Diamond p \equiv \Diamond\bigcirc p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc\Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $\bigcirc(true \until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\bigcirc$ over $\until$}\\[\lgap]
+  \> \>   $\bigcirc true \until \bigcirc p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:nextTruth})}\\[\lgap]
+  \> \>   $true \until \bigcirc p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $\Diamond\bigcirc p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+Note: Figure out what to do with the next 2 theorems, as well as devise something for $\Diamond$ over $\Rightarrow$.\\
+
+\begin{equation}\label{E:distEventOr}
+\Diamond(p \lor q) \equiv \Diamond p \lor \Diamond q
+\end{equation}
+
+\begin{equation}\label{E:distEventAnd}
+\Diamond(p \land q) \Rightarrow \Diamond p \land \Diamond q
+\end{equation}
+
+End Note.\\
+
+\begin{equation}\label{E:defAlways}
+\textbf{Axiom, Definition of $\Box$:}\quad \Box p \equiv \lnot\Diamond\lnot p
+\end{equation}
+
+\begin{equation}\label{E:dualAlways}
+\textbf{Dual of $\Box$:}\quad \lnot\Box p \equiv \Diamond\lnot p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\lnot\Box p \equiv \Diamond\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \Box p, \Diamond\lnot p$}\\[\lgap]
+  \> \>   $\Box p \equiv \lnot\Diamond\lnot p$
+\end{tabbing}
+which is (\ref{E:defAlways}). \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:dualEvent}
+\textbf{Dual of $\Diamond$:}\quad \lnot\Diamond p \equiv \Box\lnot p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Box\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
+  \> \>   $\lnot\Diamond\lnot\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> \>   $\lnot\Diamond p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:IdemAlways}
+\textbf{Idempotency of $\Box$:}\quad \Box\Box p \equiv \Box p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Box\Box p \equiv \Box p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$ with $p := \Box p$}\\[\lgap]
+  \> \>   $\lnot\Diamond\lnot\Box p \equiv \Box p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \Diamond\lnot\Box p, \Box p$}\\[\lgap]
+  \> \>   $\Diamond\lnot\Box p \equiv \lnot\Box p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Box$, twice}\\[\lgap]
+  \> \>   $\Diamond\Diamond\lnot p \equiv \Diamond\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Idempotency of $\Diamond$}\\[\lgap]
+  \> \>   $\Diamond\lnot p \equiv \Diamond\lnot p$\\[\lgap]
+\end{tabbing}
+which is (3.5) with $p := \Diamond\lnot p$. \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:dNextAlways}
+\bigcirc\Box p \equiv \Box\bigcirc p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\bigcirc\Box p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
+  \> \>   $\bigcirc\lnot\Diamond\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
+  \> \>   $\lnot\bigcirc\Diamond\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dNextEvent}) with $p := \lnot p$}\\[\lgap]
+  \> \>   $\lnot\Diamond\bigcirc\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
+  \> \>   $\lnot\Diamond\lnot\bigcirc p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
+  \> \>   $\Box\bigcirc p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+
+
+
+\section*{Conclusion}
+
+The results are cooool!\\
+
+Test: Citing latest bib entry\cite{GandS}\\
+
+\bibliographystyle{plain}
+\bibliography{Vega-Paper}
+\end{document}
