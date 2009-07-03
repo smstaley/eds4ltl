@@ -23,6 +23,16 @@
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
+% Macros for Temporal Operators
+\newcommand{\until}{\;\mathcal{U}\;}
+\newcommand{\next}{\bigcirc}
+\newcommand{\event}{\Diamond}
+\newcommand{\always}{\Box}
+
+\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\spacer}{\vspace{-30pt}}
+
+
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
 \newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
@@ -32,9 +42,6 @@
 \newcommand{\all}{\forall}                          % Universal quantification
 \newcommand{\ext}{\exists}                          % Existential quantification
 
-\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
-\newcommand{\until}{\;\mathcal{U}\;}
-\newcommand{\spacer}{\vspace{-30pt}}
 
 % Macros for proof hints
 \newcommand{\Gll} {\langle}                         % Open hint
@@ -78,61 +85,61 @@
 \maketitle
 
 \begin{equation}\label{E:selfDual}
-\textbf{Axiom, Self-dual:}\quad \bigcirc\lnot p \equiv \lnot\bigcirc p
+\textbf{Axiom, Self-dual:}\quad \next\lnot p \equiv \lnot\next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextImp}
-\textbf{Axiom, Distributivity of $\bigcirc$ over $\Rightarrow$:}\quad \bigcirc (p \Rightarrow q) \equiv \bigcirc p \Rightarrow \bigcirc q
+\textbf{Axiom, Distributivity of $\next$ over $\Rightarrow$:}\quad \next (p \Rightarrow q) \equiv \next p \Rightarrow \next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextTruth}
-\textbf{Axiom, Truth:}\quad \bigcirc true \equiv true
+\textbf{Axiom, Truth:}\quad \next true \equiv true
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:linearity}
-\textbf{Linearity:}\quad \bigcirc p \equiv \lnot\bigcirc\lnot p
+\textbf{Linearity:}\quad \next p \equiv \lnot\next\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \bigcirc false \equiv false
+\textbf{Falsehood:}\quad \next false \equiv false
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextOr}
-\textbf{Distributivity of $\bigcirc$ over $\lor$:}\quad \bigcirc (p \lor q) \equiv \bigcirc p \lor \bigcirc q
+\textbf{Distributivity of $\next$ over $\lor$:}\quad \next (p \lor q) \equiv \next p \lor \next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextAnd}
-\textbf{Distributivity of $\bigcirc$ over $\land$:}\quad \bigcirc (p \land q) \equiv \bigcirc p \land \bigcirc q
+\textbf{Distributivity of $\next$ over $\land$:}\quad \next (p \land q) \equiv \next p \land \next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextEquiv}
-\textbf{Distributivity of $\bigcirc$ over $\equiv$:}\quad \bigcirc (p \equiv q) \equiv \bigcirc p \equiv \bigcirc q
+\textbf{Distributivity of $\next$ over $\equiv$:}\quad \next (p \equiv q) \equiv \next p \equiv \next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextUntil}
-\textbf{Axiom, Distributivity of $\bigcirc$ over $\until$:}\quad \bigcirc (p \until q) \equiv \bigcirc p \until \bigcirc q
+\textbf{Axiom, Distributivity of $\next$ over $\until$:}\quad \next (p \until q) \equiv \next p \until \next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:expansionUntil}
-\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \bigcirc (p \until q))
+\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \next (p \until q))
 \end{equation}
 
 \spacer
@@ -174,187 +181,187 @@
 \spacer
 
 \begin{equation}\label{E:defEvent}
-\textbf{Axiom, Definition of $\Diamond$:}\quad \Diamond p \equiv true \until p
+\textbf{Axiom, Definition of $\event$:}\quad \event p \equiv true \until p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilImpEvent}
-\textbf{Axiom:}\quad p \until q \Rightarrow \Diamond q
+\textbf{Axiom:}\quad p \until q \Rightarrow \event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextEvent}
-\textbf{Axiom:}\quad \bigcirc p \Rightarrow \Diamond p
+\textbf{Axiom:}\quad \next p \Rightarrow \event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:expansionEvent}
-\textbf{Expansion of $\Diamond$:}\quad \Diamond p \equiv p \lor \bigcirc\Diamond p
+\textbf{Expansion of $\event$:}\quad \event p \equiv p \lor \next\event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impEvent}
-p \Rightarrow \Diamond p
+p \Rightarrow \event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:IdemEvent}
-\textbf{Idempotency of $\Diamond$:}\quad \Diamond\Diamond p \equiv \Diamond p
+\textbf{Idempotency of $\event$:}\quad \event\event p \equiv \event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:dNextEvent}
-\bigcirc\Diamond p \equiv \Diamond\bigcirc p
+\next\event p \equiv \event\next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventOr}
-\Diamond(p \lor q) \equiv \Diamond p \lor \Diamond q
+\event(p \lor q) \equiv \event p \lor \event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
-\Diamond(p \land q) \Rightarrow \Diamond p \land \Diamond q
+\event(p \land q) \Rightarrow \event p \land \event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:defAlways}
-\textbf{Axiom, Definition of $\Box$:}\quad \Box p \equiv \lnot\Diamond\lnot p
+\textbf{Axiom, Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:dualAlways}
-\textbf{Dual of $\Box$:}\quad \lnot\Box p \equiv \Diamond\lnot p
+\textbf{Dual of $\always$:}\quad \lnot\always p \equiv \event\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:dualEvent}
-\textbf{Dual of $\Diamond$:}\quad \lnot\Diamond p \equiv \Box\lnot p
+\textbf{Dual of $\event$:}\quad \lnot\event p \equiv \always\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:expansionEvent}
-\textbf{Expansion of $\Box$:}\quad \Box p \equiv p \land \bigcirc\Box p
+\textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:IdemAlways}
-\textbf{Idempotency of $\Box$:}\quad \Box\Box p \equiv \Box p
+\textbf{Idempotency of $\always$:}\quad \always\always p \equiv \always p
 \end{equation}
 
 \pagebreak
 
 \begin{equation}\label{E:dNextAlways}
-\bigcirc\Box p \equiv \Box\bigcirc p
+\next\always p \equiv \always\next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:ImpAlways}
-\Box p \Rightarrow p
+\always p \Rightarrow p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:ImpAlwaysE}
-\Box p \Rightarrow \Diamond p
+\always p \Rightarrow \event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:ImpAlwaysN}
-\Box p \Rightarrow \bigcirc p
+\always p \Rightarrow \next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:ImpAlwaysNA}
-\Box p \Rightarrow \bigcirc\Box p
+\always p \Rightarrow \next\always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:excludedMid}
-\textbf{Excluded Middle:}\quad \Diamond p \lor \Box\lnot p
+\textbf{Excluded Middle:}\quad \event p \lor \always\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\Box$ over $\Rightarrow$:}\quad \Box (p \Rightarrow q) \Rightarrow (\Box p \Rightarrow \Box q)
+\textbf{Distributivity of $\always$ over $\Rightarrow$:}\quad \always (p \Rightarrow q) \Rightarrow (\always p \Rightarrow \always q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysAnd}
-\textbf{Distributivity of $\Box$ over $\land$:}\quad \Box (p \land q) \equiv (\Box p \land \Box q)
+\textbf{Distributivity of $\always$ over $\land$:}\quad \always (p \land q) \equiv (\always p \land \always q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\Box$ over $\lor$:}\quad (\Box p \lor \Box q) \Rightarrow \Box (p \lor q)
+\textbf{Distributivity of $\always$ over $\lor$:}\quad (\always p \lor \always q) \Rightarrow \always (p \lor q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventAlwaysImp}
-\Diamond\Box p \Rightarrow \Box\Diamond p
+\event\always p \Rightarrow \always\event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Diamond$:}\quad \Diamond\Box\Diamond p \equiv \Box\Diamond p
+\textbf{Absorption of $\event$:}\quad \event\always\event p \equiv \always\event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Box$:}\quad \Box\Diamond\Box p \equiv \Diamond\Box p
+\textbf{Absorption of $\always$:}\quad \always\event\always p \equiv \event\always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNext}
-\Box (p \Rightarrow \bigcirc p) \Rightarrow (p \Rightarrow \Box p)
+\always (p \Rightarrow \next p) \Rightarrow (p \Rightarrow \always p)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
-\Box (p \Rightarrow q) \Rightarrow (\bigcirc p \Rightarrow \bigcirc q)
+\always (p \Rightarrow q) \Rightarrow (\next p \Rightarrow \next q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
-\Box (p \Rightarrow q) \Rightarrow (\Diamond p \Rightarrow \Diamond q)
+\always (p \Rightarrow q) \Rightarrow (\event p \Rightarrow \event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventImpAlways}
-\Diamond (p \Rightarrow q) \equiv (\Box p \Rightarrow \Diamond q)
+\event (p \Rightarrow q) \equiv (\always p \Rightarrow \event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysAndEvent}
-\Box p \land \Diamond q \Rightarrow \Diamond (p \land q)
+\always p \land \event q \Rightarrow \event (p \land q)
 \end{equation}
 
 

@@ -19,6 +19,15 @@
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
+
+% Macros for Temporal Operators
+\newcommand{\until}{\;\mathcal{U}\;}
+\newcommand{\next}{\bigcirc}
+\newcommand{\event}{\Diamond}
+\newcommand{\always}{\Box}
+
+\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
+
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
 \newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
@@ -27,9 +36,6 @@
 \newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
 \newcommand{\all}{\forall}                          % Universal quantification
 \newcommand{\ext}{\exists}                          % Existential quantification
-
-\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
-\newcommand{\until}{\;\mathcal{U}\;}
 
 % Macros for proof hints
 \newcommand{\Gll} {\langle}                         % Open hint
@@ -258,21 +264,21 @@ several axioms but only one rule.\\
 
 In the same way that conjunction $\land$, disjunction $\lor$, and negation $\neg$ are operators
 in propositional calculus, and the existential quantifier $\ext$, and the universal quantifier $\all$
-are abelian monoids in predicate calculus, the primitive operators in temporal logic are $\square$, $\bigcirc$,
-and $\Diamond$. Roughly speaking, $\square$ is interpreted as ``always'', $\bigcirc$ is interpreted as ``next'',
-and $\Diamond$ is interpreted as ``eventually'' when temporal logic is applied to concurrent programs. \cite{Ben2}\\
+are abelian monoids in predicate calculus, the primitive operators in temporal logic are $\always$, $\next$,
+and $\event$. Roughly speaking, $\always$ is interpreted as ``always'', $\next$ is interpreted as ``next'',
+and $\event$ is interpreted as ``eventually'' when temporal logic is applied to concurrent programs. \cite{Ben2}\\
 
 Note: Describe Ben-Ari's deductive system $\mathcal{L}$, which he calls linear-time propositional temporal logic.\\
 
-The primitive operators of $\mathcal{L}$ are $\square$ and $\bigcirc$, while $\Diamond$ is defined as the dual of $\square$.  However, the standard LTL has the binary operator ``Until'', which is used in most cases along with $\bigcirc$ to define $\square$ and then $\diamond$.  This is an important distinction because the choice of primitives (there must be at least 2) will determine the axioms of the logic system, and therefore, the proofs of its theorems.\\
+The primitive operators of $\mathcal{L}$ are $\always$ and $\next$, while $\event$ is defined as the dual of $\always$.  However, the standard LTL has the binary operator ``Until'', which is used in most cases along with $\next$ to define $\always$ and then $\event$.  This is an important distinction because the choice of primitives (there must be at least 2) will determine the axioms of the logic system, and therefore, the proofs of its theorems.\\
 
 The axioms of $\mathcal{L}$ are:
 \begin{tabbing}
 $\quad\;$\=\hspace{3in}\=\kill
 0. \> PC \> tralala\\[\lgap]
-1. \> Distribution of $\square$ over $\rightarrow$\\[\lgap]
-2. \> Distribution of $\bigcirc$ over $\rightarrow$\\[\lgap]
-3. \> Expansion of $\square$\\[\lgap]
+1. \> Distribution of $\always$ over $\rightarrow$\\[\lgap]
+2. \> Distribution of $\next$ over $\rightarrow$\\[\lgap]
+3. \> Expansion of $\always$\\[\lgap]
 4. \> Induction\\[\lgap]
 5. \> Linearity\\[\lgap]
 \end{tabbing}
@@ -290,7 +296,7 @@ in $\mathcal{L}$, the proofs will be different as well.\\
 
 Note: Explain/use: The domain of discourse\\
 
-Note: primitives!  Lets use $\bigcirc$ and $\mathcal{U}$\\
+Note: primitives!  Lets use $\next$ and $\mathcal{U}$\\
 
 Note: lets look at until in mathcal: $\mathcal{U}$\\
 
@@ -301,121 +307,121 @@ Note: lets look at until in mathcal: $\mathcal{U}$\\
 Note: below is our auto-label system for axioms and theorems.\\
 
 \begin{equation}\label{E:selfDual}
-\textbf{Axiom, Self-dual:}\quad \bigcirc\lnot p \equiv \lnot\bigcirc p
+\textbf{Axiom, Self-dual:}\quad \next\lnot p \equiv \lnot\next p
 \end{equation}
 
 \begin{equation}\label{E:distNextImp}
-\textbf{Axiom, Distributivity of $\bigcirc$ over $\Rightarrow$:}\quad \bigcirc (p \Rightarrow q) \equiv \bigcirc p \Rightarrow \bigcirc q
+\textbf{Axiom, Distributivity of $\next$ over $\Rightarrow$:}\quad \next (p \Rightarrow q) \equiv \next p \Rightarrow \next q
 \end{equation}
 
 \begin{equation}\label{E:nextTruth}
-\textbf{Axiom, Truth:}\quad \bigcirc true \equiv true
+\textbf{Axiom, Truth:}\quad \next true \equiv true
 \end{equation}
 
 \begin{equation}\label{E:linearity}
-\textbf{Linearity:}\quad \bigcirc p \equiv \lnot\bigcirc\lnot p
+\textbf{Linearity:}\quad \next p \equiv \lnot\next\lnot p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc p \equiv \lnot\bigcirc\lnot p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := \bigcirc\lnot p, \bigcirc p$} \\[\lgap]
-  \> \>   $\lnot\bigcirc p \equiv \bigcirc\lnot p$
+  \> \>   $\next p \equiv \lnot\next\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \next\lnot p, \next p$} \\[\lgap]
+  \> \>   $\lnot\next p \equiv \next\lnot p$
 \end{tabbing}
 which is (\ref{E:selfDual}). \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \bigcirc false \equiv false
+\textbf{Falsehood:}\quad \next false \equiv false
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc false \equiv false$\\[\lgap]
+  \> \>   $\next false \equiv false$\\[\lgap]
   \> $=$  \>  \Hint{(3.8) Definition of $false$} \\[\lgap]
-  \> \>   $\bigcirc\lnot true \equiv \lnot true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := true, \bigcirc\lnot true$}\\[\lgap]
-  \> \>   $\lnot\bigcirc\lnot true \equiv true$\\[\lgap]
+  \> \>   $\next\lnot true \equiv \lnot true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := true, \next\lnot true$}\\[\lgap]
+  \> \>   $\lnot\next\lnot true \equiv true$\\[\lgap]
 \end{tabbing}
 which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distNextOr}
-\textbf{Distributivity of $\bigcirc$ over $\lor$:}\quad \bigcirc (p \lor q) \equiv \bigcirc p \lor \bigcirc q
+\textbf{Distributivity of $\next$ over $\lor$:}\quad \next (p \lor q) \equiv \next p \lor \next q
 \end{equation}
 
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-	\> \>   $\bigcirc$(p $\lor$ q)\\[\lgap]
+	\> \>   $\next$(p $\lor$ q)\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
-	\> \>   $\bigcirc$($\lnot$p $\Rightarrow$ q)\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\bigcirc$ over $\Rightarrow$}\\[\lgap]
-	\> \>   $\bigcirc\lnot$p $\Rightarrow$ $\bigcirc$q\\[\lgap]
+	\> \>   $\next$($\lnot$p $\Rightarrow$ q)\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\next$ over $\Rightarrow$}\\[\lgap]
+	\> \>   $\next\lnot$p $\Rightarrow$ $\next$q\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
-	\> \>   $\lnot\bigcirc\lnot$p $\lor$ $\bigcirc$q\\[\lgap]
+	\> \>   $\lnot\next\lnot$p $\lor$ $\next$q\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
-	\> \>   $\bigcirc$p $\lor$ $\bigcirc$q
+	\> \>   $\next$p $\lor$ $\next$q
 \end{tabbing}
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:distNextAnd}
-\textbf{Distributivity of $\bigcirc$ over $\land$:}\quad \bigcirc (p \land q) \equiv \bigcirc p \land \bigcirc q
+\textbf{Distributivity of $\next$ over $\land$:}\quad \next (p \land q) \equiv \next p \land \next q
 \end{equation}
 
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc (p \land q)$\\[\lgap]
+  \> \>   $\next (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
-  \> \>   $\bigcirc (\lnot\lnot p \lor \lnot\lnot q)$\\[\lgap]
+  \> \>   $\next (\lnot\lnot p \lor \lnot\lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
-  \> \>   $\bigcirc (\lnot(\lnot p \lor \lnot q))$\\[\lgap]
+  \> \>   $\next (\lnot(\lnot p \lor \lnot q))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\lnot p \lor \lnot q$)}\\[\lgap]
-  \> \>   $\lnot\bigcirc (\lnot p \lor \lnot q)$\\[\lgap]
+  \> \>   $\lnot\next (\lnot p \lor \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \lnot p, \lnot q$}\\[\lgap]
-  \> \>   $\lnot (\bigcirc\lnot p \lor \bigcirc \lnot q)$\\[\lgap]
+  \> \>   $\lnot (\next\lnot p \lor \next \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) twice}\\[\lgap]
-  \> \>   $\lnot(\lnot\bigcirc p \lor \lnot\bigcirc q)$\\[\lgap]
+  \> \>   $\lnot(\lnot\next p \lor \lnot\next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
-  \> \>   $\lnot\lnot(\bigcirc p \land \bigcirc q)$\\[\lgap]
+  \> \>   $\lnot\lnot(\next p \land \next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
-  \> \>   $\bigcirc p \land \bigcirc q$\\[\lgap]
+  \> \>   $\next p \land \next q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distNextEquiv}
-\textbf{Distributivity of $\bigcirc$ over $\equiv$:}\quad \bigcirc (p \equiv q) \equiv \bigcirc p \equiv \bigcirc q
+\textbf{Distributivity of $\next$ over $\equiv$:}\quad \next (p \equiv q) \equiv \next p \equiv \next q
 \end{equation}
 
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc (p \equiv q)$\\[\lgap]
+  \> \>   $\next (p \equiv q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
-  \> \>   $\bigcirc ((p \Rightarrow q) \land (q \Rightarrow p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\bigcirc$ over $\land$}\\[\lgap]
-  \> \>   $\bigcirc (p \Rightarrow q) \land \bigcirc (p \Rightarrow q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\bigcirc$ over $\Rightarrow$}\\[\lgap]
-  \> \>   $(\bigcirc p \Rightarrow \bigcirc q) \land (\bigcirc q \Rightarrow \bigcirc p)$\\[\lgap]
+  \> \>   $\next ((p \Rightarrow q) \land (q \Rightarrow p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\next$ over $\land$}\\[\lgap]
+  \> \>   $\next (p \Rightarrow q) \land \next (p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\next$ over $\Rightarrow$}\\[\lgap]
+  \> \>   $(\next p \Rightarrow \next q) \land (\next q \Rightarrow \next p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
-  \> \>   $\bigcirc p \equiv \bigcirc q$
+  \> \>   $\next p \equiv \next q$
 \end{tabbing}
 \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distNextUntil}
-\textbf{Axiom, Distributivity of $\bigcirc$ over $\until$:}\quad \bigcirc (p \until q) \equiv \bigcirc p \until \bigcirc q
+\textbf{Axiom, Distributivity of $\next$ over $\until$:}\quad \next (p \until q) \equiv \next p \until \next q
 \end{equation}
 
 \begin{equation}\label{E:expansionUntil}
-\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \bigcirc (p \until q))
+\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \next (p \until q))
 \end{equation}
 
 Note: we will take the following 6 expressions of until (which we know to be correct) as axioms for now:\\
@@ -447,47 +453,47 @@ Note: we will take the following 6 expressions of until (which we know to be cor
 End Note\\
 
 \begin{equation}\label{E:defEvent}
-\textbf{Axiom, Definition of $\Diamond$:}\quad \Diamond p \equiv true \until p
+\textbf{Axiom, Definition of $\event$:}\quad \event p \equiv true \until p
 \end{equation}
 
 \begin{equation}\label{E:untilImpEvent}
-\textbf{Axiom:}\quad p \until q \Rightarrow \Diamond q
+\textbf{Axiom:}\quad p \until q \Rightarrow \event q
 \end{equation}
 
 \begin{equation}\label{E:nextEvent}
-\textbf{Axiom:}\quad \bigcirc p \Rightarrow \Diamond p
+\textbf{Axiom:}\quad \next p \Rightarrow \event p
 \end{equation}
 
 
 \begin{equation}\label{E:expansionEvent}
-\textbf{Expansion of $\Diamond$:}\quad \Diamond p \equiv p \lor \bigcirc\Diamond p
+\textbf{Expansion of $\event$:}\quad \event p \equiv p \lor \next\event p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Diamond p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $\event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
   \> \>   $true \until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
-  \> \>   $p \lor (true \land \bigcirc(true \until p))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
-  \> \>   $p \lor (true \land \bigcirc\Diamond p)$\\[\lgap]
+  \> \>   $p \lor (true \land \next(true \until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $p \lor (true \land \next\event p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
-  \> \>   $p \lor \bigcirc\Diamond p$\\[\lgap]
+  \> \>   $p \lor \next\event p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:impEvent}
-p \Rightarrow \Diamond p
+p \Rightarrow \event p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Diamond p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Diamond$}\\[\lgap]
-  \> \>   $p \lor \bigcirc\Diamond p$\\[\lgap]
+  \> \>   $\event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\event$}\\[\lgap]
+  \> \>   $p \lor \next\event p$\\[\lgap]
   \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
   \> \>   $p$\\[\lgap]
 \end{tabbing}
@@ -495,132 +501,130 @@ p \Rightarrow \Diamond p
 
 
 \begin{equation}\label{E:IdemEvent}
-\textbf{Idempotency of $\Diamond$:}\quad \Diamond\Diamond p \equiv \Diamond p
+\textbf{Idempotency of $\event$:}\quad \event\event p \equiv \event p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Diamond\Diamond p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$, with $p := \Diamond p$}\\[\lgap]
-  \> \>   $true \until \Diamond p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
+  \> \>   $\event\event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$, with $p := \event p$}\\[\lgap]
+  \> \>   $true \until \event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
   \> \>   $true \until (true \until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilIdem}) with $p,q := true,p$}\\[\lgap]
   \> \>   $true \until p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
-  \> \>   $\Diamond p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $\event p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:dNextEvent}
-\bigcirc\Diamond p \equiv \Diamond\bigcirc p
+\next\event p \equiv \event\next p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc\Diamond p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
-  \> \>   $\bigcirc(true \until p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\bigcirc$ over $\until$}\\[\lgap]
-  \> \>   $\bigcirc true \until \bigcirc p$\\[\lgap]
+  \> \>   $\next\event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $\next(true \until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\next$ over $\until$}\\[\lgap]
+  \> \>   $\next true \until \next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:nextTruth})}\\[\lgap]
-  \> \>   $true \until \bigcirc p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Diamond$}\\[\lgap]
-  \> \>   $\Diamond\bigcirc p$\\[\lgap]
+  \> \>   $true \until \next p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $\event\next p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
-Note: Figure out what to do with the next 2 theorems, as well as devise something for $\Diamond$ over $\Rightarrow$.\\
+Note: Figure out what to do with the next 2 theorems, as well as devise something for $\event$ over $\Rightarrow$.\\
 
 \begin{equation}\label{E:distEventOr}
-\Diamond(p \lor q) \equiv \Diamond p \lor \Diamond q
+\event(p \lor q) \equiv \event p \lor \event q
 \end{equation}
 
 \begin{equation}\label{E:distEventAnd}
-\Diamond(p \land q) \Rightarrow \Diamond p \land \Diamond q
+\event(p \land q) \Rightarrow \event p \land \event q
 \end{equation}
 
 End Note.\\
 
 \begin{equation}\label{E:defAlways}
-\textbf{Axiom, Definition of $\Box$:}\quad \Box p \equiv \lnot\Diamond\lnot p
+\textbf{Axiom, Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
 \end{equation}
 
 \begin{equation}\label{E:dualAlways}
-\textbf{Dual of $\Box$:}\quad \lnot\Box p \equiv \Diamond\lnot p
+\textbf{Dual of $\always$:}\quad \lnot\always p \equiv \event\lnot p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\lnot\Box p \equiv \Diamond\lnot p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := \Box p, \Diamond\lnot p$}\\[\lgap]
-  \> \>   $\Box p \equiv \lnot\Diamond\lnot p$
+  \> \>   $\lnot\always p \equiv \event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \always p, \event\lnot p$}\\[\lgap]
+  \> \>   $\always p \equiv \lnot\event\lnot p$
 \end{tabbing}
 which is (\ref{E:defAlways}). \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:dualEvent}
-\textbf{Dual of $\Diamond$:}\quad \lnot\Diamond p \equiv \Box\lnot p
+\textbf{Dual of $\event$:}\quad \lnot\event p \equiv \always\lnot p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Box\lnot p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
-  \> \>   $\lnot\Diamond\lnot\lnot p$\\[\lgap]
+  \> \>   $\always\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\lnot\event\lnot\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
-  \> \>   $\lnot\Diamond p$\\[\lgap]
+  \> \>   $\lnot\event p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:IdemAlways}
-\textbf{Idempotency of $\Box$:}\quad \Box\Box p \equiv \Box p
+\textbf{Idempotency of $\always$:}\quad \always\always p \equiv \always p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Box\Box p \equiv \Box p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$ with $p := \Box p$}\\[\lgap]
-  \> \>   $\lnot\Diamond\lnot\Box p \equiv \Box p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := \Diamond\lnot\Box p, \Box p$}\\[\lgap]
-  \> \>   $\Diamond\lnot\Box p \equiv \lnot\Box p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Box$, twice}\\[\lgap]
-  \> \>   $\Diamond\Diamond\lnot p \equiv \Diamond\lnot p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Idempotency of $\Diamond$}\\[\lgap]
-  \> \>   $\Diamond\lnot p \equiv \Diamond\lnot p$\\[\lgap]
+  \> \>   $\always\always p \equiv \always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$ with $p := \always p$}\\[\lgap]
+  \> \>   $\lnot\event\lnot\always p \equiv \always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := \event\lnot\always p, \always p$}\\[\lgap]
+  \> \>   $\event\lnot\always p \equiv \lnot\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\always$, twice}\\[\lgap]
+  \> \>   $\event\event\lnot p \equiv \event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Idempotency of $\event$}\\[\lgap]
+  \> \>   $\event\lnot p \equiv \event\lnot p$\\[\lgap]
 \end{tabbing}
-which is (3.5) with $p := \Diamond\lnot p$. \myqed\\[\lgap]
+which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:dNextAlways}
-\bigcirc\Box p \equiv \Box\bigcirc p
+\next\always p \equiv \always\next p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\bigcirc\Box p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
-  \> \>   $\bigcirc\lnot\Diamond\lnot p$\\[\lgap]
+  \> \>   $\next\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\next\lnot\event\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
-  \> \>   $\lnot\bigcirc\Diamond\lnot p$\\[\lgap]
+  \> \>   $\lnot\next\event\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dNextEvent}) with $p := \lnot p$}\\[\lgap]
-  \> \>   $\lnot\Diamond\bigcirc\lnot p$\\[\lgap]
+  \> \>   $\lnot\event\next\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
-  \> \>   $\lnot\Diamond\lnot\bigcirc p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Box$}\\[\lgap]
-  \> \>   $\Box\bigcirc p$\\[\lgap]
+  \> \>   $\lnot\event\lnot\next p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\always\next p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
-
-
 
 
 
