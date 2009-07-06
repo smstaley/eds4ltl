@@ -22,6 +22,7 @@
 
 % Macros for Temporal Operators
 \newcommand{\until}{\;\mathcal{U}\;}
+\newcommand{\wait}{\;\mathcal{W}\;}
 \newcommand{\next}{\bigcirc}
 \newcommand{\event}{\Diamond}
 \newcommand{\always}{\Box}
@@ -88,14 +89,39 @@ This is the abstract. This is the abstract. This is the abstract. This is the ab
 
 \section{Introduction}
 
-Propositional calculus is a formal system of logic based on the unary operator $\lnot$, the binary operators $\land$, $\lor$, $\impl$
-(also written $\rightarrow$),  $\equiv$ (also written $\leftrightarrow$), variables (lowercase letters $p$, $q$, \dots), and the
-constants $true$ and $false$.
-Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics.
+Propositional calculus is a formal system of logic based on the unary operator negation $\lnot$,
+the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),
+and equivalence $\equiv$ (also written $\leftrightarrow$),
+variables (lowercase letters $p$, $q$, \dots), and the constants $true$ and $false$.
+Hilbert-style logic systems, $\mathcal{H}, are the deductive logic systems traditionally used in mathematics.
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
 program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, has been the basis of textbooks by Kaldewaij \cite{Kald},
 Cohen \cite{Cohen}, and Gries \cite{LADM}.\\
+
+Although the equational deductive system of proofs is being adopted gradually by the computer science research community,
+it is slow to be adopted at the undergraduate level. The problem is two-fold.
+First, a fair amount of technical
+detail must be mastered before the system can be taught, and many computer science educators do not have the requisite
+knowledge of formal logic systems, much less the equational deductive system.
+Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction to
+formal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a more
+formal treatment of logic appropriate for computer science.\\
+
+Second, even when formal logic is taught at a depth necessary to apply it to program proofs, the older Hilbert style
+still dominates.
+The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely on the equational deductive system. 
+More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.\\
+
+Linear temporal logic describes how the truth values of propositions change over time.
+It extends the propositional operators with the unary operators next $\next$, eventually $\event$, and always $\always$,
+and the binary operators until $\until$ and wait $\wait$.
+Propositional calculus applies to program correctness with the formulation of the Hoare triple to establish invariants
+in programs that terminate.
+Temporal logic applies to program correctness with concurrent processing to establish safety and liveness properties
+in programs that possibly do not terminate.\\
+
+
 
 Equational-style logic systems, blah, blah.
 The use of a set of rules is necessary to preserve the truth-value of the given expression.
