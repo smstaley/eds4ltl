@@ -450,6 +450,23 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \next (p \until q))
 \end{equation}
 
+
+\begin{equation}\label{E:idemUntil}
+\textbf{Idempotency of $\until$:}\quad p \until p \equiv p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $p \lor (p \land \next(p \until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption}\\[\lgap]
+  \> \>   $p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
 Note: we will take the following 6 expressions of until (which we know to be correct) as axioms for now:\\
 
 \begin{equation}\label{E:untilOrImp}
@@ -511,7 +528,7 @@ End Note\\
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:eventuality}
-p \Rightarrow \event p
+\textbf{Eventuality:}\quad p \Rightarrow \event p
 \end{equation}
 
 \emph{Proof:}
@@ -527,7 +544,7 @@ p \Rightarrow \event p
 
 
 \begin{equation}\label{E:IdemEvent}
-\textbf{Idempotency of $\event$:}\quad \event\event p \equiv \event p
+\textbf{Absorption of $\event$:}\quad \event\event p \equiv \event p
 \end{equation}
 
 \emph{Proof:}
@@ -565,17 +582,42 @@ p \Rightarrow \event p
 \end{tabbing}
 \myqed\\[\lgap]
 
-Note: Figure out what to do with the next 2 theorems, as well as devise something for $\event$ over $\Rightarrow$.\\
 
 \begin{equation}\label{E:distEventOr}
-\event(p \lor q) \equiv \event p \lor \event q
+\textbf{Distributivity of $\event$ over $\lor$:}\quad \event(p \lor q) \equiv \event p \lor \event q
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\event(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $true \until (p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv})}\\[\lgap]
+  \> \>   $(true \until p) \lor (true \until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$ twice}\\[\lgap]
+  \> \>   $\event p \lor \event q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \begin{equation}\label{E:distEventAnd}
-\event(p \land q) \Rightarrow \event p \land \event q
+\textbf{Distributivity of $\event$ over $\land$:}\quad \event(p \land q) \Rightarrow \event p \land \event q
 \end{equation}
 
-End Note.\\
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $true \until (p \land q)$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:untilAndImp})}\\[\lgap]
+  \> \>   $(true \until p) \land (true \until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$ twice}\\[\lgap]
+  \> \>   $\event p \land \event q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \begin{equation}\label{E:defAlways}
 \textbf{Axiom, Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
@@ -635,14 +677,14 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
   \> \>   $p \land \lnot\next\event\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\always$}\\[\lgap]
   \> \>   $p \land \lnot\next\lnot\always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:linearity})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
   \> \>   $p \land \next\always p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:IdemAlways}
-\textbf{Idempotency of $\always$:}\quad \always\always p \equiv \always p
+\textbf{Absorption of $\always$:}\quad \always\always p \equiv \always p
 \end{equation}
 
 \emph{Proof:}
@@ -655,7 +697,7 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
   \> \>   $\event\lnot\always p \equiv \lnot\always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\always$, twice}\\[\lgap]
   \> \>   $\event\event\lnot p \equiv \event\lnot p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Idempotency of $\event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\event$}\\[\lgap]
   \> \>   $\event\lnot p \equiv \event\lnot p$\\[\lgap]
 \end{tabbing}
 which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
@@ -729,11 +771,11 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionAlways})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\always$}\\[\lgap]
   \> \>   $p \land \next\always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dNextAlways})}\\[\lgap]
   \> \>   $p \land \always\next p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) with $p := \next p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\always$ with $p := \next p$}\\[\lgap]
   \> \>   $p \land \next p \land \next\always\next p$\\[\lgap]
   \> $\Rightarrow$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
   \> \>   $\next p$\\[\lgap]
@@ -749,7 +791,7 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionAlways})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\always$}\\[\lgap]
   \> \>   $p \land \next\always p$\\[\lgap]
   \> $\Rightarrow$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
   \> \>   $\next\always p$\\[\lgap]

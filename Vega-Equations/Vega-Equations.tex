@@ -144,6 +144,12 @@
 
 \spacer
 
+\begin{equation}\label{E:idemUntil}
+\textbf{Idempotency of $\until$:}\quad p \until p \equiv p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \until r) \lor (q \until r) \Rightarrow (p \lor q) \until r
 \end{equation}
@@ -186,8 +192,8 @@
 
 \spacer
 
-\begin{equation}\label{E:untilImpEvent}
-\textbf{Axiom:}\quad p \until q \Rightarrow \event q
+\begin{equation}\label{E:eventuality}
+\textbf{Axiom, Eventuality:}\quad p \until q \Rightarrow \event q
 \end{equation}
 
 \spacer
@@ -211,25 +217,25 @@ p \Rightarrow \event p
 \spacer
 
 \begin{equation}\label{E:IdemEvent}
-\textbf{Idempotency of $\event$:}\quad \event\event p \equiv \event p
+\textbf{Absorption of $\event$:}\quad \event\event p \equiv \event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:dNextEvent}
-\next\event p \equiv \event\next p
+\textbf{Exchange of $\next$ and $\event$:}\quad \next\event p \equiv \event\next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventOr}
-\event(p \lor q) \equiv \event p \lor \event q
+\textbf{Distributivity of $\event$ over $\lor$:}\quad \event(p \lor q) \equiv \event p \lor \event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
-\event(p \land q) \Rightarrow \event p \land \event q
+\textbf{Distributivity of $\event$ over $\land$:}\quad \event(p \land q) \Rightarrow \event p \land \event q
 \end{equation}
 
 \spacer
@@ -256,16 +262,16 @@ p \Rightarrow \event p
 \textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
 \end{equation}
 
-\spacer
-
-\begin{equation}\label{E:IdemAlways}
-\textbf{Idempotency of $\always$:}\quad \always\always p \equiv \always p
-\end{equation}
-
 \pagebreak
 
+\begin{equation}\label{E:IdemAlways}
+\textbf{Absorption of $\always$:}\quad \always\always p \equiv \always p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:dNextAlways}
-\next\always p \equiv \always\next p
+\textbf{Exchange of $\next$ and $\always$:}\quad \next\always p \equiv \always\next p
 \end{equation}
 
 \spacer
@@ -325,13 +331,13 @@ p \Rightarrow \event p
 \spacer
 
 \begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\event$:}\quad \event\always\event p \equiv \always\event p
+\textbf{Absorption of $\event$ into $\always$:}\quad \event\always\event p \equiv \always\event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\always$:}\quad \always\event\always p \equiv \event\always p
+\textbf{Absorption of $\always$ into $\event$:}\quad \always\event\always p \equiv \event\always p
 \end{equation}
 
 \spacer
