@@ -484,7 +484,7 @@ End Note\\
 \end{tabbing}
 \myqed\\[\lgap]
 
-\begin{equation}\label{E:impEvent}
+\begin{equation}\label{E:eventuality}
 p \Rightarrow \event p
 \end{equation}
 
@@ -585,6 +585,36 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
 \myqed\\[\lgap]
 
 
+\begin{equation}\label{E:expansionAlways}
+\textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\lnot\event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$ with $p := \lnot p$}\\[\lgap]
+  \> \>   $\lnot(true \until \lnot p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $\lnot(\lnot p \lor (true \land \next(true \until \lnot p)))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
+  \> \>   $\lnot(\lnot p \lor \next(true \until \lnot p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan's Law}\\[\lgap]
+  \> \>   $\lnot\lnot p \land \lnot\next(true \until \lnot p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> \>   $p \land \lnot\next(true \until \lnot p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\event$}\\[\lgap]
+  \> \>   $p \land \lnot\next\event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\always$}\\[\lgap]
+  \> \>   $p \land \lnot\next\lnot\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:linearity})}\\[\lgap]
+  \> \>   $p \land \next\always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
 \begin{equation}\label{E:IdemAlways}
 \textbf{Idempotency of $\always$:}\quad \always\always p \equiv \always p
 \end{equation}
@@ -625,6 +655,95 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
   \> \>   $\always\next p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:impAlways}
+\always p \Rightarrow p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\lnot\event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\event$}\\[\lgap]
+  \> \>   $\lnot(\lnot p \lor \next\event\lnot p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan's Law}\\[\lgap]
+  \> \>   $\lnot\lnot p \land \lnot\next\event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> \>   $p \land \lnot\next\event\lnot p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> \>   $p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:impAlwaysE}
+\always p \Rightarrow \event p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlways})}\\[\lgap]
+  \> \>   $p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:eventuality}) Eventuality}\\[\lgap]
+  \> \>   $\event p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:impAlwaysN}
+\always p \Rightarrow \next p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways})}\\[\lgap]
+  \> \>   $p \land \next\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dNextAlways})}\\[\lgap]
+  \> \>   $p \land \always\next p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) with $p := \next p$}\\[\lgap]
+  \> \>   $p \land \next p \land \next\always\next p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> \>   $\next p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:impAlwaysNA}
+\always p \Rightarrow \next\always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways})}\\[\lgap]
+  \> \>   $p \land \next\always p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> \>   $\next\always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:excludedMid}
+\textbf{Excluded Middle:}\quad \event p \lor \always\lnot p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\event p \lor \always\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\event$}\\[\lgap]
+  \> \>   $\event p \lor \lnot\event p$\\[\lgap]
+\end{tabbing}
+which is (3.28) Excluded middle, with $p := \event p$. \myqed\\[\lgap]
+
 
 
 
