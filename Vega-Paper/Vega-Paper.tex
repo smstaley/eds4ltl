@@ -99,10 +99,10 @@ program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, has been the basis of textbooks by Kaldewaij \cite{Kald},
 Cohen \cite{Cohen}, and Gries \cite{LADM}.\\
 
-Although the equational deductive system of proofs is being adopted gradually by the computer science research community,
-it is slow to be adopted at the undergraduate level. The problem is two-fold.
-First, a fair amount of technical
-detail must be mastered before the system can be taught, and many computer science educators do not have the requisite
+The equational deductive system of proofs is slow to be adopted by the computer science community.
+The problem is two-fold.
+First, a fair amount of technical detail must be mastered,
+and many computer science educators and practitioners do not have the requisite
 knowledge of formal logic systems, much less the equational deductive system.
 Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction to
 formal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a more
@@ -121,104 +121,43 @@ in programs that terminate.
 Temporal logic applies to program correctness with concurrent processing to establish safety and liveness properties
 in programs that possibly do not terminate.\\
 
+As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$
+instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, and Manna and Pnueli \cite{Manna}.
+Schneider \cite{Schn}, who develops an equational deductive system for temporal logic appears to be the primary exception.
+The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.
+The presentation typically consists of lists of valid temporal formulas, with little indication of which formulas are required
+as axioms and which are theorems that can be proved using a deductive system.\\
 
+This paper presents an equational deductive system for linear temporal logic.
+It differs from previous developments of such systems in three respects.
+First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
+derived, and for those that are derived, which previous formulas they depend on.
+Second, it gives a proof of every theorem.
+Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.\\
 
-Equational-style logic systems, blah, blah.
-The use of a set of rules is necessary to preserve the truth-value of the given expression.
-The simplest expression, an atom, can be either true or false. 
-Atoms may be operated on by unary operators, such as negation: $\lnot$, or by binary infix operators, which describe the relationships between atoms of an expression.
-These may include such operators as $and \land$ and $or \lor$.\\
-
-1 paragraph on predicate calculus using phrase: first-order predicate logic\\
-
-Predicate Calculus, also called First Order Logic, is a system of deduction which builds on propositional calculus by adding quantifiers that can operate over variables.  These quantifiers include ``for all'' $\forall$ and ``there exists'' $\exists$, which allow statements to be made such as ``All x have property y''.\\
+Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
+It also defines the syntax and semantics of linear temporal logic.
+Section 3 presents the equational deductive system for linear temporal logic.\\
 
 \section{Background}
 
-\subsection{Hilbert-style Logic Systems}
-
-$\mathcal{H}$ frequently specifies syntactically correct combinations of operators, variables, and constants as well-formed formulas
-according to a grammar.
-Hilbert-style logic systems are different from equational-style logic systems in several regards.  The underlying principles of logic remain the same between the two systems, but the nuances of each style lend certain distinct advantages to both.  For example, subproofs are more easily included in Hilbert-style proofs.  The most distinguishing feature of Hilbert-style logic systems is the heavy use of Natural deduction.  Natural deduction has no axioms, as all inference rules of Natural deduction have premises.  The main inference rules of Natural deduction are $\Rightarrow$-I and $\Rightarrow$-E, which are used to introduce and eliminate implications respectively.\\
-
-Hilbert-style logic systems are the deductive logic systems traditionally used in mathematics.  The underlying principles between Hilbert-style systems, $\mathcal{H}$, and the equational deductive system, $\mathcal{E}$, are the same, but the philosophy that guides the use of each are different.  This lends certain distinct advantages to both.  For example, $\mathcal{H}$ relies heavily on the use of implication is all proof-steps, as can be seen from the following deductive axioms and deductive rule seen below:\\
-
-\textbf{Axiom 1:}
-\[
-\vdash (A \rightarrow (B \rightarrow A))
-\]
-\textbf{Axiom 2:}
-\[
-\vdash (A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))
-\]
-\textbf{Axiom 3:}
-\[
-\vdash (\lnot B \rightarrow \lnot A) \rightarrow (A \rightarrow B)
-\]
-
-The deductive rule of inference used in Hilbert-style logic systems is Modus Ponens:\\
-
-\textbf{Modus Ponens:}
-\[
-\frac{\vdash A, \quad \vdash A \rightarrow B}{\vdash B}
-\]
-
---More on Hilbert style (including the turnstile $\vdash$ )\\
-
-Note: Reproduce deductive axioms and rule MP.\\
-
-Note: Need to re-do proof in $\mathcal{H}$!!\\
-
-Note: Characterize Hilbert system as the logic used in mathematics\\
-
-True in all states vs pairwise equal for all interpretations (Theorem 2.16!!).  Pairwise (ben-ari's): equivalent.  $\equiv$ as logical equivalence.  (Give an example with a table!)\\
-
-The following proof is an example of a proof in the Hilbert style.\\
-
-\begin{tabbing}
-(99.99.9)$\;$\=(m)$\;$\=\kill
-(3.45)\>\textbf{Distributivity of $\lor$ over $\land$ :}\quad $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$\\[\lgap]
-\end{tabbing}
-
-\begin{proof}
-$p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$
-\begin{enumerate}
- \item $(p\lor q)\land (p\lor r)\equiv p\lor q\equiv p\lor r\equiv p\lor q\lor p\lor r$ \hfill Substitution, (3.35) Golden Rule
- \item $p\lor q\lor p\lor r\equiv p\lor q\lor r$ \hfill (3.26) Idempotency of $\lor$
- \item $p\lor q\lor r\equiv p\lor (q\equiv r\equiv q\lor r)$ \hfill (3.27) Distributivity of $\lor$ over $\equiv$
- \item $p\lor (q\equiv r\equiv q\lor r)\equiv p\lor (q\land r)$ \hfill (3.35) Golden Rule
- \item $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$ \hfill Transitivity 1, 2, 3, 4, 5
-\end{enumerate}
-\end{proof}
-
 \subsection{Equational Deductive Systems}
 
-Note: Call this the Equational $\mathcal{E}$\\[\lgap]
-In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
-programs correctness with a new logic based on an equational style.
-This equational deductive system has been the basis of textbooks by Kaldewaij \cite{Kald}, Cohen \cite{Cohen}, and Gries \cite{LADM},
-the last of which is used in the Math 220/221 sequence for computer science majors at Pepperdine.\\
+This section closely follows Gries and Schneider \cite{LADM}.\\
 
-The equational deductive system relies on the following four proof rules:\\[\lgap]
-
-Note: these 1st 3 are the deductive axioms\\
-\textbf{Reflexivity:}
+The equational deductive system relies on the three deductive axioms
 \[
-x=x
+\textbf{Reflexivity:}\quad x=x
 \]
-\textbf{Symmetry:}
 \[
-(x=y) = (y=x)
+\textbf{Symmetry:}\quad (x=y) = (y=x)
 \]
-\textbf{Transitivity:}
 \[
-\frac{X=Y, \quad Y=Z}{X=Z}
+\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
 \]
-\hfill\\
-Note: Call this the deductive rule\\ 
-\textbf{Leibniz:}
+and the proof rule
 \[
-\frac{X=Y}{E[z:=X]=E[z:=Y]}
+\textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
 \]
 
 where the square bracket indicates textual substitution of expression $X$ for variable $z$ and substitution
@@ -232,50 +171,6 @@ The general form of a proof step is:
   \> $=$  \>  \Hint{$X=Y$} \\[\lgap]
   \> \>   $E[z:=Y]$
 \end{tabbing}
-
-The proof below is of the same theorem that was proved in the previous section on Hilbert-style proofs, but in the equational style.  The proof is based on the following previously proved theorems:\\
-
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \=  \kill
-(3.26)\>\textbf{Axiom, Idempotency of $\lor$ :}\quad $p\lor p \equiv p$\\[\lgap]
-(3.27)\>\textbf{Axiom, Distributivity of $\lor$ over $\equiv$ :}\quad $p\lor (q\equiv r)\equiv p\lor q\equiv p\lor r$\\[\lgap]
-(3.35)\>\textbf{Axiom, Golden rule:}\quad $p\land q\equivs p\equivs q\equivs p\lor q$\\[\lgap]
-\end{tabbing}
-
-Here is the proof.
-
-\begin{tabbing}
-(99.99.9)$\;$\=(m)$\;$\=\kill
-(3.45)\>\textbf{Distributivity of $\lor$ over $\land$ :}\quad $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$\\[\lgap]
-\hspace{\mymathindent} \= $= \;$ \=  \kill
-  \> \>   $(p\lor q)\land (p\lor r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.35) Golden Rule} \\[\lgap]
-  \> \>   $p\lor q\equiv p\lor r\equiv p\lor q\lor p\lor r$\\[\lgap]
-  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$} \\[\lgap]
-  \> \>   $p\lor q\equiv p\lor r\equiv p\lor q\lor r$\\[\lgap]
-  \> $=$  \>  \Hint{(3.27) Distributivity of $\lor$ over $\equiv$} \\[\lgap]
-  \> \>   $p\lor (q\equiv r\equiv q\lor r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.35) Golden Rule} \\[\lgap]
-  \> \>   $p\lor (q\land r)$\\[\lgap]
-\end{tabbing}
-
-
-Although the equational deductive system of proofs is being adopted gradually by the computer science research community,
-it is extremely slow to be adopted at the undergraduate level. The problem is two-fold.\\
-
-First, a fair amount of technical
-detail must be mastered before the system can be taught, and many computer science educators do not have the requisite
-knowledge of formal logic systems, much less the equational deductive system.
-Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction to
-formal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a more
-formal treatment of logic appropriate for computer science.\\
-
-Second, even when formal logic is taught at a depth necessary to apply it to program proofs, the older Hilbert style
-still dominates.
-The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely on the equational deductive system. 
-More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.
-The principle investigator \cite{Warf} has worked with David Gries \cite{Gries} from Cornell University to promote
-the equational deductive system at the undergraduate level.\\
 
 \subsection{Temporal Logic}
 
@@ -328,7 +223,7 @@ Note: lets look at until in mathcal: $\mathcal{U}$\\
 
 
 
-\subsection{The Axioms and Theorems}
+\subsection{Next}
 
 Note: below is our auto-label system for axioms and theorems.\\
 
@@ -425,7 +320,6 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \textbf{Distributivity of $\next$ over $\equiv$:}\quad \next (p \equiv q) \equiv \next p \equiv \next q
 \end{equation}
 
-
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -441,6 +335,7 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
+\subsection{Until}
 
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\next$ over $\until$:}\quad \next (p \until q) \equiv \next p \until \next q
@@ -525,6 +420,8 @@ Note: we will take the following 6 expressions of until (which we know to be cor
 \end{equation}
 
 End Note\\
+
+\subsection{Eventually}
 
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\event$:}\quad \event p \equiv true \until p
@@ -684,6 +581,7 @@ p \Rightarrow \event p
 \end{tabbing}
 \myqed\\[\lgap]
 
+\subsection{Always}
 
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
@@ -878,10 +776,9 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 \end{tabbing}
 which is (3.28) Excluded middle, with $p := \event p$. \myqed\\[\lgap]
 
+\subsection{While}
 
-
-
-\section*{Conclusion}
+\section{Conclusion}
 
 The results are cooool!\\
 
