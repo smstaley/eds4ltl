@@ -178,33 +178,6 @@ Temporal logic is the logic of parallel computation, that is, computations that 
 with the multicore processing chips that are becoming more popular in personal computers.
 Programs are inherently more difficult to test and to prove correct when they employ concurrency.\\
 
-Most treatments of temporal logic are deductive systems that follow the Hilbert style.
-Two common deductive systems are the Gentzen system $\mathcal{G}$ and the Hilbert system $\mathcal{H}$. 
-In Gentzen systems there is one axiom and many rules, while in a Hilbert system there are
-several axioms but only one rule.\\
-
-In the same way that conjunction $\land$, disjunction $\lor$, and negation $\neg$ are operators
-in propositional calculus, and the existential quantifier $\ext$, and the universal quantifier $\all$
-are abelian monoids in predicate calculus, the primitive operators in temporal logic are $\always$, $\next$,
-and $\event$. Roughly speaking, $\always$ is interpreted as ``always'', $\next$ is interpreted as ``next'',
-and $\event$ is interpreted as ``eventually'' when temporal logic is applied to concurrent programs. \cite{Ben2}\\
-
-Note: Describe Ben-Ari's deductive system $\mathcal{L}$, which he calls linear-time propositional temporal logic.\\
-
-The primitive operators of $\mathcal{L}$ are $\always$ and $\next$, while $\event$ is defined as the dual of $\always$.  However, the standard LTL has the binary operator ``Until'', which is used in most cases along with $\next$ to define $\always$ and then $\event$.  This is an important distinction because the choice of primitives (there must be at least 2) will determine the axioms of the logic system, and therefore, the proofs of its theorems.\\
-
-The axioms of $\mathcal{L}$ are:
-\begin{tabbing}
-$\quad\;$\=\hspace{3in}\=\kill
-0. \> PC \> tralala\\[\lgap]
-1. \> Distribution of $\always$ over $\rightarrow$\\[\lgap]
-2. \> Distribution of $\next$ over $\rightarrow$\\[\lgap]
-3. \> Expansion of $\always$\\[\lgap]
-4. \> Induction\\[\lgap]
-5. \> Linearity\\[\lgap]
-\end{tabbing}
-
-Note: Perhaps discuss other deductive temporal logic systems?\\
 
 \section{The Equational Temporal System}
 
@@ -776,13 +749,11 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 \end{tabbing}
 which is (3.28) Excluded middle, with $p := \event p$. \myqed\\[\lgap]
 
-\subsection{While}
+\subsection{Wait}
 
 \section{Conclusion}
 
 The results are cooool!\\
-
-Test: Citing latest bib entry\cite{GandS}\\
 
 \bibliographystyle{plain}
 \bibliography{Vega-Paper}
