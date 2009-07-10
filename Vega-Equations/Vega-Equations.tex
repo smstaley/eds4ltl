@@ -150,6 +150,18 @@
 
 \spacer
 
+\begin{equation}\label{E:zeroUntil}
+\textbf{Zero of $\until$:}\quad p \until true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilImpOr}
+p \until q \Rightarrow p \lor q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \until r) \lor (q \until r) \Rightarrow (p \lor q) \until r
 \end{equation}
@@ -198,12 +210,6 @@
 
 \spacer
 
-\begin{equation}\label{E:nextEvent}
-\textbf{Axiom:}\quad \next p \Rightarrow \event p
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\event$:}\quad \event p \equiv p \lor \next\event p
 \end{equation}
@@ -212,6 +218,12 @@
 
 \begin{equation}\label{E:impEvent}
 p \Rightarrow \event p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:nextEvent}
+\next p \Rightarrow \event p
 \end{equation}
 
 \spacer
@@ -238,7 +250,7 @@ p \Rightarrow \event p
 \textbf{Distributivity of $\event$ over $\land$:}\quad \event(p \land q) \Rightarrow \event p \land \event q
 \end{equation}
 
-\spacer
+\pagebreak
 
 \begin{equation}\label{E:defAlways}
 \textbf{Axiom, Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
@@ -262,7 +274,7 @@ p \Rightarrow \event p
 \textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
 \end{equation}
 
-\pagebreak
+\spacer
 
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\always$:}\quad \always\always p \equiv \always p

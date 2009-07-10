@@ -460,9 +460,40 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $p \until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
-  \> \>   $p \lor (p \land \next(p \until p)$\\[\lgap]
+  \> \>   $p \lor (p \land \next(p \until p))$\\[\lgap]
   \> $=$  \>  \Hint{(3.43b) Absorption}\\[\lgap]
   \> \>   $p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:zeroUntil}
+\textbf{Zero of $\until$:}\quad p \until true \equiv true
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \until true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $true \lor (p \land \next(p \until true))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:untilImpOr}
+p \until q \Rightarrow p \lor q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $q \lor (p \land \next(p \until q))$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(3.76d) with $p,q,r := q,p,\next(p \until q)$}\\[\lgap]
+  \> \>   $p \lor q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
@@ -499,12 +530,8 @@ End Note\\
 \textbf{Axiom, Definition of $\event$:}\quad \event p \equiv true \until p
 \end{equation}
 
-\begin{equation}\label{E:untilImpEvent}
-\textbf{Axiom:}\quad p \until q \Rightarrow \event q
-\end{equation}
-
-\begin{equation}\label{E:nextEvent}
-\textbf{Axiom:}\quad \next p \Rightarrow \event p
+\begin{equation}\label{E:eventuality}
+\textbf{Axiom, Eventuality:}\quad p \until q \Rightarrow \event q
 \end{equation}
 
 
@@ -527,8 +554,8 @@ End Note\\
 \end{tabbing}
 \myqed\\[\lgap]
 
-\begin{equation}\label{E:eventuality}
-\textbf{Eventuality:}\quad p \Rightarrow \event p
+\begin{equation}\label{E:impEvent}
+p \Rightarrow \event p
 \end{equation}
 
 \emph{Proof:}
@@ -539,6 +566,30 @@ End Note\\
   \> \>   $p \lor \next\event p$\\[\lgap]
   \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
   \> \>   $p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:nextEvent}
+\next p \Rightarrow \event p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $true \until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $p \lor (true \land \next(true \until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
+  \> \>   $p \lor \next(true \until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\next$ over $\until$}\\[\lgap]
+  \> \>   $p \lor (\next true \until \next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\until$}\\[\lgap]
+  \> \>   $p \lor \next p \lor (\next true \land \next(\next true \until \next p))$\\[\lgap]
+  \> $\Leftarrow$ \> \Hint{(3.76a) Weakening}\\[\lgap]
+  \> \>   $\next p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
@@ -757,7 +808,7 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
   \> \>   $\always p$\\[\lgap]
   \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlways})}\\[\lgap]
   \> \>   $p$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:eventuality}) Eventuality}\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impEvent})}\\[\lgap]
   \> \>   $\event p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
