@@ -467,7 +467,7 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:zeroUntil}
-\textbf{Right Zero of $\until$:}\quad p \until true \equiv true
+\textbf{Right zero of $\until$:}\quad p \until true \equiv true
 \end{equation}
 
 \emph{Proof:}
@@ -527,12 +527,27 @@ Note: we will take the following 6 expressions of until (which we know to be cor
 End Note\\
 
 \begin{equation}\label{E:defEvent}
-\textbf{Axiom, Definition of $\event$:}\quad \event p \equiv true \until p
+\textbf{Definition of $\event$:}\quad \event p \equiv true \until p
 \end{equation}
 
 \begin{equation}\label{E:eventuality}
-\textbf{Axiom, Eventuality:}\quad p \until q \Rightarrow \event q
+\textbf{Eventuality:}\quad p \until q \Rightarrow \event q
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \until q$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
+  \> \>   $(p \until q) \lor (true \until q)$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:untilOrImp})}\\[\lgap]
+  \> \>   $(p \lor true) \until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> \>   $true \until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\event$}\\[\lgap]
+  \> \>   $\event q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 
 \begin{equation}\label{E:expansionEvent}
@@ -671,7 +686,7 @@ p \Rightarrow \event p
 
 
 \begin{equation}\label{E:defAlways}
-\textbf{Axiom, Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
+\textbf{Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
 \end{equation}
 
 \begin{equation}\label{E:dualAlways}
