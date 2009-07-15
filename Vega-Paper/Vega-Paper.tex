@@ -100,7 +100,7 @@ Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems trad
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
 program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, has been the basis of textbooks by Kaldewaij \cite{Kald},
-Cohen \cite{Cohen}, and Gries \cite{LADM}.\\
+Cohen \cite{Cohen}, and Gries and Schneider\cite{LADM}.\\
 
 The equational deductive system of proofs is slow to be adopted by the computer science community.
 The problem is two-fold.
@@ -162,12 +162,20 @@ By convention, upper-case letters ({\itshape e.g.\/} $X$, $Y$, \dots) represent 
 and lower-case letters ({\itshape e.g.\/} $x$, $y$, \dots) represent variables.
 In the propositional calculus, the constants are {\itshape true\/} and {\itshape false\/}.\\
 
-Here is the table of precedences.
+Here is the table of precedences.\\
 
-%\begin{tabular}{lr}
-%First Left & First Right\\
-%Second left & Second right\\
-%end{tabular}
+\setlength\extrarowheight{2pt}
+\begin{tabular}{lr}
+\hline
+$[x := e]$ (textual substitution) & Highest precedence\\
+$\neg$\quad $\Next$\quad $\Event$\quad $\Always$ &\\
+$\Until$\quad $\Wait$ &\\
+$=$\quad (conjunctional) &\\
+$\lor$\quad $\land$ &\\
+$\impl$\quad $\foll$ &\\
+$\equiv$ \quad (associative) & Lowest precedence\\
+\hline
+\end{tabular}\\
 
 The equational deductive system relies on the three deductive axioms
 \[
