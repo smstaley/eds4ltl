@@ -272,9 +272,9 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\next (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
-  \> \>   $\next (\lnot\lnot p \lor \lnot\lnot q)$\\[\lgap]
+  \> \>   $\next (\lnot\lnot p \land \lnot\lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
-  \> \>   $\next (\lnot(\lnot p \lor \lnot q))$\\[\lgap]
+  \> \>   $\next\lnot(\lnot p \lor \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\lnot p \lor \lnot q$)}\\[\lgap]
   \> \>   $\lnot\next (\lnot p \lor \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \lnot p, \lnot q$}\\[\lgap]
@@ -298,7 +298,7 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\next (p \equiv q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
-  \> \>   $\next ((p \Rightarrow q) \land (q \Rightarrow p)$\\[\lgap]
+  \> \>   $\next ((p \Rightarrow q) \land (q \Rightarrow p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\next$ over $\land$}\\[\lgap]
   \> \>   $\next (p \Rightarrow q) \land \next (p \Rightarrow q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\next$ over $\Rightarrow$}\\[\lgap]
@@ -590,6 +590,22 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
 \myqed\\[\lgap]
 
 
+\begin{equation}\label{E:eventAsAlways}
+\event p \equiv \lnot\always\lnot p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\lnot\always\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\always$}\\[\lgap]
+  \> \>   $\lnot\lnot\event\lnot\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
+  \> \>   $\event p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
 \end{equation}
@@ -736,6 +752,22 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
 \myqed\\[\lgap]
 
 
+\begin{equation}\label{E:exAlwaysNot}
+\always\lnot p \Rightarrow \lnot\always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always\lnot p$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlwaysE})}\\[\lgap]
+  \> \>   $\event\lnot p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\always$}\\[\lgap]
+  \> \>   $\lnot\always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
 \begin{equation}\label{E:excludedMid}
 \textbf{Excluded Middle:}\quad \event p \lor \always\lnot p
 \end{equation}
@@ -748,6 +780,28 @@ which is (3.5) with $p := \event\lnot p$. \myqed\\[\lgap]
   \> \>   $\event p \lor \lnot\event p$\\[\lgap]
 \end{tabbing}
 which is (3.28) Excluded middle, with $p := \event p$. \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Distributivity of $\always$ over $\Rightarrow$:}\quad \always (p \Rightarrow q) \Rightarrow (\always p \Rightarrow \always q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\always(p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways})}\\[\lgap]
+  \> \>   $\lnot\event\lnot(p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> \>   $\lnot\event\lnot(\lnot p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan}\\[\lgap]
+  \> \>   $\lnot\event(\lnot\lnot p \land \lnot q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> \>   $\lnot\event(p \land \lnot q)$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\event$ over $\land$}\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \subsection{Wait}
 

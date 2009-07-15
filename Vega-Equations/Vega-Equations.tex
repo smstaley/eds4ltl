@@ -270,6 +270,12 @@ p \Rightarrow \event p
 
 \spacer
 
+\begin{equation}\label{E:eventAsAlways}
+\event p \equiv \lnot\always\lnot p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
 \end{equation}
@@ -312,6 +318,12 @@ p \Rightarrow \event p
 
 \spacer
 
+\begin{equation}\label{E:exAlwaysNot}
+\always\lnot p \Rightarrow \lnot\always p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:excludedMid}
 \textbf{Excluded Middle:}\quad \event p \lor \always\lnot p
 \end{equation}
@@ -332,6 +344,12 @@ p \Rightarrow \event p
 
 \begin{equation}\label{E:distAlwaysOr}
 \textbf{Distributivity of $\always$ over $\lor$:}\quad (\always p \lor \always q) \Rightarrow \always (p \lor q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysEquiv}
+\textbf{Distributivity of $\always$ over $\equiv$:}\quad \always(p \equiv q) \Rightarrow (\always p \equiv \always q)
 \end{equation}
 
 \spacer
