@@ -6,6 +6,9 @@
 
 \usepackage{times}
 \usepackage{amsmath, amsthm, amssymb,latexsym}
+\usepackage{paralist}
+\usepackage{ellipsis}
+%\usepackage{array}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -129,11 +132,12 @@ The presentation typically consists of lists of valid temporal formulas, with li
 as axioms and which are theorems that can be proved using a deductive system.\\
 
 This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in three respects.
+It differs from previous developments of such systems in four respects.
 First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
 derived, and for those that are derived, which previous formulas they depend on.
 Second, it gives a proof of every theorem.
-Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.\\
+Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.
+Fourth, it presents several new and interesting linear temporal theorems.\\
 
 Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
 It also defines the syntax and semantics of linear temporal logic.
@@ -144,6 +148,26 @@ Section 3 presents the equational deductive system for linear temporal logic.\\
 \subsection{Equational Deductive Systems}
 
 This section closely follows Gries and Schneider \cite{LADM}.\\
+
+The definition of an expression has four parts:
+\begin{enumerate}[$\bullet$]
+\item A constant or variable is an expression.
+\item If $E$ is an expression, then $(E)$ is an expression.
+\item If $\circ$ is a unary prefix operator and $E$ is an expression, then $\circ E$ is an expression with operand $E$.
+\item If $\star$ is a binary infix operator and $D$ and $E$ are expressions, then $D \star E$ is an expression with operands $D$
+and $E$.
+\end{enumerate}
+
+By convention, upper-case letters ({\itshape e.g.\/} $X$, $Y$, \dots) represent expressions,
+and lower-case letters ({\itshape e.g.\/} $x$, $y$, \dots) represent variables.
+In the propositional calculus, the constants are {\itshape true\/} and {\itshape false\/}.\\
+
+Here is the table of precedences.
+
+%\begin{tabular}{lr}
+%First Left & First Right\\
+%Second left & Second right\\
+%end{tabular}
 
 The equational deductive system relies on the three deductive axioms
 \[
