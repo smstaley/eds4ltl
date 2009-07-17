@@ -1,234 +1,4 @@
-% David Vega and Stan Warford
-% Pepperdine University
-% File: Vega-Paper
-
-\documentclass[fleqn, leqno]{article}
-
-\usepackage{times}
-\usepackage{amsmath, amsthm, amssymb,latexsym}
-\usepackage{paralist}
-\usepackage{ellipsis}
-\usepackage{array}
-
-\newcommand{\lgap}{2pt}                             % Line gap
-\newcommand{\llgap}{6pt}                            % Larger line gap
-\newcommand{\lllgap}{32pt}                          % Largest line gap for students to write in
-\newcommand{\mymathindent}{24pt}                      % Indentation for math tabbing
-\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
-\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
-\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
-\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
-\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
-\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
-\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
-
-
-% Macros for Temporal Operators
-\newcommand{\Until}{\;\mathcal{U}\;}
-\newcommand{\Wait}{\;\mathcal{W}\;}
-\newcommand{\Next}{\bigcirc}
-\newcommand{\Event}{\Diamond}
-\newcommand{\Always}{\Box}
-
-\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
-
-% Thanks to David Gries for sharing the following macros
-% Macros for quantifications.
-\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
-\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
-\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
-\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
-\newcommand{\all}{\forall}                          % Universal quantification
-\newcommand{\ext}{\exists}                          % Existential quantification
-
-% Macros for proof hints
-\newcommand{\Gll} {\langle}                         % Open hint
-\newcommand{\Ggg} {\rangle}                         % Close hint
-\newlength{\Glllength}                              % Length of open hint symbol
-\settowidth{\Glllength}{$.\Gll$}
-\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
-\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
-\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
-\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
-
-% Single and double quotes
-\newcommand{\Lq}{\mbox{`}}
-\newcommand{\Rq}{\mbox{'}}
-\newcommand{\Lqq}{\mbox{``}}
-\newcommand{\Rqq}{\mbox{''}}
-
-\oddsidemargin  0.0in
-\evensidemargin 0.0in
-\textwidth      6.0in
-\headheight     0.0in
-\topmargin      0.0in
-\textheight=8.5in
-\parindent=0in
-\pagestyle{plain}
-
-\title{An Equational Deductive System\\for Linear Temporal Logic}
-\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
-   Computer Science Department\\
-   Pepperdine University\\
-   Malibu, CA 90265
-   \and
-   J. Stanley Warford\\
-   Computer Science Department\\
-   Pepperdine University\\
-   Malibu, CA 90265}
-\date{} % Required for no date to appear in heading
-
-\begin{document}
-\maketitle
-\begin{abstract}
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract.
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-\end{abstract}
-
-\thispagestyle{plain}
-
-\section{Introduction}
-
-Propositional calculus is a formal system of logic based on the unary operator negation $\lnot$,
-the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),
-and equivalence $\equiv$ (also written $\leftrightarrow$),
-variables (lowercase letters $p$, $q$, \dots), and the constants $true$ and $false$.
-Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics.
-In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving
-program correctness with a new logic based on an equational style.
-This equational deductive system, $\mathcal{E}$, has been the basis of textbooks by Kaldewaij \cite{Kald},
-Cohen \cite{Cohen}, and Gries and Schneider\cite{LADM}.\\
-
-The equational deductive system of proofs is slow to be adopted by the computer science community.
-The problem is two-fold.
-First, a fair amount of technical detail must be mastered,
-and many computer science educators and practitioners do not have the requisite
-knowledge of formal logic systems, much less the equational deductive system.
-Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction to
-formal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a more
-formal treatment of logic appropriate for computer science.\\
-
-Second, even when formal logic is taught at a depth necessary to apply it to program proofs, the older Hilbert style
-still dominates.
-The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely on the equational deductive system. 
-More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.\\
-
-Linear temporal logic describes how the truth values of propositions change over time.
-It extends the propositional operators with the unary operators next $\Next$, eventually $\Event$, and always $\Always$,
-and the binary operators until $\Until$ and wait $\Wait$.
-Propositional calculus applies to program correctness with the formulation of the Hoare triple to establish invariants
-in programs that terminate.
-Temporal logic applies to program correctness with concurrent processing to establish safety and liveness properties
-in programs that possibly do not terminate.\\
-
-As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$
-instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, and Manna and Pnueli \cite{Manna}.
-Schneider \cite{Schn}, who develops an equational deductive system for temporal logic appears to be the primary exception.
-The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.
-The presentation typically consists of lists of valid temporal formulas, with little indication of which formulas are required
-as axioms and which are theorems that can be proved using a deductive system.\\
-
-This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in four respects.
-First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
-derived, and for those that are derived, which previous formulas they depend on.
-Second, it gives a proof of every theorem.
-Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.
-Fourth, it presents several new and interesting linear temporal theorems.\\
-
-Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
-It also defines the syntax and semantics of linear temporal logic.
-Section 3 presents the equational deductive system for linear temporal logic.\\
-
-\section{Background}
-
-\subsection{Equational Deductive Systems}
-
-This section closely follows Gries and Schneider \cite{LADM}.\\
-
-The definition of an expression has four parts:
-\begin{itemize}[$\bullet$]
-\item A constant or variable is an expression.
-\item If $E$ is an expression, then $(E)$ is an expression.
-\item If $\circ$ is a unary prefix operator and $E$ is an expression, then $\circ E$ is an expression with operand $E$.
-\item If $\star$ is a binary infix operator and $D$ and $E$ are expressions, then $D \star E$ is an expression with operands $D$
-and $E$.
-\end{itemize}
-
-By convention, upper-case letters ({\itshape e.g.\/} $X$, $Y$, \dots) represent expressions,
-and lower-case letters ({\itshape e.g.\/} $x$, $y$, \dots) represent variables.
-In the propositional calculus, the constants are {\itshape true\/} and {\itshape false\/}.\\
-
-Here is the table of precedences.\\
-
-\setlength\extrarowheight{2pt}
-\begin{tabular}{lr}
-\hline
-$[x := e]$ (textual substitution) & Highest precedence\\
-$\neg$\quad $\Next$\quad $\Event$\quad $\Always$ &\\
-$\Until$\quad $\Wait$ &\\
-$=$\quad (conjunctional) &\\
-$\lor$\quad $\land$ &\\
-$\impl$\quad $\foll$ &\\
-$\equiv$ \quad (associative) & Lowest precedence\\
-\hline
-\end{tabular}\\
-
-The equational deductive system relies on the three deductive axioms
-\[
-\textbf{Reflexivity:}\quad x=x
-\]
-\[
-\textbf{Symmetry:}\quad (x=y) = (y=x)
-\]
-\[
-\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
-\]
-and the proof rule
-\[
-\textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
-\]
-
-where the square bracket indicates textual substitution of expression $X$ for variable $z$ and substitution
-of expression $Y$ for variable $z$.
-Roughly speaking, Leibniz allows for the substitution of equals for equals in a proof step.
-The general form of a proof step is:
-
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \=  \kill
-  \> \>   $E[z:=X]$\\[\lgap]
-  \> $=$  \>  \Hint{$X=Y$} \\[\lgap]
-  \> \>   $E[z:=Y]$
-\end{tabbing}
-
-\subsection{Temporal Logic}
-
-Temporal logic is the logic of parallel computation, that is, computations that happen concurrently
-with the multicore processing chips that are becoming more popular in personal computers.
-Programs are inherently more difficult to test and to prove correct when they employ concurrency.\\
-
-
-\section{The Equational Temporal System}
-
-Ben-Ari \cite{Ben} gives a deductive system $\mathcal{L}$ for temporal logic, but it is a
-natural deductive system in the Hilbert style of $\mathcal{G}$ and $\mathcal{H}$. This project is to develop a complete system of
-temporal logic but using the equational deductive system based on the four proof rules described
-in the first section. The system will consist of a small number of axioms and a larger number of
-theorems. Because the proof rules in the equational deductive system are different from those
-in $\mathcal{L}$, the proofs will be different as well.\\
-
-Note: Explain/use: The domain of discourse\\
-
-Note: primitives!  Lets use $\Next$ and $\mathcal{U}$\\
-
-Note: lets look at until in mathcal: $\mathcal{U}$\\
-
-
-
-\subsection{Next}
+% David Vega and Stan Warford% Pepperdine University% File: Vega-Paper\documentclass[fleqn, leqno]{article}\usepackage{times}\usepackage{amsmath, amsthm, amssymb,latexsym}\usepackage{paralist}\usepackage{ellipsis}\usepackage{array}\newcommand{\lgap}{2pt}                             % Line gap\newcommand{\llgap}{6pt}                            % Larger line gap\newcommand{\lllgap}{32pt}                          % Largest line gap for students to write in\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from% Macros for Temporal Operators\newcommand{\Until}{\;\mathcal{U}\;}\newcommand{\Wait}{\;\mathcal{W}\;}\newcommand{\Next}{\bigcirc}\newcommand{\Event}{\Diamond}\newcommand{\Always}{\Box}\newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}% Thanks to David Gries for sharing the following macros% Macros for quantifications.\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing\newcommand{\all}{\forall}                          % Universal quantification\newcommand{\ext}{\exists}                          % Existential quantification% Macros for proof hints\newcommand{\Gll} {\langle}                         % Open hint\newcommand{\Ggg} {\rangle}                         % Close hint\newlength{\Glllength}                              % Length of open hint symbol\settowidth{\Glllength}{$.\Gll$}\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint% Single and double quotes\newcommand{\Lq}{\mbox{`}}\newcommand{\Rq}{\mbox{'}}\newcommand{\Lqq}{\mbox{``}}\newcommand{\Rqq}{\mbox{''}}\oddsidemargin  0.0in\evensidemargin 0.0in\textwidth      6.0in\headheight     0.0in\topmargin      0.0in\textheight=8.5in\parindent=0in\pagestyle{plain}\title{An Equational Deductive System\\for Linear Temporal Logic}\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\   Computer Science Department\\   Pepperdine University\\   Malibu, CA 90265   \and   J. Stanley Warford\\   Computer Science Department\\   Pepperdine University\\   Malibu, CA 90265}\date{} % Required for no date to appear in heading\begin{document}\maketitle\begin{abstract}This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract.This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. \end{abstract}\thispagestyle{plain}\section{Introduction}Propositional calculus is a formal system of logic based on the unary operator negation $\lnot$,the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),and equivalence $\equiv$ (also written $\leftrightarrow$),variables (lowercase letters $p$, $q$, \dots), and the constants $true$ and $false$.Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics.In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of provingprogram correctness with a new logic based on an equational style.This equational deductive system, $\mathcal{E}$, has been the basis of textbooks by Kaldewaij \cite{Kald},Cohen \cite{Cohen}, and Gries and Schneider\cite{LADM}.\\The equational deductive system of proofs is slow to be adopted by the computer science community.The problem is two-fold.First, a fair amount of technical detail must be mastered,and many computer science educators and practitioners do not have the requisiteknowledge of formal logic systems, much less the equational deductive system.Scores of textbooks for discrete mathematics for computer science could be cited that give only a cursory introduction toformal logic. Most of these texts, such as the classic one by Rosen \cite{Rosen} are beginning to move to a moreformal treatment of logic appropriate for computer science.\\Second, even when formal logic is taught at a depth necessary to apply it to program proofs, the older Hilbert stylestill dominates.The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely on the equational deductive system. More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.\\Linear temporal logic describes how the truth values of propositions change over time.It extends the propositional operators with the unary operators next $\Next$, eventually $\Event$, and always $\Always$,and the binary operators until $\Until$ and wait $\Wait$.Propositional calculus applies to program correctness with the formulation of the Hoare triple to establish invariantsin programs that terminate.Temporal logic applies to program correctness with concurrent processing to establish safety and liveness propertiesin programs that possibly do not terminate.\\As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, and Manna and Pnueli \cite{Manna}.Schneider \cite{Schn}, who develops an equational deductive system for temporal logic appears to be the primary exception.The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.The presentation typically consists of lists of valid temporal formulas, with little indication of which formulas are requiredas axioms and which are theorems that can be proved using a deductive system.\\This paper presents an equational deductive system for linear temporal logic.It differs from previous developments of such systems in four respects.First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas arederived, and for those that are derived, which previous formulas they depend on.Second, it gives a proof of every theorem.Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.Fourth, it presents several new and interesting linear temporal theorems.\\Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.It also defines the syntax and semantics of linear temporal logic.Section 3 presents the equational deductive system for linear temporal logic.\\\section{Background}\subsection{Equational Deductive Systems}This section closely follows Gries and Schneider \cite{LADM}.\\The definition of an expression has four parts:\begin{itemize}[$\bullet$]\item A constant or variable is an expression.\item If $E$ is an expression, then $(E)$ is an expression.\item If $\circ$ is a unary prefix operator and $E$ is an expression, then $\circ E$ is an expression with operand $E$.\item If $\star$ is a binary infix operator and $D$ and $E$ are expressions, then $D \star E$ is an expression with operands $D$and $E$.\end{itemize}By convention, upper-case letters ({\itshape e.g.\/} $X$, $Y$, \dots) represent expressions,and lower-case letters ({\itshape e.g.\/} $x$, $y$, \dots) represent variables.In the propositional calculus, the constants are {\itshape true\/} and {\itshape false\/}.\\Here is the table of precedences.\\\setlength\extrarowheight{2pt}\begin{tabular}{lr}\hline$[x := e]$ (textual substitution) & Highest precedence\\$\neg$\quad $\Next$\quad $\Event$\quad $\Always$ &\\$\Until$\quad $\Wait$ &\\$=$\quad (conjunctional) &\\$\lor$\quad $\land$ &\\$\impl$\quad $\foll$ &\\$\equiv$ \quad (associative) & Lowest precedence\\\hline\end{tabular}\\[\llgap]Textual substitution has the highest precedence.All the unary operators have the next highest precedence.They are necessarily right associative.For example, $\lnot \Next \lnot p$ means $\lnot (\Next (\lnot p))$.In this system, two binary operators that have the same precedence require parentheses to disambiguate.As in \cite{LADM}, conjunction $\land$ and disjunction $\lor$ have the same precedence so that $p\land q\lor r$must be disambiguated as either $(p\land q)\lor r$ or $p\land (q\lor r)$.This contrasts with many systems in which conjunction has higher precedence than disjunction.\\Also consistent with the equational system of \cite{LADM} but different from most other deductive logic systemsis the difference between operators equals $=$ and equivales $\equiv$.Equals applies to any mathematical type including, {\itshape e.g.\/}, boolean, natural number, and set.Equivales applies only to boolean, and is commonly denoted $\leftrightarrow$ in other systems.Another difference is that equals is conjunctive, while equivales is associative.For example, the expression $p = q = r$ means $(p = q) \land (q = r)$, while the expression $p \equiv q \equiv r$can be taken as either $(p \equiv q) \equiv r$ or $p \equiv (q \equiv r)$.This property of equivales is the first axiom in the equational deductive system of \cite{LADM}.\\The equational deductive system relies on the three deductive axioms for equality\[\textbf{Reflexivity:}\quad x=x\]\[\textbf{Symmetry:}\quad (x=y) = (y=x)\]\[\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}\]and the proof rule\[\textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}\]where the square bracket indicates textual substitution of expression $X$ for variable $z$ and substitutionof expression $Y$ for variable $z$.Roughly speaking, Leibniz allows for the substitution of equals for equals in a proof step.The general form of a proof step is\begin{tabbing}\hspace{\mymathindent} \= $= \;$ \=  \kill  \> \>   $E[z:=X]$\\[\lgap]  \> $=$  \>  \Hint{$X=Y$} \\[\lgap]  \> \>   $E[z:=Y]$\end{tabbing}where the expression enclosed in angle brackets $\Gll\;\Ggg$ called the ``hint'' is the justification for the step.An example of a proof step from the proof of theorem (\ref{E:distNextAnd}) below is\begin{tabbing}\hspace{\mymathindent} \= $= \;$ \= \kill  \> \>   $\lnot\Next (\lnot p \lor \lnot q)$\\[\lgap]  \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \lnot p, \lnot q$}\\[\lgap]  \> \>   $\lnot (\Next\lnot p \lor \Next \lnot q)$\end{tabbing}This proof step uses the previously proved theorem (\ref{E:distNextOr}), distributivity of $\Next$ over $\lor$,which is $\Next (p \lor q) \equiv \Next p \lor \Next q$.The expressions in Leibniz for the step are\begin{tabbing}\hspace{\mymathindent} \= $= \;$ \= \kill  \> $E:\quad \lnot z$\\[\lgap]  \> $X:\quad \Next (\lnot p \lor \lnot q)$\\[\lgap]  \> $Y:\quad \Next \lnot p \lor \Next \lnot q$\end{tabbing}The textual substitutions are\begin{tabbing}\hspace{\mymathindent} \= $= \;$ \= \kill  \> $E[z:=X]:\quad \lnot\Next (\lnot p \lor \lnot q)$\\[\lgap]  \> $E[z:=Y]:\quad \lnot\Next (\lnot p \lor \lnot q)$\\\end{tabbing}And the justification in the hint $X=Y$ comes from the textual substitution of $\lnot p$ for $p$and $\lnot q$ for $q$ in (\ref{E:distNextOr}) as follows\begin{tabbing}\hspace{\mymathindent} \= $= \;$ \= \kill  \> $(\Next (p \lor q) \equiv \Next p \lor \Next q)[p,q:=\lnot p, \lnot q]:\quad      \Next (\lnot p \lor \lnot q) \equiv \Next \lnot p \lor \Next \lnot q$\end{tabbing}Gries and Schneider \cite{LADM} extend the proof format to incorporate implication using its transitive properties.\subsection{Temporal Logic}Temporal logic is the logic of parallel computation, that is, computations that happen concurrentlywith the multicore processing chips that are becoming more popular in personal computers.Programs are inherently more difficult to test and to prove correct when they employ concurrency.\\\section{The Equational Temporal System}Ben-Ari \cite{Ben} gives a deductive system $\mathcal{L}$ for temporal logic, but it is anatural deductive system in the Hilbert style of $\mathcal{G}$ and $\mathcal{H}$. This project is to develop a complete system oftemporal logic but using the equational deductive system based on the four proof rules describedin the first section. The system will consist of a small number of axioms and a larger number oftheorems. Because the proof rules in the equational deductive system are different from thosein $\mathcal{L}$, the proofs will be different as well.\\Note: Explain/use: The domain of discourse\\Note: primitives!  Lets use $\Next$ and $\mathcal{U}$\\Note: lets look at until in mathcal: $\mathcal{U}$\\\subsection{Next}
 
 Note: below is our auto-label system for axioms and theorems.\\
 
