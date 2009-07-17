@@ -24,10 +24,10 @@
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
 % Macros for Temporal Operators
-\newcommand{\until}{\;\mathcal{U}\;}
-\newcommand{\next}{\bigcirc}
-\newcommand{\event}{\Diamond}
-\newcommand{\always}{\Box}
+\newcommand{\Until}{\;\mathcal{U}\;}
+\newcommand{\Next}{\bigcirc}
+\newcommand{\Event}{\Diamond}
+\newcommand{\Always}{\Box}
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
 \newcommand{\spacer}{\vspace{-30pt}}
@@ -85,319 +85,319 @@
 \maketitle
 
 \begin{equation}\label{E:selfDual}
-\textbf{Axiom, Self-dual:}\quad \next\lnot p \equiv \lnot\next p
+\textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextImp}
-\textbf{Axiom, Distributivity of $\next$ over $\Rightarrow$:}\quad \next (p \Rightarrow q) \equiv \next p \Rightarrow \next q
+\textbf{Axiom, Distributivity of $\Next$ over $\Rightarrow$:}\quad \Next (p \Rightarrow q) \equiv \Next p \Rightarrow \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextTruth}
-\textbf{Axiom, Truth:}\quad \next true \equiv true
+\textbf{Axiom, Truth:}\quad \Next true \equiv true
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:linearity}
-\textbf{Linearity:}\quad \next p \equiv \lnot\next\lnot p
+\textbf{Linearity:}\quad \Next p \equiv \lnot\Next\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \next false \equiv false
+\textbf{Falsehood:}\quad \Next false \equiv false
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextOr}
-\textbf{Distributivity of $\next$ over $\lor$:}\quad \next (p \lor q) \equiv \next p \lor \next q
+\textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextAnd}
-\textbf{Distributivity of $\next$ over $\land$:}\quad \next (p \land q) \equiv \next p \land \next q
+\textbf{Distributivity of $\Next$ over $\land$:}\quad \Next (p \land q) \equiv \Next p \land \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextEquiv}
-\textbf{Distributivity of $\next$ over $\equiv$:}\quad \next (p \equiv q) \equiv \next p \equiv \next q
+\textbf{Distributivity of $\Next$ over $\equiv$:}\quad \Next (p \equiv q) \equiv \Next p \equiv \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distNextUntil}
-\textbf{Axiom, Distributivity of $\next$ over $\until$:}\quad \next (p \until q) \equiv \next p \until \next q
+\textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:expansionUntil}
-\textbf{Axiom, Expansion of $\until$:}\quad p \until q \equiv q \lor (p \land \next (p \until q))
+\textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:idemUntil}
-\textbf{Idempotency of $\until$:}\quad p \until p \equiv p
+\textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:zeroUntil}
-\textbf{Right zero of $\until$:}\quad p \until true \equiv true
+\textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilImpOr}
-p \until q \Rightarrow p \lor q
+p \Until q \Rightarrow p \lor q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilOrImp}
-\textbf{Axiom:}\quad (p \until r) \lor (q \until r) \Rightarrow (p \lor q) \until r
+\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \Rightarrow (p \lor q) \Until r
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilAndImp}
-\textbf{Axiom:}\quad p \until (q \land r) \Rightarrow (p \until q) \land (p \until r)
+\textbf{Axiom:}\quad p \Until (q \land r) \Rightarrow (p \Until q) \land (p \Until r)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilAndEquiv}
-\textbf{Axiom:}\quad (p \land q) \until r \equiv (p \until r) \land (q \until r)
+\textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilOrEquiv}
-\textbf{Axiom:}\quad p \until (q \lor r) \equiv (p \until q) \lor (p \until r)
+\textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilIdem}
-\textbf{Axiom:}\quad p \until (p \until q) \equiv p \until q
+\textbf{Axiom:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilIdemR}
-\textbf{Axiom:}\quad (p \until q) \until q \equiv p \until q
+\textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:defEvent}
-\textbf{Definition of $\event$:}\quad \event p \equiv true \until p
+\textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventuality}
-\textbf{Eventuality:}\quad p \until q \Rightarrow \event q
+\textbf{Eventuality:}\quad p \Until q \Rightarrow \Event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:expansionEvent}
-\textbf{Expansion of $\event$:}\quad \event p \equiv p \lor \next\event p
+\textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impEvent}
-p \Rightarrow \event p
+p \Rightarrow \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextEvent}
-\next p \Rightarrow \event p
+\Next p \Rightarrow \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:IdemEvent}
-\textbf{Absorption of $\event$:}\quad \event\event p \equiv \event p
+\textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:dNextEvent}
-\textbf{Exchange of $\next$ and $\event$:}\quad \next\event p \equiv \event\next p
+\textbf{Exchange of $\Next$ and $\Event$:}\quad \Next\Event p \equiv \Event\Next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventOr}
-\textbf{Distributivity of $\event$ over $\lor$:}\quad \event(p \lor q) \equiv \event p \lor \event q
+\textbf{Distributivity of $\Event$ over $\lor$:}\quad \Event(p \lor q) \equiv \Event p \lor \Event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
-\textbf{Distributivity of $\event$ over $\land$:}\quad \event(p \land q) \Rightarrow \event p \land \event q
+\textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \Rightarrow \Event p \land \Event q
 \end{equation}
 
 \pagebreak
 
 \begin{equation}\label{E:defAlways}
-\textbf{Definition of $\always$:}\quad \always p \equiv \lnot\event\lnot p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:dualAlways}
-\textbf{Dual of $\always$:}\quad \lnot\always p \equiv \event\lnot p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:dualEvent}
-\textbf{Dual of $\event$:}\quad \lnot\event p \equiv \always\lnot p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:eventAsAlways}
-\event p \equiv \lnot\always\lnot p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:expansionAlways}
-\textbf{Expansion of $\always$:}\quad \always p \equiv p \land \next\always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:IdemAlways}
-\textbf{Absorption of $\always$:}\quad \always\always p \equiv \always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:dNextAlways}
-\textbf{Exchange of $\next$ and $\always$:}\quad \next\always p \equiv \always\next p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:impAlways}
-\always p \Rightarrow p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:impAlwaysE}
-\always p \Rightarrow \event p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:impAlwaysN}
-\always p \Rightarrow \next p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:impAlwaysNA}
-\always p \Rightarrow \next\always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:exAlwaysNot}
-\always\lnot p \Rightarrow \lnot\always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:excludedMid}
-\textbf{Excluded Middle:}\quad \event p \lor \always\lnot p
+\textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\always$ over $\Rightarrow$:}\quad \always (p \Rightarrow q) \Rightarrow (\always p \Rightarrow \always q)
+\textbf{Axiom, Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:dualAlways}
+\textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:dualEvent}
+\textbf{Dual of $\Event$:}\quad \lnot\Event p \equiv \Always\lnot p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventAsAlways}
+\Event p \equiv \lnot\Always\lnot p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:expansionAlways}
+\textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:IdemAlways}
+\textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:dNextAlways}
+\textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:impAlways}
+\Always p \Rightarrow p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:impAlwaysE}
+\Always p \Rightarrow \Event p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:impAlwaysN}
+\Always p \Rightarrow \Next p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:impAlwaysNA}
+\Always p \Rightarrow \Next\Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:exAlwaysNot}
+\Always\lnot p \Rightarrow \lnot\Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:excludedMid}
+\textbf{Excluded Middle:}\quad \Event p \lor \Always\lnot p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysAnd}
-\textbf{Distributivity of $\always$ over $\land$:}\quad \always (p \land q) \equiv (\always p \land \always q)
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\always$ over $\lor$:}\quad (\always p \lor \always q) \Rightarrow \always (p \lor q)
+\textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv (\Always p \land \Always q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Distributivity of $\always$ over $\equiv$:}\quad \always(p \equiv q) \Rightarrow (\always p \equiv \always q)
+\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always(p \equiv q) \Rightarrow (\Always p \equiv \Always q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysOr}
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \Rightarrow \Always (p \lor q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventAlwaysImp}
-\event\always p \Rightarrow \always\event p
+\Event\Always p \Rightarrow \Always\Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\event$ into $\always$:}\quad \event\always\event p \equiv \always\event p
+\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\always$ into $\event$:}\quad \always\event\always p \equiv \event\always p
+\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNext}
-\always (p \Rightarrow \next p) \Rightarrow (p \Rightarrow \always p)
+\Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
-\always (p \Rightarrow q) \Rightarrow (\next p \Rightarrow \next q)
+\Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
-\always (p \Rightarrow q) \Rightarrow (\event p \Rightarrow \event q)
+\Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventImpAlways}
-\event (p \Rightarrow q) \equiv (\always p \Rightarrow \event q)
+\Event (p \Rightarrow q) \equiv (\Always p \Rightarrow \Event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysAndEvent}
-\always p \land \event q \Rightarrow \event (p \land q)
+\Always p \land \Event q \Rightarrow \Event (p \land q)
 \end{equation}
 
 

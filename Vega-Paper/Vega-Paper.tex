@@ -305,7 +305,7 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
   \> \>   $\Next (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
   \> \>   $\Next (\lnot\lnot p \land \lnot\lnot q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan}\\[\lgap]
   \> \>   $\Next\lnot(\lnot p \lor \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\lnot p \lor \lnot q$)}\\[\lgap]
   \> \>   $\lnot\Next (\lnot p \lor \lnot q)$\\[\lgap]
@@ -313,7 +313,7 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
   \> \>   $\lnot (\Next\lnot p \lor \Next \lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) twice}\\[\lgap]
   \> \>   $\lnot(\lnot\Next p \lor \lnot\Next q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47) DeMorgan's Law}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
   \> \>   $\lnot\lnot(\Next p \land \Next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
   \> \>   $\Next p \land \Next q$\\[\lgap]
@@ -592,6 +592,10 @@ p \Rightarrow \Event p
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
 \end{equation}
 
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Axiom, Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\end{equation}
+
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
 \end{equation}
@@ -814,26 +818,136 @@ which is (3.5) with $p := \Event\lnot p$. \myqed\\[\lgap]
 which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
 
 
-\begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\begin{equation}\label{E:distAlwaysAnd}
+\textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Always(p \Rightarrow q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways})}\\[\lgap]
-  \> \>   $\lnot\Event\lnot(p \Rightarrow q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
-  \> \>   $\lnot\Event\lnot(\lnot p \lor q)$\\[\lgap]
+  \> \>   $\Always (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\lnot\Event\lnot (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
+  \> \>   $\lnot\Event (\lnot p \lor \lnot q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\lnot (\Event\lnot p \lor \Event\lnot q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47b) De Morgan}\\[\lgap]
-  \> \>   $\lnot\Event(\lnot\lnot p \land \lnot q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
-  \> \>   $\lnot\Event(p \land \lnot q)$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\lnot\Event\lnot p \land \lnot\Event\lnot q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$, twice}\\[\lgap]
+  \> \>   $\Always p \land \Always q$
 \end{tabbing}
 \myqed\\[\lgap]
 
+
+\begin{equation}\label{E:distAlwaysEquiv}
+\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \Rightarrow (\Always p \equiv \Always q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always (p \equiv q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication}\\[\lgap]
+  \> \>   $\Always ((p \Rightarrow q) \land (q \Rightarrow p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \Rightarrow q) \land \Always (q \Rightarrow p)$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:distAlwaysImp}) Distributivity of $\Always$ over $\Rightarrow$, and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $(\Always p \Rightarrow \Always q) \land (\Always q \Rightarrow \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication}\\[\lgap]
+  \> \>   $\Always p \equiv \Always q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distAlwaysOr}
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \Rightarrow \Always (p \lor q)
+\end{equation}
+
+
+
+\begin{equation}\label{E:eventAlwaysImp}
+\Event\Always p \Rightarrow \Always\Event p
+\end{equation}
+
+
+
+\begin{equation}\label{E:absEvent}
+\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+
+
+\begin{equation}\label{E:absAlways}
+\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\end{equation}
+
+
+
+\begin{equation}\label{E:alwaysImpNext}
+\Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
+\end{equation}
+
+
+
+\begin{equation}\label{E:alwaysImpNexts}
+\Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
+\end{equation}
+
+
+
+\begin{equation}\label{E:alwaysImpEvents}
+\Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
+\end{equation}
+
+
+
+\begin{equation}\label{E:eventImpAlways}
+\Event (p \Rightarrow q) \equiv (\Always p \Rightarrow \Event q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event(p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> \>   $\Event(\lnot p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\lnot p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\lnot\Always p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> \>   $\Always p \Rightarrow \Event q$\\[\lgap]  
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:alwaysAndEvent}
+\Always p \land \Event q \Rightarrow \Event (p \land q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always p \land \Event q \Rightarrow \Event (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> \>   $\lnot(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
+  \> \>   $\lnot\Always p \lor \lnot\Event q \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Event\lnot p \lor \lnot\Event q \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\lnot p \lor (p \land q)) \lor \lnot\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption}\\[\lgap]
+  \> \>   $\Event(\lnot p \lor q) \lor \lnot\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\lnot p \lor \Event q \lor \lnot\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+  \> \>   $\Event\lnot p \lor true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \subsection{Wait}
 
