@@ -900,6 +900,26 @@ which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
 \myqed\\[\lgap]
 
 
+\begin{equation}\label{E:distAlwaysOr}
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \Rightarrow \Always (p \lor q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always p \lor \Always q \Rightarrow \Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60)}\\[\lgap]
+  \> \>   $(\Always p \lor \Always q) \land \Always(p \lor q) \equiv \Always p \lor \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of }\\[\lgap]
+  \> \>   $(\Always (p \lor q) \land \Always p) \lor (\Always (p \lor q) \land \Always q) \equiv \Always p \lor \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always(p \land (p \lor q)) \lor \Always(q \land (p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43) Absorption, twice}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+
+
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \Rightarrow (\Always p \equiv \Always q)
 \end{equation}
@@ -918,12 +938,6 @@ which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
   \> \>   $\Always p \equiv \Always q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
-
-
-\begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \Rightarrow \Always (p \lor q)
-\end{equation}
-
 
 
 \begin{equation}\label{E:eventAlwaysImp}
