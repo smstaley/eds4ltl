@@ -25,13 +25,14 @@
 
 % Macros for Temporal Operators
 \newcommand{\Until}{\;\mathcal{U}\;}
+\newcommand{\Wait}{\;\mathcal{W}\;}
 \newcommand{\Next}{\bigcirc}
 \newcommand{\Event}{\Diamond}
 \newcommand{\Always}{\Box}
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
 \newcommand{\spacer}{\vspace{-30pt}}
-
+\newcommand{\negspacer}{\vspace{-20pt}}
 
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
@@ -84,6 +85,10 @@
 \begin{document}
 \maketitle
 
+\textbf{Next $\quad\Next$}
+
+\negspacer
+
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
 \end{equation}
@@ -130,7 +135,9 @@
 \textbf{Falsehood:}\quad \Next false \equiv false
 \end{equation}
 
-\spacer
+\textbf{Until $\quad\Until$}
+
+\negspacer
 
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
@@ -196,7 +203,9 @@ p \Until q \Rightarrow p \lor q
 \textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
-\spacer
+\textbf{Eventually $\quad\Event$}
+
+\negspacer
 
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
@@ -226,7 +235,7 @@ p \Rightarrow \Event p
 \Next p \Rightarrow \Event p
 \end{equation}
 
-\spacer
+\pagebreak
 
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
@@ -250,7 +259,9 @@ p \Rightarrow \Event p
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \Rightarrow \Event p \land \Event q
 \end{equation}
 
-\pagebreak
+\textbf{Always $\quad\Always$}
+
+\negspacer
 
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
@@ -400,5 +411,6 @@ p \Rightarrow \Event p
 \Always p \land \Event q \Rightarrow \Event (p \land q)
 \end{equation}
 
+\textbf{Wait $\quad\Wait$}
 
 \end{document}
