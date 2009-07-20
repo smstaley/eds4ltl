@@ -96,20 +96,8 @@
 
 \spacer
 
-\begin{equation}\label{E:nextTruth}
-\textbf{Axiom, Truth:}\quad \Next true \equiv true
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:linearity}
 \textbf{Linearity:}\quad \Next p \equiv \lnot\Next\lnot p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \Next false \equiv false
 \end{equation}
 
 \spacer
@@ -128,6 +116,18 @@
 
 \begin{equation}\label{E:distNextEquiv}
 \textbf{Distributivity of $\Next$ over $\equiv$:}\quad \Next (p \equiv q) \equiv \Next p \equiv \Next q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:nextTruth}
+\textbf{Truth:}\quad \Next true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:nextFalse}
+\textbf{Falsehood:}\quad \Next false \equiv false
 \end{equation}
 
 \spacer
@@ -258,12 +258,6 @@ p \Rightarrow \Event p
 
 \spacer
 
-\begin{equation}\label{E:distAlwaysImp}
-\textbf{Axiom, Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
 \end{equation}
@@ -350,6 +344,12 @@ p \Rightarrow \Event p
 
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always(p \equiv q) \Rightarrow (\Always p \equiv \Always q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
 \end{equation}
 
 \spacer

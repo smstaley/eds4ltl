@@ -300,10 +300,6 @@ Note: below is our auto-label system for axioms and theorems.\\
 \textbf{Axiom, Distributivity of $\Next$ over $\Rightarrow$:}\quad \Next (p \Rightarrow q) \equiv \Next p \Rightarrow \Next q
 \end{equation}
 
-\begin{equation}\label{E:nextTruth}
-\textbf{Axiom, Truth:}\quad \Next true \equiv true
-\end{equation}
-
 \begin{equation}\label{E:linearity}
 \textbf{Linearity:}\quad \Next p \equiv \lnot\Next\lnot p
 \end{equation}
@@ -316,22 +312,6 @@ Note: below is our auto-label system for axioms and theorems.\\
   \> \>   $\lnot\Next p \equiv \Next\lnot p$
 \end{tabbing}
 which is (\ref{E:selfDual}). \myqed\\[\lgap]
-
-
-\begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \Next false \equiv false
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Next false \equiv false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$} \\[\lgap]
-  \> \>   $\Next\lnot true \equiv \lnot true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := true, \Next\lnot true$}\\[\lgap]
-  \> \>   $\lnot\Next\lnot true \equiv true$\\[\lgap]
-\end{tabbing}
-which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distNextOr}
@@ -399,6 +379,44 @@ which is (\ref{E:linearity}) with $p := true$. \myqed\\[\lgap]
   \> \>   $\Next p \equiv \Next q$
 \end{tabbing}
 \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:nextTruth}
+\textbf{Truth:}\quad \Next true \equiv true
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $\Next true$\\[\lgap]
+	\> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+	\> \>   $\Next(p \lor \lnot p)$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivty of $\Next$ over $\lor$}\\[\lgap]
+	\> \>   $\Next p \lor \Next\lnot p$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
+	\> \>   $\Next p \lor \lnot\Next p$\\[\lgap]
+	\> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+	\> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:nextFalse}
+\textbf{Falsehood:}\quad \Next false \equiv false
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Next false \equiv false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$} \\[\lgap]
+  \> \>   $\Next\lnot true \equiv \lnot true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) with $p,q := true, \Next\lnot true$}\\[\lgap]
+  \> \>   $\lnot\Next\lnot true \equiv true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
+  \> \>   $\Next true \equiv true$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:nextTruth}). \myqed\\[\lgap]
 
 \subsection{Until}
 
@@ -652,9 +670,6 @@ p \Rightarrow \Event p
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
 \end{equation}
 
-\begin{equation}\label{E:distAlwaysImp}
-\textbf{Axiom, Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
-\end{equation}
 
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
@@ -910,7 +925,7 @@ which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
   \> \>   $\Always p \lor \Always q \Rightarrow \Always(p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.60)}\\[\lgap]
   \> \>   $(\Always p \lor \Always q) \land \Always(p \lor q) \equiv \Always p \lor \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.46) Distributivity of }\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
   \> \>   $(\Always (p \lor q) \land \Always p) \lor (\Always (p \lor q) \land \Always q) \equiv \Always p \lor \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always(p \land (p \lor q)) \lor \Always(q \land (p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
@@ -927,15 +942,33 @@ which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\Always (p \equiv q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual implication}\\[\lgap]
-  \> \>   $\Always ((p \Rightarrow q) \land (q \Rightarrow p))$\\[\lgap]
+  \> \>   $\Always (p \equiv q) \Rightarrow (\Always p \equiv \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.62)}\\[\lgap]
+  \> \>   $\Always (p \equiv q) \land \Always p \equiv \Always (p \equiv q) \land \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$, twice}\\[\lgap]
+  \> \>   $\Always((p \equiv q) \land p) \equiv \Always((p \equiv q) \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.50), twice}\\[\lgap]
+  \> \>   $\Always(p \land q) \equiv \Always (p \land q)$\\[\lgap]
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+
+
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always (p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Distributivity of $\Always$ over $\equiv$}\\[\lgap]
+  \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always (p \Rightarrow q) \land \Always (q \Rightarrow p)$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:distAlwaysImp}) Distributivity of $\Always$ over $\Rightarrow$, and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $(\Always p \Rightarrow \Always q) \land (\Always q \Rightarrow \Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual implication}\\[\lgap]
-  \> \>   $\Always p \equiv \Always q$\\[\lgap]
+  \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> \>   $\Always p \Rightarrow \Always q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
