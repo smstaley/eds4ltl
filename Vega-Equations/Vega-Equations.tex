@@ -151,6 +151,12 @@
 
 \spacer
 
+\begin{equation}\label{E:untilFalse}
+\textbf{Axiom:}\quad p \Until false \equiv false
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -219,6 +225,18 @@ p \Until q \Rightarrow p \lor q
 
 \spacer
 
+\begin{equation}\label{E:eventTrue}
+\textbf{Truth:}\quad \Event true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventFalse}
+\textbf{Falsehood:}\quad \Event false \equiv false
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
@@ -283,6 +301,18 @@ p \Rightarrow \Event p
 
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \lnot\Always\lnot p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysTrue}
+\textbf{Truth:}\quad \Always true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysFalse}
+\textbf{Falsehood:}\quad \Always false \equiv false
 \end{equation}
 
 \spacer
@@ -361,6 +391,30 @@ p \Rightarrow \Event p
 
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysEventAnd}
+\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \Rightarrow (\Always\Event p \land \Always\Event q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distEventAlwaysOr}
+\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad (\Event\Always p \lor \Event\Always q) \Rightarrow \Event\Always (p \lor q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysEventOr}
+\textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distEventAlwaysAnd}
+\textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv (\Event\Always p \land \Event\Always q)
 \end{equation}
 
 \spacer
