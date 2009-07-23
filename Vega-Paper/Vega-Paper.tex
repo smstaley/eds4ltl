@@ -81,12 +81,13 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract.
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-This is the abstract. This is the abstract. This is the abstract. This is the abstract. This is the abstract. 
-\end{abstract}
+This paper presents an equational deductive system for linear temporal logic.
+It differs from previous developments of such systems in four respects.
+First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
+derived, and for those that are derived, which previous formulas they depend on.
+Second, it gives a proof of every theorem.
+Third, the proofs are governed by an equational deductive systems as opposed to the older Hilbert-style deductive systems.
+Fourth, it presents several new and interesting linear temporal theorems.\end{abstract}
 
 \thispagestyle{plain}
 
@@ -125,8 +126,10 @@ Temporal logic applies to program correctness with concurrent processing to esta
 in programs that possibly do not terminate.\\
 
 As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$
-instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, and Manna and Pnueli \cite{Manna}.
-Schneider \cite{Schn}, who develops an equational deductive system for temporal logic appears to be the primary exception.
+instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Manna and Pnueli \cite{Manna}, and 
+Schneider \cite{Schn}.
+The only appearance of an equational proof of a temporal logic theorem appears to be a single example in \cite{Schn},
+which otherwise uses a Hilbert-style system for temporal logic.
 The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.
 The presentation typically consists of lists of valid temporal formulas, with little indication of which formulas are required
 as axioms and which are theorems that can be proved using a deductive system.\\
@@ -262,7 +265,20 @@ and $\lnot q$ for $q$ in (\ref{E:distNextOr}) as follows
 \end{tabbing}
 
 Gries and Schneider \cite{LADM} extend the proof format to incorporate implication using its transitive properties
-with itself and with equivaloes
+with itself and with equivales.
+An example is a proof of (\ref{E:impEvent}), $p \Rightarrow \Event p$.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor \Next\Event p$\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{Weakening $p\impl p\lor q$ with $q:=\Next\Event p$}\\[\lgap]
+  \> \>   $p$
+\end{tabbing}
+
+Because $\Event p$ equivales $p \lor \Next\Event p$, and $p \lor \Next\Event p$ follows from $p$, it follows by
+transitivity that $\Event p$ follows from $p$. 
 
 \subsection{Temporal Logic}
 
