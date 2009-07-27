@@ -244,13 +244,13 @@ p \Until q \Rightarrow p \lor q
 \spacer
 
 \begin{equation}\label{E:impEvent}
-p \Rightarrow \Event p
+\textbf{Weakening of $\Event$:}\quad p \Rightarrow \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextEvent}
-\Next p \Rightarrow \Event p
+\textbf{Weakening of $\Event$:}\quad \Next p \Rightarrow \Event p
 \end{equation}
 
 \pagebreak
@@ -336,25 +336,25 @@ p \Rightarrow \Event p
 \spacer
 
 \begin{equation}\label{E:impAlways}
-\Always p \Rightarrow p
+\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysE}
-\Always p \Rightarrow \Event p
+\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysN}
-\Always p \Rightarrow \Next p
+\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysNA}
-\Always p \Rightarrow \Next\Always p
+\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Next\Always p
 \end{equation}
 
 \spacer
@@ -438,19 +438,19 @@ p \Rightarrow \Event p
 \spacer
 
 \begin{equation}\label{E:alwaysImpNext}
-\Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
+\textbf{Induction:}\quad \Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
-\Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
+\textbf{Monotonicity of $\Next$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
-\Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
+\textbf{Monotonicity of $\Event$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
 \end{equation}
 
 \spacer
