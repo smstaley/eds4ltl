@@ -555,10 +555,32 @@ End Note\\
 \textbf{Truth:}\quad \Event true \equiv true
 \end{equation}
 
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true \Until true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
+  \> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \begin{equation}\label{E:eventFalse}
 \textbf{Falsehood:}\quad \Event false \equiv false
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event false$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true \Until false$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFalse})}\\[\lgap]
+  \> \>   $false$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 
 \begin{equation}\label{E:expansionEvent}
@@ -752,10 +774,38 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
 \textbf{Truth:}\quad \Always true \equiv true
 \end{equation}
 
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\lnot\Event\lnot true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$}\\[\lgap]
+  \> \>   $\lnot\Event false$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventFalse}) Falsehood}\\[\lgap]
+  \> \>   $\lnot false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.13) Negation of $false$}\\[\lgap]
+  \> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 \begin{equation}\label{E:alwaysFalse}
 \textbf{Falsehood:}\quad \Always false \equiv false
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always false \equiv false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$, twice}\\[\lgap]
+  \> \>   $\Always\lnot true \equiv \lnot true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11)}\\[\lgap]
+  \> \>   $\lnot\Always\lnot\ true \equiv true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
+  \> \>   $\Event true \equiv true$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:eventTrue}) Truth. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:expansionAlways}
@@ -1015,13 +1065,57 @@ which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distAlwaysEventAnd}
-\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \Rightarrow (\Always\Event p \land \Always\Event q)
+\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \Rightarrow \Always\Event p \land \Always\Event q
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always\Event(p \land q) \Rightarrow \Always\Event p \land \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> \>   $\Always\Event(p \land q) \land \Always\Event p \land \Always\Event q \equiv \Always\Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always(\Event(p \land q) \land \Event p \land \Event q) \equiv \Always\Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
+  \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$\\[\lgap]
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+
+\emph{Proof of Lemma:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> \>   $\Event(p \land q) \Rightarrow \Event p \land \Event q$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distEventAlwaysOr}
-\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad (\Event\Always p \lor \Event\Always q) \Rightarrow \Event\Always (p \lor q)
+\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \Rightarrow \Event\Always (p \lor q)
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event\Always p \lor \Event\Always q \Rightarrow \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication}\\[\lgap]
+  \> \>   $\Event\Always p \lor \Event\Always q \lor \Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\Always p \lor \Always q \lor \Always(p \lor q)) \equiv \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
+  \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+
+\emph{Proof of Lemma:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \Rightarrow \Always(p \lor q)$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distAlwaysEventOr}
