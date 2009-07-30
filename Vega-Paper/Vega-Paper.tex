@@ -1146,7 +1146,7 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 
 
 
-\begin{equation}\label{E:alwaysImpNext}
+\begin{equation}\label{E:induction}
 \textbf{Induction:}\quad \Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
 \end{equation}
 
@@ -1156,12 +1156,45 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
 \end{equation}
 
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always (p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening}\\[\lgap]
+  \> \>   $\Next (p \Rightarrow q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\Rightarrow$}\\[\lgap]
+  \> \>   $\Next p \Rightarrow \Next q$\\[\lgap]  
+\end{tabbing}
+\myqed\\[\lgap]
+
 
 
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
 \end{equation}
 
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, three times}\\[\lgap]
+  \> \>   $\lnot\Always (\lnot p \lor q) \lor \lnot\Event p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Event\lnot (\lnot p \lor q) \lor \lnot\Event p \lor \Event q$\\[\lgap]  
+  \> $=$  \>  \Hint{(3.47b) De Morgan, and Double negation}\\[\lgap]
+  \> \>   $\Event(p \land \lnot q) \lor \lnot\Event p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(q \lor (\lnot q \land p)) \lor \lnot\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption}\\[\lgap]
+  \> \>   $\Event(q \lor p) \lor \lnot\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event q \lor \Event p \lor \lnot\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded Middle}\\[\lgap]
+  \> \>   $\Event q \lor true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> \>   $true$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 
 \begin{equation}\label{E:eventImpAlways}
