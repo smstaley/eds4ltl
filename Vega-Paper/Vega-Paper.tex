@@ -327,7 +327,7 @@ Note: below is our auto-label system for axioms and theorems.\\
   \> $=$  \>  \Hint{(3.11) with $p,q := \Next\lnot p, \Next p$} \\[\lgap]
   \> \>   $\lnot\Next p \equiv \Next\lnot p$
 \end{tabbing}
-which is (\ref{E:selfDual}). \myqed\\[\lgap]
+which is (\ref{E:selfDual}), Self-dual. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distNextOr}
@@ -910,9 +910,9 @@ which is (3.5) with $p := \Event\lnot p$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlways})}\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $p$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:impEvent})}\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
   \> \>   $\Event p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -962,7 +962,7 @@ which is (3.5) with $p := \Event\lnot p$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\lnot p$\\[\lgap]
-  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlwaysE})}\\[\lgap]
+  \> $\Rightarrow$  \>  \Hint{(\ref{E:impAlwaysE}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $\Event\lnot p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\lnot\Always p$\\[\lgap]
@@ -1014,7 +1014,7 @@ which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p \lor \Always q \Rightarrow \Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
   \> \>   $(\Always p \lor \Always q) \land \Always(p \lor q) \equiv \Always p \lor \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
   \> \>   $(\Always (p \lor q) \land \Always p) \lor (\Always (p \lor q) \land \Always q) \equiv \Always p \lor \Always q$\\[\lgap]
@@ -1205,13 +1205,13 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event(p \Rightarrow q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
   \> \>   $\Event(\lnot p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event\lnot p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\lnot\Always p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
   \> \>   $\Always p \Rightarrow \Event q$\\[\lgap]  
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1225,7 +1225,7 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p \land \Event q \Rightarrow \Event (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
   \> \>   $\lnot(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
   \> \>   $\lnot\Always p \lor \lnot\Event q \lor \Event(p \land q)$\\[\lgap]
