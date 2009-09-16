@@ -32,7 +32,7 @@
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
 \newcommand{\spacer}{\vspace{-30pt}}
-\newcommand{\negspacer}{\vspace{-20pt}}
+\newcommand{\firstspacer}{\vspace{-26pt}}
 
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
@@ -70,7 +70,8 @@
 \parindent=0in
 \pagestyle{plain}
 
-\title{An Equational Deductive System\\for Linear Temporal Logic}
+\title{Theorems from Vega and Warford's EDS4LTL}
+
 \author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
    Computer Science Department\\
    Pepperdine University\\
@@ -83,17 +84,203 @@
 \date{} % Required for no date to appear in heading
 
 \begin{document}
+
 \maketitle
 
-\textbf{Next $\quad\Next$}
+\begin{abstract}
+The first section of this document is a collection of the axioms and theorems of the
+propositional calculus in Gries and Schneider's
+book \textit{A Logical Approach to Discrete Math}, Springer-Verlag, 1993.
+The numbering is consistent with that text.
+Additional theorems not included or numbered in LADM are indicated by a three-part
+number.
+The second section is a collection of the axioms and theorems of linear temporal logic
+in Vega and Warford's paper \textit{An Equational Deductive System for Linear Temporal Logic},
+Pepperdine University Research Report, Natural Science Division, 2009.
+\end{abstract}
 
-\negspacer
+\subsection*{Table of Precedences}
+
+%\setlength\extrarowheight{2pt}
+\begin{tabular}{lr}
+\hline
+$[x := e]$ (textual substitution) & Highest precedence\\
+$\neg$\quad $\Next$\quad $\Event$\quad $\Always$ &\\
+$\Until$\quad $\Wait$ &\\
+$=$\quad (conjunctional) &\\
+$\lor$\quad $\land$ &\\
+$\impl$\quad $\foll$ &\\
+$\equiv$ \quad (associative) & Lowest precedence\\
+\hline
+\end{tabular}\\[\llgap]
+
+\section*{Theorems of the Propositional Calculus}
+
+\subsection*{Equivalence and $true$}
+\begin{tabbing}
+(99.99.9)\;\=\kill
+(3.1)\>\textbf{Axiom, Associativity of $\equiv$ :}\quad $((p\equiv q) \equiv r)\equivs (p\equiv (q\equiv r))$\\[\lgap]
+(3.2)\>\textbf{Axiom, Symmetry of $\equiv$ :}\quad $p\equiv q \equiv q\equiv p$\\[\lgap]
+(3.3)\>\textbf{Axiom, Identity of $\equiv$ :}\quad $true\equiv q \equiv q$\\[\lgap]
+(3.4)\>$true$\\[\lgap]
+(3.5)\>\textbf{Reflexivity of $\equiv$ :}\quad $p\equiv p$\\
+\end{tabbing}
+
+\subsection*{Negation, inequivalence, and $false$}
+\begin{tabbing}
+(99.99.9)\;\=\kill
+(3.8)\>\textbf{Definition of $false$ :}\quad $false\equiv \neg true$\\[\lgap]
+(3.9)\>\textbf{Axiom, Distributivity of $\neg$ over $\equiv$ :}\quad $\neg (p\equiv q) \equivs \neg p \equiv q$\\[\lgap]
+(3.10)\>\textbf{Definition of $\nequiv$ :}\quad $(p\nequiv q)\equivs\neg(p\equiv q)$\\[\lgap]
+(3.11)\>$\neg p \equiv q \equiv p \equiv \neg q$\\[\lgap]
+(3.12)\>\textbf{Double negation:}\quad $\neg\neg p\equiv p$\\[\lgap]
+(3.13)\>\textbf{Negation of $false$:}\quad $\neg false\equiv true$\\[\lgap]
+(3.14)\>$(p\nequiv q)\equivs\neg p\equiv q$\\[\lgap]
+(3.15)\>$\neg p\equiv p\equiv false$\\[\lgap]
+(3.16)\>\textbf{Symmetry of $\nequiv$ :}\quad $(p\nequiv q) \equivs (q\nequiv p)$\\[\lgap]
+(3.17)\>\textbf{Associativity of $\nequiv$ :}\quad $((p\nequiv q) \nequiv r)\equivs (p\nequiv (q\nequiv r))$\\[\lgap]
+(3.18)\>\textbf{Mutual associativity:}\quad $((p\nequiv q) \equiv r)\equivs (p\nequiv (q\equiv r))$\\[\lgap]
+(3.19)\>\textbf{Mutual interchangeability:}\quad $p\nequiv q \equiv r\equivss p\equiv q\nequiv r$\\
+(3.19.1)\>$p\nequiv p \nequiv q\equivs q$\\
+\end{tabbing}
+
+\subsection*{Disjunction}
+\begin{tabbing}
+(99.99.9)\;\=\kill
+(3.24)\>\textbf{Axiom, Symmetry of $\lor$ :}\quad $p\lor q \equiv q\lor p$\\[\lgap]
+(3.25)\>\textbf{Axiom, Associativity of $\lor$ :}\quad $(p\lor q) \lor r\equiv p\lor (q\lor r)$\\[\lgap]
+(3.26)\>\textbf{Axiom, Idempotency of $\lor$ :}\quad $p\lor p \equiv p$\\[\lgap]
+(3.27)\>\textbf{Axiom, Distributivity of $\lor$ over $\equiv$ :}\quad $p\lor (q\equiv r)\equiv p\lor q\equiv p\lor r$\\[\lgap]
+(3.28)\>\textbf{Axiom, Excluded middle:}\quad $p\lor\neg p$\\[\lgap]
+(3.29)\>\textbf{Zero of $\lor$ :}\quad $p\lor true\equiv true$\\[\lgap]
+(3.30)\>\textbf{Identity of $\lor$ :}\quad $p\lor false\equiv p$\\[\lgap]
+(3.31)\>\textbf{Distributivity of $\lor$ over $\lor$ :}\quad $p\lor (q\lor r)\equiv (p\lor q)\lor (p\lor r)$\\[\lgap]
+(3.32)\>$p\lor q\equiv p\lor\neg q\equiv p$\\
+\end{tabbing}
+
+%\newpage
+
+\subsection*{Conjunction}
+\begin{tabbing}
+(99.99.9)\;\=(m)\;\=\kill
+(3.35)\>\textbf{Axiom, Golden rule:}\quad $p\land q\equivs p\equivs q\equivs p\lor q$\\[\lgap]
+(3.36)\>\textbf{Symmetry of $\land$ :}\quad $p\land q \equiv q\land p$\\[\lgap]
+(3.37)\>\textbf{Associativity of $\land$ :}\quad $(p\land q) \land r\equiv p\land (q\land r)$\\[\lgap]
+(3.38)\>\textbf{Idempotency of $\land$ :}\quad  $p\land p \equiv p$\\[\lgap]
+(3.39)\>\textbf{Identity of $\land$ :}\quad $p\land true\equiv p$\\[\lgap]
+(3.40)\>\textbf{Zero of $\land$ :}\quad $p\land false\equiv false$\\[\lgap]
+(3.41)\>\textbf{Distributivity of $\land$ over $\land$ :}\quad $p\land (q\land r)\equiv (p\land q)\land (p\land r)$\\[\lgap]
+(3.42)\>\textbf{Contradiction:}\quad $p \land \neg p \equiv false$\\[\lgap]
+(3.43)\>\textbf{Absorption:}\\
+      \> (a)\> $p \land (p \lor q) \equiv p$\\[\lgap]
+      \> (b)\> $p \lor (p \land q) \equiv p$\\[\lgap]
+(3.44)\>\textbf{Absorption:}\\
+      \> (a)\> $p \land (\neg p \lor q) \equiv p \land q$\\[\lgap]
+      \> (b)\> $p \lor (\neg p \land q) \equiv p \lor q$\\[\lgap]
+(3.45)\>\textbf{Distributivity of $\lor$ over $\land$ :}\quad $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$\\[\lgap]
+(3.46)\>\textbf{Distributivity of $\land$ over $\lor$ :}\quad $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$\\[\lgap]
+(3.47)\>\textbf{De Morgan:}\\
+      \> (a)\> $\neg (p \land q) \equiv \neg p \lor \neg q$\\[\lgap]
+      \> (b)\> $\neg (p \lor q) \equiv \neg p \land \neg q$\\[\lgap]
+(3.48)\>$p\land q\equivs p\equivs p\land \neg q\equivs \neg p$\\[\lgap]
+(3.49)\>$p\land (q\equiv r)\equivs p\land q\equivs p\land r \equivs p$\\[\lgap]
+(3.50)\>$p\land (q\equiv p)\equivs p\land q$\\[\lgap]
+(3.51)\>\textbf{Replacement:}\quad $(p \equiv q) \land (r \equiv p) \equivss (p \equiv q) \land (r \equiv q)$\\[\lgap]
+(3.52)\>\textbf{Equivalence:}\quad $p \equiv q \equivs (p \land q) \lor (\neg p \land \neg q)$\\[\lgap]
+(3.53)\>\textbf{Exclusive or:}\quad $p \nequiv q \equivs (\neg p \land q) \lor (p \land \neg q)$\\[\lgap]
+(3.55)\>$(p\land q)\land r \equivs p \equivs q \equivs r \equivs p\lor q \equivs q\lor r \equivs r\lor p \equivs p \lor q\lor r$\\
+\end{tabbing}
+
+%\newpage
+
+\subsection*{Implication}
+\begin{tabbing}
+(99.99.9)\;\=(m)\;\=\kill
+(3.57)\>\textbf{Definition of Implication:}\quad $p\impl q \equivs p\lor q \equivs q$\\[\lgap]
+(3.58)\>\textbf{Axiom, Consequence:}\quad $p\foll q \equivs q\impl p$\\[\lgap]
+(3.59)\>\textbf{Implication:}\quad $p\impl q \equivs \neg p \lor q$\\[\lgap]
+(3.60)\>\textbf{Implication:}\quad $p\impl q \equivs p\land q \equivs p$\\[\lgap]
+(3.61)\>\textbf{Contrapositive:}\quad $p\impl q \equivs \neg q\impl \neg p$\\[\lgap]
+(3.62)\>$p\impl (q\equiv r) \equivs p\land q\equivs p\land r$\\[\lgap]
+(3.63)\>\textbf{Distributivity of $\impl$ over $\equiv$ :}\quad $p\impl (q\equiv r)\equivs (p\impl q)\equivs (p\impl r)$\\[\lgap]
+(3.64)\>$p\impl (q\impl r) \equivs (p\impl q)\impl (p\impl r)$\\[\lgap]
+(3.65)\>\textbf{Shunting:}\quad $p\land q\impl r\equivs p\impl (q\impl r)$\\[\lgap]
+(3.66)\>$p\land (p\impl q) \equivs p\land q$\\[\lgap]
+(3.67)\>$p\land (q\impl p) \equivs p$\\[\lgap]
+(3.68)\>$p\lor (p\impl q) \equivs true$\\[\lgap]
+(3.69)\>$p\lor (q\impl p) \equivs q\impl p$\\[\lgap]
+(3.70)\>$p\lor q \impl p\land q \equivs p \equivs q$\\[\lgap]
+(3.71)\>\textbf{Reflexivity of $\impl$ :}\quad $p\impl p \equivs true$\\[\lgap]
+(3.72)\>\textbf{Right zero of $\impl$ :}\quad $p\impl true \equivs true$\\[\lgap]
+(3.73)\>\textbf{Left identity of $\impl$ :}\quad $true\impl p \equivs p$\\[\lgap]
+(3.74)\>$p\impl false \equivs \neg p$\\[\lgap]
+(3.75)\>$false\impl p \equivs true$\\[\lgap]
+(3.76)\>\textbf{Weakening/strengthening:}\\
+      \> (a)\> $p\impl p\lor q$\quad \quad \quad (Weakening the consequent)\\[\lgap]
+      \> (b)\> $p\land q \impl p$\quad \quad \quad (Strengthening the antecedent)\\[\lgap]
+      \> (c)\> $p\land q \impl p\lor q$\quad \quad \quad (Weakening/strengthening)\\[\lgap]
+      \> (d)\> $p\lor (q\land r) \impl p\lor q$\\[\lgap]
+      \> (e)\> $p\land q \impl p\land (q \lor r)$\\[\lgap]
+(3.77)\>\textbf{Modus ponens:}\quad $p\land (p\impl q)\impl q$\\[\lgap]
+(3.78)\>$(p\impl r) \land (q\impl r) \equivs (p\lor q\impl r)$\\[\lgap]
+(3.79)\>$(p\impl r) \land (\neg p\impl r) \equivs r$\\[\lgap]
+(3.80)\>\textbf{Mutual implication:}\quad $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$\\[\lgap]
+(3.81)\>\textbf{Antisymmetry:}\quad $(p\impl q) \land (q\impl p) \impl (p\equiv q)$\\[\lgap]
+(3.82)\>\textbf{Transitivity:}\\
+      \> (a)\> $(p\impl q) \land (q\impl r) \impl (p\impl r)$\\[\lgap]
+      \> (b)\> $(p\equiv q) \land (q\impl r) \impl (p\impl r)$\\[\lgap]
+      \> (c)\> $(p\impl q) \land (q\equiv r) \impl (p\impl r)$\\[\lgap]
+(3.82.1)\>\textbf{Transitivity of $\equiv$ :}\quad $(p\equiv q)\land (q\equiv r)\impl (p\equiv r)$\\[\lgap]
+(3.82.2)\>$(p\equiv q)\impl (p\impl q)$\\
+\end{tabbing}
+
+\subsection*{Leibniz as an axiom}
+\begin{tabbing}
+(99.99.9)\;\=(m)\;\=\kill
+This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap]
+(3.83)\>\textbf{Axiom, Leibniz:}\quad $e=f\impl E^{z}_{e} = E^{z}_{f}$\\[\lgap]
+(3.84)\>\textbf{Substitution:}\\
+      \> (a)\> $(e=f) \land E^{z}_{e} \equivs (e=f)\land E^{z}_{f}$\\[\lgap]
+      \> (b)\> $(e=f) \impl E^{z}_{e} \equivs (e=f)\impl E^{z}_{f}$\\[\lgap]
+      \> (c)\> $q\land (e=f) \impl E^{z}_{e} \equivs q\land (e=f)\impl E^{z}_{f}$\\[\lgap]
+(3.85)\>\textbf{Replace by $true$:}\\
+      \> (a)\> $p \impl E^{z}_{p} \equivs p\impl E^{z}_{true}$\\[\lgap]
+      \> (b)\> $q\land p \impl E^{z}_{p} \equivs q\land p\impl E^{z}_{true}$\\[\lgap]
+(3.86)\>\textbf{Replace by $false$:}\\
+      \> (a)\> $E^{z}_{p} \impl p \equivs E^{z}_{false}\impl p$\\[\lgap]
+      \> (b)\> $E^{z}_{p} \impl p\lor q \equivs E^{z}_{false}\impl p\lor q$\\[\lgap]
+(3.87)\>\textbf{Replace by $true$:}\quad $p\land E^{z}_{p} \equivs p\land E^{z}_{true}$\\[\lgap]
+(3.88)\>\textbf{Replace by $false$:}\quad $p\lor E^{z}_{p} \equivs p\lor E^{z}_{false}$\\[\lgap]
+(3.89)\>\textbf{Shannon:}\quad $E^{z}_{p}\equivs (p\land E^{z}_{true}) \lor (\neg p\land E^{z}_{false})$\\
+\end{tabbing}
+
+\subsection*{Additional theorems concerning implication}
+\begin{tabbing}
+(99.99.9)\;\=(m)\;\=\kill
+(4.1)\>$p\impl (q\impl p)$\\[\lgap]
+(4.2)\>\textbf{Monotonicity of $\lor$ :}\quad $(p\impl q) \impl (p\lor r \impl q\lor r)$\\[\lgap]
+(4.3)\>\textbf{Monotonicity of $\land$ :}\quad $(p\impl q) \impl (p\land r \impl q\land r)$\\[\lgap]
+(4.4)\>\textbf{Assume conjuncts of antecedent:}\\[\lgap]
+      \>To prove $P_{1}\land P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
+(4.5)\>\textbf{Case analysis:}\quad If $E^{z}_{true}$ and $E^{z}_{false}$ are theorems, then so is $E^{z}_{P}$.\\[\lgap]
+(4.6)\>\textbf{Case analysis:}\quad $(p\lor q\lor r)\land (p\impl s)\land (q\impl s)\land (r\impl s)\impl s$\\[\lgap]
+(4.7)\>\textbf{Mutual implication:}\quad To prove $P\equiv Q$, prove $P\impl Q$ and $Q\impl P$.\\[\lgap]
+(4.9)\>$\neg p\impl false \equivs p$\\
+     \>\textbf{Proof by contradiction:}\quad To prove $P$, prove $\neg P\impl false$.\\[\lgap]
+(4.12)\>\textbf{Proof by contrapositive:}\quad To prove $P\impl Q$, prove $\neg Q\impl \neg P$.\\
+\end{tabbing}
+
+\pagebreak
+
+\section*{Theorems of Linear Temporal Logic}
+
+\subsection*{Next $\quad\Next$}
 
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\Rightarrow$:}\quad \Next (p \Rightarrow q) \equiv \Next p \Rightarrow \Next q
@@ -135,15 +322,13 @@
 \textbf{Falsehood:}\quad \Next false \equiv false
 \end{equation}
 
-\textbf{Until $\quad\Until$}
-
-\negspacer
+\subsection*{Until $\quad\Until$}
 
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:expansionUntil}
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
@@ -209,15 +394,13 @@ p \Until q \Rightarrow p \lor q
 \textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
-\textbf{Eventually $\quad\Event$}
-
-\negspacer
+\subsection*{Eventually $\quad\Event$}
 
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \Rightarrow \Event q
@@ -253,7 +436,7 @@ p \Until q \Rightarrow p \lor q
 \textbf{Weakening of $\Event$:}\quad \Next p \Rightarrow \Event p
 \end{equation}
 
-\pagebreak
+\spacer
 
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
@@ -277,15 +460,15 @@ p \Until q \Rightarrow p \lor q
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \Rightarrow \Event p \land \Event q
 \end{equation}
 
-\textbf{Always $\quad\Always$}
+\pagebreak
 
-\negspacer
+\subsection*{Always $\quad\Always$}
 
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
