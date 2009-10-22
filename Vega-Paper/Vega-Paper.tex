@@ -67,7 +67,8 @@
 \pagestyle{plain}
 
 \title{An Equational Deductive System\\for Linear Temporal Logic}
-\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
+\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009
+        and academic year 2009-10.}\\
    Computer Science Department\\
    Pepperdine University\\
    Malibu, CA 90265
@@ -82,7 +83,7 @@
 \maketitle
 \begin{abstract}
 This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in four respects.
+It differs from previous developments of such systems in several respects.
 First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
 derived, and for those that are derived, which previous formulas they depend on.
 Second, it gives a proof of every theorem.
@@ -126,8 +127,8 @@ Temporal logic applies to program correctness with concurrent processing to esta
 in programs that possibly do not terminate.\\
 
 As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$
-instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Manna and Pnueli \cite{Manna}, and 
-Schneider \cite{Schn}.
+instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kr\"{o}ger \cite{Kroger},
+Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 The only appearance of an equational proof of a temporal logic theorem appears to be a single example in \cite{Schn},
 which otherwise uses a Hilbert-style system for temporal logic.
 The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.
@@ -135,7 +136,7 @@ The presentation typically consists of lists of valid temporal formulas, with li
 as axioms and which are theorems that can be proved using a deductive system.\\
 
 This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in four respects.
+It differs from previous developments of such systems in several respects.
 First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
 derived, and for those that are derived, which previous formulas they depend on.
 Second, it gives a proof of every theorem.
@@ -150,7 +151,7 @@ Section 3 presents the equational deductive system for linear temporal logic.\\
 
 \subsection{Equational Deductive Systems}
 
-This section closely follows Gries and Schneider \cite{LADM}.\\
+This section follows Gries and Schneider \cite{LADM}.\\
 
 The definition of an expression has four parts:
 \begin{itemize}[$\bullet$]
@@ -282,9 +283,120 @@ transitivity that $\Event p$ follows from $p$.
 
 \subsection{Temporal Logic}
 
-Temporal logic is the logic of parallel computation, that is, computations that happen concurrently
-with the multicore processing chips that are becoming more popular in personal computers.
-Programs are inherently more difficult to test and to prove correct when they employ concurrency.\\
+This section follows Manna and Pnueli \cite{Manna} and Schneider \cite{Schn}.\\
+
+The operators of propositional calculus, $\neg$, $=$, $\land$, $\lor$, $\impl$, $\foll$, and $\equiv$ are static.
+That is, they apply at a single point in time.
+Each operator has a truth table that dictates how to evaluate the truth value of an expression.
+A state is an assignment of a truth value to each variable in the expression.
+A given boolean expression may be false in all states, true in some states and false in others, or true in all states, in which case the expression is known as a theorem or validity or tautology.\\
+
+The operators of temporal logic, $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ are dynamic.
+That is, they do not apply at a single point in time, but apply over an infinite sequence of states.
+Each state corresponds to a discrete point in time that represents one point in the execution of a program,
+possibly having several threads running concurrently but whose instruction executions have been serialized.
+As one instruction in the program executes, the state changes, and hence the truth value of an expression may change as well.\\
+
+A model $\sigma$ is an infinite sequence of the form
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $\sigma: s_0, s_1, s_2, \dots$
+\end{tabbing}
+
+where $s_0$ is the initial state and each state $s_i, 0 \le i$ is the state at time $i$.
+For example, suppose $x$ is an integer variable whose value varies at each step of the computation.
+Then $x$ and the expression $x < 10$, known as a state expression, might evolve as follows.\\
+
+\begin{tabular}{c|ccccccc}
+  $\sigma$   & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
+  \hline
+  $x$        & 8     & 9     & 10    & 11    & 12    & \dots\\
+  $x<10$     & T     & T     & F     & F     & F     & \dots
+\end{tabular}\\
+
+The bottom row shows the evaluation of the state expression at each state.
+Temporal logic extends propositional logic by considering the evolution of expression evaluations in time.
+For example, if you assume that $x$ in the above sequence keeps increasing by one you can assert
+informally in English, ``For the sequence $\sigma$, eventually $x<10$ will always be false.''\\
+
+The notation
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models p$
+\end{tabbing}
+
+means that the expression $p$ holds at position $j$ in a sequence $\sigma$.
+In the above example,
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, 1) \models x<10$
+\end{tabbing}
+
+You can read $\models$ as ``satisfies'', so the above expression is read as
+``State 1 in sequence $\sigma$ satisfies $x<10$''.
+Or, using ``holds'', you can say, ``$x<10$ holds in state 1 of sequence $\sigma$''.
+The following sections use $\models$ to formalize the interpretation of each temporal operator.
+
+\subsubsection*{The \textit{next} operator $\Next$}
+
+The semantics of the unary prefix operator $\Next$ is
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models \Next p$ \quad iff \quad $(\sigma, j+1) \models p$
+\end{tabbing}
+
+That is, $\Next p$ holds at position $j$ iff $p$ holds at position $j+1$.\\
+
+For example, in the above sequence $\Next x \ge 10$ holds at state $s_1$ because $x \ge 10$
+holds at state $s_2$.
+In other words,
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, 1) \models \Next x \ge 10$ \quad because \quad $(\sigma, 2) \models  x \ge 10$
+\end{tabbing}
+
+\subsubsection*{The \textit{until} operator $\Until$}
+
+The semantics of the binary infix operator $\Until$ is
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models p \Until q$ \quad iff \quad $(\ext k \dr k \le j \rb (\sigma,k) \models q \land
+      (\all j \dr j\le i < k \rb (\sigma,i) \models p))$
+\end{tabbing}
+
+\subsubsection*{The \textit{eventually} operator $\Event$}
+
+The semantics of the unary prefix operator $\Event$ is
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models \Event p$ \quad iff \quad $(\ext k \dr k \ge j \rb (\sigma,k) \models p)$
+\end{tabbing}
+
+\subsubsection*{The \textit{always} operator $\Always$}
+
+The semantics of the unary prefix operator $\Always$ is
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models \Always p$ \quad iff \quad $(\all k \dr k \ge j \rb (\sigma,k) \models p)$
+\end{tabbing}
+
+
+\subsubsection*{The \textit{wait} operator $\Wait$}
+
+The semantics of the binary infix operator $\Wait$ in terms of $\Until$ and $\Always$ is
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $(\sigma, j) \models p \Wait q$ \quad iff \quad $(\sigma, j) \models p \Until q \; \lor \; (\sigma, j) \models \Always p$
+\end{tabbing}
 
 
 \section{The Equational Temporal System}
@@ -295,12 +407,6 @@ temporal logic but using the equational deductive system based on the four proof
 in the first section. The system will consist of a small number of axioms and a larger number of
 theorems. Because the proof rules in the equational deductive system are different from those
 in $\mathcal{L}$, the proofs will be different as well.\\
-
-Note: Explain/use: The domain of discourse\\
-
-Note: primitives!  Lets use $\Next$ and $\mathcal{U}$\\
-
-Note: lets look at until in mathcal: $\mathcal{U}$\\
 
 
 
