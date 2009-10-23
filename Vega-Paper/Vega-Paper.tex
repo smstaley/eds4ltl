@@ -26,9 +26,9 @@
 % Macros for Temporal Operators
 \newcommand{\Until}{\;\mathcal{U}\;}
 \newcommand{\Wait}{\;\mathcal{W}\;}
-\newcommand{\Next}{\bigcirc}
-\newcommand{\Event}{\Diamond}
-\newcommand{\Always}{\Box}
+\newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
+\newcommand{\Event}{\Diamond\,}
+\newcommand{\Always}{\Box\,}
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
 
@@ -315,7 +315,7 @@ Then $x$ and the expression $x < 10$, known as a state expression, might evolve 
   $x<10$     & T     & T     & F     & F     & F     & \dots
 \end{tabular}\\
 
-The bottom row shows the evaluation of the state expression at each state.
+The bottom row shows the evaluation of the state expression for each state in the sequence.
 Temporal logic extends propositional logic by considering the evolution of expression evaluations in time.
 For example, if you assume that $x$ in the above sequence keeps increasing by one you can assert
 informally in English, ``For the sequence $\sigma$, eventually $x<10$ will always be false.''\\
@@ -336,7 +336,7 @@ In the above example,
 \end{tabbing}
 
 You can read $\models$ as ``satisfies'', so the above expression is read as
-``State 1 in sequence $\sigma$ satisfies $x<10$''.
+``State 1 of sequence $\sigma$ satisfies $x<10$''.
 Or, using ``holds'', you can say, ``$x<10$ holds in state 1 of sequence $\sigma$''.
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
@@ -444,15 +444,15 @@ which is (\ref{E:selfDual}), Self-dual. \myqed\\[\lgap]
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-	\> \>   $\Next$(p $\lor$ q)\\[\lgap]
+	\> \>   $\Next(p \lor q)$\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
-	\> \>   $\Next$($\lnot$p $\Rightarrow$ q)\\[\lgap]
+	\> \>   $\Next(\lnot p \Rightarrow q)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\Rightarrow$}\\[\lgap]
-	\> \>   $\Next\lnot$p $\Rightarrow$ $\Next$q\\[\lgap]
+	\> \>   $\Next\lnot p \Rightarrow \Next q$\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
-	\> \>   $\lnot\Next\lnot$p $\lor$ $\Next$q\\[\lgap]
+	\> \>   $\lnot\Next\lnot p \lor \Next q$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
-	\> \>   $\Next$p $\lor$ $\Next$q
+	\> \>   $\Next p \lor \Next q$
 \end{tabbing}
 \myqed\\[\lgap]
 
