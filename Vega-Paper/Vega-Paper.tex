@@ -367,8 +367,57 @@ The semantics of the binary infix operator $\Until$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> $(\sigma, j) \models p \Until q$ \quad iff \quad $(\ext k \dr k \le j \rb (\sigma,k) \models q \land
-      (\all j \dr j\le i < k \rb (\sigma,i) \models p))$
+      (\all i \dr j\le i < k \rb (\sigma,i) \models p))$
 \end{tabbing}
+
+If $p \Until q$ holds at state $s_j$, then $p$ holds at state $s_j$ and continues to hold at every state
+after $s_j$ until q holds at some future state.
+$p \Until q$ guarantees that $q$ will eventually hold at some future state, and that $p$ will continue to
+hold until then.
+After the state in which $q$ holds for the first time, there are no restrictions on either $p$ or $q$.\\
+
+For example, suppose $x$ and $y$ evolve in the computation as follows.\\
+
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$ & $s_8$ & \dots \\
+  \hline
+  $x$                       & $-1$  & 0     & 1     & 2     & 3     & 4     & 5     &  6    &  7    &  8    &  \dots\\
+  $y$                       & 9     & 8     & 7     & 6     & 5     & 4     & 3     &  2    &  1    &  0    &  \dots\\
+  $0<x<y$                   & F     & F     & T     & T     & T     & F     & F     &  F    &  F    &  F    &  \dots\\
+  $2\le y<5$                & F     & F     & F     & F     & F     & T     & T     &  T    &  F    &  F    &  \dots\\
+  $(0<x<y)\Until(2\le y<5)$ & F     & F     & T     & T     & T     & T     & T     &  T    &  F    &  F    &  \dots\\
+\end{tabular}\\
+
+The bottom row shows the evaluation of the expression $p\Until q$ where $p\equiv 0<x<y$ and $q\equiv 2\le y<5$.
+In states $s_0$ and $s_1$, $p\Until q$ is false because both $p$ and $q$ are false.
+Starting at state $s_2$, $p\Until q$ is true because in that state $p$ is true and will remain true until $q$
+eventually becomes true in state $s_5$.\\
+
+From the semantics of $p\Until q$, if $q$ is true in any state, then $p\Until q$ is true in that state regardless of $p$.
+For example, not only is $p\Until q$ true in state $s_5$, before which $p$ was true in several preceding states,
+it is also true in states $s_6$ and $s_7$, because in those states $q$ is true.
+This behavior of $p\Until q$ comes from the empty range and one-point rules \cite{LADM} of the predicate calculus in the case that
+$q$ holds in state $s_j$ and $k=j$.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{Case $k=j$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr j\le i < j \rb (\sigma,i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{$j\le i < j \equiv false$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr false \rb (\sigma,i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{Empty range rule with $true$ the identity of $\land$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land true$)\\[\lgap]
+	\> $=$  \>  \Hint{Identity of $\land$ and one-point rule}\\[\lgap]
+	\> \>   $((\sigma,k) \models q)[k := j]$\\[\lgap]
+	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
+	\> \>   $(\sigma,j) \models q$\\[\lgap]
+	\> $=$  \>  \Hint{Case $q$ holds in state $s_j$}\\[\lgap]
+	\> \>   $true$
+\end{tabbing}
+
+This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in the next section.
+$true$ is the right zero of the until operator.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
@@ -377,6 +426,40 @@ The semantics of the unary prefix operator $\Event$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> $(\sigma, j) \models \Event p$ \quad iff \quad $(\ext k \dr k \ge j \rb (\sigma,k) \models p)$
+\end{tabbing}
+
+So, $\Event p$ holds in state $s_j$ if $p$ holds in state $s_j$ or in any other state $s_k$ where $k\ge j$,
+that is, if $p$ holds in the current state or in any other future state.\\
+
+For example, suppose $x$ evolves in the computation as follows.\\
+
+\begin{tabular}{c|cccccccc}
+  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & \dots \\
+  \hline
+  $x$                       & 1     & 2     & 3     & 4     & 5     & 6     & 7     &  \dots\\
+  $3\le x<6$                & F     & F     & T     & T     & T     & F     & F     &  \dots\\
+  $\Event(3\le x<6)$        & T     & T     & T     & T     & T     & F     & F     &  \dots\\
+\end{tabular}\\
+
+The bottom row shows the evaluation of the expression $\Event p$ where $p\equiv 3\le x<6$.
+In states $s_0$ and $s_1$, $\Event p$ is true because there is a state, either now or in the future, in which $p$ will hold.\\
+
+The eventually operator is a special case of the until operator.
+Namely, $true\Until q$ is equivalent to $\Event q$ as follows.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $true\Until q$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $p\Until q$ with $p:=true$}\\[\lgap]
+	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
+	\> $=$  \>  \Hint{$true$ holds in all states}\\[\lgap]
+	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb true))$\\[\lgap]
+	\> $=$  \>  \Hint{Theorem (9.8) from \cite{LADM}, $(\all x\dr R\rb true)\equiv true$}\\[\lgap]
+	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land true)$\\[\lgap]
+	\> $=$  \>  \Hint{Identity of $\land$}\\[\lgap]
+	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
+	\> \>   $\Event q$
 \end{tabbing}
 
 \subsubsection*{The \textit{always} operator $\Always$}
