@@ -151,8 +151,6 @@ Section 3 presents the equational deductive system for linear temporal logic.\\
 
 \subsection{Equational Deductive Systems}
 
-This section follows Gries and Schneider \cite{LADM}.\\
-
 The definition of an expression has four parts:
 \begin{itemize}[$\bullet$]
 \item A constant or variable is an expression.
@@ -283,8 +281,6 @@ transitivity that $\Event p$ follows from $p$.
 
 \subsection{Temporal Logic}
 
-This section follows Manna and Pnueli \cite{Manna} and Schneider \cite{Schn}.\\
-
 The operators of propositional calculus, $\neg$, $=$, $\land$, $\lor$, $\impl$, $\foll$, and $\equiv$ are static.
 That is, they apply at a single point in time.
 Each operator has a truth table that dictates how to evaluate the truth value of an expression.
@@ -406,9 +402,9 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr j\le i < j \rb (\sigma,i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$j\le i < j \equiv false$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr false \rb (\sigma,i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{Empty range rule with $true$ the identity of $\land$}\\[\lgap]
+	\> $=$  \>  \Hint{Empty range rule $(\star x \dr false \rb P) =u$ with $true$ the identity of $\land$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land true$)\\[\lgap]
-	\> $=$  \>  \Hint{Identity of $\land$ and one-point rule}\\[\lgap]
+	\> $=$  \>  \Hint{Identity of $\land$ and one-point rule $(\star x\dr x=E\rb P) = P[x:=E]$}\\[\lgap]
 	\> \>   $((\sigma,k) \models q)[k := j]$\\[\lgap]
 	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
 	\> \>   $(\sigma,j) \models q$\\[\lgap]
@@ -444,12 +440,28 @@ For example, suppose $x$ evolves in the computation as follows.\\
 The bottom row shows the evaluation of the expression $\Event p$ where $p\equiv 3\le x<6$.
 In states $s_0$ and $s_1$, $\Event p$ is true because there is a state, either now or in the future, in which $p$ will hold.\\
 
+If $\Event p$ is ever false in any state $s_i$ in a sequence $\sigma$, it must be false in all subsequent states $s_j$, $j\ge i$.
+If $\Event p$ is ever true in any state $s_i$ in a sequence $\sigma$, it must be true in all preceding states $s_j$, $j\le i$.
+For example, suppose $p$ and $q$ evolve in the computation as follows.\\
+
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$       & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$& $s_9$  & \dots \\
+  \hline
+  $p$            & F     & F     & T     & F     & F     & T     & F     & F     & F     & F     &  \dots\\
+  $q$            & F     & F     & T     & T     & F     & F     & T     & T     & F     & F     &  \dots\\
+  $\Event p$     & T     & T     & T     & T     & T     & T     & F     & F     & F     & F     &  \dots\\
+  $\Event q$     & T     & T     & T     & T     & T     & T     & T     & T     & T     & T     &  \dots\\
+\end{tabular}\\
+
+The bottom two rows show the evaluation of the expressions $\Event p$ and $\Event q$
+assuming that $p$ remains false indefinitely and $q$ continues to switch between true and false indefinitely.\\
+
 The eventually operator is a special case of the until operator.
-Namely, $true\Until q$ is equivalent to $\Event q$ as follows.
+Namely, $true \Until q$ is equivalent to $\Event q$ as follows.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-	\> \>   $true\Until q$\\[\lgap]
+	\> \>   $(\sigma, j) \models true\Until q$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $p\Until q$ with $p:=true$}\\[\lgap]
 	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
 	\> $=$  \>  \Hint{$true$ holds in all states}\\[\lgap]
@@ -459,8 +471,11 @@ Namely, $true\Until q$ is equivalent to $\Event q$ as follows.
 	\> $=$  \>  \Hint{Identity of $\land$}\\[\lgap]
 	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q)$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
-	\> \>   $\Event q$
+	\> \>   $(\sigma, j) \models \Event q$
 \end{tabbing}
+
+This relationship is the basis of the definition of $\Event p$ in equation (\ref{E:defEvent}) $\Event p \equiv true \Until p$
+assumed in the next section.
 
 \subsubsection*{The \textit{always} operator $\Always$}
 
@@ -471,6 +486,60 @@ The semantics of the unary prefix operator $\Always$ is
   \> $(\sigma, j) \models \Always p$ \quad iff \quad $(\all k \dr k \ge j \rb (\sigma,k) \models p)$
 \end{tabbing}
 
+So, $\Always p$ holds in state $s_j$ if $p$ holds in state $s_j$ and in all other states $s_k$ where $k\ge j$,
+that is, if $p$ holds in the current state and in all other future states.
+For example, suppose $x$ evolves in the computation as follows.\\
+
+\begin{tabular}{c|cccccccc}
+  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & \dots \\
+  \hline
+  $x$                       & 1     & 2     & 3     & 4     & 5     & 6     & 7     &  \dots\\
+  $x \ge 4$                 & F     & F     & F     & T     & T     & T     & T     &  \dots\\
+  $\Always(x \ge 4)$        & F     & F     & F     & T     & T     & T     & T     &  \dots\\
+\end{tabular}\\
+
+The bottom row shows the evaluation of the expression $\Always p$ where $p\equiv x \ge 4$.
+In states $s_0$, $s_1$, and $s_2$, $\Always p$ is false because $p$ does not hold in those states.
+In states $s_3$, $s_4$, $s_5$, $s_6$, and subsequent states, $\Always p$ is true because $p$ holds in in those states
+and in all future states as well.\\
+
+If $\Always p$ is ever true in any state $s_i$ in a sequence $\sigma$, it must be true in all subsequent states $s_j$, $j\ge i$.
+If $\Always p$ is ever false in any state $s_i$ in a sequence $\sigma$, it must be false in all preceding states $s_j$, $j\le i$.
+For example, suppose $p$ and $q$ evolve in the computation as follows.\\
+
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$       & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$& $s_9$  & \dots \\
+  \hline
+  $p$            & T     & T     & F     & T     & T     & F     & T     & T     & T     & T     &  \dots\\
+  $q$            & T     & T     & F     & F     & T     & T     & F     & F     & T     & T     &  \dots\\
+  $\Always p$    & F     & F     & F     & F     & F     & F     & T     & T     & T     & T     &  \dots\\
+  $\Always q$    & F     & F     & F     & F     & F     & F     & F     & F     & F     & F     &  \dots\\
+\end{tabular}\\
+
+The bottom two rows show the evaluation of the expressions $\Always p$ and $\Always q$
+assuming that $p$ remains true indefinitely and $q$ continues to switch between true and false indefinitely.\\
+
+$\Event p$ is an existential operator, while $\Always p$ is a universal operator.
+They are related through the generalized De Morgan theorem \cite{LADM} $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$
+as follows.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $(\sigma, j) \models \Always p$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Always p$}\\[\lgap]
+	\> \>   $(\all k \dr k \ge j \rb (\sigma,k) \models p)$\\[\lgap]
+	\> $=$  \>  \Hint{Generalized De Morgan $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$}\\[\lgap]
+	\> \>   $\neg (\ext k \dr k \ge j \rb \neg((\sigma,k) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
+	\> \>   $\neg (\ext k \dr k \ge j \rb (\sigma,k) \models \neg p)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
+	\> \>   $\neg ((\sigma, j) \models \Event \neg q)$\\[\lgap]
+	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
+	\> \>   $(\sigma, j) \models \neg \Event \neg q$
+\end{tabbing}
+
+This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
+$\Always p \equiv \lnot\Event\lnot p$ assumed in the next section.
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
