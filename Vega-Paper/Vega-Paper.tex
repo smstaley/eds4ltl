@@ -149,6 +149,11 @@ Section 3 presents the equational deductive system for linear temporal logic.\\
 
 \section{Background}
 
+The first section below summarizes the equational system $\mathcal{E}$ from \cite{LADM}.
+The summary is minimal, and the remainder of the paper assumes familiarity with $\mathcal{E}$.
+The second section introduces temporal logic and assumes no prior familiarity with it.
+The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
+
 \subsection{Equational Deductive Systems}
 
 The definition of an expression has four parts:
@@ -331,9 +336,9 @@ In the above example,
   \> $(\sigma, 1) \models x<10$
 \end{tabbing}
 
-You can read $\models$ as ``satisfies'', so the above expression is read as
+The symbol $\models$ means ``satisfies'', so the above expression is read as
 ``State 1 of sequence $\sigma$ satisfies $x<10$''.
-Or, using ``holds'', you can say, ``$x<10$ holds in state 1 of sequence $\sigma$''.
+Or, using ``holds'', the same expression is read as, ``$x<10$ holds in state 1 of sequence $\sigma$''.
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
 \subsubsection*{The \textit{next} operator $\Next$}
