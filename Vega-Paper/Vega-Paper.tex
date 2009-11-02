@@ -22,7 +22,6 @@
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
-
 % Macros for Temporal Operators
 \newcommand{\Until}{\;\mathcal{U}\;}
 \newcommand{\Wait}{\;\mathcal{W}\;}
@@ -31,6 +30,8 @@
 \newcommand{\Always}{\Box\,}
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\spacer}{\vspace{-30pt}}
+\newcommand{\firstspacer}{\vspace{-26pt}}
 
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
@@ -175,7 +176,7 @@ Here is the table of precedences.\\
 \begin{tabular}{lr}
 \hline
 $[x := e]$ (textual substitution) & Highest precedence\\
-$\neg$\quad $\Next$\quad $\Event$\quad $\Always$ &\\
+$\lnot$\quad $\Next$\quad $\Event$\quad $\Always$ &\\
 $\Until$\quad $\Wait$ &\\
 $=$\quad (conjunctional) &\\
 $\lor$\quad $\land$ &\\
@@ -286,7 +287,7 @@ transitivity that $\Event p$ follows from $p$.
 
 \subsection{Temporal Logic}
 
-The operators of propositional calculus, $\neg$, $=$, $\land$, $\lor$, $\impl$, $\foll$, and $\equiv$ are static.
+The operators of propositional calculus, $\lnot$, $=$, $\land$, $\lor$, $\impl$, $\foll$, and $\equiv$ are static.
 That is, they apply at a single point in time.
 Each operator has a truth table that dictates how to evaluate the truth value of an expression.
 A state is an assignment of a truth value to each variable in the expression.
@@ -367,7 +368,7 @@ The semantics of the binary infix operator $\Until$ is
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> $(\sigma, j) \models p \Until q$ \quad iff \quad $(\ext k \dr k \le j \rb (\sigma,k) \models q \land
+  \> $(\sigma, j) \models p \Until q$ \quad iff \quad $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land
       (\all i \dr j\le i < k \rb (\sigma,i) \models p))$
 \end{tabbing}
 
@@ -402,7 +403,7 @@ $q$ holds in state $s_j$ and $k=j$.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models p))$\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{Case $k=j$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr j\le i < j \rb (\sigma,i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$j\le i < j \equiv false$}\\[\lgap]
@@ -468,13 +469,13 @@ Namely, $true \Until q$ is equivalent to $\Event q$ as follows.
 \hspace{\mymathindent} \= $= \;$ \= \kill
 	\> \>   $(\sigma, j) \models true\Until q$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $p\Until q$ with $p:=true$}\\[\lgap]
-	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
 	\> $=$  \>  \Hint{$true$ holds in all states}\\[\lgap]
-	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb true))$\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb true))$\\[\lgap]
 	\> $=$  \>  \Hint{Theorem (9.8) from \cite{LADM}, $(\all x\dr R\rb true)\equiv true$}\\[\lgap]
-	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q \land true)$\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land true)$\\[\lgap]
 	\> $=$  \>  \Hint{Identity of $\land$}\\[\lgap]
-	\> \>   $(\ext k \dr k \le j \rb (\sigma,k) \models q)$\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q)$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
 	\> \>   $(\sigma, j) \models \Event q$
 \end{tabbing}
@@ -525,7 +526,7 @@ The bottom two rows show the evaluation of the expressions $\Always p$ and $\Alw
 assuming that $p$ remains true indefinitely and $q$ continues to switch between true and false indefinitely.\\
 
 $\Event p$ is an existential operator, while $\Always p$ is a universal operator.
-They are related through the generalized De Morgan theorem \cite{LADM} $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$
+They are related through the generalized De Morgan theorem \cite{LADM} $\lnot (\ext x\dr R\rb \lnot P)\equiv (\all x\dr R\rb P)$
 as follows.
 
 \begin{tabbing}
@@ -533,18 +534,36 @@ as follows.
 	\> \>   $(\sigma, j) \models \Always p$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Always p$}\\[\lgap]
 	\> \>   $(\all k \dr k \ge j \rb (\sigma,k) \models p)$\\[\lgap]
-	\> $=$  \>  \Hint{Generalized De Morgan $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$}\\[\lgap]
-	\> \>   $\neg (\ext k \dr k \ge j \rb \neg((\sigma,k) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
-	\> \>   $\neg (\ext k \dr k \ge j \rb (\sigma,k) \models \neg p)$\\[\lgap]
+	\> $=$  \>  \Hint{Generalized De Morgan $\lnot (\ext x\dr R\rb \lnot P)\equiv (\all x\dr R\rb P)$}\\[\lgap]
+	\> \>   $\lnot (\ext k \dr k \ge j \rb \lnot((\sigma,k) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\lnot p$ holds in that state}\\[\lgap]
+	\> \>   $\lnot (\ext k \dr k \ge j \rb (\sigma,k) \models \lnot p)$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
-	\> \>   $\neg ((\sigma, j) \models \Event \neg q)$\\[\lgap]
-	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
-	\> \>   $(\sigma, j) \models \neg \Event \neg q$
+	\> \>   $\lnot ((\sigma, j) \models \Event \lnot q)$\\[\lgap]
+	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\lnot p$ holds in that state}\\[\lgap]
+	\> \>   $(\sigma, j) \models \lnot \Event \lnot q$
 \end{tabbing}
 
 This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
-$\Always p \equiv \lnot\Event\lnot p$ assumed in the next section.
+$\Always p \equiv \lnot\Event\lnot p$ assumed in the next section.\\
+
+The above demonstration that $(\sigma, j) \models \Always p \equivs (\sigma, j) \models \lnot \Event \lnot q$ depends on the
+rule, ``$p$ does not hold in a state iff $\lnot p$ holds in that state'', written formally as
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $\lnot ((\sigma, j) \models p)$ \quad iff \quad $(\sigma, j) \models \lnot p$
+\end{tabbing}
+
+The corresponding rules for the binary operators are
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> $((\sigma, j) \models p) \;\land\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p\land q$\\
+  \> $((\sigma, j) \models p) \;\lor\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p\lor q$\\
+  \> $((\sigma, j) \models p) \;\impl\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p \impl q$\\
+  \> $((\sigma, j) \models p) \;\equiv\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p \equiv q$
+\end{tabbing}
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
@@ -555,29 +574,50 @@ The semantics of the binary infix operator $\Wait$ in terms of $\Until$ and $\Al
   \> $(\sigma, j) \models p \Wait q$ \quad iff \quad $(\sigma, j) \models p \Until q \; \lor \; (\sigma, j) \models \Always p$
 \end{tabbing}
 
+The wait operator $\Wait$ is weaker than the until operator $\Until$, because $p\Wait q$ does not require $q$ to ever be true,
+while $p\Until q$ does.
+For example, suppose $p$ and $q$ evolve in the computation as follows.\\
+
+\begin{tabular}{c|cccccccccccc}
+  $\sigma$       & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$& $s_9$  & $s_{10}$&  \dots \\
+  \hline
+  $p$            & F     & F     & T     & T     & F     & F     & F     & F     & T     & T     & T     &  \dots\\
+  $q$            & F     & F     & F     & F     & T     & T     & F     & F     & F     & F     & F     &  \dots\\
+  $\Always p$    & F     & F     & F     & F     & F     & F     & F     & F     & T     & T     & T     &  \dots\\
+  $p\Until q$    & F     & F     & T     & T     & T     & T     & F     & F     & F     & F     & F     &  \dots\\
+  $p\Wait q$     & F     & F     & T     & T     & T     & T     & F     & F     & T     & T     & T     &  \dots\\
+\end{tabular}\\
+
+The bottom two rows show the evaluation of the expressions $p\Until q$ and $p\Wait q$
+assuming that $p$ remains true indefinitely and $q$ remains false indefinitely.
+From $s_0$ to $s_7$, $p\Until q$ and $p\Wait q$ hold in the same states.
+From $s_8$ on, however, $p\Until q$ does not hold because $q$ never holds thereafter,
+while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 \section{The Equational Temporal System}
 
-Ben-Ari \cite{Ben} gives a deductive system $\mathcal{L}$ for temporal logic, but it is a
-natural deductive system in the Hilbert style of $\mathcal{G}$ and $\mathcal{H}$. This project is to develop a complete system of
-temporal logic but using the equational deductive system based on the four proof rules described
-in the first section. The system will consist of a small number of axioms and a larger number of
-theorems. Because the proof rules in the equational deductive system are different from those
-in $\mathcal{L}$, the proofs will be different as well.\\
-
-
+This section presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
+logic $\mathcal{E}$ of \cite{LADM}.
+Theorems cited in a proof hint take two forms.
+A numbered reference enclosed in parentheses \textit{witout} a decimal point is a reference to an axiom or a previously-proved
+theorem in this paper.
+A numbered reference enclosed in parentheses \textit{with} a decimal point is a reference to an axiom or a
+theorem from the propositional calculus in \cite{LADM}.\\
 
 \subsection{Next}
 
-Note: below is our auto-label system for axioms and theorems.\\
-
+The next operator $\Next$ is defined by the following two axioms.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
 \end{equation}
 
+\spacer
+
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\Rightarrow$:}\quad \Next (p \Rightarrow q) \equiv \Next p \Rightarrow \Next q
 \end{equation}
+
+Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
 
 \begin{equation}\label{E:linearity}
 \textbf{Linearity:}\quad \Next p \equiv \lnot\Next\lnot p
@@ -592,11 +632,11 @@ Note: below is our auto-label system for axioms and theorems.\\
 \end{tabbing}
 which is (\ref{E:selfDual}), Self-dual. \myqed\\[\lgap]
 
+Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
-
 
 \emph{Proof:}
 \begin{tabbing}
@@ -659,6 +699,7 @@ which is (\ref{E:selfDual}), Self-dual. \myqed\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
+Now, $true$ holds in the next state, and $false$ does not hold in the next state.
 
 \begin{equation}\label{E:nextTruth}
 \textbf{Truth:}\quad \Next true \equiv true
@@ -699,19 +740,31 @@ which is (\ref{E:nextTruth}). \myqed\\[\lgap]
 
 \subsection{Until}
 
+This system defines the until operator $\Until$ with the following four axioms.
+The associativity of $\Until$ does not seem to appear in the temporal logic literature.
+It is used here to prove theorems (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
+
+\begin{equation}\label{E:assocUntil}
+\textbf{Axiom, Associativity of $\Until$:}\quad p \Until (q\Until r) \equivs (p\Until q)\Until r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
+
+\spacer
 
 \begin{equation}\label{E:expansionUntil}
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
+\spacer
 
 \begin{equation}\label{E:untilFalse}
 \textbf{Axiom:}\quad p \Until false \equiv false
 \end{equation}
-
 
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
@@ -743,7 +796,6 @@ which is (\ref{E:nextTruth}). \myqed\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
-
 \begin{equation}\label{E:untilImpOr}
 p \Until q \Rightarrow p \lor q
 \end{equation}
@@ -759,41 +811,44 @@ p \Until q \Rightarrow p \lor q
 \end{tabbing}
 \myqed\\[\lgap]
 
-
-Note: we will take the following 6 expressions of until (which we know to be correct) as axioms for now:\\
-
+The following four axioms describe the relations of conjunction and disjuction 
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \Rightarrow (p \lor q) \Until r
 \end{equation}
+
+\spacer
 
 \begin{equation}\label{E:untilAndImp}
 \textbf{Axiom:}\quad p \Until (q \land r) \Rightarrow (p \Until q) \land (p \Until r)
 \end{equation}
 
+\spacer
+
 \begin{equation}\label{E:untilAndEquiv}
 \textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
 \end{equation}
+
+\spacer
 
 \begin{equation}\label{E:untilOrEquiv}
 \textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
 \end{equation}
 
 \begin{equation}\label{E:untilIdem}
-\textbf{Axiom:}\quad p \Until (p \Until q) \equiv p \Until q
+p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
 \begin{equation}\label{E:untilIdemR}
-\textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
+(p \Until q) \Until q \equiv p \Until q
 \end{equation}
-
-End Note\\
 
 \subsection{Eventually}
 
+Eventually $\Event$ is a special case of $\Until$ when the left hand side is true.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
 \end{equation}
-
+$p\Until q$ guarantees that $q$ will eventually be true as follows.
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \Rightarrow \Event q
 \end{equation}
@@ -1511,7 +1566,10 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 
 \section{Conclusion}
 
-The results are cooool!\\
+This paper presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
+logic $\mathcal{E}$ of \cite{LADM}.
+It takes unary operator next $\Next$ and binary operator until $\Until$ as primitives and defines
+eventually $\Event$, always $\Always$, and wait $\Wait$ in terms of them.
 
 \bibliographystyle{plain}
 \bibliography{Vega-Paper}
