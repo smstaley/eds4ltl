@@ -26,7 +26,7 @@
 % Macros for Temporal Operators
 \newcommand{\Until}{\;\mathcal{U}\;}
 \newcommand{\Wait}{\;\mathcal{W}\;}
-\newcommand{\Next}{\bigcirc}
+\newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
 \newcommand{\Event}{\Diamond}
 \newcommand{\Always}{\Box}
 
@@ -68,9 +68,12 @@
 \topmargin      0.0in
 \textheight=8.5in
 \parindent=0in
-\pagestyle{plain}
+%\pagestyle{plain}
 
-\title{Theorems from Vega and Warford's EDS4LTL}
+\pagestyle{myheadings} 
+\markboth{\textbf{Draft}} {\textbf{Draft}}
+
+\title{Theorems from Vega and Warford's EDS4LTL\\(Draft)}
 
 \author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
    Computer Science Department\\
@@ -471,6 +474,12 @@ p \Until q \Rightarrow p \lor q
 
 \firstspacer
 
+\begin{equation}\label{E:induction}
+\textbf{Axiom, Induction:}\quad \Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
 \end{equation}
@@ -604,7 +613,7 @@ p \Rightarrow \Always p \equiv p \Rightarrow \Next\Always p
 \spacer
 
 \begin{equation}\label{E:distEventAlwaysAnd}
-\textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv (\Event\Always p \land \Event\Always q)
+\textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
 \spacer
@@ -623,12 +632,6 @@ p \Rightarrow \Always p \equiv p \Rightarrow \Next\Always p
 
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:induction}
-\textbf{Induction:}\quad \Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
 \end{equation}
 
 \spacer
@@ -656,5 +659,7 @@ p \Rightarrow \Always p \equiv p \Rightarrow \Next\Always p
 \end{equation}
 
 \subsection*{Wait $\quad\Wait$}
+
+[\textit{To be written.}]
 
 \end{document}
