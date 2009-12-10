@@ -9,7 +9,6 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-\usepackage{eepic}
 %\usepackage[student]{optional}
 \usepackage[doc]{optional}
 
@@ -439,8 +438,8 @@ The until operator $\Until$ is not associative as shown by the following sequenc
   $q\Until r$               & F     & F     & F     & F     & T     &  \dots\\
   $p\Until q$               & F     & T     & T     & T     & T     &  \dots\\
   $p\Until (q\Until r)$     & F     & F     & F     & T     & T     &  \dots\\
-  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots\\[\lgap]
-\end{tabular}\\
+  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots\\
+\end{tabular}\\[\llgap]
 
 However $p\Until (q\Until r) \impl (p\Until q)\Until r$ as follows.
 Expanding $p\Until (q\Until r)$,
@@ -452,24 +451,27 @@ Expanding $p\Until (q\Until r)$,
 	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models (q \Until r) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{Definition of $\Until$}\\[\lgap]
 	\> \>   $(\ext k \dr k\ge j \rb (\ext n \dr n\ge k \rb (\sigma,n)\models r \land (\all m \dr k\le m < n \rb (\sigma,m)\models q))$\\[\lgap]
-	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$\\[\lgap]
+	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$
 \end{tabbing}
 
 The following figure illustrates the temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
 
-\setlength{\unitlength}{1mm}
-\begin{picture}(150,50)
-\put(0,40) {\line(1,0){140}}
-\put(94,33) {$(\sigma,m)\models q$}
-\put(94,26) {$k\le m < n$}
-\put(70,30) {\line(1,0){60}}
-\put(10,20) {\line(1,0){60}}
-\end{picture}
+\begin{picture}(360,120)\thicklines
+\put(320,110){$(\sigma,n)\models r$}\put(0,100)  {\line(1,0){360}}
+\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}} \put(340,100) {\circle*{8}}\put(18,86)  {$j$} \put(178,86)  {$k$} \put(338,86)  {$n$} \put(168,74) {$k\ge j$} \put(328,74)  {$n\ge k$}\put(180,52) {\line(1,0){156}}\put(180,52) {\circle*{8}} \put(340,52) {\circle{8}}\put(240,58) {$(\sigma,m)\models q$}\put(240,42) {$k\le m < n$}\put(20,20)  {\line(1,0){156}}\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}\put(80,28) {$(\sigma,i)\models p$}\put(80,10) {$j\le i < k$}\end{picture}
 
-\textit{Figure to be completed}\\
+To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $(p\Until q)$ holds between $j$ and $n$,
+given that $p$, $q$, and $r$ hold as above.\\
 
-\textit{Proof to be completed}\\
+Case 1. $\quad (p\Until q)$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
+$(p\Until q)$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.\\
 
+Case 2. $\quad (p\Until q)$ holds at $(\sigma,m)$ for $k<m<n$.\\
+$(p\Until q)$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, and $true$ is the right zero of $\Until$.\\
+
+From Case 1 and Case 2, $(p\Until q)$ holds at $(\sigma,i)$ for $j\le i<n$.
+Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively, which completes the proof.
+(This theorem does not seem to appear in the linear temporal logic literature.)
 }
 
 \opt{student}{
@@ -822,13 +824,13 @@ This system defines the until operator $\Until$ with the following three axioms.
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:expansionUntil}
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:untilFalse}
 \textbf{Axiom:}\quad p \Until false \equiv false
@@ -892,24 +894,23 @@ Exercise for the student.\\
 }
 
 The following four axioms describe conjunction and disjunction as operands of the $\Until$ operator.
-
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:untilAndImp}
 \textbf{Axiom:}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:untilAndEquiv}
 \textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:untilOrEquiv}
 \textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
@@ -920,7 +921,7 @@ The following two axioms are absorption laws for the $\Until$ operator.
 \textbf{Axiom:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
-\spacer
+\firstspacer
 
 \begin{equation}\label{E:untilIdemR}
 \textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
