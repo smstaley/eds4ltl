@@ -9,6 +9,7 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
+\usepackage{eepic}
 %\usepackage[student]{optional}
 \usepackage[doc]{optional}
 
@@ -438,10 +439,37 @@ The until operator $\Until$ is not associative as shown by the following sequenc
   $q\Until r$               & F     & F     & F     & F     & T     &  \dots\\
   $p\Until q$               & F     & T     & T     & T     & T     &  \dots\\
   $p\Until (q\Until r)$     & F     & F     & F     & T     & T     &  \dots\\
-  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots\\
+  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots\\[\lgap]
 \end{tabular}\\
 
-We conjecture that $p\Until (q\Until r) \impl (p\Until q)\Until r$.
+However $p\Until (q\Until r) \impl (p\Until q)\Until r$ as follows.
+Expanding $p\Until (q\Until r)$,
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $(\sigma,j) \models p\Until (q\Until r)$\\[\lgap]
+	\> $=$  \>  \Hint{Definition of $\Until$}\\[\lgap]
+	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models (q \Until r) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{Definition of $\Until$}\\[\lgap]
+	\> \>   $(\ext k \dr k\ge j \rb (\ext n \dr n\ge k \rb (\sigma,n)\models r \land (\all m \dr k\le m < n \rb (\sigma,m)\models q))$\\[\lgap]
+	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$\\[\lgap]
+\end{tabbing}
+
+The following figure illustrates the temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
+
+\setlength{\unitlength}{1mm}
+\begin{picture}(150,50)
+\put(0,40) {\line(1,0){140}}
+\put(94,33) {$(\sigma,m)\models q$}
+\put(94,26) {$k\le m < n$}
+\put(70,30) {\line(1,0){60}}
+\put(10,20) {\line(1,0){60}}
+\end{picture}
+
+\textit{Figure to be completed}\\
+
+\textit{Proof to be completed}\\
+
 }
 
 \opt{student}{
