@@ -456,9 +456,22 @@ Expanding $p\Until (q\Until r)$,
 
 The following figure illustrates the temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
 
-\begin{picture}(360,120)\thicklines
-\put(320,110){$(\sigma,n)\models r$}\put(0,100)  {\line(1,0){360}}
-\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}} \put(340,100) {\circle*{8}}\put(18,86)  {$j$} \put(178,86)  {$k$} \put(338,86)  {$n$} \put(168,74) {$k\ge j$} \put(328,74)  {$n\ge k$}\put(180,52) {\line(1,0){156}}\put(180,52) {\circle*{8}} \put(340,52) {\circle{8}}\put(240,58) {$(\sigma,m)\models q$}\put(240,42) {$k\le m < n$}\put(20,20)  {\line(1,0){156}}\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}\put(80,28) {$(\sigma,i)\models p$}\put(80,10) {$j\le i < k$}\end{picture}
+\begin{picture}(360,120)
+\thicklines
+\put(320,110){$(\sigma,n)\models r$}
+\put(0,100)  {\line(1,0){360}}
+\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}} \put(340,100) {\circle*{8}}
+\put(18,86)  {$j$} \put(178,86)  {$k$} \put(338,86)  {$n$} 
+\put(168,74) {$k\ge j$} \put(328,74)  {$n\ge k$}
+\put(180,52) {\line(1,0){156}}
+\put(180,52) {\circle*{8}} \put(340,52) {\circle{8}}
+\put(240,58) {$(\sigma,m)\models q$}
+\put(240,42) {$k\le m < n$}
+\put(20,20)  {\line(1,0){156}}
+\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}
+\put(80,28) {$(\sigma,i)\models p$}
+\put(80,10) {$j\le i < k$}
+\end{picture}
 
 To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $(p\Until q)$ holds between $j$ and $n$,
 given that $p$, $q$, and $r$ hold as above.\\
@@ -1829,7 +1842,69 @@ Exercise for the student.\\
 
 \subsection{Wait}
 
-[\textit{To be written.}]
+\begin{equation}\label{E:defWait}
+\textbf{Definition of $\Wait$:}\quad p \Wait q \equiv (p \Until q) \lor \Always p
+\end{equation}
+
+
+\begin{equation}\label{E:expansionWait}
+p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $q \lor (p \land \Next (p \Wait q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $q \lor (p \land \Next ((p \Until q) \lor \Always p))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
+\> \> $q \lor (p \land (\Next (p \Until q) \lor \Next\Always p))$\\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
+\> \> $q \lor (p \land \Next(p \Until q)) \lor (p \land \Next\Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+\> \> $q \lor (p \land \Next(p \Until q)) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:alwaysImpWait}
+\Always p \Rightarrow p \Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $\Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.76a) Weakening} \\[\lgap]
+\> \> $\Always p \lor (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:alwaysAsWait}
+\Always p \equiv p \Wait false
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait false$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $(p \Until false) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFalse})} \\[\lgap]
+\> \> $false \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> \> $\Always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+[\textit{More theorems to be written.}]
 
 \section{Conclusion}
 
