@@ -849,6 +849,48 @@ This system defines the until operator $\Until$ with the following three axioms.
 \textbf{Axiom:}\quad p \Until false \equiv false
 \end{equation}
 
+\firstspacer
+
+\begin{equation}\label{E:untilAssocImp}
+\textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
+\end{equation}
+
+The following four axioms describe conjunction and disjunction as operands of the $\Until$ operator.
+\begin{equation}\label{E:untilOrImp}
+\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:untilAndImp}
+\textbf{Axiom:}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:untilOrEquiv}
+\textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
+\end{equation}
+
+The following two axioms are necessary to prove both directions of the absorption laws for the $\Until$ operator.
+\begin{equation}\label{E:untilIdemAx}
+\textbf{Axiom:}\quad p \Until q \impl p \Until (p \Until q)
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:untilIdemRAX}
+\textbf{Axiom:}\quad (p \Until q) \Until q \impl p \Until q
+\end{equation}
+
+\firstspacer
+
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -906,39 +948,40 @@ p \Until q \impl p \lor q
 Exercise for the student.\\
 }
 
-The following four axioms describe conjunction and disjunction as operands of the $\Until$ operator.
-\begin{equation}\label{E:untilOrImp}
-\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
-\end{equation}
-
-\firstspacer
-
-\begin{equation}\label{E:untilAndImp}
-\textbf{Axiom:}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
-\end{equation}
-
-\firstspacer
-
-\begin{equation}\label{E:untilAndEquiv}
-\textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
-\end{equation}
-
-\firstspacer
-
-\begin{equation}\label{E:untilOrEquiv}
-\textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
-\end{equation}
-
-The following two axioms are absorption laws for the $\Until$ operator.
+The following two theorems deal with absorption of $\Until$.
 \begin{equation}\label{E:untilIdem}
-\textbf{Axiom:}\quad p \Until (p \Until q) \equiv p \Until q
+p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
-\firstspacer
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \Until (p \Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAssocImp})}\\[\lgap]
+  \> \>   $(p \Until p) \Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
+  \> \>   $p \Until q$
+\end{tabbing}
+\myqed\\[\lgap]
+
+The other direction is given by Axiom (\ref{E:untilIdemAx})
 
 \begin{equation}\label{E:untilIdemR}
-\textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
+(p \Until q) \Until q \equiv p \Until q
 \end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
+  \> \>   $p \Until (q \Until q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp})}\\[\lgap]
+  \> \>   $(p \Until q) \Until q$
+\end{tabbing}
+\myqed\\[\lgap]
+
+The other direction is given by Axiom (\ref{E:untilIdemRAX})
 
 \subsection{Eventually}
 
