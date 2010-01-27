@@ -1211,6 +1211,15 @@ Exercise for the student.\\
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
+The following two Axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
+
+\begin{equation}\label{E:distAlwaysEventOrAx}
+\textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
+\end{equation}
+
+\begin{equation}\label{E:distEventAlwaysAndAx}
+\textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
+\end{equation}
 
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
@@ -1681,12 +1690,36 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
-[\textit{Unable to prove.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Always\Event p \lor \Always\Event q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+  \> \>   $\Always(\Event p \lor \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Always\Event(p \lor q)$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
-[\textit{Unable to prove.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Event\Always (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always p \land \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+The other direction is given by Axiom (\ref{E:distEventAlwaysOrAx}
 
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
