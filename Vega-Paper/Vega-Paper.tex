@@ -1100,17 +1100,13 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor (true \land \Next(true \Until p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
-  \> \>   $p \lor \Next(true \Until p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
-  \> \>   $p \lor (\Next true \Until \Next p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor \Next p \lor (\Next true \land \Next(\Next true \Until \Next p))$\\[\lgap]
-  \> $\Leftarrow$ \> \Hint{(3.76a) Weakening}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor \Next\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor \Next (p \lor \Next\Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
+  \> \>   $p \lor \Next p \lor \Next\Next\Event p$\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
   \> \>   $\Next p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1702,7 +1698,7 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \end{tabbing}
 \myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}
+The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}).
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
@@ -1719,7 +1715,7 @@ The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}
 \end{tabbing}
 \myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:distEventAlwaysOrAx}
+The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
 
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
