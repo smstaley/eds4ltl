@@ -1976,6 +1976,117 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{tabbing}
 \myqed\\[\lgap]
 
+
+\begin{equation}\label{E:waitInsertion}
+q \impl p \Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $q$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76a) Weakening} \\[\lgap]
+\> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:waitToOr}
+p \Wait q \impl p \lor q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
+\> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76d)} \\[\lgap]
+\> \> $p \lor q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:eventerWait}
+\Event p \equiv \lnot(\lnot p \Wait false)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $\lnot(\lnot p \Wait false)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:alwaysAsWait})} \\[\lgap]
+\> \> $\lnot\Always\lnot p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:eventAsAlways})} \\[\lgap]
+\> \> $\Event p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:waitEntailment}
+p \Wait q \impl \Always p \lor \Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \> $\Event q \lor \Always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:waitEntailAlways}
+(p \Wait q) \land \Always\lnot q \impl \Always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $(p \Wait q) \land \Always\lnot q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
+\> \> $(\Always p \lor \Event q) \land \Always\lnot q$\\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$} \\[\lgap]
+\> \> $(\Always p \land \Always\lnot q) \lor (\Event q \land \Always\lnot q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:dualEvent})} \\[\lgap]
+\> \> $(\Always p \land \Always\lnot q) \lor (\Event q \land \lnot\Event q)$\\[\lgap]
+\> $=$ \> \Hint{(3.42) Contradiction} \\[\lgap]
+\> \> $(\Always p \land \Always\lnot q) \lor false$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> \> $\Always p \land \Always\lnot q$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening} \\[\lgap]
+\> \> $\Always p$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
+\begin{equation}\label{E:waitEntailEvent}
+(p \Wait q) \land \lnot\Always p \impl \Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $(p \Wait q) \land \lnot\Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
+\> \> $(\Always p \lor \Event q) \land \lnot\Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$} \\[\lgap]
+\> \> $(\Always p \land \lnot\Always p) \lor (\Event q \land \lnot\Always p)$\\[\lgap]
+\> $=$ \> \Hint{(3.42) Contradiction} \\[\lgap]
+\> \> $false \lor (\Event q \land \lnot\Always p)$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> \> $\Event q \land \lnot\Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening} \\[\lgap]
+\> \> $\Event q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+
 [\textit{More theorems to be written.}]
 
 \section{Conclusion}
