@@ -72,7 +72,7 @@
 \pagestyle{myheadings} 
 \markboth{\textbf{Draft}} {\textbf{Draft}}
 
-\title{An Equational Deductive System\\for Linear Temporal Logic\\(Draft)}
+\title{An Equational Deductive System\\for Linear Temporal Logic (Draft)}
 \author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009
         and academic year 2009-10.}\\
    Computer Science Department\\
@@ -88,13 +88,8 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in several respects.
-First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
-derived, and for those that are derived, which previous formulas they depend on.
-Second, it gives a proof of every theorem.
-Third, the proofs are governed by an equational deductive system as opposed to the older Hilbert-style deductive systems.
-Fourth, it presents several new and interesting linear temporal theorems.\end{abstract}
+This paper presents an equational deductive system for linear temporal logic.It differs from previous developments of temporal logic in several respects.First, the proofs are given in the equational logic developed by Dijkstra and Scholten as opposed to the older Hilbert-style logics.Second, it presents several new and interesting linear temporal theorems, including the associativeproperties of the \textit{until} operator.Third, although space limitations preclude giving a proof of every theorem in this paper,every theorem has been proved with equational logic.The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic for those already familiar with equational logic.
+\end{abstract}
 
 \thispagestyle{plain}
 
@@ -141,13 +136,7 @@ The development of linear temporal logic in all these works is motivated by its 
 The presentation typically consists of lists of valid temporal formulas, with little emphasis of which formulas are required
 as axioms and which are theorems that can be proved using a deductive system.\\
 
-This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of such systems in several respects.
-First, it presents a numbered list of axioms and theorems to indicate which formulas are assumed, which formulas are
-derived, and for those that are derived, which previous formulas they depend on.
-Second, it gives a proof of every theorem.
-Third, the proofs are given in the equational style $\mathcal{E}$ instead of $\mathcal{H}$.
-Fourth, it presents several new and interesting linear temporal theorems.\\
+This paper presents an equational deductive system for linear temporal logic.It differs from previous developments of such systems in several respects.First, the proofs are given in the equational logic $\mathcal{E}$ instead of $\mathcal{H}$.Second, it presents several new and interesting linear temporal theorems, including the associativeproperties of the \textit{until} operator.Third, although space limitations preclude giving a proof of every theorem in this paper,every theorem has been proved with $\mathcal{E}$.\\
 
 Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
 It also defines the syntax and semantics of linear temporal logic.
@@ -155,7 +144,7 @@ Section 3 presents the equational deductive system for linear temporal logic.\\
 
 \section{Background}
 
-The first section below summarizes the equational system $\mathcal{E}$ from \cite{LADM}.
+The first section below summarizes the equational system $\mathcal{E}$ from Gries and Schneider \cite{LADM}.
 The summary is minimal, and the remainder of the paper assumes familiarity with $\mathcal{E}$.
 The second section introduces temporal logic and assumes no prior familiarity with it.
 The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
@@ -378,7 +367,7 @@ The semantics of the binary infix operator $\Until$ is
 \end{tabbing}
 
 If $p \Until q$ holds at state $s_j$, then $p$ holds at state $s_j$ and continues to hold at every state
-after $s_j$ until q holds at some future state.
+after $s_j$ until $q$ holds at some future state.
 $p \Until q$ guarantees that $q$ will eventually hold at some future state, and that $p$ will continue to
 hold until then.
 After the state in which $q$ holds for the first time, there are no restrictions on either $p$ or $q$.\\
