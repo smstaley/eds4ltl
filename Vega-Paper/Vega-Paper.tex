@@ -88,7 +88,15 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This paper presents an equational deductive system for linear temporal logic.It differs from previous developments of temporal logic in several respects.First, the proofs are given in the equational logic developed by Dijkstra and Scholten as opposed to the older Hilbert-style logics.Second, it presents several new and interesting linear temporal theorems, including the associativeproperties of the \textit{until} operator.Third, although space limitations preclude giving a proof of every theorem in this paper,every theorem has been proved with equational logic.The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic for those already familiar with equational logic.
+This paper presents an equational deductive system for linear temporal logic.
+It differs from previous developments of temporal logic in several respects.
+First, the proofs are given in the equational logic developed by Dijkstra and Scholten as opposed to the older Hilbert-style logics.
+Second, it presents several new and interesting linear temporal theorems, including the associative
+properties of the \textit{until} operator.
+Third, although space limitations preclude giving a proof of every theorem in this paper,
+every theorem has been proved with equational logic.
+The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic for those 
+already familiar with equational logic.
 \end{abstract}
 
 \thispagestyle{plain}
@@ -136,7 +144,13 @@ The development of linear temporal logic in all these works is motivated by its 
 The presentation typically consists of lists of valid temporal formulas, with little emphasis of which formulas are required
 as axioms and which are theorems that can be proved using a deductive system.\\
 
-This paper presents an equational deductive system for linear temporal logic.It differs from previous developments of such systems in several respects.First, the proofs are given in the equational logic $\mathcal{E}$ instead of $\mathcal{H}$.Second, it presents several new and interesting linear temporal theorems, including the associativeproperties of the \textit{until} operator.Third, although space limitations preclude giving a proof of every theorem in this paper,every theorem has been proved with $\mathcal{E}$.\\
+This paper presents an equational deductive system for linear temporal logic.
+It differs from previous developments of such systems in several respects.
+First, the proofs are given in the equational logic $\mathcal{E}$ instead of $\mathcal{H}$.
+Second, it presents several new and interesting linear temporal theorems, including the associative
+properties of the \textit{until} operator.
+Third, although space limitations preclude giving a proof of every theorem in this paper,
+every theorem has been proved with $\mathcal{E}$.\\
 
 Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
 It also defines the syntax and semantics of linear temporal logic.
@@ -226,7 +240,7 @@ The general form of a proof step is
 \end{tabbing}
 
 where the expression enclosed in angle brackets $\Gll\;\Ggg$ called the ``hint'' is the justification for the step.
-An example of a proof step from the proof of theorem (\ref{E:distNextAnd}) below is
+An example of a proof step from the proof of theorem (\ref{E:distNextAnd}) from Section 3.1 is
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -265,14 +279,14 @@ and $\lnot q$ for $q$ in (\ref{E:distNextOr}) as follows
 
 Gries and Schneider \cite{LADM} extend the proof format to incorporate implication using its transitive properties
 with itself and with equivales.
-An example is a proof of (\ref{E:impEvent}), $p \impl \Event p$.
+An example is a proof of (\ref{E:impEvent}) from Section 3.3, $p \impl \Event p$.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{Weakening $p\impl p\lor q$ with $q:=\Next\Event p$}\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening $p\impl p\lor q$ with $q:=\Next\Event p$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 
