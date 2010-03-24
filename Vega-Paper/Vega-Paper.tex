@@ -695,7 +695,7 @@ theorem from the propositional calculus in \cite{LADM}.\\
 
 \subsection{Next}
 
-The next operator $\Next$ is defined by the following two axioms.
+The following two axioms define the next operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
 \end{equation}
@@ -705,6 +705,14 @@ The next operator $\Next$ is defined by the following two axioms.
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
+
+Self duality states that $p$ not holding in the next state is equivalent to next $p$ not holding in the current state.
+Neither of the other unary temporal operators, eventually $\Event$ nor always $\Always$, are equivalent to their duals.
+The next operator describes the state fixed at one step into the future.
+In contrast, $\Event$ and $\Always$ describe sequences of states arbitrarily far into the future.\\
+
+Distributivity states that $p$ implies $q$ in the next state is equivalent to next $p$ implies next $q$ in the current state.
+From this axiom, subsequent theorems prove that the next operator distributes over all the binary operators, both propositional and temporal.\\
 
 Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
 \begin{equation}\label{E:linearity}
