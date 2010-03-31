@@ -711,7 +711,7 @@ The next operator describes the state fixed at one step into the future.
 In contrast, $\Event$ and $\Always$ describe sequences of states arbitrarily far into the future.\\
 
 Distributivity states that $p$ implies $q$ in the next state is equivalent to next $p$ implies next $q$ in the current state.
-From this axiom, subsequent theorems prove that the next operator distributes over all the binary operators, both propositional and temporal.\\
+From this axiom, subsequent theorems prove that the next operator distributes over all the propositional binary operators.\\
 
 Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
 \begin{equation}\label{E:linearity}
@@ -736,13 +736,13 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 	\> \>   $\Next(p \lor q)$\\[\lgap]
-	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
 	\> \>   $\Next(\neg p \impl q)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
 	\> \>   $\Next\neg p \impl \Next q$\\[\lgap]
-	\> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$ with $p,q := \Next\neg p, \Next p$}\\[\lgap]
 	\> \>   $\neg\Next\neg p \lor \Next q$\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity and (3.12) Double negation $\neg\neg p\equiv p$}\\[\lgap]
 	\> \>   $\Next p \lor \Next q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -755,9 +755,9 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Next (\neg\neg p \land \neg\neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Next\neg(\neg p \lor \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\neg p \lor \neg q$)}\\[\lgap]
   \> \>   $\neg\Next (\neg p \lor \neg q)$\\[\lgap]
@@ -765,9 +765,9 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
   \> \>   $\neg (\Next\neg p \lor \Next \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) twice}\\[\lgap]
   \> \>   $\neg(\neg\Next p \lor \neg\Next q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\neg(\Next p \land \Next q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Next p \land \Next q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -781,13 +781,13 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next (p \equiv q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual Implication $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
   \> \>   $\Next ((p \impl q) \land (q \impl p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
   \> \>   $\Next (p \impl q) \land \Next (p \impl q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
   \> \>   $(\Next p \impl \Next q) \land (\Next q \impl \Next p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual Implication $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
   \> \>   $\Next p \equiv \Next q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -811,13 +811,13 @@ and, by induction, hold at all states.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 	\> \>   $\Next true$\\[\lgap]
-	\> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$}\\[\lgap]
 	\> \>   $\Next(p \lor \neg p)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivty of $\Next$ over $\lor$}\\[\lgap]
 	\> \>   $\Next p \lor \Next\neg p$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
 	\> \>   $\Next p \lor \neg\Next p$\\[\lgap]
-	\> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$}\\[\lgap]
 	\> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -831,9 +831,9 @@ and, by induction, hold at all states.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next false \equiv false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$} \\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$} \\[\lgap]
   \> \>   $\Next\neg true \equiv \neg true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := true, \Next\neg true$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := true, \Next\neg true$}\\[\lgap]
   \> \>   $\neg\Next\neg true \equiv true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
   \> \>   $\Next true \equiv true$
@@ -847,7 +847,7 @@ Exercise for the student.\\
 
 \subsection{Until}
 
-This system defines the until operator $\Until$ with the following three axioms.
+This system defines the until operator $\Until$ with the following four axioms.
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
@@ -861,7 +861,7 @@ This system defines the until operator $\Until$ with the following three axioms.
 \firstspacer
 
 \begin{equation}\label{E:untilFalse}
-\textbf{Axiom:}\quad p \Until false \equiv false
+\textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
 \end{equation}
 
 \firstspacer
@@ -916,7 +916,7 @@ The following two axioms are necessary to prove both directions of the absorptio
   \> \>   $p \Until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $p \lor (p \land \Next(p \Until p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43b) Absorption}\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -932,8 +932,31 @@ The following two axioms are necessary to prove both directions of the absorptio
   \> \>   $p \Until true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $true \lor (p \land \Next(p \Until true))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$
+\end{tabbing}
+\myqed\\[\lgap]
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
+
+\begin{equation}\label{E:leftIdUntil}
+\textbf{Left identity of $\Until$:}\quad false \Until p \equiv p
+\end{equation}
+
+\emph{Proof:}
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $false \Until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $p \lor (false \land \Next(false \Until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
+  \> \>   $p \lor false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$}\\[\lgap]
+  \> \>   $p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 }
@@ -953,7 +976,7 @@ p \Until q \impl p \lor q
   \> \>   $p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76d) with $p,q,r := q,p,\Next(p \Until q)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$ with $p,q,r := q,p,\Next(p \Until q)$}\\[\lgap]
   \> \>   $p \lor q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1000,11 +1023,11 @@ The other direction is given by Axiom (\ref{E:untilIdemRAX})
 
 \subsection{Eventually}
 
-Eventually $\Event$ is a special case of $\Until$ when the left hand side is true.
+Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
 \end{equation}
-$p\Until q$ guarantees that $q$ will eventually be true as follows.
+$p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
 \end{equation}
@@ -1013,11 +1036,11 @@ $p\Until q$ guarantees that $q$ will eventually be true as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $p \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $(p \Until q) \lor (true \Until q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilOrImp})}\\[\lgap]
   \> \>   $(p \lor true) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event q$
@@ -1081,7 +1104,7 @@ Exercise for the student.\\
   \> \>   $p \lor (true \land \Next(true \Until p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $p \lor (true \land \Next\Event p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1101,7 +1124,7 @@ Exercise for the student.\\
   \> \>   $\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1121,7 +1144,7 @@ Exercise for the student.\\
   \> \>   $p \lor \Next (p \lor \Next\Event p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
   \> \>   $p \lor \Next p \lor \Next\Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening}\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $\Next p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1240,7 +1263,7 @@ The following two Axioms are required to prove the theorems where $\Always\Event
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\neg\Always p \equiv \Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := \Always p, \Event\neg p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Always p, \Event\neg p$}\\[\lgap]
   \> \>   $\Always p \equiv \neg\Event\neg p$
 \end{tabbing}
 which is (\ref{E:defAlways}). \myqed\\[\lgap]
@@ -1255,7 +1278,7 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
   \> \>   $\Always\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\Event\neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg\Event p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1271,7 +1294,7 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
   \> \>   $\neg\Always\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\neg\Event\neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Event p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1291,11 +1314,11 @@ Exercise for the student.\\
   \> \>   $\Always true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\Event\neg true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$}\\[\lgap]
   \> \>   $\neg\Event false$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventFalse}) Falsehood}\\[\lgap]
   \> \>   $\neg false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.13) Negation of $false$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.13) Negation of $false$, $\neg false\equiv true$}\\[\lgap]
   \> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1309,9 +1332,9 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always false \equiv false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$, twice}\\[\lgap]
   \> \>   $\Always\neg true \equiv \neg true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$}\\[\lgap]
   \> \>   $\neg\Always\neg\ true \equiv true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
   \> \>   $\Event true \equiv true$
@@ -1337,11 +1360,11 @@ Exercise for the student.\\
   \> \>   $\neg(true \Until \neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $\neg(\neg p \lor (true \land \Next(true \Until \neg p)))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $\neg(\neg p \lor \Next(true \Until \neg p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan's Law}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\neg\neg p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\Event$}\\[\lgap]
   \> \>   $p \land \neg\Next\Event\neg p$\\[\lgap]
@@ -1364,14 +1387,14 @@ Exercise for the student.\\
   \> \>   $\Always\Always p \equiv \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$ with $p := \Always p$}\\[\lgap]
   \> \>   $\neg\Event\neg\Always p \equiv \Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) with $p,q := \Event\neg\Always p, \Always p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Event\neg\Always p, \Always p$}\\[\lgap]
   \> \>   $\Event\neg\Always p \equiv \neg\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$, twice}\\[\lgap]
   \> \>   $\Event\Event\neg p \equiv \Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event\neg p \equiv \Event\neg p$
 \end{tabbing}
-which is (3.5) with $p := \Event\neg p$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p := \Event\neg p$. \myqed\\[\lgap]
 }
 
 \opt{student}{
@@ -1416,13 +1439,13 @@ p \impl \Always p \equiv p \impl \Next\Always p
   \> \>   $p\impl \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $p\impl p\land \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\neg p\lor (p\land \Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg p\lor (\neg\neg p\land \Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption with $p,q := \neg p,\Next\Always p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$ with $p,q := \neg p,\Next\Always p$}\\[\lgap]
   \> \>   $\neg p\lor \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $p \impl \Next\Always p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1444,11 +1467,11 @@ Exercise for the student.\\
   \> \>   $\neg\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $\neg(\neg p \lor \Next\Event\neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan's Law}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\neg\neg p \land \neg\Next\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $p \land \neg\Next\Event\neg p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1489,7 +1512,7 @@ Exercise for the student.\\
   \> \>   $p \land \Always\Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$ with $p := \Next p$}\\[\lgap]
   \> \>   $p \land \Next p \land \Next\Always\Next p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Next p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1510,7 +1533,7 @@ Exercise for the student.\\
   \> \>   $\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $p \land \Next\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Next\Always p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1566,11 +1589,11 @@ which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
   \> \>   $\Always (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\Event\neg (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\Event (\neg p \lor \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\neg (\Event\neg p \lor \Event\neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\neg\Event\neg p \land \neg\Event\neg q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$, twice}\\[\lgap]
   \> \>   $\Always p \land \Always q$
@@ -1590,16 +1613,16 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p \lor \Always q \impl \Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $(\Always p \lor \Always q) \land \Always(p \lor q) \equiv \Always p \lor \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
   \> \>   $(\Always (p \lor q) \land \Always p) \lor (\Always (p \lor q) \land \Always q) \equiv \Always p \lor \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always(p \land (p \lor q)) \lor \Always(q \land (p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43) Absorption, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$ twice}\\[\lgap]
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distAlwaysEquiv}
@@ -1610,14 +1633,14 @@ which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always (p \equiv q) \impl (\Always p \equiv \Always q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.62)}\\[\lgap]
+  \> $=$  \>  \Hint{(3.62) $p\impl (q\equiv r) \equivs p\land q\equivs p\land r$}\\[\lgap]
   \> \>   $\Always (p \equiv q) \land \Always p \equiv \Always (p \equiv q) \land \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$, twice}\\[\lgap]
   \> \>   $\Always((p \equiv q) \land p) \equiv \Always((p \equiv q) \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.50), twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$ twice}\\[\lgap]
   \> \>   $\Always(p \land q) \equiv \Always (p \land q)$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 
 
 \begin{equation}\label{E:distAlwaysImp}
@@ -1629,13 +1652,13 @@ which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always (p \impl q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Distributivity of $\Always$ over $\equiv$}\\[\lgap]
   \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always p \impl \Always q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1653,20 +1676,20 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always\Event(p \land q) \land \Always\Event p \land \Always\Event q \equiv \Always\Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always(\Event(p \land q) \land \Event p \land \Event q) \equiv \Always\Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
   \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 
 \emph{Proof of Lemma:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Event(p \land q) \impl \Event p \land \Event q$
 \end{tabbing}
 which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \myqed\\[\lgap]
@@ -1680,20 +1703,20 @@ which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \myqed\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always p \lor \Event\Always q \impl \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
   \> \>   $\Event\Always p \lor \Event\Always q \lor \Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event(\Always p \lor \Always q \lor \Always(p \lor q)) \equiv \Event\Always(p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
   \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 
 \emph{Proof of Lemma:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always(p \lor q)$
 \end{tabbing}
 which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\\[\lgap]
@@ -1740,7 +1763,7 @@ The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always p \impl \Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\neg\Event\Always p \lor \Always\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\Always\neg\Always p \lor \Always\Event p$\\[\lgap]  
@@ -1748,7 +1771,7 @@ The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
   \> \>   $\Always\Event\neg p \lor \Always\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Always\Event(\neg p \lor p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded Middle}\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
   \> \>   $\Always\Event true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth}\\[\lgap]
   \> \>   $\Always true$\\[\lgap]
@@ -1762,7 +1785,7 @@ The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
 \end{equation}
 
 \emph{Proof:}\\
-Proof by Mutual Implication (3.80).\\
+Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.\\
 
 \emph{Proof of:} $\Event\Always\Event p \impl \Always\Event p$\\
 
@@ -1789,7 +1812,7 @@ Proof by Mutual Implication (3.80).\\
 \end{equation}
 
 \emph{Proof:}\\
-Proof by Mutual Implication (3.80).\\
+Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.\\
 
 \opt{doc}{
 \emph{Proof of:} $\Always\Event\Always p \impl \Event\Always p$
@@ -1846,21 +1869,21 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always (p \impl q) \impl (\Event p \impl \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, three times}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$ three times}\\[\lgap]
   \> \>   $\neg\Always (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Event\neg (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]  
-  \> $=$  \>  \Hint{(3.47b) De Morgan, and Double negation}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$, and (3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event(p \land \neg q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event((p \land \neg q) \lor q) \lor \neg\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption}\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
   \> \>   $\Event(p \lor q) \lor \neg\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event p \lor \Event q \lor \neg\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded Middle, with $p := \Event p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$}\\[\lgap]
   \> \>   $\Event q \lor true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1879,13 +1902,13 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event(p \impl q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\Event(\neg p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event\neg p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\neg\Always p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\Always p \impl \Event q$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1903,21 +1926,21 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\neg(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\Always p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Event\neg p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event(\neg p \lor (p \land q)) \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption}\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
   \> \>   $\Event(\neg p \lor q) \lor \neg\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event\neg p \lor \Event q \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded middle}\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
   \> \>   $\Event\neg p \lor true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1946,7 +1969,7 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \> \> $q \lor (p \land \Next ((p \Until q) \lor \Always p))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
 \> \> $q \lor (p \land (\Next (p \Until q) \lor \Next\Always p))$\\[\lgap]
-\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
 \> \> $q \lor (p \land \Next(p \Until q)) \lor (p \land \Next\Always p)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
 \> \> $q \lor (p \land \Next(p \Until q)) \lor \Always p$\\[\lgap]
@@ -1966,7 +1989,7 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $\Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.76a) Weakening} \\[\lgap]
+\> $=$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $\Always p \lor (p \Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$\\[\lgap]
@@ -1986,7 +2009,7 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \> \> $(p \Until false) \lor \Always p$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilFalse})} \\[\lgap]
 \> \> $false \lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2000,7 +2023,7 @@ q \impl p \Wait q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $q$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76a) Weakening} \\[\lgap]
+\> $\impl$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
 \> \> $p \Wait q$\\[\lgap]
@@ -2018,7 +2041,7 @@ p \Wait q \impl p \lor q
 \> \> $p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
 \> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76d)} \\[\lgap]
+\> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2050,7 +2073,7 @@ p \Wait q \impl \Always p \lor \Event q
 \> \> $p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
 \> \> $(p \Until q) \lor \Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
 \> \> $\Event q \lor \Always p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2066,15 +2089,15 @@ p \Wait q \impl \Always p \lor \Event q
 \> \> $(p \Wait q) \land \Always\neg q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
-\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$} \\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \Always\neg q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:dualEvent})} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \neg\Event q)$\\[\lgap]
-\> $=$ \> \Hint{(3.42) Contradiction} \\[\lgap]
+\> $=$ \> \Hint{(3.42) Contradiction, $p \land \neg p \equiv false$} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor false$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p \land \Always\neg q$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76b) Strengthening} \\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $\Always p$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2090,13 +2113,13 @@ p \Wait q \impl \Always p \lor \Event q
 \> \> $(p \Wait q) \land \neg\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg\Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$} \\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
 \> \> $(\Always p \land \neg\Always p) \lor (\Event q \land \neg\Always p)$\\[\lgap]
-\> $=$ \> \Hint{(3.42) Contradiction} \\[\lgap]
+\> $=$ \> \Hint{(3.42) Contradiction, $p \land \neg p \equiv false$} \\[\lgap]
 \> \> $false \lor (\Event q \land \neg\Always p)$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$} \\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Event q \land \neg\Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76b) Strengthening} \\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $\Event q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
