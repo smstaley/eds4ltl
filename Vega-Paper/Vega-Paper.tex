@@ -860,6 +860,18 @@ Exercise for the student.\\
 \subsection{Until}
 
 This system defines the until operator $\Until$ with the following four axioms.
+The distributivity of next over until implies the distributivity of next over wait as Section (3.5) shows.
+Thus next distributes over all binary operators, both propositional and temporal.\\
+
+The until operator is unlike any propositional binary operator.
+Its right operand has an existential characteristic and its left operand has a universal characteristic.
+Expansion states that
+$p\Until q$ is true iff $q$ is true in the current state, or $p$ is true in the current state and $p\Until q$ is
+true in the next state.
+Thus, $q$ relates to the definition through disjunction, which is existential,
+while $p$ relates through conjunction, which is universal.
+Consequently, the until operator is neither symmetric (\textit{i.e.} commutative) nor associative.
+Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one direction.
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
