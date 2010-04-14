@@ -859,7 +859,7 @@ Exercise for the student.\\
 
 \subsection{Until}
 
-This system defines the until operator $\Until$ with the following four axioms.
+This system defines the until operator $\Until$ with the following ten axioms.
 The distributivity of next over until implies the distributivity of next over wait as Section (3.5) shows.
 Thus next distributes over all binary operators, both propositional and temporal.\\
 
@@ -894,7 +894,8 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 \textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
-The following four axioms describe conjunction and disjunction as operands of the $\Until$ operator.
+The following four axioms describe how the $\Until$ operator distributes over conjunction and disjunction.
+Because $\Until$ is not symmetric, this system requires separate axioms for left and right distributivity.
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
 \end{equation}
@@ -928,8 +929,15 @@ The following two axioms are necessary to prove both directions of the absorptio
 \textbf{Axiom:}\quad (p \Until q) \Until q \impl p \Until q
 \end{equation}
 
-\firstspacer
-
+Theorem (\ref{E:idemUntil}) shows that the $\Until$ operator is idempotent.
+Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
+axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
+Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
+Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
+possibilities of constants $true$ and $false$ on either side of $\Until$.
+None of these three theorems seem to appear in the temporal logic literature.
+The fourth possibility with $true$ as the left argument is the basis of the definition of the eventually
+operator $\Event$ in Section 3.3.
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -989,6 +997,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+Theorem (\ref{E:untilImpOr}) is interesting because it
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
@@ -2154,10 +2163,23 @@ p \Wait q \impl \Always p \lor \Event q
 \section{Conclusion}
 
 This paper presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
-logic $\mathcal{E}$ of \cite{LADM}.
+logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator next $\Next$ and binary operator until $\Until$ as primitives and defines
-eventually $\Event$, always $\Always$, and wait $\Wait$ in terms of them.
-[\textit{To be expanded}]
+eventually $\Event$, always $\Always$, and wait $\Wait$ in terms of them.\\
+
+Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} originally developed $\mathcal{E}$ as a logic system to prove
+program correctness based on an equational style.
+Gries and Schneider extend that system to a theory of sets, a theory of sequences,
+relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
+Similarly, this system extends $\mathcal{E}$ to a theory of temporal logic.\\
+
+The equational system $\mathcal{E}$ has several advantages over other logic systems.
+The primary advantage is that the equational system has only one proof rule, Leibniz.
+Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system. 
+We believe the advantages of $\mathcal{E}$ over other logic systems is so substantial that it should be the
+tool of choice for computer science theory.
+We hope that this extension of $\mathcal{E}$ to linear temporal logic will not only be of use in the
+temporal logic community, but will serve as an example to promote $\mathcal{E}$ in the broader computer science community.
 
 \bibliographystyle{plain}
 \bibliography{Vega-Paper}
