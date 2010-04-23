@@ -698,13 +698,14 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 \section{The Equational Temporal System}
 
-This section presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
+This section presents an axiomatic deductive system of temporal logic and proves its theorems with the equational
 logic $\mathcal{E}$ of \cite{LADM}.
 Theorems cited in a proof hint take two forms.
-A numbered reference enclosed in parentheses \textit{witout} a decimal point is a reference to an axiom or a previously-proved
+A numbered reference enclosed in parentheses \textit{without} a decimal point is a reference to an axiom or a previously-proved
 theorem in this paper.
 A numbered reference enclosed in parentheses \textit{with} a decimal point is a reference to an axiom or a
-theorem from the propositional calculus in \cite{LADM}.\\
+theorem from the propositional calculus in \cite{LADM}.
+The terms ``definition'' and ``axiom'' are synonymous.\\
 
 \subsection{Next}
 
@@ -860,12 +861,12 @@ Exercise for the student.\\
 \subsection{Until}
 
 This system defines the until operator $\Until$ with the following ten axioms.
-The distributivity of next over until implies the distributivity of next over wait as Section (3.5) shows.
+The distributivity of next over until (\ref{E:distNextUntil}) implies the distributivity of next over wait as Section (3.5) shows.
 Thus next distributes over all binary operators, both propositional and temporal.\\
 
 The until operator is unlike any propositional binary operator.
 Its right operand has an existential characteristic and its left operand has a universal characteristic.
-Expansion states that
+Expansion (\ref{E:expansionUntil}) states that
 $p\Until q$ is true iff $q$ is true in the current state, or $p$ is true in the current state and $p\Until q$ is
 true in the next state.
 Thus, $q$ relates to the definition through disjunction, which is existential,
@@ -997,7 +998,8 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-Theorem (\ref{E:untilImpOr}) is interesting because it
+Theorem (\ref{E:untilImpOr}) is interesting because it relates the temporal expression on the left hand side
+to the propositional expression on the right hand side.
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
@@ -1019,12 +1021,13 @@ p \Until q \impl p \lor q
 Exercise for the student.\\
 }
 
-The following two theorems deal with absorption of $\Until$.
+The following two theorems are the absorption laws of the $\Until$ operator.
 \begin{equation}\label{E:untilIdem}
 p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $p \Until (p \Until q)$\\[\lgap]
@@ -1033,15 +1036,16 @@ p \Until (p \Until q) \equiv p \Until q
   \> $\impl$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $p \Until q$
 \end{tabbing}
-\myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:untilIdemAx})
+Axiom (\ref{E:untilIdemAx}) supplies the proof in the second direction.
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:untilIdemR}
 (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $p \Until q$\\[\lgap]
@@ -1050,13 +1054,14 @@ The other direction is given by Axiom (\ref{E:untilIdemAx})
   \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp})}\\[\lgap]
   \> \>   $(p \Until q) \Until q$
 \end{tabbing}
-\myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:untilIdemRAX})
+Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
+\myqed\\[\lgap]
 
 \subsection{Eventually}
 
 Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
+Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
 \end{equation}
@@ -1716,7 +1721,7 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
   \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
 
 \emph{Proof of Lemma:}
 \begin{tabbing}
@@ -1743,7 +1748,7 @@ which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \myqed\
   \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
   \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
 
 \emph{Proof of Lemma:}
 \begin{tabbing}
@@ -1758,7 +1763,8 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\Event p \lor \Always\Event q$\\[\lgap]
@@ -1767,15 +1773,16 @@ which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \myqed\
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Always\Event(p \lor q)$\\[\lgap]
 \end{tabbing}
-\myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}).
+Axiom (\ref{E:distAlwaysEventOrAx}) supplies the proof in the second direction.
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always (p \land q)$\\[\lgap]
@@ -1784,9 +1791,9 @@ The other direction is given by Axiom (\ref{E:distAlwaysEventOrAx}).
   \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
   \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
 \end{tabbing}
-\myqed\\[\lgap]
 
-The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
+Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
@@ -1817,11 +1824,9 @@ The other direction is given by Axiom (\ref{E:distEventAlwaysAndAx}).
 \textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
-\emph{Proof:}\\
-Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.\\
-
-\emph{Proof of:} $\Event\Always\Event p \impl \Always\Event p$\\
-
+\emph{Proof:} Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+%\emph{Proof of:} $\Event\Always\Event p \impl \Always\Event p$\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always\Event p$\\[\lgap]
@@ -1830,8 +1835,8 @@ Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$
 \end{tabbing}
-
-\emph{Proof of:} $\Event\Always\Event p \Leftarrow \Always\Event p$
+The proof in the second direction follows.
+%\emph{Proof of:} $\Event\Always\Event p \Leftarrow \Always\Event p$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\Event p$\\[\lgap]
@@ -1844,11 +1849,9 @@ Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv
 \textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
-\emph{Proof:}\\
-Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.\\
-
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
 \opt{doc}{
-\emph{Proof of:} $\Always\Event\Always p \impl \Event\Always p$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\Event\Always p$\\[\lgap]
@@ -1856,7 +1859,7 @@ Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv
   \> \>   $\Event\Always p$
 \end{tabbing}
 
-\emph{Proof of:} $\Always\Event\Always p \Leftarrow \Event\Always p$
+The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always p$\\[\lgap]
