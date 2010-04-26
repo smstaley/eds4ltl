@@ -1058,6 +1058,57 @@ The proof in the first direction follows.
 Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
 \myqed\\[\lgap]
 
+\begin{equation}\label{E:untilOrP}
+(p \Until q) \lor p \equiv p \lor q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $(p \Until q) \lor p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q)) \lor p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
+  \> \>   $p \lor q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:untilOrQ}
+(p \Until q) \lor q \equiv p \Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $(p \Until q) \lor q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q)) \lor q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $(p \Until q)$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:untilAndOr}
+(p \Until q) \land (p \lor q) \equiv p \Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $(p \Until q) \land (p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $(q \lor (p \land \Next(p \Until q))) \land (p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.45)Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
+  \> \>   $q \lor (p \land p \land \Next(p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $(p \Until q)$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
 \subsection{Eventually}
 
 Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
