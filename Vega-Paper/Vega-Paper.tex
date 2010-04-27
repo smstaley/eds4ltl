@@ -1022,8 +1022,11 @@ Exercise for the student.\\
 }
 
 The following two theorems are the absorption laws of the $\Until$ operator.
+All systems have these two absorption theorems, because the $\Until$ operator is not associative.
+Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
+This paper follows Schneider \cite{Schn}, who refers to them as absorption properties.
 \begin{equation}\label{E:untilIdem}
-p \Until (p \Until q) \equiv p \Until q
+\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
 \emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
@@ -1041,7 +1044,7 @@ Axiom (\ref{E:untilIdemAx}) supplies the proof in the second direction.
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:untilIdemR}
-(p \Until q) \Until q \equiv p \Until q
+\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
 \emph{Proof:} Also by mutual implication.
@@ -1058,23 +1061,25 @@ The proof in the first direction follows.
 Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
 \myqed\\[\lgap]
 
+This system has the following five additional absorption properties that do not seem to
+appear in the temporal logic literature.
 \begin{equation}\label{E:untilOrP}
-(p \Until q) \lor p \equiv p \lor q
+p \lor (p \Until q) \equiv p \lor q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $(p \Until q) \lor p$\\[\lgap]
+  \> \>   $p \lor (p \Until q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q)) \lor p$\\[\lgap]
+  \> \>   $p \lor q \lor (p \land \Next(p \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
-  \> \>   $p \lor q$\\[\lgap]
+  \> \>   $p \lor q$
 \end{tabbing}
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:untilOrQ}
-(p \Until q) \lor q \equiv p \Until q
+\textbf{Absorption:}\quad (p \Until q) \lor q \equiv p \Until q
 \end{equation}
 
 \emph{Proof:}
@@ -1086,12 +1091,27 @@ Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
   \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
   \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $(p \Until q)$\\[\lgap]
+  \> \>   $p \Until q$
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:untilAndQ}
+\textbf{Absorption:}\quad (p \Until q) \land q \equiv q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $(p \Until q) \land q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $(q \lor (p \land \Next(p \Until q))) \land q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
+  \> \>   $q$
 \end{tabbing}
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:untilAndOr}
-(p \Until q) \land (p \lor q) \equiv p \Until q
+\textbf{Absorption:}\quad (p \Until q) \land (p \lor q) \equiv p \Until q
 \end{equation}
 
 \emph{Proof:}
@@ -1100,12 +1120,29 @@ Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
   \> \>   $(p \Until q) \land (p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $(q \lor (p \land \Next(p \Until q))) \land (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.45)Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
   \> \>   $q \lor (p \land p \land \Next(p \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
   \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $(p \Until q)$\\[\lgap]
+  \> \>   $p \Until q$
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:untilOrAnd}
+\textbf{Absorption:}\quad (p \Until q) \lor (p \land q) \equiv p \Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $(p \Until q) \lor (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q)) \lor (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
+  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $p \Until q$
 \end{tabbing}
 \myqed\\[\lgap]
 
@@ -1136,6 +1173,7 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \end{tabbing}
 \myqed\\[\lgap]
 
+Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood, are unique to this system.
 \begin{equation}\label{E:eventTrue}
 \textbf{Truth:}\quad \Event true \equiv true
 \end{equation}
@@ -1178,6 +1216,8 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+Expansion of $\Event$, like expansion of $\Until$, has two disjuncts.
+The first describes the current state and the second contains the operation in the next state.
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
@@ -1203,6 +1243,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+The following theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
@@ -1871,13 +1912,16 @@ Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
 \end{tabbing}
 \myqed\\[\lgap]
 
+The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
+(\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
+of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
+\;$\Always\Event p$, or \;$\Event\Always p$.
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
 \emph{Proof:} Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
 The proof in the first direction follows.
-%\emph{Proof of:} $\Event\Always\Event p \impl \Always\Event p$\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event\Always\Event p$\\[\lgap]
@@ -1887,7 +1931,6 @@ The proof in the first direction follows.
   \> \>   $\Always\Event p$
 \end{tabbing}
 The proof in the second direction follows.
-%\emph{Proof of:} $\Event\Always\Event p \Leftarrow \Always\Event p$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always\Event p$\\[\lgap]
