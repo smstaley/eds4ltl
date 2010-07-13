@@ -1484,7 +1484,7 @@ which is (\ref{E:eventTrue}) Truth. \myqed\\[\lgap]
 Exercise for the student.\\
 }
 
-While the expansions of $\Until$ and $\Event$, have two disjuncts,
+While the expansions of $\Until$ and $\Event$ have two disjuncts,
 the expansion of $\Always$ has two conjuncts.
 As usual, the first describes the current state and the second contains the operation in the next state.
 \begin{equation}\label{E:expansionAlways}
@@ -1570,6 +1570,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+Theorem (\ref{E:impNext}) is unique to this system.
 \begin{equation}\label{E:impNext}
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
@@ -1688,6 +1689,9 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not vice versa.
+Suppose, for example, that $p$ continually oscillates between true and false over time.
+Then the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
 \begin{equation}\label{E:exAlwaysNot}
 \Always\neg p \impl \neg\Always p
 \end{equation}
@@ -1709,6 +1713,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+Theorem (\ref{E:excludedMid}) is the linear temporal version of the excluded middle axiom of propositional logic.
 \begin{equation}\label{E:excludedMid}
 \textbf{Excluded Middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
@@ -1720,9 +1725,13 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\Event p \lor \neg\Event p$
 \end{tabbing}
-which is (3.28) Excluded middle, with $p := \Event p$. \myqed\\[\lgap]
+which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$. \myqed\\[\lgap]
 
-
+Theorem (\ref{E:distAlwaysAnd}) shows that $\Always$, a universal operator, distributes over conjunction.
+Because disjunction is existential, Theorem (\ref{E:distAlwaysOr}) shows that $\Always$ distributes over it in only one
+direction.
+Theorems (\ref{E:distAlwaysEquiv}) and (\ref{E:distAlwaysImp}) show how $\Always$ distributes over the other two
+propositional binary operators.
 \begin{equation}\label{E:distAlwaysAnd}
 \textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
@@ -1769,7 +1778,6 @@ Exercise for the student.\\
 \end{tabbing}
 which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 
-
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
@@ -1813,6 +1821,12 @@ which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \myqed\\[\lgap]
 Exercise for the student.\\
 }
 
+The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
+distribute over conjunction and disjunction.
+Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over conjunction only in one direction.
+Similarly, Theorem (\ref{E:distEventAlwaysOr}) shows that $\Event\Always$ distributes over disjunction only in one direction.
+However, Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) show that $\Always\Event$ distributes over
+disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
@@ -1838,7 +1852,6 @@ which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
   \> \>   $\Event(p \land q) \impl \Event p \land \Event q$
 \end{tabbing}
 which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \myqed\\[\lgap]
-
 
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
@@ -1902,6 +1915,8 @@ The proof in the first direction follows.
 Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
 \myqed\\[\lgap]
 
+Theorem (\ref{E:eventAlwaysImp}) states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not vice versa.
+That is, $\Always\Event p$ does not guarantee that eventually $p$ will always hold.
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
 \end{equation}
@@ -1932,7 +1947,7 @@ The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together wi
 of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
 \;$\Always\Event p$, or \;$\Event\Always p$.
 \begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
 \emph{Proof:} Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
@@ -1955,7 +1970,7 @@ The proof in the second direction follows.
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
 \emph{Proof:} Also by mutual implication.
@@ -1984,6 +1999,12 @@ The proof in the second direction follows.
 Exercise for the student.\\
 }
 
+The monotonicity theorems (\ref{E:alwaysImpNexts}) and (\ref{E:alwaysImpEvents}) have $\Always (p \impl q)$
+as the antecedent.
+Theorem (\ref{E:distAlwaysImp}), distributivity of $\Always$ over $\impl$, has the same antecedent and hence can be considered a
+monotonicity theorem as well.
+Theorems (\ref{E:distAlwaysImp}), (\ref{E:alwaysImpNexts}), and (\ref{E:alwaysImpEvents}) show that all unary temporal
+operators are monotonic.
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
@@ -2038,6 +2059,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+This section concludes with two theorems that are common to all temporal logic systems.
 \begin{equation}\label{E:eventImpAlways}
 \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
