@@ -147,13 +147,13 @@ in programs that terminate.
 Temporal logic applies to program correctness with concurrent processing to establish safety and liveness properties
 in programs that possibly do not terminate.\\
 
-As is the case for propositional and predicate calculus, most treatments of linear temporal logic use $\mathcal{H}$
+As is the case for propositional and predicate calculus, all treatments of linear temporal logic use $\mathcal{H}$
 instead of $\mathcal{E}$. Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kr\"{o}ger \cite{Kroger},
 Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 The only appearance of an equational proof of a temporal logic theorem appears to be a single example in \cite{Schn},
 which otherwise uses a Hilbert-style system for temporal logic.
-The development of linear temporal logic in all these works is motivated by its use to prove correctness of concurrent programs.
-The presentation typically consists of lists of valid temporal formulas, with little emphasis of which formulas are required
+The development of linear temporal logic in these works is motivated by its use to prove correctness of concurrent programs.
+The presentation typically consists of lists of valid temporal formulas, with little emphasis on which formulas are required
 as axioms and which are theorems that can be proved using a deductive system.\\
 
 This paper presents an equational deductive system for linear temporal logic.
@@ -181,7 +181,7 @@ The definition of an expression has four parts:
 \begin{itemize}[$\bullet$]
 \item A constant or variable is an expression.
 \item If $E$ is an expression, then $(E)$ is an expression.
-\item If $\circ$ is a unary prefix operator and $E$ is an expression, then $\circ E$ is an expression with operand $E$.
+\item If $\triangleright$ is a unary prefix operator and $E$ is an expression, then $\triangleright E$ is an expression with operand $E$.
 \item If $\star$ is a binary infix operator and $D$ and $E$ are expressions, then $D \star E$ is an expression with operands $D$
 and $E$.
 \end{itemize}
@@ -357,7 +357,7 @@ In the above example,
   \> $(\sigma, 1) \models x<10$
 \end{tabbing}
 
-The symbol $\models$ means ``satisfies'', so the above expression is read as
+the symbol $\models$ means ``satisfies'', so the above expression is read as
 ``State 1 of sequence $\sigma$ satisfies $x<10$''.
 Or, using ``holds'', the same expression is read as, ``$x<10$ holds in state 1 of sequence $\sigma$''.
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
@@ -1024,7 +1024,7 @@ Exercise for the student.\\
 The following two theorems are the absorption laws of the $\Until$ operator.
 All systems have these two absorption theorems, because the $\Until$ operator is not associative.
 Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
-This paper follows Schneider \cite{Schn}, who refers to them as absorption properties.
+This paper follows Schneider \cite{Schn}, which refers to them as absorption properties.
 \begin{equation}\label{E:untilIdem}
 \textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
@@ -1243,7 +1243,7 @@ The first describes the current state and the second contains the operation in t
 Exercise for the student.\\
 }
 
-The following theorems for $\Event$ are common to all temporal logic systems.
+The following six theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
@@ -1367,16 +1367,19 @@ Exercise for the student.\\
 
 \subsection{Always}
 
+This system defines the \textit{always} operator $\Always$ in terms of the \textit{eventually} operator $\Event$.
+$\Always p$ is true when $p$ is true in the current state and in all future states.
+The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it is not the case that $\neg p$ is eventually true.
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
+The following induction axiom is included in other temporal logic systems but is not used in any subsequent proofs in this system.
 \begin{equation}\label{E:induction}
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
-The following two Axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
-
+The following two axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -1385,6 +1388,31 @@ The following two Axioms are required to prove the theorems where $\Always\Event
 \textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
+The following theorem expresses $\Event p$ in terms of $\Always p$ and mirrors the defining equation (\ref{E:defAlways}).
+\begin{equation}\label{E:eventAsAlways}
+\Event p \equiv \neg\Always\neg p
+\end{equation}
+
+\emph{Proof:}
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\neg\Always\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\neg\neg\Event\neg\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
+  \> \>   $\Event p$
+\end{tabbing}
+\myqed\\[\lgap]
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
+
+Whereas the \textit{next} operator $\Next$ is its own dual, the \textit{eventually} operator $\Event$
+and the \textit{always} operator $\Always$
+are mutually dual.
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
@@ -1413,27 +1441,7 @@ which is (\ref{E:defAlways}). \myqed\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
-\begin{equation}\label{E:eventAsAlways}
-\Event p \equiv \neg\Always\neg p
-\end{equation}
-
-\emph{Proof:}
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \kill
-  \> \>   $\neg\Always\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
-  \> \>   $\neg\neg\Event\neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
-  \> \>   $\Event p$
-\end{tabbing}
-\myqed\\[\lgap]
-}
-
-\opt{student}{
-Exercise for the student.\\
-}
-
+Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
 \textbf{Truth:}\quad \Always true \equiv true
 \end{equation}
@@ -1476,6 +1484,9 @@ which is (\ref{E:eventTrue}) Truth. \myqed\\[\lgap]
 Exercise for the student.\\
 }
 
+While the expansions of $\Until$ and $\Event$, have two disjuncts,
+the expansion of $\Always$ has two conjuncts.
+As usual, the first describes the current state and the second contains the operation in the next state.
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
@@ -1505,7 +1516,8 @@ Exercise for the student.\\
 \end{tabbing}
 \myqed\\[\lgap]
 
-
+The absorption of $\Always$ mirrors (\ref{E:IdemEvent}) the absorption of $\Event$,
+and the exchange of $\Next$ and $\Always$ mirrors (\ref{E:dNextEvent}) the exchange of $\Next$ and $\Event$.
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
@@ -1585,6 +1597,9 @@ p \impl \Always p \equiv p \impl \Next\Always p
 Exercise for the student.\\
 }
 
+The following four strengthening theorems for $\Always$ contrast with the weakening theorems
+(\ref{E:impEvent}) and (\ref{E:nextEvent})
+for $\Event$.
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
