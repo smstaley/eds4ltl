@@ -266,6 +266,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 (4.3)\>\textbf{Monotonicity of $\land$ :}\quad $(p\impl q) \impl (p\land r \impl q\land r)$\\[\lgap]
 (4.4)\>\textbf{Assume conjuncts of antecedent:}\\[\lgap]
       \>To prove $P_{1}\land P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
+      \>You cannot use textual substitution in $P_{1}$ or $P_{2}$.\\[\lgap]
 (4.5)\>\textbf{Case analysis:}\quad If $E^{z}_{true}$ and $E^{z}_{false}$ are theorems, then so is $E^{z}_{P}$.\\[\lgap]
 (4.6)\>\textbf{Case analysis:}\quad $(p\lor q\lor r)\land (p\impl s)\land (q\impl s)\land (r\impl s)\impl s$\\[\lgap]
 (4.7)\>\textbf{Mutual implication:}\quad To prove $P\equiv Q$, prove $P\impl Q$ and $Q\impl P$.\\[\lgap]
@@ -341,37 +342,25 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \spacer
 
 \begin{equation}\label{E:untilFalse}
-\textbf{Axiom:}\quad p \Until false \equiv false
+\textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:idemUntil}
-\textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:zeroUntil}
-\textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilImpOr}
-p \Until q \Rightarrow p \lor q
+\begin{equation}\label{E:untilAssocImp}
+\textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilOrImp}
-\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \Rightarrow (p \lor q) \Until r
+\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilAndImp}
-\textbf{Axiom:}\quad p \Until (q \land r) \Rightarrow (p \Until q) \land (p \Until r)
+\textbf{Axiom:}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
 \end{equation}
 
 \spacer
@@ -388,15 +377,83 @@ p \Until q \Rightarrow p \lor q
 
 \spacer
 
+\begin{equation}\label{E:untilIdemAx}
+\textbf{Axiom:}\quad p \Until q \impl p \Until (p \Until q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdemRAX}
+\textbf{Axiom:}\quad (p \Until q) \Until q \impl p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:idemUntil}
+\textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:zeroUntil}
+\textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftIdUntil}
+\textbf{Left identity of $\Until$:}\quad false \Until p \equiv p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilImpOr}
+p \Until q \impl p \lor q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:untilIdem}
-\textbf{Axiom:}\quad p \Until (p \Until q) \equiv p \Until q
+\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilIdemR}
-\textbf{Axiom:}\quad (p \Until q) \Until q \equiv p \Until q
+\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilOrP}
+p \lor (p \Until q) \equiv p \lor q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilOrQ}
+\textbf{Absorption:}\quad (p \Until q) \lor q \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilAndQ}
+\textbf{Absorption:}\quad (p \Until q) \land q \equiv q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilAndOr}
+\textbf{Absorption:}\quad (p \Until q) \land (p \lor q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilOrAnd}
+\textbf{Absorption:}\quad (p \Until q) \lor (p \land q) \equiv p \Until q
+\end{equation}
+
+\newpage
 
 \subsection*{Eventually $\quad\Event$}
 
@@ -407,7 +464,7 @@ p \Until q \Rightarrow p \lor q
 \firstspacer
 
 \begin{equation}\label{E:eventuality}
-\textbf{Eventuality:}\quad p \Until q \Rightarrow \Event q
+\textbf{Eventuality:}\quad p \Until q \impl \Event q
 \end{equation}
 
 \spacer
@@ -431,13 +488,13 @@ p \Until q \Rightarrow p \lor q
 \spacer
 
 \begin{equation}\label{E:impEvent}
-\textbf{Weakening of $\Event$:}\quad p \Rightarrow \Event p
+\textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:nextEvent}
-\textbf{Weakening of $\Event$:}\quad \Next p \Rightarrow \Event p
+\textbf{Weakening of $\Event$:}\quad \Next p \impl \Event p
 \end{equation}
 
 \spacer
@@ -461,39 +518,49 @@ p \Until q \Rightarrow p \lor q
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
-\textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \Rightarrow \Event p \land \Event q
+\textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \impl \Event p \land \Event q
 \end{equation}
-
-\pagebreak
 
 \subsection*{Always $\quad\Always$}
 
 \begin{equation}\label{E:defAlways}
-\textbf{Definition of $\Always$:}\quad \Always p \equiv \lnot\Event\lnot p
+\textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:induction}
-\textbf{Axiom, Induction:}\quad \Always (p \Rightarrow \Next p) \Rightarrow (p \Rightarrow \Always p)
+\textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:dualAlways}
-\textbf{Dual of $\Always$:}\quad \lnot\Always p \equiv \Event\lnot p
+\begin{equation}\label{E:distAlwaysEventOrAx}
+\textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:dualEvent}
-\textbf{Dual of $\Event$:}\quad \lnot\Event p \equiv \Always\lnot p
+\begin{equation}\label{E:distEventAlwaysAndAx}
+\textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventAsAlways}
-\Event p \equiv \lnot\Always\lnot p
+\Event p \equiv \neg\Always\neg p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:dualAlways}
+\textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:dualEvent}
+\textbf{Dual of $\Event$:}\quad \neg\Event p \equiv \Always\neg p
 \end{equation}
 
 \spacer
@@ -529,79 +596,79 @@ p \Until q \Rightarrow p \lor q
 \spacer
 
 \begin{equation}\label{E:impNext}
-p \Rightarrow \Always p \equiv p \Rightarrow \Next\Always p
+p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlways}
-\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow p
+\textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysE}
-\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Event p
+\textbf{Strengthening of $\Always$:}\quad \Always p \impl \Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysN}
-\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Next p
+\textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysNA}
-\textbf{Strengthening of $\Always$:}\quad \Always p \Rightarrow \Next\Always p
+\textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next\Always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:exAlwaysNot}
-\Always\lnot p \Rightarrow \lnot\Always p
+\Always\neg p \impl \neg\Always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:excludedMid}
-\textbf{Excluded Middle:}\quad \Event p \lor \Always\lnot p
+\textbf{Excluded Middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysAnd}
-\textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv (\Always p \land \Always q)
+\textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \Rightarrow \Always (p \lor q)
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \impl \Always (p \lor q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always(p \equiv q) \Rightarrow (\Always p \equiv \Always q)
+\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\Always$ over $\Rightarrow$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Always p \Rightarrow \Always q)
+\textbf{Distributivity of $\Always$ over $\impl$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEventAnd}
-\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \Rightarrow (\Always\Event p \land \Always\Event q)
+\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventAlwaysOr}
-\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad (\Event\Always p \lor \Event\Always q) \Rightarrow \Event\Always (p \lor q)
+\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
 
 \spacer
@@ -616,50 +683,108 @@ p \Rightarrow \Always p \equiv p \Rightarrow \Next\Always p
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:eventAlwaysImp}
-\Event\Always p \Rightarrow \Always\Event p
+\Event\Always p \impl \Always\Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
-\textbf{Monotonicity of $\Next$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Next p \Rightarrow \Next q)
+\textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
-\textbf{Monotonicity of $\Event$:}\quad \Always (p \Rightarrow q) \Rightarrow (\Event p \Rightarrow \Event q)
+\textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:eventImpAlways}
-\Event (p \Rightarrow q) \equiv (\Always p \Rightarrow \Event q)
+\Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysAndEvent}
-\Always p \land \Event q \Rightarrow \Event (p \land q)
+\Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
 \subsection*{Wait $\quad\Wait$}
 
-[\textit{To be written.}]
+\begin{equation}\label{E:defWait}
+\textbf{Definition of $\Wait$:}\quad p \Wait q \equiv (p \Until q) \lor \Always p
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:expansionWait}
+p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysImpWait}
+\Always p \Rightarrow p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysAsWait}
+\Always p \equiv p \Wait false
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitInsertion}
+q \impl p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitToOr}
+p \Wait q \impl p \lor q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventerWait}
+\Event p \equiv \neg(\neg p \Wait false)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitEntailment}
+p \Wait q \impl \Always p \lor \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitEntailAlways}
+(p \Wait q) \land \Always\neg q \impl \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitEntailEvent}
+(p \Wait q) \land \neg\Always p \impl \Event q
+\end{equation}
+
+[\textit{More theorems to be written.}]
 
 \end{document}
