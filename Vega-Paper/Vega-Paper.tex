@@ -9,8 +9,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-%\usepackage[student]{optional}
-\usepackage[doc]{optional}
+\usepackage[student]{optional}
+%\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -328,19 +328,19 @@ A model $\sigma$ is an infinite sequence of the form
 
 where $s_0$ is the initial state and each state $s_i, 0 \le i$ is the state at time $i$.
 For example, suppose $x$ is an integer variable whose value varies at each step of the computation.
-Then $x$ and the expression $x < 10$, known as a state expression, might evolve as follows.\\
+Then $x$ and the expression $x\ge 10$, known as a state expression, might evolve as follows.\\
 
 \begin{tabular}{c|ccccccc}
-  $\sigma$   & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
+  $\sigma$      & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
   \hline
-  $x$        & 8     & 9     & 10    & 11    & 12    & \dots\\
-  $x<10$     & T     & T     & F     & F     & F     & \dots
+  $x$           & 8     & 9     & 10    & 11    & 12    & \dots\\
+  $x\ge 10$     & F     & F     & T     & T     & T     & \dots
 \end{tabular}\\
 
 The bottom row shows the evaluation of the state expression for each state in the sequence.
 Temporal logic extends propositional logic by considering the evolution of expression evaluations in time.
 For example, if you assume that $x$ in the above sequence keeps increasing by one you can assert
-informally in English, ``For the sequence $\sigma$, eventually $x<10$ will always be false.''\\
+informally in English, ``For the sequence $\sigma$, eventually $x\ge 10$ will always be true.''\\
 
 The notation
 
@@ -354,12 +354,12 @@ In the above example,
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-  \> $(\sigma, 1) \models x<10$
+  \> $(\sigma, 3) \models x\ge 10$
 \end{tabbing}
 
 the symbol $\models$ means ``satisfies'', so the above expression is read as
-``State 1 of sequence $\sigma$ satisfies $x<10$''.
-Or, using ``holds'', the same expression is read as, ``$x<10$ holds in state 1 of sequence $\sigma$''.
+``State 3 of sequence $\sigma$ satisfies $x\ge 10$''.
+Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$''.
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
 \subsubsection*{The \textit{next} operator $\Next$}
@@ -598,17 +598,19 @@ So, $\Always p$ holds in state $s_j$ if $p$ holds in state $s_j$ and in all othe
 that is, if $p$ holds in the current state and in all other future states.
 For example, suppose $x$ evolves in the computation as follows.\\
 
-\begin{tabular}{c|cccccccc}
-  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & \dots \\
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$                      & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & \dots \\
   \hline
-  $x$                       & 1     & 2     & 3     & 4     & 5     & 6     & 7     &  \dots\\
-  $x \ge 4$                 & F     & F     & F     & T     & T     & T     & T     &  \dots\\
-  $\Always(x \ge 4)$        & F     & F     & F     & T     & T     & T     & T     &  \dots\\
+  $x$                           & 1     & 2     & 3     & 4     & 5     & 6     & 7     & 8     &  \dots\\
+  $x < 4 \lor x \ge 6$          & T     & T     & T     & F     & F     & T     & T     & T     &  \dots\\
+  $\Always(x < 4 \lor x \ge 6)$ & F     & F     & F     & F     & F     & T     & T     & T     &  \dots\\
 \end{tabular}\\
 
-The bottom row shows the evaluation of the expression $\Always p$ where $p\equiv x \ge 4$.
-In states $s_0$, $s_1$, and $s_2$, $\Always p$ is false because $p$ does not hold in those states.
-In states $s_3$, $s_4$, $s_5$, $s_6$, and subsequent states, $\Always p$ is true because $p$ holds in in those states
+The bottom row shows the evaluation of the expression $\Always p$ where $p\equiv x < 4 \lor x \ge 6$.
+In states $s_3$ and $s_4$, $\Always p$ is false because $p$ does not hold in those states.
+In states $s_0$, $s_1$, and $s_2$, $p$ is true. However, $\Always p$ is false in those states because $p$ does no hold
+in all future states.
+In states $s_5$, $s_6$, $s_7$, and subsequent states, $\Always p$ is true because $p$ holds in in those states
 and in all future states as well.\\
 
 If $\Always p$ is ever true in any state $s_i$ in a sequence $\sigma$, it must be true in all subsequent states $s_j$, $j\ge i$.
@@ -1064,7 +1066,7 @@ Axiom (\ref{E:untilIdemRAX}) supplies the proof in the second direction.
 This system has the following five additional absorption properties that do not seem to
 appear in the temporal logic literature.
 \begin{equation}\label{E:untilOrP}
-p \lor (p \Until q) \equiv p \lor q
+\textbf{Absorption:}\quad p \lor (p \Until q) \equiv p \lor q
 \end{equation}
 
 \emph{Proof:}
