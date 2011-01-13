@@ -9,8 +9,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-\usepackage[student]{optional}
-%\usepackage[doc]{optional}
+%\usepackage[student]{optional}
+\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -140,8 +140,9 @@ The previously-cited texts \cite{Cohen, LADM, Kald} are among the few that rely 
 More typical is Ben-Ari's book \cite{Ben}, which is based enitrely on natural deduction systems.\\
 
 Linear temporal logic describes how the truth values of propositions change over time.
-It extends the propositional operators with the unary operators next $\Next$, eventually $\Event$, and always $\Always$,
-and the binary operators until $\Until$ and wait $\Wait$.
+It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$,
+and \textit{always} $\Always$,
+and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
 Propositional calculus applies to program correctness with the formulation of the Hoare triple to establish invariants
 in programs that terminate.
 Temporal logic applies to program correctness with concurrent processing to establish safety and liveness properties
@@ -298,7 +299,7 @@ An example is a proof of (\ref{E:impEvent}) from Section 3.3, $p \impl \Event p$
   \> \>   $\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening $p\impl p\lor q$ with $q:=\Next\Event p$}\\[\lgap]
+  \> $\foll$  \>  \Hint{(3.76a) Weakening $p\impl p\lor q$ with $q:=\Next\Event p$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 
@@ -357,7 +358,7 @@ In the above example,
   \> $(\sigma, 3) \models x\ge 10$
 \end{tabbing}
 
-the symbol $\models$ means ``satisfies'', so the above expression is read as
+The symbol $\models$ means ``satisfies'', so the above expression is read as
 ``State 3 of sequence $\sigma$ satisfies $x\ge 10$''.
 Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$''.
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
@@ -711,7 +712,7 @@ The terms ``definition'' and ``axiom'' are synonymous.\\
 
 \subsection{Next}
 
-The following two axioms define the next operator $\Next$.
+The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
@@ -720,13 +721,13 @@ The following two axioms define the next operator $\Next$.
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
 
-Self duality states that $p$ not holding in the next state is equivalent to next $p$ not holding in the current state.
-Neither of the other unary temporal operators, eventually $\Event$ nor always $\Always$, are equivalent to their duals.
-The next operator describes the state fixed at one step into the future.
+Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
+Neither of the other unary temporal operators, \textit{eventually} $\Event$ nor \textit{always} $\Always$, are equivalent to their duals.
+The \textit{next} operator describes the state fixed at one step into the future.
 In contrast, $\Event$ and $\Always$ describe sequences of states arbitrarily far into the future.\\
 
-Distributivity states that $p$ implies $q$ in the next state is equivalent to next $p$ implies next $q$ in the current state.
-From this axiom, subsequent theorems prove that the next operator distributes over all the propositional binary operators.\\
+Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
+From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.\\
 
 Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
 \begin{equation}\label{E:linearity}
@@ -862,18 +863,18 @@ Exercise for the student.\\
 
 \subsection{Until}
 
-This system defines the until operator $\Until$ with the following ten axioms.
-The distributivity of next over until (\ref{E:distNextUntil}) implies the distributivity of next over wait as Section (3.5) shows.
-Thus next distributes over all binary operators, both propositional and temporal.\\
+This system defines the \textit{until} operator $\Until$ with the following ten axioms.
+The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section (3.5) shows.
+Thus \textit{next} distributes over all binary operators, both propositional and temporal.\\
 
-The until operator is unlike any propositional binary operator.
+The \textit{until} operator is unlike any propositional binary operator.
 Its right operand has an existential characteristic and its left operand has a universal characteristic.
 Expansion (\ref{E:expansionUntil}) states that
 $p\Until q$ is true iff $q$ is true in the current state, or $p$ is true in the current state and $p\Until q$ is
 true in the next state.
 Thus, $q$ relates to the definition through disjunction, which is existential,
 while $p$ relates through conjunction, which is universal.
-Consequently, the until operator is neither symmetric (\textit{i.e.} commutative) nor associative.
+Consequently, the \textit{until} operator is neither symmetric (\textit{i.e.} commutative) nor associative.
 Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one direction.
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
@@ -897,7 +898,7 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 \textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
-The following four axioms describe how the $\Until$ operator distributes over conjunction and disjunction.
+The following four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
 Because $\Until$ is not symmetric, this system requires separate axioms for left and right distributivity.
 \begin{equation}\label{E:untilOrImp}
 \textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
@@ -921,7 +922,7 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
 \end{equation}
 
-The following two axioms are necessary to prove both directions of the absorption laws for the $\Until$ operator.
+The following two axioms are necessary to prove both directions of the absorption laws for the \textit{until} operator.
 \begin{equation}\label{E:untilIdemAx}
 \textbf{Axiom:}\quad p \Until q \impl p \Until (p \Until q)
 \end{equation}
@@ -932,7 +933,7 @@ The following two axioms are necessary to prove both directions of the absorptio
 \textbf{Axiom:}\quad (p \Until q) \Until q \impl p \Until q
 \end{equation}
 
-Theorem (\ref{E:idemUntil}) shows that the $\Until$ operator is idempotent.
+Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
 Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
 axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
 Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
@@ -1023,8 +1024,23 @@ p \Until q \impl p \lor q
 Exercise for the student.\\
 }
 
-The following two theorems are the absorption laws of the $\Until$ operator.
-All systems have these two absorption theorems, because the $\Until$ operator is not associative.
+\begin{equation}\label{E:untilInsertion}
+\textbf{Insertion}\quad q \impl p \Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionUntil})} \\[\lgap]
+\> \> $q \lor (p \land \Next(p \Until q))$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \> $q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+The following two theorems are the absorption laws of the \textit{until} operator.
+All systems have these two absorption theorems, because the \textit{until} operator is not associative.
 Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
 This paper follows Schneider \cite{Schn}, which refers to them as absorption properties.
 \begin{equation}\label{E:untilIdem}
@@ -1256,7 +1272,7 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> \>   $\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
+  \> $\foll$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1266,17 +1282,15 @@ The following six theorems for $\Event$ are common to all temporal logic systems
 \textbf{Weakening of $\Event$:}\quad \Next p \impl \Event p
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} (Jason Parham)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $p \lor \Next (p \lor \Next\Event p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
-  \> \>   $p \lor \Next p \lor \Next\Next\Event p$\\[\lgap]
-  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $q := \Next p$}\\[\lgap]
+  \> \>   $p \Until \Next p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrQ}) Absorption with $q := \Next p$}\\[\lgap]
+  \> \>   $(p \Until \Next p) \lor \Next p$\\[\lgap]
+  \> $\foll$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $\Next p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2121,13 +2135,17 @@ Exercise for the student.\\
 
 \subsection{Wait}
 
+$p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually be true.
+$p\Wait q$ has no such guarantee.
+That is, if $q$ is eventually true then $p$ is true until that time.
+But, if $q$ is not eventually true then $p$ must be true always.
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv (p \Until q) \lor \Always p
 \end{equation}
 
-
+Expansion of the \textit{wait} operator (\ref{E:expansionWait}) mirrors expansion of the \textit{until} operator (\ref{E:expansionUntil}).
 \begin{equation}\label{E:expansionWait}
-p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\textbf{Expansion of $\Wait$}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
 
 \emph{Proof:}
@@ -2149,9 +2167,12 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{tabbing}
 \myqed\\[\lgap]
 
-
+Perpetuity for the \textit{wait} operator corresponds to Eventuality (\ref{E:eventuality})
+for the \textit{until} operator.
+The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
+the \textit{eventually} operator, which is existential, is in the consequent of the implication in Eventuality.
 \begin{equation}\label{E:alwaysImpWait}
-\Always p \Rightarrow p \Wait q
+\textbf{Perpetuity}\quad \Always p \Rightarrow p \Wait q
 \end{equation}
 
 \emph{Proof:}
@@ -2165,7 +2186,7 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{tabbing}
 \myqed\\[\lgap]
 
-
+The following theorem corresponds to the definition of the \textit{eventually} operator (\ref{E:defEvent}).
 \begin{equation}\label{E:alwaysAsWait}
 \Always p \equiv p \Wait false
 \end{equation}
@@ -2183,23 +2204,24 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{tabbing}
 \myqed\\[\lgap]
 
-
+Insertion for the \textit{wait} operator corresponds to
+Insertion for the \textit{until} operator (\ref{E:untilInsertion}).
 \begin{equation}\label{E:waitInsertion}
-q \impl p \Wait q
+\textbf{Insertion}\quad q \impl p \Wait q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
-\> \> $q$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
 \> \> $p \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
+\> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \> $q$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
-
+The following theorem for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator.
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
@@ -2216,24 +2238,8 @@ p \Wait q \impl p \lor q
 \myqed\\[\lgap]
 
 
-\begin{equation}\label{E:eventerWait}
-\Event p \equiv \neg(\neg p \Wait false)
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \kill
-\> \> $\neg(\neg p \Wait false)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:alwaysAsWait})} \\[\lgap]
-\> \> $\neg\Always\neg p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:eventAsAlways})} \\[\lgap]
-\> \> $\Event p$\\[\lgap]
-\end{tabbing}
-\myqed\\[\lgap]
-
-
 \begin{equation}\label{E:waitEntailment}
-p \Wait q \impl \Always p \lor \Event q
+p \Wait q \impl \Event q \lor \Always p
 \end{equation}
 
 \emph{Proof:}
@@ -2300,8 +2306,8 @@ p \Wait q \impl \Always p \lor \Event q
 
 This paper presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
-It takes unary operator next $\Next$ and binary operator until $\Until$ as primitives and defines
-eventually $\Event$, always $\Always$, and wait $\Wait$ in terms of them.\\
+It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
+\textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.\\
 
 Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} originally developed $\mathcal{E}$ as a logic system to prove
 program correctness based on an equational style.
