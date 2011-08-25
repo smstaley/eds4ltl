@@ -2302,6 +2302,42 @@ p \Wait q \impl \Event q \lor \Always p
 
 [\textit{More theorems to be written.}]
 
+\begin{equation}\label{E:waitAbsR}
+(p \Wait q) \Wait q \equiv p \Wait q
+\end{equation}
+
+\begin{equation}\label{E:waitAbsL}
+p \Wait (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\begin{equation}\label{E:waitImpAbsR}
+(p \Wait q) \Wait r \impl (p \lor q) \Wait r
+\end{equation}
+
+\begin{equation}\label{E:waitImpAbsL}
+p \Wait (q \Wait r) \impl (p \lor q) \Wait r
+\end{equation}
+
+\begin{equation}\label{E:waitNextDist}
+\Next (p \Wait q) \equiv \Next p \Wait \Next q <- Proof written, but not yet typeset
+\end{equation}
+
+\begin{equation}\label{E:waitOrdering}
+(\neg p \Wait q) \lor (\neg q \Wait p)
+\end{equation}
+
+\begin{equation}\label{E:waitOrderingTwo}
+((p \Wait q) \land (\neg q \Wait r)) \impl p \Wait r
+\end{equation}
+
+\begin{equation}\label{E:waitOrderingThree}
+p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\end{equation}
+
+
+
+
+
 \section{Conclusion}
 
 This paper presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
