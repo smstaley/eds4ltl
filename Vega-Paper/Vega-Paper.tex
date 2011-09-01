@@ -863,7 +863,7 @@ Exercise for the student.\\
 
 \subsection{Until}
 
-This system defines the \textit{until} operator $\Until$ with the following ten axioms.
+This system defines the \textit{until} operator $\Until$ with the following eight axioms.
 The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section (3.5) shows.
 Thus \textit{next} distributes over all binary operators, both propositional and temporal.\\
 
@@ -895,7 +895,7 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 \firstspacer
 
 \begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
+\textbf{Axiom, Partial associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 The following four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
@@ -2324,6 +2324,26 @@ p \Wait q \impl \Event q \lor \Always p
 \end{equation}
 [\textit{Not yet proved.}]
 
+\begin{equation}\label{E:leftWaitAbsUtil}
+\textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:rightWaitAbsUtil}
+\textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:leftUntilAbsWait}
+\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:rightUntilAbsWait}
+\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
@@ -2368,6 +2388,26 @@ p \Wait q \impl \Event q \lor \Always p
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 [\textit{Not yet proved.}]
+
+\begin{equation}\label{E:leftMonoWait}
+\textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
+\end{equation}
+[\textit{Not yet proved.}]
+
+\begin{equation}\label{E:rightMonoWait}
+\textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)
+\end{equation}
+[\textit{Not yet proved.}]
+
+\begin{equation}\label{E:notUntil}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:notWait}
+\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
 
 \section{Conclusion}
 
