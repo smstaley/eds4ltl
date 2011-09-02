@@ -2143,6 +2143,7 @@ $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually
 $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
+(Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv (p \Until q) \lor \Always p
 \end{equation}
@@ -2388,6 +2389,16 @@ p \Wait q \impl \Event q \lor \Always p
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 [\textit{Not yet proved.}]
+
+\begin{equation}\label{E:leftMonoUntil}
+\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:rightMonoUntil}
+\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
+\end{equation}
+[\textit{Conjectured theorem. Not yet proved.}]
 
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
