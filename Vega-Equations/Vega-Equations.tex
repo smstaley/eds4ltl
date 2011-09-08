@@ -282,19 +282,19 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \subsection*{Next $\quad\Next$}
 
 \begin{equation}\label{E:selfDual}
-\textbf{Axiom, Self-dual:}\quad \Next\lnot p \equiv \lnot\Next p
+\textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:distNextImp}
-\textbf{Axiom, Distributivity of $\Next$ over $\Rightarrow$:}\quad \Next (p \Rightarrow q) \equiv \Next p \Rightarrow \Next q
+\textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:linearity}
-\textbf{Linearity:}\quad \Next p \equiv \lnot\Next\lnot p
+\textbf{Linearity:}\quad \Next p \equiv \neg\Next\neg p
 \end{equation}
 
 \spacer
@@ -348,43 +348,31 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \spacer
 
 \begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilOrImp}
-\textbf{Axiom:}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilAndImp}
-\textbf{Axiom:}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilAndEquiv}
-\textbf{Axiom:}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
+\textbf{Axiom, Partial associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilOrEquiv}
-\textbf{Axiom:}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
+\textbf{Axiom, Left distributivity of $\Until$ over $\lor$ :}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:untilIdemAx}
-\textbf{Axiom:}\quad p \Until q \impl p \Until (p \Until q)
+\begin{equation}\label{E:untilOrImp}
+\textbf{Axiom, Right distributivity of $\Until$ over $\lor$ :}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:untilIdemRAX}
-\textbf{Axiom:}\quad (p \Until q) \Until q \impl p \Until q
+\begin{equation}\label{E:untilAndImp}
+\textbf{Axiom, Left distributivity of $\Until$ over $\land$ :}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
 \end{equation}
 
 \spacer
@@ -413,20 +401,14 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:untilIdem}
-\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilIdemR}
-\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
+\begin{equation}\label{E:untilInsertion}
+\textbf{Insertion:}\quad q \impl p \Until q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:untilOrP}
-p \lor (p \Until q) \equiv p \lor q
+\textbf{Absorption:}\quad p \lor (p \Until q) \equiv p \lor q
 \end{equation}
 
 \spacer
@@ -451,6 +433,18 @@ p \lor (p \Until q) \equiv p \lor q
 
 \begin{equation}\label{E:untilOrAnd}
 \textbf{Absorption:}\quad (p \Until q) \lor (p \land q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdem}
+\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
 \newpage
@@ -683,7 +677,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
@@ -725,6 +719,8 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
+\pagebreak
+
 \subsection*{Wait $\quad\Wait$}
 
 \begin{equation}\label{E:defWait}
@@ -734,13 +730,13 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \firstspacer
 
 \begin{equation}\label{E:expansionWait}
-p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpWait}
-\Always p \Rightarrow p \Wait q
+\textbf{Perpetuity:}\quad \Always p \Rightarrow p \Wait q
 \end{equation}
 
 \spacer
@@ -752,7 +748,7 @@ p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \spacer
 
 \begin{equation}\label{E:waitInsertion}
-q \impl p \Wait q
+\textbf{Insertion:}\quad q \impl p \Wait q
 \end{equation}
 
 \spacer
@@ -763,14 +759,8 @@ p \Wait q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:eventerWait}
-\Event p \equiv \neg(\neg p \Wait false)
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:waitEntailment}
-p \Wait q \impl \Always p \lor \Event q
+p \Wait q \impl \Event q \lor \Always p
 \end{equation}
 
 \spacer
@@ -785,6 +775,142 @@ p \Wait q \impl \Always p \lor \Event q
 (p \Wait q) \land \neg\Always p \impl \Event q
 \end{equation}
 
-[\textit{More theorems to be written.}]
+\spacer
+
+\begin{equation}\label{E:waitAbsL}
+\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAbsR}
+\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitImpAbsR}
+\textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitImpAbsL}
+\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftWaitAbsUtil}
+\textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitAbsUtil}
+\textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftUntilAbsWait}
+\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightUntilAbsWait}
+\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitNextDist}
+\textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:andWaitDist}
+\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land (q \Wait r) \impl (p \land q) \Wait (p \land r) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrDist}
+\textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv (p \Wait q) \lor (p \Wait r) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitOrDist}
+\textbf{Right distributivity of $\Wait$ over $\lor$:}\quad (p \Wait r) \lor (q \Wait r) \impl (p \lor q) \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftWaitAndDist}
+\textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl (p \Wait q) \land (p \Wait r) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitAndDist}
+\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv (p \Wait r) \land (q \Wait r) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrdering}
+\textbf{Ordering:}\quad (\neg p \Wait q) \lor (\neg q \Wait p) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrderingTwo}
+\textbf{Ordering:}\quad ((p \Wait q) \land (\neg q \Wait r)) \impl p \Wait r \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrderingThree}
+\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftMonoUntil}
+\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r) \quad [\textit{Conj theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightMonoUntil}
+\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q) \quad [\textit{Conj theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftMonoWait}
+\textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightMonoWait}
+\textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q) \quad [\textit{Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:notUntil}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q) \quad [\textit{Conj theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:notWait}
+\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q) \quad [\textit{Conj theorem. Not yet proved.}]
+\end{equation}
 
 \end{document}
