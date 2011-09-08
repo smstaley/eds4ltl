@@ -1014,7 +1014,7 @@ Exercise for the student.\\
 }
 
 \begin{equation}\label{E:untilInsertion}
-\textbf{Insertion}\quad q \impl p \Until q
+\textbf{Insertion:}\quad q \impl p \Until q
 \end{equation}
 
 \emph{Proof:}
@@ -2150,7 +2150,7 @@ But, if $q$ is not eventually true then $p$ must be true always.
 
 Expansion of the \textit{wait} operator (\ref{E:expansionWait}) mirrors expansion of the \textit{until} operator (\ref{E:expansionUntil}).
 \begin{equation}\label{E:expansionWait}
-\textbf{Expansion of $\Wait$}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
 
 \emph{Proof:}
@@ -2177,7 +2177,7 @@ for the \textit{until} operator.
 The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
 the \textit{eventually} operator, which is existential, is in the consequent of the implication in Eventuality.
 \begin{equation}\label{E:alwaysImpWait}
-\textbf{Perpetuity}\quad \Always p \Rightarrow p \Wait q
+\textbf{Perpetuity:}\quad \Always p \Rightarrow p \Wait q
 \end{equation}
 
 \emph{Proof:}
@@ -2212,7 +2212,7 @@ The following theorem corresponds to the definition of the \textit{eventually} o
 Insertion for the \textit{wait} operator corresponds to
 Insertion for the \textit{until} operator (\ref{E:untilInsertion}).
 \begin{equation}\label{E:waitInsertion}
-\textbf{Insertion}\quad q \impl p \Wait q
+\textbf{Insertion:}\quad q \impl p \Wait q
 \end{equation}
 
 \emph{Proof:}
