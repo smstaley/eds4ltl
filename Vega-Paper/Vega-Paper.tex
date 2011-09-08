@@ -2363,7 +2363,21 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{equation}\label{E:rightWaitOrDist}
 \textbf{Right distributivity of $\Wait$ over $\lor$:}\quad (p \Wait r) \lor (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
-[\textit{Proved, but not yet typeset.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $(p \Wait r) \lor (q \Wait r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> \> $(p \Until r) \lor (q \Until r) \lor \Always p \lor \Always q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:distAlwaysOr}) and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> \> $(p \Until r) \lor (q \Until r) \lor \Always (p \lor q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilOrImp}) and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> \> $((p \lor q) \Until r) \lor \Always (p \lor q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> \> $(p \lor q) \Wait r$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl (p \Wait q) \land (p \Wait r)
