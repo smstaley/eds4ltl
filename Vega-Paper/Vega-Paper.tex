@@ -2348,7 +2348,21 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
-[\textit{Proved, but not yet typeset.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $\Next (p \Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> \> $\Next((p\Until q)\lor \Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextOr})} \\[\lgap]
+\> \> $\Next(p\Until q)\lor \Next \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextUntil}) and (\ref{E:dNextAlways})} \\[\lgap]
+\> \> $\Next p\Until \Next q\lor \Always \Next p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) with $p,q := \Next p, \Next q$} \\[\lgap]
+\> \> $\Next p \Wait \Next q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land (q \Wait r) \impl (p \land q) \Wait (p \land r)
