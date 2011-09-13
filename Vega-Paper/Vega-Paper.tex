@@ -2372,7 +2372,21 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv (p \Wait q) \lor (p \Wait r)
 \end{equation}
-[\textit{Not yet proved.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait (q \lor r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $(p \Until (q \lor r)) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $(p \Until q) \lor (p \Until r) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $(p \Until q) \lor (p \Until r) \lor \Always p \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+\> \> $(p \Wait q) \lor (p \Wait r)$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:rightWaitOrDist}
 \textbf{Right distributivity of $\Wait$ over $\lor$:}\quad (p \Wait r) \lor (q \Wait r) \impl (p \lor q) \Wait r
