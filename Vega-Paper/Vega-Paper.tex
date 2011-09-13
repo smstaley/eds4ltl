@@ -771,15 +771,15 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Next (\neg\neg p \land \neg\neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Next\neg(\neg p \lor \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:selfDual}) with $p:= (\neg p \lor \neg q$)}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual with $p:= (\neg p \lor \neg q$)}\\[\lgap]
   \> \>   $\neg\Next (\neg p \lor \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \neg p, \neg q$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$ with $p,q := \neg p, \neg q$}\\[\lgap]
   \> \>   $\neg (\Next\neg p \lor \Next \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:selfDual}) twice}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual twice}\\[\lgap]
   \> \>   $\neg(\neg\Next p \lor \neg\Next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\neg(\Next p \land \Next q)$\\[\lgap]
@@ -797,7 +797,7 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next (p \equiv q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual Implication $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
   \> \>   $\Next ((p \impl q) \land (q \impl p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
   \> \>   $\Next (p \impl q) \land \Next (p \impl q)$\\[\lgap]
@@ -1021,7 +1021,7 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $p \Until q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionUntil})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$} \\[\lgap]
 \> \> $q \lor (p \land \Next(p \Until q))$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$\\[\lgap]
@@ -1126,7 +1126,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $p \Until (p \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
   \> \>   $(p \Until p) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $p \Until q$
@@ -1153,7 +1153,7 @@ The proof in the first direction follows.
   \> \>   $p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $p \Until (q \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
   \> \>   $(p \Until q) \Until q$
 \end{tabbing}
 
@@ -1186,7 +1186,7 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
   \> \>   $p \Until q$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \>   $(p \Until q) \lor (true \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilOrImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$}\\[\lgap]
   \> \>   $(p \lor true) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true \Until q$\\[\lgap]
@@ -1228,7 +1228,7 @@ Exercise for the student.\\
   \> \>   $\Event false$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until false$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilFalse})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
   \> \>   $false$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1313,7 +1313,7 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> \>   $true \Until \Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until (true \Until p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilIdem}) with $p,q := true,p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$ with $p,q := true,p$}\\[\lgap]
   \> \>   $true \Until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event p$
@@ -1337,7 +1337,7 @@ Exercise for the student.\\
   \> \>   $\Next(true \Until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
   \> \>   $\Next true \Until \Next p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:nextTruth})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth}\\[\lgap]
   \> \>   $true \Until \Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event\Next p$
@@ -1356,7 +1356,7 @@ Exercise for the student.\\
   \> \>   $\Event(p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
   \> \>   $(true \Until p) \lor (true \Until q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
   \> \>   $\Event p \lor \Event q$
@@ -1378,7 +1378,7 @@ Exercise for the student.\\
   \> \>   $\Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
   \> \>   $(true \Until p) \land (true \Until q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
   \> \>   $\Event p \land \Event q$
@@ -1444,7 +1444,7 @@ are mutually dual.
   \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Always p, \Event\neg p$}\\[\lgap]
   \> \>   $\Always p \equiv \neg\Event\neg p$
 \end{tabbing}
-which is (\ref{E:defAlways}). \myqed\\[\lgap]
+which is (\ref{E:defAlways}) Definition of $\Always$. \myqed\\[\lgap]
 
 \begin{equation}\label{E:dualEvent}
 \textbf{Dual of $\Event$:}\quad \neg\Event p \equiv \Always\neg p
@@ -1576,7 +1576,7 @@ Exercise for the student.\\
   \> \>   $\Next\neg\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
   \> \>   $\neg\Next\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dNextEvent}) with $p := \neg p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dNextEvent}) Exchange of $\Next$ and $\Event$ with $p := \neg p$}\\[\lgap]
   \> \>   $\neg\Event\Next\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
   \> \>   $\neg\Event\neg\Next p$\\[\lgap]
@@ -1674,7 +1674,7 @@ Exercise for the student.\\
   \> \>   $\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $p \land \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dNextAlways})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
   \> \>   $p \land \Always\Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$ with $p := \Next p$}\\[\lgap]
   \> \>   $p \land \Next p \land \Next\Always\Next p$\\[\lgap]
@@ -1914,7 +1914,7 @@ The proof in the first direction follows.
   \> \>   $\Always\Event(p \lor q)$\\[\lgap]
 \end{tabbing}
 
-Axiom (\ref{E:distAlwaysEventOrAx}) supplies the proof in the second direction.
+Axiom (\ref{E:distAlwaysEventOrAx}) Distributivity of $\Always\Event$ over $\lor$ supplies the proof in the second direction.
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:distEventAlwaysAnd}
@@ -1932,7 +1932,7 @@ The proof in the first direction follows.
   \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
 \end{tabbing}
 
-Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
+Axiom (\ref{E:distEventAlwaysAndAx}) Distributivity of $\Event\Always$ over $\land$ supplies the proof in the second direction.
 \myqed\\[\lgap]
 
 Theorem (\ref{E:eventAlwaysImp}) states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not vice versa.
@@ -2034,7 +2034,7 @@ operators are monotonic.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Always (p \impl q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $\Next (p \impl q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
   \> \>   $\Next p \impl \Next q$
@@ -2202,7 +2202,7 @@ The following theorem corresponds to the definition of the \textit{eventually} o
 \> \> $p \Wait false$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \Until false) \lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilFalse})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFalse}) Right zero of $\Until$} \\[\lgap]
 \> \> $false \lor \Always p$\\[\lgap]
 \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p$\\[\lgap]
@@ -2219,7 +2219,7 @@ Insertion for the \textit{until} operator (\ref{E:untilInsertion}).
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
 \> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$\\[\lgap]
@@ -2235,7 +2235,7 @@ p \Wait q \impl p \lor q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
 \> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$\\[\lgap]
@@ -2251,7 +2251,7 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \Until q) \lor \Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
 \> \> $\Event q \lor \Always p$\\[\lgap]
@@ -2271,7 +2271,7 @@ p \Wait q \impl \Event q \lor \Always p
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
 \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \Always\neg q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:dualEvent})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:dualEvent}) Dual of $\Event$} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \neg\Event q)$\\[\lgap]
 \> $=$ \> \Hint{(3.42) Contradiction, $p \land \neg p \equiv false$} \\[\lgap]
 \> \> $(\Always p \land \Always\neg q) \lor false$\\[\lgap]
@@ -2353,11 +2353,11 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $\Next (p \Wait q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $\Next((p\Until q)\lor \Always p)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:distNextOr})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
 \> \> $\Next(p\Until q)\lor \Next \Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:distNextUntil}) and (\ref{E:dNextAlways})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$ and (\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$} \\[\lgap]
 \> \> $\Next p\Until \Next q\lor \Always \Next p$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) with $p,q := \Next p, \Next q$} \\[\lgap]
 \> \> $\Next p \Wait \Next q$\\[\lgap]
@@ -2382,11 +2382,11 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 \> \> $(p \Wait r) \lor (q \Wait r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \Until r) \lor (q \Until r) \lor \Always p \lor \Always q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:distAlwaysOr}) and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
 \> \> $(p \Until r) \lor (q \Until r) \lor \Always (p \lor q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilOrImp}) and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $((p \lor q) \Until r) \lor \Always (p \lor q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
 \> \> $(p \lor q) \Wait r$\\[\lgap]
