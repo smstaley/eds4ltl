@@ -2402,7 +2402,7 @@ p \Wait q \impl \Event q \lor \Always p
 \> \> $(p \Until r) \lor (q \Until r) \lor \Always (p \lor q)$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $((p \lor q) \Until r) \lor \Always (p \lor q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \lor q) \Wait r$\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2410,7 +2410,21 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl (p \Wait q) \land (p \Wait r)
 \end{equation}
-[\textit{Not yet proved.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait (q \land r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $(p \Until (q \land r)) \lor \Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \> $((p \Until q) \land (p \Until r)) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$} \\[\lgap]
+\> \> $((p \Until q) \lor \Always p) \land ((p \Until r) \lor \Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+\> \> $(p \Wait q) \land (p \Wait r)$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:rightWaitAndDist}
 \textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv (p \Wait r) \land (q \Wait r)
