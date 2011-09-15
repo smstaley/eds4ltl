@@ -2328,12 +2328,54 @@ p \Wait q \impl \Event q \lor \Always p
 \begin{equation}\label{E:leftWaitAbsUtil}
 \textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $(p \Until (p \Until q)) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$} \\[\lgap]
+\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:rightWaitAbsUtil}
 \textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]
+
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $(p \Until q) \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $((p \Until q) \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
+\> \> $(p \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \> $(p \Until q) \lor (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $p \Until q$\\[\lgap]
+\end{tabbing}
+
+The second direction follows.
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Until q$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76a) Weakening, $p \impl p \lor q$} \\[\lgap]
+\> \> $(p \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
+\> \> $((p \Until q) \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $(p \Until q) \Wait q$\\[\lgap]
+\end{tabbing}
+
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:leftUntilAbsWait}
 \textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
