@@ -304,7 +304,8 @@ An example is a proof of (\ref{E:impEvent}) from Section 3.3, $p \impl \Event p$
 \end{tabbing}
 
 Because $\Event p$ equivales $p \lor \Next\Event p$, and $p \lor \Next\Event p$ follows from $p$, it follows by
-transitivity that $\Event p$ follows from $p$. 
+transitivity that $\Event p$ follows from $p$.
+In a proof hint, numeric references that contain a decimal point, such as (3.76a) above, refer to a theorem in $\mathcal{E}$ from Gries and Schneider \cite{LADM}.
 
 \subsection{Temporal Logic}
 
@@ -429,9 +430,11 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr j\le i < j \rb (\sigma,i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$j\le i < j \equiv false$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr false \rb (\sigma,i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{Empty range rule $(\star x \dr false \rb P) =u$ with $true$ the identity of $\land$}\\[\lgap]
+	\> $=$  \>  \Hint{(8.13) Empty range rule $(\star x \dr false \rb P) =u$ with $true$ the identity of $\land$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land true$)\\[\lgap]
-	\> $=$  \>  \Hint{Identity of $\land$ and one-point rule $(\star x\dr x=E\rb P) = P[x:=E]$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q$)\\[\lgap]
+	\> $=$  \>  \Hint{(8.14) One-point rule $(\star x\dr x=E\rb P) = P[x:=E]$}\\[\lgap]
 	\> \>   $((\sigma,k) \models q)[k := j]$\\[\lgap]
 	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
 	\> \>   $(\sigma,j) \models q$\\[\lgap]
@@ -440,10 +443,10 @@ $q$ holds in state $s_j$ and $k=j$.
 \end{tabbing}
 
 This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in the next section.
-$true$ is the right zero of the until operator.\\
+$true$ is the right zero of the \textit{until} operator.\\
 
 \opt{doc}{
-The until operator $\Until$ is not associative as shown by the following sequence.\\
+The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\
 
 \begin{tabular}{c|cccccccc}
   $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
@@ -575,9 +578,9 @@ Namely, $true \Until q$ is equivalent to $\Event q$ as follows.
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
 	\> $=$  \>  \Hint{$true$ holds in all states}\\[\lgap]
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb true))$\\[\lgap]
-	\> $=$  \>  \Hint{Theorem (9.8) from \cite{LADM}, $(\all x\dr R\rb true)\equiv true$}\\[\lgap]
+	\> $=$  \>  \Hint{(9.8) $(\all x\dr R\rb true)\equiv true$}\\[\lgap]
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land true)$\\[\lgap]
-	\> $=$  \>  \Hint{Identity of $\land$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q)$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
 	\> \>   $(\sigma, j) \models \Event q$
@@ -631,7 +634,7 @@ The bottom two rows show the evaluation of the expressions $\Always p$ and $\Alw
 assuming that $p$ remains true indefinitely and $q$ continues to switch between true and false indefinitely.\\
 
 $\Event p$ is an existential operator, while $\Always p$ is a universal operator.
-They are related through the generalized De Morgan theorem \cite{LADM} $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$
+They are related through the generalized De Morgan theorem $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$
 as follows.
 
 \begin{tabbing}
@@ -639,7 +642,7 @@ as follows.
 	\> \>   $(\sigma, j) \models \Always p$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Always p$}\\[\lgap]
 	\> \>   $(\all k \dr k \ge j \rb (\sigma,k) \models p)$\\[\lgap]
-	\> $=$  \>  \Hint{Generalized De Morgan $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$}\\[\lgap]
+	\> $=$  \>  \Hint{(9.18a) Generalized De Morgan $\neg (\ext x\dr R\rb \neg P)\equiv (\all x\dr R\rb P)$}\\[\lgap]
 	\> \>   $\neg (\ext k \dr k \ge j \rb \neg((\sigma,k) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
 	\> \>   $\neg (\ext k \dr k \ge j \rb (\sigma,k) \models \neg p)$\\[\lgap]
@@ -669,6 +672,38 @@ The corresponding rules for the binary operators are
   \> $((\sigma, j) \models p) \;\impl\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p \impl q$\\
   \> $((\sigma, j) \models p) \;\equiv\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p \equiv q$
 \end{tabbing}
+
+One relationship between the \textit{until} and \textit{always} operators that does not seem to appear in the linear temporal
+logic literature is the equivalence between $p\Until \Always p$ and $\Always p$.
+Here is a demonstration of this equivalence.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+	\> \>   $(\sigma, j) \models p \Until \Always p$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma, k) \models \Always p \land (\all i \dr  j \le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\all i \dr i \ge k \rb (\sigma, i) \models p) \land (\all i \dr  j \le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{(8.18) Range split $(\star x \dr R \lor S \rb P) = (\star x \dr R \rb P) \star (\star x \dr S \rb P)$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\all i \dr k \le i \lor j \le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{$k \le i \lor j \le i < k \equiv j \le i$ for $k \ge j$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\all i \dr i \ge j \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hintfirst{(8.19) Interchange of dummies $(\star x\dr R\rb (\star y\dr Q\rb P)) = (\star y\dr Q\rb (\star x\dr R\rb P))$
+	}\\[\lgap]
+	\>      \>  \Hintlast{as $\neg occurs(\Lq i\Rq ,\Lq k \ge j\Rq)$, $\neg occurs(\Lq k\Rq ,\Lq i \ge j\Rq)$}\\[\lgap]
+	\> \>   $(\all i \dr i \ge j \rb (\ext k \dr k \ge j \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{(9.22) $(\ext x \dr R \rb P) = P \land (\ext x \dr true \rb R)$ as $\neg occurs(\Lq k\Rq ,\Lq (\sigma, i) \models p\Rq)$}\\[\lgap]
+	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p \land (\ext k \dr true \rb k \ge j))$\\[\lgap]
+	\> $=$  \>  \Hint{$(\ext k \dr true \rb k \ge j) \equiv true$ as no integer $j$ can be greater than all other integers}\\[\lgap]
+	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p \land true)$\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
+	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
+	\> \>   $(\sigma, j) \models \Always p$\\[\lgap]
+\end{tabbing}
+
+This relationship is one of the defining axioms (??) $p\Until \Always p \equiv \Always p$ for the \textit{always} operator $\Always$
+assumed in the next section. 
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
