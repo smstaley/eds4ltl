@@ -529,6 +529,12 @@ p \Until q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:axAbsorpUntil}
+\textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -775,18 +781,6 @@ p \Wait q \impl \Event q \lor \Always p
 
 \spacer
 
-\begin{equation}\label{E:waitAbsL}
-\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:waitAbsR}
-\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r \quad [\textit{Not yet proved.}]
 \end{equation}
@@ -812,13 +806,25 @@ p \Wait q \impl \Event q \lor \Always p
 \spacer
 
 \begin{equation}\label{E:leftUntilAbsWait}
-\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:rightUntilAbsWait}
 \textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q \quad [\textit{Conjectured theorem. Not yet proved.}]
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAbsL}
+\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAbsR}
+\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \spacer
