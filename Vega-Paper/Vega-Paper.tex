@@ -702,7 +702,7 @@ Here is a demonstration of this equivalence.
 	\> \>   $(\sigma, j) \models \Always p$\\[\lgap]
 \end{tabbing}
 
-This relationship is one of the defining axioms (??) $p\Until \Always p \equiv \Always p$ for the \textit{always} operator $\Always$
+This relationship is one of the defining axioms (\ref{E:axAbsorpUntil}) $p\Until \Always p \equiv \Always p$ for the \textit{always} operator $\Always$
 assumed in the next section. 
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
@@ -1379,7 +1379,6 @@ Exercise for the student.\\
 \end{tabbing}
 \myqed\\[\lgap]
 
-
 \begin{equation}\label{E:distEventOr}
 \textbf{Distributivity of $\Event$ over $\lor$:}\quad \Event(p \lor q) \equiv \Event p \lor \Event q
 \end{equation}
@@ -1434,11 +1433,16 @@ The following induction axiom is included in other temporal logic systems but is
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
-The following two axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
+The absorption axiom is required to prove the absorption properties of $\Until$ and $\Wait$,
+and the distributivity axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
+The absorption axiom is apparently unique to this system.
+\begin{equation}\label{E:axAbsorpUntil}
+\textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
-
 \begin{equation}\label{E:distEventAlwaysAndAx}
 \textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
@@ -2340,16 +2344,6 @@ p \Wait q \impl \Event q \lor \Always p
 \myqed\\[\lgap]
 
 
-\begin{equation}\label{E:waitAbsL}
-\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
-\end{equation}
-[\textit{Not yet proved.}]
-
-\begin{equation}\label{E:waitAbsR}
-\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
-\end{equation}
-[\textit{Not yet proved.}]
-
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
@@ -2409,18 +2403,59 @@ The second direction follows.
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \Until q) \Wait q$\\[\lgap]
 \end{tabbing}
-
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:leftUntilAbsWait}
 \textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Until (p \Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Until ((p \Until q) \lor \Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $(p \Until (p \Until q)) \lor (p \Until \Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$} \\[\lgap]
+\> \> $(p \Until q) \lor (p \Until \Always p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:axAbsorpUntil}) Absorption} \\[\lgap]
+\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
 
 \begin{equation}\label{E:rightUntilAbsWait}
 \textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
 \end{equation}
 [\textit{Conjectured theorem. Not yet proved.}]
+
+\begin{equation}\label{E:waitAbsL}
+\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+\> \> $p \Wait (p \Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Until (p \Wait q) \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:leftUntilAbsWait}) Absorption} \\[\lgap]
+\> \> $p \Wait q \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q \lor \Always p \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$ with $p := \Always p$} \\[\lgap]
+\> \> $p \Wait q \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$\\[\lgap]
+\end{tabbing}
+\myqed\\[\lgap]
+
+\begin{equation}\label{E:waitAbsR}
+\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
+\end{equation}
+[\textit{Not yet proved.}]
 
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
