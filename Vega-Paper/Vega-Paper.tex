@@ -881,7 +881,7 @@ Theorem (\ref{E:nextTruth}) shows that all propositional logic theorems hold at 
 and, by induction, hold at all states.
 
 \begin{equation}\label{E:nextTruth}
-\textbf{Truth:}\quad \Next true \equiv true
+\textbf{Truth of $\Next$:}\quad \Next true \equiv true
 \end{equation}
 
 \emph{Proof:}
@@ -900,7 +900,7 @@ and, by induction, hold at all states.
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:nextFalse}
-\textbf{Falsehood:}\quad \Next false \equiv false
+\textbf{Falsehood of $\Next$:}\quad \Next false \equiv false
 \end{equation}
 
 \emph{Proof:}
@@ -915,7 +915,7 @@ and, by induction, hold at all states.
   \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
   \> \>   $\Next true \equiv true$
 \end{tabbing}
-which is (\ref{E:nextTruth}). \myqed\\[\lgap]
+which is (\ref{E:nextTruth}) Truth of $\Next$. \myqed\\[\lgap]
 }
 
 \opt{student}{
@@ -1256,9 +1256,9 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \end{tabbing}
 \myqed\\[\lgap]
 
-Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood, are unique to this system.
+Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\Event$, are unique to this system.
 \begin{equation}\label{E:eventTrue}
-\textbf{Truth:}\quad \Event true \equiv true
+\textbf{Truth of $\Event$:}\quad \Event true \equiv true
 \end{equation}
 
 \emph{Proof:}
@@ -1279,7 +1279,7 @@ Exercise for the student.\\
 }
 
 \begin{equation}\label{E:eventFalse}
-\textbf{Falsehood:}\quad \Event false \equiv false
+\textbf{Falsehood of $\Event$:}\quad \Event false \equiv false
 \end{equation}
 
 \emph{Proof:}
@@ -1398,7 +1398,7 @@ Exercise for the student.\\
   \> \>   $\Next(true \Until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
   \> \>   $\Next true \Until \Next p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
   \> \>   $true \Until \Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event\Next p$
@@ -1527,9 +1527,9 @@ which is (\ref{E:defAlways}) Definition of $\Always$. \myqed\\[\lgap]
 \end{tabbing}
 \myqed\\[\lgap]
 
-Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood, are unique to this system.
+Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of $\Always$, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
-\textbf{Truth:}\quad \Always true \equiv true
+\textbf{Truth of $\Always$:}\quad \Always true \equiv true
 \end{equation}
 
 \emph{Proof:}
@@ -1540,7 +1540,7 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood, ar
   \> \>   $\neg\Event\neg true$\\[\lgap]
   \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$}\\[\lgap]
   \> \>   $\neg\Event false$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:eventFalse}) Falsehood}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventFalse}) Falsehood of $\Event$}\\[\lgap]
   \> \>   $\neg false$\\[\lgap]
   \> $=$  \>  \Hint{(3.13) Negation of $false$, $\neg false\equiv true$}\\[\lgap]
   \> \>   $true$
@@ -1548,7 +1548,7 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood, ar
 \myqed\\[\lgap]
 
 \begin{equation}\label{E:alwaysFalse}
-\textbf{Falsehood:}\quad \Always false \equiv false
+\textbf{Falsehood of $\Always$:}\quad \Always false \equiv false
 \end{equation}
 
 \emph{Proof:}
@@ -1563,7 +1563,7 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood, ar
   \> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
   \> \>   $\Event true \equiv true$
 \end{tabbing}
-which is (\ref{E:eventTrue}) Truth. \myqed\\[\lgap]
+which is (\ref{E:eventTrue}) Truth of $\Event$. \myqed\\[\lgap]
 }
 
 \opt{student}{
@@ -2021,9 +2021,9 @@ That is, $\Always\Event p$ does not guarantee that eventually $p$ will always ho
   \> \>   $\Always\Event(\neg p \lor p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
   \> \>   $\Always\Event true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth of $\Event$}\\[\lgap]
   \> \>   $\Always true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
   \> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -2617,20 +2617,47 @@ The second direction follows.
 
 \section{Conclusion}
 
-This paper presents an axiomatic deductive system of temporal logic whose theorems are proved with the equational
+This paper presents an axiomatic deductive system of linear temporal logic whose theorems are proved with the equational
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
-\textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.\\
+\textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
+It presents 22 new linear temporal logic theorems, namely the two axioms
+(\ref{E:untilAssocImp}) Partial associativity of $\Until$,
+(\ref{E:axAbsorpUntil}) Absorption, and the 20 theorems
+(\ref{E:nextTruth}) Truth of $\Next$,
+(\ref{E:nextFalse}) Falsehood of $\Next$,
+(\ref{E:untilFalse}),
+(\ref{E:zeroUntil}),
+(\ref{E:leftIdUntil}),
+(\ref{E:untilOrP}) Absorption,
+(\ref{E:untilOrQ}) Absorption,
+(\ref{E:untilAndQ}) Absorption,
+(\ref{E:untilAndOr}) Absorption,
+(\ref{E:untilOrAnd}) Absorption,
+(\ref{E:eventTrue}) Truth of $\Event$,
+(\ref{E:eventFalse}) Falsehood of $\Event$,
+(\ref{E:alwaysTrue}) Truth of $\Always$,
+(\ref{E:alwaysFalse}) Falsehood of $\Always$,
+(\ref{E:impNext}),
+(\ref{E:rightUntilAbsWait}) Absorption,
+(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
+(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,
+(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$,
+(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$.\\
 
 Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} originally developed $\mathcal{E}$ as a logic system to prove
 program correctness based on an equational style.
 Gries and Schneider extend that system to a theory of sets, a theory of sequences,
 relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
-Similarly, this system extends $\mathcal{E}$ to a theory of temporal logic.\\
+Similarly, this system extends $\mathcal{E}$ to a theory of linear temporal logic.\\
 
-The equational system $\mathcal{E}$ has several advantages over other logic systems.
+The equational deductive system $\mathcal{E}$ has several advantages over other logic systems.
 The primary advantage is that the equational system has only one proof rule, Leibniz.
-Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system. 
+Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system.
+Neither of the authors, the first of whom was an undergraduate student when most of this work was done,
+has formal training in linear temporal systems.
+In our judgement, the progress we were able to make in exploring the structure of linear temporal systems
+is directly attributable to our training in the equational deductive system $\mathcal{E}$.
 We believe the advantages of $\mathcal{E}$ over other logic systems is so substantial that it should be the
 tool of choice for computer science theory.
 We hope that this extension of $\mathcal{E}$ to linear temporal logic will not only be of use in the
