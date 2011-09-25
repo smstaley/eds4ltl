@@ -290,9 +290,36 @@ and $\neg q$ for $q$ in (\ref{E:distNextOr}) as follows
       \Next (\neg p \lor \neg q) \equiv \Next \neg p \lor \Next \neg q$
 \end{tabbing}
 
-Gries and Schneider \cite{LADM} extend the proof format to incorporate implication using its transitive properties
+The proof of a theorem consists of showing the equivalence of that theorem to a previously proved theorem
+through a sequence of the proof steps.
+For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \neg\Next\neg p$ from Section 3.1.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $\Next p \equiv \neg\Next\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Next\neg p, \Next p$} \\[\lgap]
+  \> \>   $\neg\Next p \equiv \Next\neg p$
+\end{tabbing}
+which is (\ref{E:selfDual}), Self-dual.
+In a proof hint, numeric references that contain a decimal point, such as (3.11) above, refer to a theorem in $\mathcal{E}$ from Gries and Schneider \cite{LADM}.\\
+
+The proof format is extended to the case where the theorem to be proved is of the form $P \equiv Q$.
+For theorems of this form, the proof may begin with the left hand side and show equivalence to the right hand side
+through a sequence of proof steps.
+For example, here is a proof of (\ref{E:idemUntil}) $p \Until p \equiv p$ from Section 3.2.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \kill
+  \> \>   $p \Until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $p \lor (p \land \Next(p \Until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
+  \> \>   $p$
+\end{tabbing}
+
+Gries and Schneider \cite{LADM} also extend the proof format to incorporate implication using its transitive properties
 with itself and with equivales.
-An example is a proof of (\ref{E:impEvent}) from Section 3.3, $p \impl \Event p$.
+An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ from Section 3.3.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -305,7 +332,6 @@ An example is a proof of (\ref{E:impEvent}) from Section 3.3, $p \impl \Event p$
 
 Because $\Event p$ equivales $p \lor \Next\Event p$, and $p \lor \Next\Event p$ follows from $p$, it follows by
 transitivity that $\Event p$ follows from $p$.
-In a proof hint, numeric references that contain a decimal point, such as (3.76a) above, refer to a theorem in $\mathcal{E}$ from Gries and Schneider \cite{LADM}.
 
 \subsection{Temporal Logic}
 
@@ -366,7 +392,7 @@ The following sections use $\models$ to formalize the interpretation of each tem
 
 \subsubsection*{The \textit{next} operator $\Next$}
 
-The semantics of the unary prefix operator $\Next$ is
+The semantics of the unary prefix operator $\Next$ are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -386,7 +412,7 @@ In other words,
 
 \subsubsection*{The \textit{until} operator $\Until$}
 
-The semantics of the binary infix operator $\Until$ is
+The semantics of the binary infix operator $\Until$ are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -442,7 +468,7 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> \>   $true$
 \end{tabbing}
 
-This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in the next section.
+This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in Section 3.2.
 $true$ is the right zero of the \textit{until} operator.\\
 
 \opt{doc}{
@@ -466,9 +492,9 @@ Expanding $p\Until (q\Until r)$,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
 	\> \>   $(\sigma,j) \models p\Until (q\Until r)$\\[\lgap]
-	\> $=$  \>  \Hint{Definition of $\Until$}\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
 	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models (q \Until r) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{Definition of $\Until$}\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
 	\> \>   $(\ext k \dr k\ge j \rb (\ext n \dr n\ge k \rb (\sigma,n)\models r \land (\all m \dr k\le m < n \rb (\sigma,m)\models q))$\\[\lgap]
 	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$
 \end{tabbing}
@@ -504,7 +530,7 @@ $(p\Until q)$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$,
 From Case 1 and Case 2, $(p\Until q)$ holds at $(\sigma,i)$ for $j\le i<n$.
 Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively, which completes the proof.
 This theorem does not seem to appear in the linear temporal logic literature.
-It is the basis of axiom (\ref{E:untilAssocImp}) $p \Until (q \Until r) \impl (p \Until q) \Until r$ assumed in the next section.
+It is the basis of axiom (\ref{E:untilAssocImp}) $p \Until (q \Until r) \impl (p \Until q) \Until r$ assumed in Section 3.2.
 }
 
 \opt{student}{
@@ -524,12 +550,12 @@ It is the basis of axiom (\ref{E:untilAssocImp}) $p \Until (q \Until r) \impl (p
   $(p\Until q)\Until r$     &       &       &       &       &       &  \dots\\
 \end{tabular}\\
 
-From the table, do you believe the until operator $\Until$ is associative?
+From the table, do you believe the \textit{until} operator $\Until$ is associative?
 
 }
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
-The semantics of the unary prefix operator $\Event$ is
+The semantics of the unary prefix operator $\Event$ are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -568,7 +594,7 @@ For example, suppose $p$ and $q$ evolve in the computation as follows.\\
 The bottom two rows show the evaluation of the expressions $\Event p$ and $\Event q$
 assuming that $p$ remains false indefinitely and $q$ continues to switch between true and false indefinitely.\\
 
-The eventually operator is a special case of the until operator.
+The \textit{eventually} operator is a special case of the \textit{until} operator.
 Namely, $true \Until q$ is equivalent to $\Event q$ as follows.
 
 \begin{tabbing}
@@ -587,11 +613,11 @@ Namely, $true \Until q$ is equivalent to $\Event q$ as follows.
 \end{tabbing}
 
 This relationship is the basis of the definition of $\Event p$ in equation (\ref{E:defEvent}) $\Event p \equiv true \Until p$
-assumed in the next section.
+assumed in Section 3.3.
 
 \subsubsection*{The \textit{always} operator $\Always$}
 
-The semantics of the unary prefix operator $\Always$ is
+The semantics of the unary prefix operator $\Always$ are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -653,7 +679,7 @@ as follows.
 \end{tabbing}
 
 This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
-$\Always p \equiv \neg\Event\neg p$ assumed in the next section.\\
+$\Always p \equiv \neg\Event\neg p$ assumed in Section 3.4.\\
 
 The above demonstration that $(\sigma, j) \models \Always p \equivs (\sigma, j) \models \neg \Event \neg q$ depends on the
 rule, ``$p$ does not hold in a state iff $\neg p$ holds in that state'', written formally as
@@ -707,14 +733,14 @@ assumed in the next section.
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
-The semantics of the binary infix operator $\Wait$ in terms of $\Until$ and $\Always$ is
+The semantics of the binary infix operator $\Wait$ in terms of $\Until$ and $\Always$ are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> $(\sigma, j) \models p \Wait q$ \quad iff \quad $(\sigma, j) \models p \Until q \; \lor \; (\sigma, j) \models \Always p$
 \end{tabbing}
 
-The wait operator $\Wait$ is weaker than the until operator $\Until$, because $p\Wait q$ does not require $q$ to ever be true,
+The \textit{wait} operator $\Wait$ is weaker than the \textit{until} operator $\Until$, because $p\Wait q$ does not require $q$ to ever be true,
 while $p\Until q$ does.
 For example, suppose $p$ and $q$ evolve in the computation as follows.\\
 
@@ -868,7 +894,7 @@ and, by induction, hold at all states.
 	\> \>   $\Next p \lor \Next\neg p$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
 	\> \>   $\Next p \lor \neg\Next p$\\[\lgap]
-	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$ with $p := \Next p$}\\[\lgap]
 	\> \>   $true$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -964,7 +990,7 @@ Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until
 Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
 possibilities of constants $true$ and $false$ on either side of $\Until$.
 None of these three theorems seem to appear in the temporal logic literature.
-The fourth possibility with $true$ as the left argument is the basis of the definition of the eventually
+The fourth possibility with $true$ as the left argument is the basis of the definition of the \textit{eventually}
 operator $\Event$ in Section 3.3.
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
@@ -976,7 +1002,7 @@ operator $\Event$ in Section 3.3.
   \> \>   $p \Until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $p \lor (p \land \Next(p \Until p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
   \> \>   $p$
 \end{tabbing}
 \myqed\\[\lgap]
@@ -1443,6 +1469,7 @@ The absorption axiom is apparently unique to this system.
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
+
 \begin{equation}\label{E:distEventAlwaysAndAx}
 \textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
