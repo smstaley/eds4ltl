@@ -447,8 +447,6 @@ p \Until q \impl p \lor q
 \textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
-\newpage
-
 \subsection*{Eventually $\quad\Event$}
 
 \begin{equation}\label{E:defEvent}
@@ -474,6 +472,18 @@ p \Until q \impl p \lor q
 \end{equation}
 
 \spacer
+
+\begin{equation}\label{E:absOrIntoEvent}
+\textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absAndIntoEvent}
+\textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
+\end{equation}
+
+\newpage
 
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
@@ -579,6 +589,18 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absAndIntoAlways}
+\textbf{Absorption of $\land$ into $\Always$:}\quad p \land \Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absOrIntoAlways}
+\textbf{Absorption of $\lor$ into $\Always$:}\quad p \lor \Always p \equiv p
 \end{equation}
 
 \spacer
