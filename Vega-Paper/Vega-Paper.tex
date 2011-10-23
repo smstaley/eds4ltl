@@ -487,6 +487,7 @@ The \textit{until} operator $\Until$ is not associative as shown by the followin
   $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots\\
 \end{tabular}\\[\llgap]
 
+States $s_1$ and $s_2$ in the last two rows of the above table are counterexamples, because the two expressions differ in these states.
 However $p\Until (q\Until r) \impl (p\Until q)\Until r$ as follows.
 Expanding $p\Until (q\Until r)$,
 
@@ -778,7 +779,6 @@ The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
-%\spacer
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
@@ -1307,6 +1307,37 @@ The first describes the current state and the second contains the operation in t
 Exercise for the student.\\
 }
 
+The following two absorption theorems do not seem to appear in the temporal logic literature.
+\begin{equation}\label{E:absOrIntoEvent}
+\textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \lor \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor p \lor \Next\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$}\\[\lgap]
+  \> \>   $p \lor \Next\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $\Event p$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:absAndIntoEvent}
+\textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \land \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \land (p \lor \Next\Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv q$}\\[\lgap]
+  \> \>   $p$ \> \myqed
+\end{tabbing}
+
 The following six theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
@@ -1438,11 +1469,9 @@ The absorption axiom is apparently unique to this system.
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
 \end{equation}
-
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
-
 \begin{equation}\label{E:distEventAlwaysAndAx}
 \textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
@@ -1569,6 +1598,46 @@ As usual, the first describes the current state and the second contains the oper
   \> \>   $p \land \neg\Next\neg\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
   \> \>   $p \land \Next\Always p$ \> \myqed
+\end{tabbing}
+
+The absorption of $\land$ into $\Always$ mirrors (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
+while he absorption of $\lor$ into $\Always$ mirrors (\ref{E:absAndIntoEvent}) the absorption of $\land$ into $\Event$.
+Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
+disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existential.
+When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
+the right side retains the same type of unary operator.
+When existential and universal operators are mixed on the left side,
+as in (\ref{E:absOrIntoEvent}) and (\ref{E:absOrIntoAlways}), the equivalence is just a statement about $p$ at the current time.
+As with (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoEvent}), the following two absorption theorems
+do not seem to appear in the temporal logic literature.
+\begin{equation}\label{E:absAndIntoAlways}
+\textbf{Absorption of $\land$ into $\Always$:}\quad p \land \Always p \equiv \Always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \land \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $p \land p \land \Next \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $p \land \Next \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $\Always p$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:absOrIntoAlways}
+\textbf{Absorption of $\lor$ into $\Always$:}\quad p \lor \Always p \equiv p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \lor \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $p \lor (p \land \Next\Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p \land q) \equiv p$}\\[\lgap]
+  \> \>   $p$ \> \myqed
 \end{tabbing}
 
 The absorption of $\Always$ mirrors (\ref{E:IdemEvent}) the absorption of $\Event$,
@@ -2554,9 +2623,10 @@ This paper presents an axiomatic deductive system of linear temporal logic whose
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
-It presents 22 new linear temporal logic theorems, namely the two axioms
+It presents 26 new linear temporal logic theorems, namely the two axioms
 (\ref{E:untilAssocImp}) Partial associativity of $\Until$,
-(\ref{E:axAbsorpUntil}) Absorption, and the 20 theorems
+(\ref{E:axAbsorpUntil}) Absorption,
+and the 24 theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
 (\ref{E:untilFalse}),
@@ -2569,8 +2639,12 @@ It presents 22 new linear temporal logic theorems, namely the two axioms
 (\ref{E:untilOrAnd}) Absorption,
 (\ref{E:eventTrue}) Truth of $\Event$,
 (\ref{E:eventFalse}) Falsehood of $\Event$,
+(\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$,
+(\ref{E:absAndIntoEvent}) Absorption of $\land$ into $\Event$,
 (\ref{E:alwaysTrue}) Truth of $\Always$,
 (\ref{E:alwaysFalse}) Falsehood of $\Always$,
+(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$,
+(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$,
 (\ref{E:impNext}),
 (\ref{E:rightUntilAbsWait}) Absorption,
 (\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
