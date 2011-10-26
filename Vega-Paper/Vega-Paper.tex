@@ -9,8 +9,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-%\usepackage[student]{optional}
-\usepackage[doc]{optional}
+\usepackage[student]{optional}
+%\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -1615,6 +1615,7 @@ do not seem to appear in the temporal logic literature.
 \end{equation}
 
 \emph{Proof:}
+\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \land \Always p$\\[\lgap]
@@ -1625,12 +1626,18 @@ do not seem to appear in the temporal logic literature.
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $\Always p$ \> \myqed
 \end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
 
 \begin{equation}\label{E:absOrIntoAlways}
 \textbf{Absorption of $\lor$ into $\Always$:}\quad p \lor \Always p \equiv p
 \end{equation}
 
 \emph{Proof:}
+\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \lor \Always p$\\[\lgap]
@@ -1639,6 +1646,11 @@ do not seem to appear in the temporal logic literature.
   \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p \land q) \equiv p$}\\[\lgap]
   \> \>   $p$ \> \myqed
 \end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
 
 The absorption of $\Always$ mirrors (\ref{E:IdemEvent}) the absorption of $\Event$,
 and the exchange of $\Next$ and $\Always$ mirrors (\ref{E:dNextEvent}) the exchange of $\Next$ and $\Event$.
