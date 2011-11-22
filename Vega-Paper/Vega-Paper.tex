@@ -9,8 +9,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-\usepackage[student]{optional}
-%\usepackage[doc]{optional}
+%\usepackage[student]{optional}
+\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -1357,15 +1357,17 @@ The following six theorems for $\Event$ are common to all temporal logic systems
 \textbf{Weakening of $\Event$:}\quad \Next p \impl \Event p
 \end{equation}
 
-\emph{Proof:} (Jason Parham)
+\emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event p$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $q := \Next p$}\\[\lgap]
-  \> \>   $p \Until \Next p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilOrQ}) Absorption with $q := \Next p$}\\[\lgap]
-  \> \>   $(p \Until \Next p) \lor \Next p$\\[\lgap]
-  \> $\foll$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor \Next\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
+  \> \>   $p \lor \Next (p \lor \Next\Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
+  \> \>   $p \lor \Next p \lor \Next\Next\Event p$\\[\lgap]
+  \> $\Leftarrow$  \>  \Hint{(3.76a) Weakening the consequent, $p \impl p\lor q$}\\[\lgap]
   \> \>   $\Next p$ \> \myqed
 \end{tabbing}
 
