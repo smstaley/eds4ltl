@@ -72,7 +72,7 @@
 %\pagestyle{plain}
 
 \pagestyle{myheadings} 
-\markboth{\textbf{Draft}} {\textbf{Draft}}
+\markboth{\textbf{Draft} (\today)} {\textbf{Draft} (\today)}
 
 \opt{student}{
 \title{An Equational Deductive System\\for Linear Temporal Logic (Student)}
@@ -402,14 +402,26 @@ The semantics of the unary prefix operator $\Next$ are
 
 That is, $\Next p$ holds at position $j$ iff $p$ holds at position $j+1$.\\
 
-For example, in the above sequence $\Next x \ge 10$ holds at state $s_1$ because $x \ge 10$
-holds at state $s_2$.
+For example, in the following sequence $\Next 10\le x< 13$ holds at state $s_1$ because $\Next 10\le x< 13$
+holds at state $s_2$.\\
+
+\begin{tabular}{c|ccccccccc}
+  $\sigma$             & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & \dots \\
+  \hline
+  $x$                  & 8     & 9     & 10    & 11    & 12    & 13    & 14    & \dots\\
+  $10\le x< 13$        & F     & F     & T     & T     & T     & F     & F     & \dots\\
+  $\Next 10\le x< 13$  & F     & T     & T     & T     & F     & F     & F     & \dots
+\end{tabular}\\
+
 In other words,
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $(\sigma, 1) \models \Next x \ge 10$ \quad because \quad $(\sigma, 2) \models  x \ge 10$
+  \> $(\sigma, 1) \models \Next 10\le x< 13$ \quad because \quad $(\sigma, 2) \models 10\le x< 13$
 \end{tabbing}
+
+Furthermore, $\Next 10\le x< 13$ does not hold at state $s_4$ even though $10\le x< 13$ does hold in that state,
+because $10\le x< 13$ does not hold in state $s_5$.
 
 \subsubsection*{The \textit{until} operator $\Until$}
 
