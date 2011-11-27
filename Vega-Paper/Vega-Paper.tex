@@ -1672,21 +1672,20 @@ and the exchange of $\Next$ and $\Always$ mirrors (\ref{E:dNextEvent}) the excha
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} (Kyle Sundman)
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Always p \equiv \Always p$\\[\lgap]
+  \> \>   $\Always\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$ with $p := \Always p$}\\[\lgap]
-  \> \>   $\neg\Event\neg\Always p \equiv \Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Event\neg\Always p, \Always p$}\\[\lgap]
-  \> \>   $\Event\neg\Always p \equiv \neg\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$, twice}\\[\lgap]
-  \> \>   $\Event\Event\neg p \equiv \Event\neg p$\\[\lgap]
+  \> \>   $\neg\Event\neg\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\neg\Event\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event\neg p \equiv \Event\neg p$
+  \> \>   $\neg\Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\Always p$ \> \myqed
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p := \Event\neg p$. \hfill \myqed\\[\lgap]
 }
 
 \opt{student}{
