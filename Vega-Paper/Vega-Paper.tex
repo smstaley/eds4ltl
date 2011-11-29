@@ -1756,14 +1756,8 @@ for $\Event$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
-  \> \>   $\neg\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $\neg(\neg p \lor \Next\Event\neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
-  \> \>   $\neg\neg p \land \neg\Next\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
-  \> \>   $p \land \neg\Next\Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $p \land \Next\Always p$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $p$ \> \myqed
 \end{tabbing}
