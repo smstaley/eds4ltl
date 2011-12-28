@@ -728,8 +728,7 @@ Here is a demonstration of this equivalence.
 	\> \>   $(\ext k \dr k \ge j \rb (\all i \dr k \le i \lor j \le i < k \rb (\sigma, i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$k \le i \lor j \le i < k \equiv j \le i$ for $k \ge j$}\\[\lgap]
 	\> \>   $(\ext k \dr k \ge j \rb (\all i \dr i \ge j \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hintfirst{(8.19) Interchange of dummies $(\star x\dr R\rb (\star y\dr Q\rb P)) = (\star y\dr Q\rb (\star x\dr R\rb P))$
-	}\\[\lgap]
+	\> $=$  \>  \Hintfirst{(8.19) Interchange of dummies $(\star x\dr R\rb (\star y\dr Q\rb P)) = (\star y\dr Q\rb (\star x\dr R\rb P))$}\\[\lgap]
 	\>      \>  \Hintlast{as $\neg occurs(\Lq i\Rq ,\Lq k \ge j\Rq)$, $\neg occurs(\Lq k\Rq ,\Lq i \ge j\Rq)$}\\[\lgap]
 	\> \>   $(\all i \dr i \ge j \rb (\ext k \dr k \ge j \rb (\sigma, i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{(9.22) $(\ext x \dr R \rb P) = P \land (\ext x \dr true \rb R)$ as $\neg occurs(\Lq k\Rq ,\Lq (\sigma, i) \models p\Rq)$}\\[\lgap]
@@ -743,7 +742,31 @@ Here is a demonstration of this equivalence.
 \end{tabbing}
 
 This relationship is one of the defining axioms (\ref{E:axAbsorpUntil}) $p\Until \Always p \equiv \Always p$ for the \textit{always} operator $\Always$
-assumed in Section 3.4. 
+assumed in Section 3.4.
+Another defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+(\ref{E:axiomUntilImpl}) $\Always p \land \Event q \impl p \Until q$.
+Here is a demonstration of this implication.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>   $(\sigma, j) \models \Always p \land \Event q$\\[\lgap]
+	\> $=$  \>  \Hint{$((\sigma, j) \models p) \;\land\; ((\sigma, j) \models q)$ iff $(\sigma, j) \models p\land q$}\\[\lgap]
+	\> \>   $((\sigma, j) \models \Always p) \;\land\; ((\sigma, j) \models \Event q)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Always p$ and $\Event q$}\\[\lgap]
+	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p) \land (\ext k \dr  k \ge j \rb (\sigma, k) \models q)$\\[\lgap]
+	\> $=$  \>  \Hintfirst{(9.21) Distributivity of $\land$ over $\ext$, $P\land (\ext x \dr R \rb Q) \equiv (\ext x \dr R \rb P\land Q)$}\\[\lgap]
+	\>      \>  \Hintlast{as $\neg occurs(\Lq k\Rq ,\Lq (\all i \dr i \ge j \rb (\sigma, i) \models p) \Rq)$}\\[\lgap]
+	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr i \ge j \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{$i \ge j \equiv j\le i < k\lor k\le i$}\\[\lgap]
+	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\lor k\le i \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{(8.18) Range split $(\star x \dr R \lor S \rb P) = (\star x \dr R \rb P) \star (\star x \dr S \rb P)$}\\[\lgap]
+	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)\land (\all i \dr k\le i \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $\impl$  \>  \Hintfirst{(3.76b) $p\land q\impl p$ and (9.27) Monotonicity of $\ext$}\\[\lgap]
+	\>      \>  \Hintlast{$(\all x\dr R\rb Q\impl P)\impl ((\ext x\dr R\rb Q)\impl (\ext x\dr R\rb P))$}\\[\lgap]
+	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
+	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
+\end{tabbing}
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
@@ -1478,10 +1501,14 @@ The following induction axiom is included in other temporal logic systems but is
 \end{equation}
 
 The absorption axiom is required to prove the absorption properties of $\Until$ and $\Wait$,
-and the distributivity axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
-The absorption axiom is apparently unique to this system.
+and the $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$.
+The distributivity axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
+The absorption axiom and the $\Until$ implication axiom are apparently unique to this system.
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+\begin{equation}\label{E:axiomUntilImpl}
+\textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
