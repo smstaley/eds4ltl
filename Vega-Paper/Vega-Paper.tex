@@ -994,25 +994,25 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 The following four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
 Because $\Until$ is not symmetric, this system requires separate axioms for left and right distributivity.
 \begin{equation}\label{E:untilOrEquiv}
-\textbf{Axiom, Left distributivity of $\Until$ over $\lor$ :}\quad p \Until (q \lor r) \equiv (p \Until q) \lor (p \Until r)
+\textbf{Axiom, Left distributivity of $\Until$ over $\lor$ :}\quad p \Until (q \lor r) \equiv p \Until q \lor p \Until r
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:untilOrImp}
-\textbf{Axiom, Right distributivity of $\Until$ over $\lor$ :}\quad (p \Until r) \lor (q \Until r) \impl (p \lor q) \Until r
+\textbf{Axiom, Right distributivity of $\Until$ over $\lor$ :}\quad p \Until r \lor q \Until r \impl (p \lor q) \Until r
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:untilAndImp}
-\textbf{Axiom, Left distributivity of $\Until$ over $\land$ :}\quad p \Until (q \land r) \impl (p \Until q) \land (p \Until r)
+\textbf{Axiom, Left distributivity of $\Until$ over $\land$ :}\quad p \Until (q \land r) \impl p \Until q \land p \Until r
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:untilAndEquiv}
-\textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv (p \Until r) \land (q \Until r)
+\textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
 \end{equation}
 
 Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
@@ -1119,13 +1119,13 @@ Exercise for the student.\\
 This system has the following five additional absorption properties that do not seem to
 appear in the temporal logic literature.
 \begin{equation}\label{E:untilOrP}
-\textbf{Absorption:}\quad p \lor (p \Until q) \equiv p \lor q
+\textbf{Absorption:}\quad p \lor p \Until q \equiv p \lor q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \lor (p \Until q)$\\[\lgap]
+  \> \>   $p \lor p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $p \lor q \lor (p \land \Next(p \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
@@ -1133,13 +1133,13 @@ appear in the temporal logic literature.
 \end{tabbing}
 
 \begin{equation}\label{E:untilOrQ}
-\textbf{Absorption:}\quad (p \Until q) \lor q \equiv p \Until q
+\textbf{Absorption:}\quad p \Until q \lor q \equiv p \Until q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p \Until q) \lor q$\\[\lgap]
+  \> \>   $p \Until q \lor q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $q \lor (p \land \Next(p \Until q)) \lor q$\\[\lgap]
   \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
@@ -1149,13 +1149,13 @@ appear in the temporal logic literature.
 \end{tabbing}
 
 \begin{equation}\label{E:untilAndQ}
-\textbf{Absorption:}\quad (p \Until q) \land q \equiv q
+\textbf{Absorption:}\quad p \Until q \land q \equiv q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p \Until q) \land q$\\[\lgap]
+  \> \>   $p \Until q \land q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $(q \lor (p \land \Next(p \Until q))) \land q$\\[\lgap]
   \> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
@@ -1163,13 +1163,13 @@ appear in the temporal logic literature.
 \end{tabbing}
 
 \begin{equation}\label{E:untilAndOr}
-\textbf{Absorption:}\quad (p \Until q) \land (p \lor q) \equiv p \Until q
+\textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p \Until q) \land (p \lor q)$\\[\lgap]
+  \> \>   $p \Until q \land (p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $(q \lor (p \land \Next(p \Until q))) \land (p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
@@ -1181,13 +1181,13 @@ appear in the temporal logic literature.
 \end{tabbing}
 
 \begin{equation}\label{E:untilOrAnd}
-\textbf{Absorption:}\quad (p \Until q) \lor (p \land q) \equiv p \Until q
+\textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p \Until q) \lor (p \land q)$\\[\lgap]
+  \> \>   $p \Until q \lor (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
   \> \>   $q \lor (p \land \Next(p \Until q)) \lor (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
@@ -1266,7 +1266,7 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
-  \> \>   $(p \Until q) \lor (true \Until q)$\\[\lgap]
+  \> \>   $p \Until q \lor true \Until q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$}\\[\lgap]
   \> \>   $(p \lor true) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
@@ -1460,7 +1460,7 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until (p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-  \> \>   $(true \Until p) \lor (true \Until q)$\\[\lgap]
+  \> \>   $true \Until p \lor true \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
   \> \>   $\Event p \lor \Event q$ \> \myqed
 \end{tabbing}
@@ -1481,7 +1481,7 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true \Until (p \land q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $(true \Until p) \land (true \Until q)$\\[\lgap]
+  \> \>   $true \Until p \land true \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
   \> \>   $\Event p \land \Event q$ \> \myqed
 \end{tabbing}
@@ -2279,8 +2279,26 @@ That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
 (Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
 \begin{equation}\label{E:defWait}
-\textbf{Definition of $\Wait$:}\quad p \Wait q \equiv (p \Until q) \lor \Always p
+\textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
 \end{equation}
+
+\begin{equation}\label{E:waitNextDist}
+\textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Next (p \Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Next(\Always p\lor p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
+\> \> $\Next \Always p\lor \Next(p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$ and (\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$} \\[\lgap]
+\> \> $\Always \Next p\lor \Next p\Until \Next q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) with $p,q := \Next p, \Next q$} \\[\lgap]
+\> \> $\Next p \Wait \Next q$ \> \myqed
+\end{tabbing}
 
 Expansion of the \textit{wait} operator (\ref{E:expansionWait}) mirrors expansion of the \textit{until} operator (\ref{E:expansionUntil}).
 \begin{equation}\label{E:expansionWait}
@@ -2292,15 +2310,15 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) mirrors expansio
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $q \lor (p \land \Next (p \Wait q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $q \lor (p \land \Next ((p \Until q) \lor \Always p))$\\[\lgap]
+\> \> $q \lor (p \land \Next (\Always p\lor p \Until q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
-\> \> $q \lor (p \land (\Next (p \Until q) \lor \Next\Always p))$\\[\lgap]
+\> \> $q \lor (p \land (\Next\Always p\lor \Next (p \Until q)))$\\[\lgap]
 \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
-\> \> $q \lor (p \land \Next(p \Until q)) \lor (p \land \Next\Always p)$\\[\lgap]
+\> \> $q \lor (p \land \Next\Always p)\lor (p \land \Next(p \Until q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
-\> \> $q \lor (p \land \Next(p \Until q)) \lor \Always p$\\[\lgap]
+\> \> $q \lor \Always p\lor (p \land \Next(p \Until q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
@@ -2318,7 +2336,7 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \> $\Always p \lor (p \Until q)$\\[\lgap]
+\> \> $\Always p \lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
@@ -2333,9 +2351,9 @@ The following theorem corresponds to the definition of the \textit{eventually} o
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait false$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until false) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until false$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilFalse}) Right zero of $\Until$} \\[\lgap]
-\> \> $false \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor false$\\[\lgap]
 \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p$ \> \myqed
 \end{tabbing}
@@ -2372,7 +2390,7 @@ p \Wait q \impl p \lor q
 \end{tabbing}
 
 \begin{equation}\label{E:waitEntailment}
-p \Wait q \impl \Event q \lor \Always p
+p \Wait q \impl \Always p\lor \Event q
 \end{equation}
 
 \emph{Proof:}
@@ -2380,19 +2398,19 @@ p \Wait q \impl \Event q \lor \Always p
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
-\> \> $\Event q \lor \Always p$ \> \myqed
+\> \> $\Always p\lor \Event q$ \> \myqed
 \end{tabbing}
 
 \begin{equation}\label{E:waitEntailAlways}
-(p \Wait q) \land \Always\neg q \impl \Always p
+p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $(p \Wait q) \land \Always\neg q$\\[\lgap]
+\> \> $p \Wait q \land \Always\neg q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
 \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
@@ -2408,13 +2426,13 @@ p \Wait q \impl \Event q \lor \Always p
 \end{tabbing}
 
 \begin{equation}\label{E:waitEntailEvent}
-(p \Wait q) \land \neg\Always p \impl \Event q
+p \Wait q \land \neg\Always p \impl \Event q
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $(p \Wait q) \land \neg\Always p$\\[\lgap]
+\> \> $p \Wait q \land \neg\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg\Always p$\\[\lgap]
 \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
@@ -2446,9 +2464,9 @@ p \Wait q \impl \Event q \lor \Always p
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait (p \Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until (p \Until q)) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until (p \Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$} \\[\lgap]
-\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
@@ -2463,11 +2481,11 @@ The proof in the first direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p \Until q) \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $((p \Until q) \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> \> $\Always (p \Until q)\lor (p \Until q) \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
-\> \> $(p \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> \> $\Always (p \Until q)\lor p \Until q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \> $(p \Until q) \lor (p \Until q)$\\[\lgap]
+\> \> $p \Until q \lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
 \> \> $p \Until q$
 \end{tabbing}
@@ -2479,9 +2497,9 @@ The second direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until q$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76a) Weakening, $p \impl p \lor q$} \\[\lgap]
-\> \> $(p \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> \> $\Always (p \Until q)\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
-\> \> $((p \Until q) \Until q) \lor \Always (p \Until q)$\\[\lgap]
+\> \> $\Always (p \Until q)\lor (p \Until q) \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \Until q) \Wait q$ \> \myqed
 \end{tabbing}
@@ -2495,13 +2513,13 @@ The second direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until (p \Wait q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $p \Until ((p \Until q) \lor \Always p)$\\[\lgap]
+\> \> $p \Until (\Always p\lor p \Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
-\> \> $(p \Until (p \Until q)) \lor (p \Until \Always p)$\\[\lgap]
+\> \> $p \Until \Always p\lor p \Until (p \Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$} \\[\lgap]
-\> \> $(p \Until q) \lor (p \Until \Always p)$\\[\lgap]
+\> \> $p \Until \Always p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:axAbsorpUntil}) Absorption} \\[\lgap]
-\> \> $(p \Until q) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
@@ -2520,13 +2538,13 @@ The second direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait (p \Wait q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $p \Until (p \Wait q) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until (p \Wait q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:leftUntilAbsWait}) Absorption} \\[\lgap]
-\> \> $p \Wait q \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $p \Wait q \lor \Always p \lor \Always p$\\[\lgap]
+\> \> $\Always p \lor \Always p\lor p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$ with $p := \Always p$} \\[\lgap]
-\> \> $p \Wait q \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
@@ -2536,67 +2554,49 @@ The second direction follows.
 \end{equation}
 [\textit{Not yet proved.}]
 
-\begin{equation}\label{E:waitNextDist}
-\textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Next (p \Wait q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Next((p\Until q)\lor \Always p)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$} \\[\lgap]
-\> \> $\Next(p\Until q)\lor \Next \Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$ and (\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$} \\[\lgap]
-\> \> $\Next p\Until \Next q\lor \Always \Next p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) with $p,q := \Next p, \Next q$} \\[\lgap]
-\> \> $\Next p \Wait \Next q$ \> \myqed
-\end{tabbing}
-
 \begin{equation}\label{E:andWaitDist}
-\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land (q \Wait r) \impl (p \land q) \Wait (p \land r)
+\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
 \end{equation}
 [\textit{Not yet proved.}]
 
 \begin{equation}\label{E:waitOrDist}
-\textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv (p \Wait q) \lor (p \Wait r)
+\textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Wait (q \lor r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until (q \lor r)) \lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
-\> \> $(p \Until q) \lor (p \Until r) \lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
-\> \> $(p \Until q) \lor (p \Until r) \lor \Always p \lor \Always p$\\[\lgap]
+\> \> $p \Wait q \lor p \Wait r$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
-\> \> $(p \Wait q) \lor (p \Wait r)$ \> \myqed
+\> \> $\Always p\lor p \Until q \lor \Always p\lor p \Until r$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $\Always p\lor p \Until q \lor p \Until r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $\Always p\lor p \Until (q \lor r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait (q \lor r)$ \> \myqed
 \end{tabbing}
 
 \begin{equation}\label{E:rightWaitOrDist}
-\textbf{Right distributivity of $\Wait$ over $\lor$:}\quad (p \Wait r) \lor (q \Wait r) \impl (p \lor q) \Wait r
+\textbf{Right distributivity of $\Wait$ over $\lor$:}\quad p \Wait r \lor q \Wait r \impl (p \lor q) \Wait r
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $(p \Wait r) \lor (q \Wait r)$\\[\lgap]
+\> \> $p \Wait r \lor q \Wait r$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until r) \lor (q \Until r) \lor \Always p \lor \Always q$\\[\lgap]
+\> \> $\Always p \lor \Always q\lor p \Until r \lor q \Until r$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
-\> \> $(p \Until r) \lor (q \Until r) \lor \Always (p \lor q)$\\[\lgap]
+\> \> $\Always (p \lor q)\lor p \Until r \lor q \Until r$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \> $((p \lor q) \Until r) \lor \Always (p \lor q)$\\[\lgap]
+\> \> $\Always (p \lor q)\lor (p \lor q) \Until r$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \lor q) \Wait r$ \> \myqed
 \end{tabbing}
 
 \begin{equation}\label{E:leftWaitAndDist}
-\textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl (p \Wait q) \land (p \Wait r)
+\textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
 \end{equation}
 
 \emph{Proof:}
@@ -2604,27 +2604,27 @@ The second direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait (q \land r)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until (q \land r)) \lor \Always p$\\[\lgap]
+\> \> $\Always p\lor p \Until (q \land r)$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \> $((p \Until q) \land (p \Until r)) \lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$} \\[\lgap]
-\> \> $((p \Until q) \lor \Always p) \land ((p \Until r) \lor \Always p)$\\[\lgap]
+\> \> $\Always p\lor (p \Until q \land p \Until r)$\\[\lgap]
+\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r) \equiv (p\lor q) \land (p\lor r)$} \\[\lgap]
+\> \> $(\Always p\lor p \Until q) \land (\Always p\lor p \Until r)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
-\> \> $(p \Wait q) \land (p \Wait r)$ \> \myqed
+\> \> $p \Wait q \land p \Wait r$ \> \myqed
 \end{tabbing}
 
 \begin{equation}\label{E:rightWaitAndDist}
-\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv (p \Wait r) \land (q \Wait r)
+\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv p \Wait r \land q \Wait r
 \end{equation}
 [\textit{Not yet proved.}]
 
 \begin{equation}\label{E:waitOrdering}
-\textbf{Ordering:}\quad (\neg p \Wait q) \lor (\neg q \Wait p)
+\textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
 [\textit{Not yet proved.}]
 
 \begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad ((p \Wait q) \land (\neg q \Wait r)) \impl p \Wait r
+\textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
 [\textit{Not yet proved.}]
 
@@ -2669,9 +2669,10 @@ This paper presents an axiomatic deductive system of linear temporal logic whose
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
-It presents 26 new linear temporal logic theorems, namely the two axioms
+It presents 27 new linear temporal logic theorems, namely the three axioms
 (\ref{E:untilAssocImp}) Partial associativity of $\Until$,
 (\ref{E:axAbsorpUntil}) Absorption,
+(\ref{E:axiomUntilImpl}) $\Until$ implication,
 and the 24 theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
