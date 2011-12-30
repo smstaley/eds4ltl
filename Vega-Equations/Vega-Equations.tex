@@ -491,6 +491,18 @@ p \Until q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilImplEvent}
+p \Until q\impl \Event q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
@@ -760,6 +772,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
 \firstspacer
+
+\begin{equation}\label{E:untilFromWait}
+p \Until q \equiv p \Wait q\land \Event q
+\end{equation}
+
+\spacer
 
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q

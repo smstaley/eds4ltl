@@ -1342,7 +1342,7 @@ The first describes the current state and the second contains the operation in t
 Exercise for the student.\\
 }
 
-The following two absorption theorems do not seem to appear in the temporal logic literature.
+The following four absorption theorems do not seem to appear in the temporal logic literature.
 \begin{equation}\label{E:absOrIntoEvent}
 \textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
 \end{equation}
@@ -1372,6 +1372,36 @@ The following two absorption theorems do not seem to appear in the temporal logi
   \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv q$}\\[\lgap]
   \> \>   $p$ \> \myqed
 \end{tabbing}
+
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until q\land \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $p \Until q\land true\Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $(p\land true) \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p\Until q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:untilImplEvent}
+p \Until q\impl \Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until q\impl \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equiv p\land q\equiv p$}\\[\lgap]
+  \> \>   $p \Until q\land \Event q\equiv p\Until q$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$. \hfill \myqed\\[\lgap]
+
 
 The following six theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:impEvent}
@@ -2282,6 +2312,26 @@ But, if $q$ is not eventually true then $p$ must be true always.
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
 \end{equation}
 
+The defining equation gives $\Wait$ in terms of $\Until$. The following theorem gives $\Until$ in terms of $\Wait$.
+\begin{equation}\label{E:untilFromWait}
+p \Until q \equiv p \Wait q\land \Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until q \equiv p \Wait q\land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Until q \equiv (\Always p\lor p \Until q)\land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+\> \> $p \Until q \equiv (\Always p\land \Event q)\lor (p \Until q\land \Event q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$} \\[\lgap]
+\> \> $p \Until q \equiv (\Always p\land \Event q)\lor p \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
+\> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
+\end{tabbing}
+which is (\ref{E:axiomUntilImpl}) Axiom, $\Until$ implication. \hfill \myqed
+
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
@@ -2669,11 +2719,11 @@ This paper presents an axiomatic deductive system of linear temporal logic whose
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
-It presents 27 new linear temporal logic theorems, namely the three axioms
+It presents 30 new linear temporal logic theorems, namely the three axioms
 (\ref{E:untilAssocImp}) Partial associativity of $\Until$,
 (\ref{E:axAbsorpUntil}) Absorption,
 (\ref{E:axiomUntilImpl}) $\Until$ implication,
-and the 24 theorems
+and the 27 theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
 (\ref{E:untilFalse}),
@@ -2688,11 +2738,14 @@ and the 24 theorems
 (\ref{E:eventFalse}) Falsehood of $\Event$,
 (\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$,
 (\ref{E:absAndIntoEvent}) Absorption of $\land$ into $\Event$,
+(\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$,
+(\ref{E:untilImplEvent}),
 (\ref{E:alwaysTrue}) Truth of $\Always$,
 (\ref{E:alwaysFalse}) Falsehood of $\Always$,
 (\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$,
 (\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$,
 (\ref{E:impNext}),
+(\ref{E:untilFromWait}),
 (\ref{E:rightUntilAbsWait}) Absorption,
 (\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
 (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,
