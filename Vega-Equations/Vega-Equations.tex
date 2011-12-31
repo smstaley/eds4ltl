@@ -881,6 +881,18 @@ p \Wait q \impl \Always p\lor \Event q
 
 \spacer
 
+\begin{equation}\label{E:absorpEventWait}
+\textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absAlwaysWait}
+\textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}

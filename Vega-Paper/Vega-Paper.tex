@@ -1532,7 +1532,7 @@ The following induction axiom is included in other temporal logic systems but is
 
 The absorption axiom is required to prove the absorption properties of $\Until$ and $\Wait$,
 and the $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$.
-The distributivity axioms are required to prove the theorems where $\Always\Event$ and $\Event\Always$ distribute over $\equiv$.
+The distributivity axioms are required to prove the theorems where $\Always\Event$ distributes over $\lor$ and $\Event\Always$ distributes over $\land$ with equality.
 The absorption axiom and the $\Until$ implication axiom are apparently unique to this system.
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
@@ -2516,7 +2516,7 @@ The following theorem corresponds to the definition of the \textit{eventually} o
 \end{tabbing}
 
 Insertion for the \textit{wait} operator corresponds to
-Insertion for the \textit{until} operator (\ref{E:untilInsertion}).
+(\ref{E:untilInsertion}) Insertion for the \textit{until} operator.
 \begin{equation}\label{E:waitInsertion}
 \textbf{Insertion:}\quad q \impl p \Wait q
 \end{equation}
@@ -2646,6 +2646,39 @@ respectively.
   \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$ with $p,q:=q,p$}\\[\lgap]
 \> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $p\Wait q$ \> \myqed
+\end{tabbing}
+
+The following theorem for the \textit{wait} operator corresponds to axiom (\ref{E:axAbsorpUntil}) Absorption for the \textit{until} operator.
+\begin{equation}\label{E:absorpEventWait}
+\textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Event q \Wait q$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+\> \> $(true\Until q) \Wait q$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:rightWaitAbsUtil}) Absorption}\\[\lgap]
+\> \> $true\Until q$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+\> \> $\Event q$ \> \myqed
+\end{tabbing}
+Absorption of $\Always$ into $\Wait$ corresponds to (\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$.
+\begin{equation}\label{E:absAlwaysWait}
+\textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always p\lor p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p\lor \Always p\lor p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $\Always p\lor p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p\Wait q$ \> \myqed
 \end{tabbing}
 
@@ -2913,11 +2946,11 @@ This paper presents an axiomatic deductive system of linear temporal logic whose
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
-It presents 40 new linear temporal logic theorems, namely the three axioms
+It presents 41 new linear temporal logic theorems, namely the three axioms
 (\ref{E:untilAssocImp}) Partial associativity of $\Until$,
 (\ref{E:axAbsorpUntil}) Absorption,
 (\ref{E:axiomUntilImpl}) $\Until$ implication,
-and the 37 theorems
+and the 38 theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
 (\ref{E:untilFalse}),
@@ -2950,6 +2983,7 @@ and the 37 theorems
 (\ref{E:waitAndQ}) Absorption,
 (\ref{E:waitAndOr}) Absorption,
 (\ref{E:waitOrAnd}) Absorption,
+(\ref{E:absAlwaysWait}) Absorption of $\Always$ into $\Wait$,
 (\ref{E:rightUntilAbsWait}) Absorption,
 (\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
 (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,
