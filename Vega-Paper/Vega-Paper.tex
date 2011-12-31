@@ -1059,16 +1059,16 @@ Exercise for the student.\\
 }
 
 \begin{equation}\label{E:leftIdUntil}
-\textbf{Left identity of $\Until$:}\quad false \Until p \equiv p
+\textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
 \end{equation}
 
 \emph{Proof:}
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $false \Until p$\\[\lgap]
+  \> \>   $false \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor (false \land \Next(false \Until p))$\\[\lgap]
+  \> \>   $p \lor (false \land \Next(false \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
   \> \>   $p \lor false$\\[\lgap]
   \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$}\\[\lgap]
@@ -1254,7 +1254,7 @@ The proof in the second direction follows.
 Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
 Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
-\textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
+\textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
 $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
@@ -2332,6 +2332,20 @@ p \Until q \equiv p \Wait q\land \Event q
 \end{tabbing}
 which is (\ref{E:axiomUntilImpl}) Axiom, $\Until$ implication. \hfill \myqed
 
+\begin{equation}\label{E:untilImplWait}
+p\Until q\impl p\Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait})} \\[\lgap]
+\> \> $p \Wait q\land \Event q$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+\> \> $p \Wait q$ \> \myqed
+\end{tabbing}
+
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
@@ -2373,7 +2387,100 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) mirrors expansio
 \> \> $p \Wait q$ \> \myqed
 \end{tabbing}
 
-Perpetuity for the \textit{wait} operator corresponds to Eventuality (\ref{E:eventuality})
+Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \textit{until}.
+Like the \textit{until} operator, \textit{wait} is idempotent.
+$true$ is the right zero of both \textit{until} and \textit{wait}.
+$false$ is the left identity of both \textit{until} and \textit{wait}.
+The table below summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+\begin{equation}\label{E:leftZeroWait}
+\textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $true \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always true \lor true\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
+\> \> $true \lor true\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true \equiv true$}\\[\lgap]
+\> \> $true$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:idempWait}
+\textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Wait p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p \lor p\Until p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
+\> \> $\Always p \lor p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$}\\[\lgap]
+\> \> $p$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:rightZeroWait}
+\textbf{Right zero of $\Wait$:}\quad p \Wait true \equiv true
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Wait true$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p \lor p\Until true$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFalse}) Right zero of $\Until$} \\[\lgap]
+\> \> $\Always p \lor true$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
+\> \> $true$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:leftIdentWait}
+\textbf{Left identity of $\Wait$:}\quad false \Wait q \equiv q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $false \Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always false \lor false\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:alwaysFalse}) Falsehood of $\Always$} \\[\lgap]
+\> \> $false \lor false\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+\> \> $false\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$}\\[\lgap]
+\> \> $q$ \> \myqed
+\end{tabbing}
+
+\renewcommand\arraystretch{1.5}
+\begin{tabular}{ l | l }
+  \hline                       
+  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
+  &
+  (\ref{E:alwaysAsWait}) $p \Wait false\equiv \Always p$ \\
+  \hline                       
+  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
+  &
+  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
+  \hline                       
+  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
+  &
+  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
+  \hline                       
+  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
+  &
+  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
+  \hline  
+\end{tabular}\\[\llgap]
+\renewcommand\arraystretch{1}
+
+Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
 for the \textit{until} operator.
 The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
 the \textit{eventually} operator, which is existential, is in the consequent of the implication in Eventuality.
@@ -2439,6 +2546,7 @@ p \Wait q \impl p \lor q
 \> \> $p \lor q$ \> \myqed
 \end{tabbing}
 
+The following theorem for the \textit{wait} operator corresponds to axiom (\ref{E:axiomUntilImpl}) $\Until$ implication.
 \begin{equation}\label{E:waitEntailment}
 p \Wait q \impl \Always p\lor \Event q
 \end{equation}
@@ -2453,6 +2561,94 @@ p \Wait q \impl \Always p\lor \Event q
 \> \> $\Always p\lor \Event q$ \> \myqed
 \end{tabbing}
 
+The next five absorption theorems correspond to the five absorption theorems for \textit{until},
+(\ref{E:untilOrP}),
+(\ref{E:untilOrQ}),
+(\ref{E:untilAndQ}),
+(\ref{E:untilAndOr}),
+and
+(\ref{E:untilOrAnd})
+respectively.
+\begin{equation}\label{E:waitOrP}
+\textbf{Absorption:}\quad p\lor p\Wait q\equiv p\lor q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\lor p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p\lor p \Until q\lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$} \\[\lgap]
+\> \> $p\lor p \Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrP}) Absorption} \\[\lgap]
+\> \> $p\lor q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:waitOrQ}
+\textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q\lor q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q)) \lor q$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $p\Wait q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:waitAndQ}
+\textbf{Absorption:}\quad p\Wait q\land q\equiv q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q\land q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $(q\lor (p\land \Next (p\Wait q))) \land q$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$} \\[\lgap]
+\> \> $q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:waitAndOr}
+\textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q\land (p\lor q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $(q\lor (p\land \Next (p\Wait q))) \land (p\lor q)$\\[\lgap]
+\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q) \land p)$\\[\lgap]
+\> $=$ \> \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $p\Wait q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:waitOrAnd}
+\textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q\lor (p\land q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q)) \lor (p\land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$ with $p,q:=q,p$}\\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
+\> \> $p\Wait q$ \> \myqed
+\end{tabbing}
+
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}
@@ -2463,14 +2659,10 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $p \Wait q \land \Always\neg q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
-\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
-\> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \Always\neg q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:dualEvent}) Dual of $\Event$} \\[\lgap]
-\> \> $(\Always p \land \Always\neg q) \lor (\Event q \land \neg\Event q)$\\[\lgap]
-\> $=$ \> \Hint{(3.42) Contradiction, $p \land \neg p \equiv false$} \\[\lgap]
-\> \> $(\Always p \land \Always\neg q) \lor false$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
-\> \> $\Always p \land \Always\neg q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+\> \> $(\Always p \lor \Event q) \land \neg \Event q$\\[\lgap]
+\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+\> \> $\Always p \land \neg \Event q$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $\Always p$ \> \myqed
 \end{tabbing}
@@ -2485,15 +2677,17 @@ p \Wait q \land \neg\Always p \impl \Event q
 \> \> $p \Wait q \land \neg\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg\Always p$\\[\lgap]
-\> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
-\> \> $(\Always p \land \neg\Always p) \lor (\Event q \land \neg\Always p)$\\[\lgap]
-\> $=$ \> \Hint{(3.42) Contradiction, $p \land \neg p \equiv false$} \\[\lgap]
-\> \> $false \lor (\Event q \land \neg\Always p)$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
-\> \> $\Event q \land \neg\Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+\> \> $\neg\Always p\land \Event q$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $\Event q$ \> \myqed
 \end{tabbing}
+
+
+
+
+
+
 
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
@@ -2719,11 +2913,11 @@ This paper presents an axiomatic deductive system of linear temporal logic whose
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
-It presents 30 new linear temporal logic theorems, namely the three axioms
+It presents 40 new linear temporal logic theorems, namely the three axioms
 (\ref{E:untilAssocImp}) Partial associativity of $\Until$,
 (\ref{E:axAbsorpUntil}) Absorption,
 (\ref{E:axiomUntilImpl}) $\Until$ implication,
-and the 27 theorems
+and the 37 theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
 (\ref{E:untilFalse}),
@@ -2746,6 +2940,16 @@ and the 27 theorems
 (\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$,
 (\ref{E:impNext}),
 (\ref{E:untilFromWait}),
+(\ref{E:untilImplWait}),
+(\ref{E:leftZeroWait}) Left zero of $\Wait$,
+(\ref{E:idempWait}) Idempotency of $\Wait$,
+(\ref{E:rightZeroWait}) Right zero of $\Wait$,
+(\ref{E:leftIdentWait}) Left identity of $\Wait$,
+(\ref{E:waitOrP}) Absorption,
+(\ref{E:waitOrQ}) Absorption,
+(\ref{E:waitAndQ}) Absorption,
+(\ref{E:waitAndOr}) Absorption,
+(\ref{E:waitOrAnd}) Absorption,
 (\ref{E:rightUntilAbsWait}) Absorption,
 (\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
 (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,

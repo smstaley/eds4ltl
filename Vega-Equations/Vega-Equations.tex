@@ -275,7 +275,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 (4.12)\>\textbf{Proof by contrapositive:}\quad To prove $P\impl Q$, prove $\neg Q\impl \neg P$.\\
 \end{tabbing}
 
-\pagebreak
+\newpage
 
 \section*{Theorems of Linear Temporal Logic}
 
@@ -390,7 +390,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \spacer
 
 \begin{equation}\label{E:leftIdUntil}
-\textbf{Left identity of $\Until$:}\quad false \Until p \equiv p
+\textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
 \end{equation}
 
 \spacer
@@ -450,7 +450,7 @@ p \Until q \impl p \lor q
 \subsection*{Eventually $\quad\Event$}
 
 \begin{equation}\label{E:defEvent}
-\textbf{Definition of $\Event$:}\quad \Event p \equiv true \Until p
+\textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
 
 \firstspacer
@@ -723,13 +723,13 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:eventAlwaysImp}
 \Event\Always p \impl \Always\Event p
 \end{equation}
 
-\pagebreak
+\spacer
 
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
@@ -779,6 +779,12 @@ p \Until q \equiv p \Wait q\land \Event q
 
 \spacer
 
+\begin{equation}\label{untilImplWait}
+p\Until q\impl p\Wait q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
@@ -787,6 +793,30 @@ p \Until q \equiv p \Wait q\land \Event q
 
 \begin{equation}\label{E:expansionWait}
 \textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftZeroWait}
+\textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:idempWait}
+\textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightZeroWait}
+\textbf{Right zero of $\Wait$:}\quad p \Wait true \equiv true
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftIdentWait}
+\textbf{Left identity of $\Wait$:}\quad false \Wait q \equiv q
 \end{equation}
 
 \spacer
@@ -817,6 +847,36 @@ p \Wait q \impl p \lor q
 
 \begin{equation}\label{E:waitEntailment}
 p \Wait q \impl \Always p\lor \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrP}
+\textbf{Absorption:}\quad p\lor p\Wait q\equiv p\lor q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrQ}
+\textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAndQ}
+\textbf{Absorption:}\quad p\Wait q\land q\equiv q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAndOr}
+\textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitOrAnd}
+\textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
 \end{equation}
 
 \spacer
@@ -885,7 +945,7 @@ p \Wait q \land \neg\Always p \impl \Event q
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r) \quad [\textit{Not yet proved.}]
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
