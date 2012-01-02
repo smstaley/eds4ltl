@@ -371,12 +371,6 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
-\begin{equation}\label{E:untilAndEquiv}
-\textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -487,18 +481,6 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:absAndIntoEvent}
 \textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:absEventIntoUntil}
-\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilImplEvent}
-p \Until q\impl \Event q
 \end{equation}
 
 \spacer
@@ -773,14 +755,14 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \firstspacer
 
-\begin{equation}\label{E:untilFromWait}
-p \Until q \equiv p \Wait q\land \Event q
+\begin{equation}\label{E:rightWaitAndDist}
+\textbf{Axiom, Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv p \Wait r \land q \Wait r
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{untilImplWait}
-p\Until q\impl p\Wait q
+\begin{equation}\label{E:untilFromWait}
+\textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
 \end{equation}
 
 \spacer
@@ -803,6 +785,30 @@ p\Until q\impl p\Wait q
 
 \spacer
 
+\begin{equation}\label{E:waitOrDist}
+\textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitOrDist}
+\textbf{Right distributivity of $\Wait$ over $\lor$:}\quad p \Wait r \lor q \Wait r \impl (p \lor q) \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftWaitAndDist}
+\textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}
@@ -821,20 +827,8 @@ p\Until q\impl p\Wait q
 
 \spacer
 
-\begin{equation}\label{E:alwaysImpWait}
-\textbf{Perpetuity:}\quad \Always p \Rightarrow p \Wait q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:alwaysAsWait}
-\Always p \equiv p \Wait false
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:waitInsertion}
-\textbf{Insertion:}\quad q \impl p \Wait q
+\begin{equation}\label{untilImplWait}
+p\Until q\impl p\Wait q
 \end{equation}
 
 \spacer
@@ -845,8 +839,8 @@ p \Wait q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:waitEntailment}
-p \Wait q \impl \Always p\lor \Event q
+\begin{equation}\label{E:waitInsertion}
+\textbf{Insertion:}\quad q \impl p \Wait q
 \end{equation}
 
 \spacer
@@ -881,14 +875,32 @@ p \Wait q \impl \Always p\lor \Event q
 
 \spacer
 
-\begin{equation}\label{E:absorpEventWait}
-\textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
+\begin{equation}\label{E:alwaysAsWait}
+\Always p \equiv p \Wait false
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysImpWait}
+\textbf{Perpetuity:}\quad \Always p \impl p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:absAlwaysWait}
 \textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitEntailment}
+p \Wait q \impl \Always p\lor \Event q
 \end{equation}
 
 \spacer
@@ -903,7 +915,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 p \Wait q \land \neg\Always p \impl \Event q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r \quad [\textit{Not yet proved.}]
@@ -941,6 +953,12 @@ p \Wait q \land \neg\Always p \impl \Event q
 
 \spacer
 
+\begin{equation}\label{E:absorpEventWait}
+\textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
@@ -955,30 +973,6 @@ p \Wait q \land \neg\Always p \impl \Event q
 
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r) \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\newpage
-
-\begin{equation}\label{E:waitOrDist}
-\textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:rightWaitOrDist}
-\textbf{Right distributivity of $\Wait$ over $\lor$:}\quad p \Wait r \lor q \Wait r \impl (p \lor q) \Wait r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:leftWaitAndDist}
-\textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:rightWaitAndDist}
-\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv p \Wait r \land q \Wait r \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \spacer
