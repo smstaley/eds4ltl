@@ -532,16 +532,16 @@ The following figure illustrates the temporal segments for which $p$, $q$, and $
 \put(80,10) {$j\le i < k$}
 \end{picture}
 
-To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $(p\Until q)$ holds between $j$ and $n$,
+To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $p\Until q$ holds between $j$ and $n$,
 given that $p$, $q$, and $r$ hold as above.\\
 
-Case 1. $\quad (p\Until q)$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
-$(p\Until q)$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.\\
+Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
+$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.\\
 
-Case 2. $\quad (p\Until q)$ holds at $(\sigma,m)$ for $k<m<n$.\\
-$(p\Until q)$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, and $true$ is the right zero of $\Until$.\\
+Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $k<m<n$.\\
+$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, and $true$ is the right zero of $\Until$.\\
 
-From Case 1 and Case 2, $(p\Until q)$ holds at $(\sigma,i)$ for $j\le i<n$.
+From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $j\le i<n$.
 Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively, which completes the proof.
 This theorem does not seem to appear in the linear temporal logic literature.
 It is the basis of axiom (\ref{E:untilAssocImp}) $p \Until (q \Until r) \impl (p \Until q) \Until r$ assumed in Section 3.2.
@@ -767,6 +767,49 @@ Here is a demonstration of this implication.
 	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
 	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
 \end{tabbing}
+
+Yet another defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+$p\Until \Always q\impl \Always (p\Until q)$.
+Here is a demonstration of this implication.
+Expanding $p\Until \Always q$,
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>   $(\sigma,j) \models p\Until \Always q$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
+	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models \Always q \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
+	\> \>   $(\ext k \dr k\ge j \rb (\all m \dr m\ge k \rb (\sigma, m) \models q) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$
+\end{tabbing}
+
+The following figure illustrates the temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
+
+\begin{picture}(360,120)
+\thicklines
+\put(0,100)  {\line(1,0){360}}
+\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}}
+\put(18,86)  {$j$} \put(178,86)  {$k$}
+\put(168,74) {$k\ge j$}
+\put(180,52) {\line(1,0){180}}
+\put(180,52) {\circle*{8}}
+\put(240,58) {$(\sigma,m)\models q$}
+\put(250,42) {$m\ge k$}
+\put(20,20)  {\line(1,0){156}}
+\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}
+\put(80,28) {$(\sigma,i)\models p$}
+\put(80,10) {$j\le i < k$}
+\end{picture}
+
+To prove that $p\Until \Always q\impl \Always (p\Until q)$ it suffices to show that $p\Until q$ holds for all time greater than or equal to $j$,
+given that $p$ and $q$ hold as above.\\
+
+Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
+$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.\\
+
+Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $m>k$.\\
+$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and $true$ is the right zero of $\Until$.\\
+
+From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$, which completes the demonstration.
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
@@ -1498,12 +1541,15 @@ The following induction axiom is included in other temporal logic systems but is
 The absorption axiom is required to prove the absorption properties of $\Until$ and $\Wait$,
 and the $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$.
 The distributivity axioms are required to prove the theorems where $\Always\Event$ distributes over $\lor$ and $\Event\Always$ distributes over $\land$ with equality.
-The absorption axiom and the $\Until$ implication axiom are apparently unique to this system.
+The absorption, $\Until$ implication, and $\Always \Until$ implication axioms are apparently unique to this system.
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
 \end{equation}
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
+\end{equation}
+\begin{equation}\label{E:axiomAlwaysUntilImpl}
+\textbf{Axiom, $\Always \Until$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
@@ -2360,6 +2406,40 @@ Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \te
 \> \> $true$ \> \myqed
 \end{tabbing}
 
+Like the \textit{until} operator, the \textit{wait} operator is partially associative.
+Each $\foll$ step in the proof below is justified in conjunction with (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$.
+\begin{equation}\label{E:waitAssocImp}
+\textbf{Partial associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p \Wait q) \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always (p \Wait q) \lor (p\Wait q)\Until r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always (\Always p\lor p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
+\> $\foll$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+\> \> $\Always\Always p\lor \Always (p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+\> \> $\Always p\lor \Always (p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $\Always p\lor \Always (p\Until q) \lor \Always p\Until r\lor (p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \> $\Always p\lor \Always (p\Until q) \lor (p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
+\> \> $\Always p\lor \Always (p\Until q) \lor p\Until (q\Until r)$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Always \Until$ implication}\\[\lgap]
+\> \> $\Always p\lor p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+\> \> $\Always p\lor p\Until (\Always q \lor q\Until r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p\lor p\Until (q\Wait r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $p \Wait (q \Wait r)$ \> \myqed
+\end{tabbing}
+
 The next three distributive theorems for the \textit{wait} operator correspond to, and are proved from,
 the distributive axioms for the \textit{until} operator
 (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), and (\ref{E:untilAndImp}).
@@ -2645,6 +2725,73 @@ respectively.
 \> \> $p\Wait q$ \> \myqed
 \end{tabbing}
 
+The left and right absorption theorems for $\Wait$ correspond to the left and right absorption theorems
+for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
+\begin{equation}\label{E:waitAbsL}
+\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Wait (p \Wait q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Partial associativity of $\Wait$}\\[\lgap]
+  \> \>   $(p \Wait p) \Wait q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
+  \> \>   $p \Wait q$
+\end{tabbing}
+
+The proof in the second direction follows.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Wait q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) Insertion with $q := p \Wait q$}\\[\lgap]
+  \> \>   $p \Wait (p \Wait q)$ \> \myqed
+\end{tabbing}
+
+
+\begin{equation}\label{E:waitAbsR}
+\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
+\end{equation}
+
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Wait q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
+  \> \>   $p \Wait (q \Wait q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Partial associativity of $\Wait$}\\[\lgap]
+  \> \>   $(p \Wait q) \Wait q$
+\end{tabbing}
+
+The proof in the second direction follows.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \Wait q) \Wait q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitToOr})}\\[\lgap]
+  \> \>   $p \Wait q \lor q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:waitOrQ}) Absorption}\\[\lgap]
+  \> \>   $p \Wait q$ \> \myqed
+\end{tabbing}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The following theorem corresponds to the definition of the \textit{eventually} operator (\ref{E:defEvent}).
 \begin{equation}\label{E:alwaysAsWait}
 \Always p \equiv p \Wait false
@@ -2862,31 +3009,6 @@ The following theorem for the \textit{wait} operator corresponds to axiom (\ref{
 \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
 \> \> $\Event q$ \> \myqed
 \end{tabbing}
-
-\begin{equation}\label{E:waitAbsL}
-\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Wait (p \Wait q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always p\lor p \Until (p \Wait q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:leftUntilAbsWait}) Absorption} \\[\lgap]
-\> \> $\Always p\lor p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always p \lor \Always p\lor p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$ with $p := \Always p$} \\[\lgap]
-\> \> $\Always p\lor p \Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $p \Wait q$ \> \myqed
-\end{tabbing}
-
-\begin{equation}\label{E:waitAbsR}
-\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
-\end{equation}
-[\textit{Not yet proved.}]
 
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)

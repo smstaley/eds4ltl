@@ -545,6 +545,12 @@ p \Until q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:axiomAlwaysUntilImpl}
+\textbf{Axiom, $\Always \Until$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:distAlwaysEventOrAx}
 \textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -785,6 +791,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
+\begin{equation}\label{E:waitAssocImp}
+\textbf{Partial associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
@@ -875,6 +887,18 @@ p \Wait q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:waitAbsL}
+\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitAbsR}
+\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:alwaysAsWait}
 \Always p \equiv p \Wait false
 \end{equation}
@@ -955,18 +979,6 @@ p \Wait q \land \neg\Always p \impl \Event q
 
 \begin{equation}\label{E:absorpEventWait}
 \textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:waitAbsL}
-\textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:waitAbsR}
-\textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \spacer
