@@ -2991,7 +2991,18 @@ The second direction follows.
 \begin{equation}\label{E:rightUntilAbsWait}
 \textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]\\
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p \Wait q) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+\> \> $(p \Wait q) \Wait q \land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:waitAbsR}) Right absorption of $\Wait$} \\[\lgap]
+\> \> $p \Wait q \land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+\> \> $p \Until q$ \> \myqed
+\end{tabbing}
 
 The following theorem for the \textit{wait} operator corresponds to axiom (\ref{E:axAbsorpUntil}) Absorption for the \textit{until} operator.
 \begin{equation}\label{E:absorpEventWait}
