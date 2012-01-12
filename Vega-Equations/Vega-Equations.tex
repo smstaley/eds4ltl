@@ -945,6 +945,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \neg\Always p\land p \Wait q \impl \Event q
 \end{equation}
 
+\spacer
+
+\begin{equation}\label{E:untilEntailEvent}
+\Event q\impl \neg\Always p\lor p \Until q 
+\end{equation}
+
 \newpage
 
 \begin{equation}\label{E:waitImpAbsR}
