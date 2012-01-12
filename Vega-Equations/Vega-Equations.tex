@@ -660,7 +660,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \spacer
 
 \begin{equation}\label{E:excludedMid}
-\textbf{Excluded Middle:}\quad \Event p \lor \Always\neg p
+\textbf{Temporal excluded middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
 
 \spacer
@@ -744,7 +744,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \spacer
 
 \begin{equation}\label{E:eventImpAlways}
-\Event (p \impl q) \equiv (\Always p \impl \Event q)
+\textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
 
 \spacer
@@ -924,7 +924,7 @@ p \Wait q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:waitEntailment}
-p \Wait q \impl \Always p\lor \Event q
+\textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
 \end{equation}
 
 \spacer
@@ -935,8 +935,14 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
+\begin{equation}\label{E:untilEntailAlways}
+\Always p\impl p \Until q \lor \Always\neg q 
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitEntailEvent}
-p \Wait q \land \neg\Always p \impl \Event q
+\neg\Always p\land p \Wait q \impl \Event q
 \end{equation}
 
 \newpage

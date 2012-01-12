@@ -2883,7 +2883,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait q \land \Always\neg q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg \Event q$\\[\lgap]
@@ -2901,7 +2901,7 @@ p \Wait q \land \neg\Always p \impl \Event q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait q \land \neg\Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitEntailment})} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg\Always p$\\[\lgap]
 \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
 \> \> $\neg\Always p\land \Event q$\\[\lgap]
