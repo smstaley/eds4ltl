@@ -2312,6 +2312,54 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+In the equational system $\mathcal{E}$, Gries and Schneider \cite{LADM} prove the metatheorem (9.16), which states that
+$P$ is a theorem iff $(\all x\drrb P)$ is a theorem.
+Theorems in $\mathcal{E}$ are thus said to be ``implicitly universally quantified.''
+A similar concept applies to temporal logic theorems in $\mathcal{E}$ except that the implicit application is in
+the temporal dimension.
+The following metatheorem shows that theorems ``implicitly always hold.''
+\begin{equation}\label{E:metaAlways}
+\textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
+\end{equation}
+
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.\\
+
+Case 1. $P$ is a theorem $\impl$ $\Always P$ is a theorem.\\
+Suppose $P$ is a theorem.
+Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$.
+Then $\Always P$ can be proved to be a theorem as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always P$\\[\lgap]
+\> $=$ \> \Hint{$P$ is a theorem} \\[\lgap]
+\> \> $\Always true$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
+\> \> $true$
+\end{tabbing}
+Case 2. $\Always P$ is a theorem $\impl$ $P$ is a theorem.\\
+Suppose $\Always P$ is a theorem.
+Then $\Always P$ is equivalent to $true$.
+$P$ can be proved to be a theorem as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $P$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
+\> \> $\Always P$\\[\lgap]
+\> $=$ \> \Hint{$\Always P$ is a theorem} \\[\lgap]
+\> \> $true$
+\end{tabbing}
+
+
+So we have $true\impl P$.
+By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $P$. \hfill \myqed
+
+
+
+
+
+
+
+
 \subsection{Wait}
 
 $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually be true.
