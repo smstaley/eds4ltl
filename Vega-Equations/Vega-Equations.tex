@@ -371,6 +371,12 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
+\begin{equation}\label{E:untilAndEquiv}
+\textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -533,12 +539,6 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:axAbsorpUntil}
-\textbf{Axiom, Absorption:}\quad p \Until \Always p \equiv \Always p
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
@@ -559,6 +559,18 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:distEventAlwaysAndAx}
 \textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:axAbsorpUntil}
+\textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
 \end{equation}
 
 \spacer
@@ -821,12 +833,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{E:untilAndEquiv}
-\textbf{Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}
@@ -917,8 +923,38 @@ p \Wait q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:absEventIntoUntil}
-\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\begin{equation}\label{E:waitEntailment}
+\textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftWaitAbsUtil}
+\textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitAbsUtil}
+\textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:leftUntilAbsWait}
+\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightUntilAbsWait}
+\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absorpEventWait}
+\textbf{Absorption of $\Wait$ into $\Event$:}\quad \Event q \Wait q \equiv \Event q
 \end{equation}
 
 \spacer
@@ -927,13 +963,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
 \end{equation}
 
-\spacer
-
-\begin{equation}\label{E:waitEntailment}
-\textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
-\end{equation}
-
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
@@ -957,7 +987,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \Event q\impl \neg\Always p\lor p \Until q 
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:rightMonoUntil}
 \textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q) \quad [\textit{Conj theorem. Not yet proved.}]
@@ -991,36 +1021,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitImpAbsL}
 \textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:leftWaitAbsUtil}
-\textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:rightWaitAbsUtil}
-\textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:leftUntilAbsWait}
-\textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:rightUntilAbsWait}
-\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:absorpEventWait}
-\textbf{Absorption:}\quad \Event q \Wait q \equiv \Event q
 \end{equation}
 
 \spacer
