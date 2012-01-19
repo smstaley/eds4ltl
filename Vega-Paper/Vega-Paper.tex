@@ -1528,8 +1528,8 @@ The following induction axiom is included in other temporal logic systems but is
 \end{equation}
 
 The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
-and the $\Always\Until$ axiom is required to 
-The distributivity axioms are required to prove the theorems where $\Always\Event$ distributes over $\lor$ and $\Event\Always$ distributes over $\land$ with equality.
+and the $\Always\Until$ axiom is required to prove absorption of $\Until$ into $\Always$.
+The axioms (\ref{E:distAlwaysEventOrAx}) and (\ref{E:distEventAlwaysAndAx}) are required to prove the distributivity of $\Always\Event$  over $\lor$ and $\Event\Always$ over $\land$.
 The $\Until$ implication and $\Always \Until$ implication axioms are apparently unique to this system.
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
@@ -1544,13 +1544,13 @@ The $\Until$ implication and $\Always \Until$ implication axioms are apparently 
 \firstspacer
 
 \begin{equation}\label{E:distAlwaysEventOrAx}
-\textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
+\textbf{Axiom:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:distEventAlwaysAndAx}
-\textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
+\textbf{Axiom:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
 The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
@@ -1574,7 +1574,7 @@ The second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilInsertion}) Insertion, with $q:=\Always p$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $\Always p \Until q$ \> \myqed
 \end{tabbing}
 
@@ -2133,7 +2133,7 @@ The proof in the first direction follows.
   \> \>   $\Always\Event(p \lor q)$\\[\lgap]
 \end{tabbing}
 
-Axiom (\ref{E:distAlwaysEventOrAx}) Distributivity of $\Always\Event$ over $\lor$ supplies the proof in the second direction.
+Axiom (\ref{E:distAlwaysEventOrAx}) supplies the proof in the second direction.
 \hfill \myqed\\[\lgap]
 
 \begin{equation}\label{E:distEventAlwaysAnd}
@@ -2151,7 +2151,7 @@ The proof in the first direction follows.
   \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
 \end{tabbing}
 
-Axiom (\ref{E:distEventAlwaysAndAx}) Distributivity of $\Event\Always$ over $\land$ supplies the proof in the second direction.
+Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
 \hfill \myqed\\[\lgap]
 
 Theorem (\ref{E:eventAlwaysImp}) states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not vice versa.
@@ -2386,16 +2386,8 @@ $P$ can be proved to be a theorem as follows.
 \> \> $true$
 \end{tabbing}
 
-
 So we have $true\impl P$.
 By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $P$. \hfill \myqed
-
-
-
-
-
-
-
 
 \subsection{Wait}
 
@@ -2404,13 +2396,17 @@ $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
 (Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
-Two axioms characterize the \textit{wait} operator, the definition of $\Wait$ in terms of $\Until$ and the right distributivity of
+Two axioms characterize the \textit{wait} operator, the definition of $\Wait$ in terms of $\Until$ and axiom (\ref{E:axRightWaitAndDist}),
+which is necessary to prove the right distributivity of
 $\Wait$ over $\land$.
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
 \end{equation}
-\begin{equation}\label{E:rightWaitAndDist}
-\textbf{Axiom, Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv p \Wait r \land q \Wait r
+
+\firstspacer
+
+\begin{equation}\label{E:axRightWaitAndDist}
+\textbf{Axiom:}\quad p \Wait r \land q \Wait r \impl (p \land q) \Wait r
 \end{equation}
 
 The defining equation gives $\Wait$ in terms of $\Until$. The following theorem gives $\Until$ in terms of $\Wait$.
@@ -2525,11 +2521,9 @@ Each $\foll$ step in the proof below is justified in conjunction with (4.2) Mono
 \> \> $p \Wait (q \Wait r)$ \> \myqed
 \end{tabbing}
 
-The next three distributive theorems for the \textit{wait} operator correspond to, and are proved from,
+The next four distributive theorems for the \textit{wait} operator correspond to, and are proved from,
 the distributive axioms for the \textit{until} operator
 (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), and (\ref{E:untilAndImp}).
-The fourth distributive theorem for the right distributivity of $\Until$ over $\land$ corresponds to, and is proved from, the distributive
-axiom for the \textit{wait} operator (\ref{E:rightWaitAndDist}).
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
@@ -2583,6 +2577,32 @@ axiom for the \textit{wait} operator (\ref{E:rightWaitAndDist}).
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
 \> \> $p \Wait q \land p \Wait r$ \> \myqed
 \end{tabbing}
+
+\begin{equation}\label{E:rightWaitAndDist}
+\textbf{Right distributivity of $\Wait$ over $\land$}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
+\end{equation}
+
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Wait r \land q \Wait r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
+  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
+  \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+  \> \>   $(\Always p\land \Always q) \lor (p\land q) \Until r$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p\land q) \lor (p\land q) \Until r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> \>   $(p\land q) \Wait r$\\[\lgap]
+\end{tabbing}
+
+Axiom (\ref{E:axRightWaitAndDist}) supplies the proof in the second direction.
+\hfill \myqed\\[\lgap]
 
 Like the \textit{until} operator, \textit{wait} is idempotent.
 $true$ is the right zero of both \textit{until} and \textit{wait}.

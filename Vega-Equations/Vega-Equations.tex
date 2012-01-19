@@ -552,13 +552,13 @@ p \Until q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:distAlwaysEventOrAx}
-\textbf{Axiom, Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
+\textbf{Axiom:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:distEventAlwaysAndAx}
-\textbf{Axiom, Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
+\textbf{Axiom:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
 \spacer
@@ -779,8 +779,8 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \firstspacer
 
-\begin{equation}\label{E:rightWaitAndDist}
-\textbf{Axiom, Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r \equiv p \Wait r \land q \Wait r
+\begin{equation}\label{E:axRightWaitAndDist}
+\textbf{Axiom:}\quad p \Wait r \land q \Wait r \impl (p \land q) \Wait r
 \end{equation}
 
 \spacer
@@ -829,6 +829,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitAndDist}
+\textbf{Right distributivity of $\Wait$ over $\land$}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
 
 \spacer
@@ -951,7 +957,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:absorpEventWait}
 \textbf{Absorption of $\Wait$ into $\Event$:}\quad \Event q \Wait q \equiv \Event q
@@ -963,7 +969,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
