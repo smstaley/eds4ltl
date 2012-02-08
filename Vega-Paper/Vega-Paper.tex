@@ -2384,15 +2384,22 @@ Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   \textit{To be continued}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$\\[\lgap]
 \end{tabbing}
 
-
-
-
-
-
-\hfill \myqed\\[\lgap]
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \> \myqed
+\end{tabbing}
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
