@@ -1528,9 +1528,12 @@ The following induction axiom is included in other temporal logic systems but is
 \end{equation}
 
 The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
-and the $\Always\Until$ axiom is required to prove absorption of $\Until$ into $\Always$.
-The axioms (\ref{E:distAlwaysEventOrAx}) and (\ref{E:distEventAlwaysAndAx}) are required to prove the distributivity of $\Always\Event$  over $\lor$ and $\Event\Always$ over $\land$.
-The $\Until$ implication and $\Always \Until$ implication axioms are apparently unique to this system.
+and the $\Always\Until$ implication axiom is required to prove absorption of $\Until$ into $\Always$.
+The $\Event\Always$ axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
+Suppose, for example, that $p$ continually oscillates between true and false over time.
+Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
+The axiom (\ref{E:distEventAlwaysAndAx}) is required to prove the distributivity of $\Event\Always$ over $\land$.
+The $\Until$ implication and $\Always \Until$ implication theorems are apparently unique to this system.
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
@@ -1543,9 +1546,29 @@ The $\Until$ implication and $\Always \Until$ implication axioms are apparently 
 
 \firstspacer
 
-\begin{equation}\label{E:distAlwaysEventOrAx}
-\textbf{Axiom:}\quad \Always\Event(p \lor q) \impl \Always\Event p \lor \Always\Event q
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
+
+%\emph{Proof:}
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $\Event\Always p \impl \Always\Event p$\\[\lgap]
+%  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+%  \> \>   $\neg\Event\Always p \lor \Always\Event p$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+%  \> \>   $\Always\neg\Always p \lor \Always\Event p$\\[\lgap]  
+%  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+%  \> \>   $\Always\Event\neg p \lor \Always\Event p$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
+%  \> \>   $\Always\Event(\neg p \lor p)$\\[\lgap]
+%  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
+%  \> \>   $\Always\Event true$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth of $\Event$}\\[\lgap]
+%  \> \>   $\Always true$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
+%  \> \>   $true$ \> \myqed
+%\end{tabbing}
 
 \firstspacer
 
@@ -1569,7 +1592,7 @@ The proof in the first direction follows.
 \> \> $\Always p$
 \end{tabbing}
 
-The second direction follows.
+The proof in the second direction follows.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1931,7 +1954,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not vice versa.
+Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
 \begin{equation}\label{E:exAlwaysNot}
@@ -1947,6 +1970,38 @@ Then the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is fals
   \> \>   $\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\neg\Always p$ \> \myqed
+\end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
+
+\begin{equation}\label{E:alwaysAndEvent}
+\Always p \land \Event q \impl \Event (p \land q)
+\end{equation}
+
+\emph{Proof:}
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\neg(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\neg\Always p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Event\neg p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\neg p \lor (p \land q)) \lor \neg\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
+  \> \>   $\Event(\neg p \lor q) \lor \neg\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\neg p \lor \Event q \lor \neg\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
+  \> \>   $\Event\neg p \lor true$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
+  \> \>   $true$ \> \myqed
 \end{tabbing}
 }
 
@@ -2000,7 +2055,7 @@ Exercise for the student.\\
 }
 
 \begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \impl \Always (p \lor q)
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad \Always p \lor \Always q \impl \Always (p \lor q)
 \end{equation}
 
 \emph{Proof:}
@@ -2035,7 +2090,6 @@ which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \hfill \myqed\\[\lgap]
 \end{tabbing}
 which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \hfill \myqed\\[\lgap]
 
-
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Distributivity of $\Always$ over $\impl$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
@@ -2060,174 +2114,23 @@ which is (3.5) Reflexivity of $\equiv$, $p\equiv p$. \hfill \myqed\\[\lgap]
 Exercise for the student.\\
 }
 
-The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
-distribute over conjunction and disjunction.
-Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over conjunction only in one direction.
-Similarly, Theorem (\ref{E:distEventAlwaysOr}) shows that $\Event\Always$ distributes over disjunction only in one direction.
-However, Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) show that $\Always\Event$ distributes over
-disjunction and $\Event\Always$ distributes over conjunction in both directions.
-\begin{equation}\label{E:distAlwaysEventAnd}
-\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
+\begin{equation}\label{E:eventImpAlways}
+\textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
 
 \emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Always\Event(p \land q) \land \Always\Event p \land \Always\Event q \equiv \Always\Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always(\Event(p \land q) \land \Event p \land \Event q) \equiv \Always\Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
-  \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$
-\end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
-
-\emph{Proof of Lemma:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Event(p \land q) \impl \Event p \land \Event q$
-\end{tabbing}
-which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \hfill \myqed\\[\lgap]
-
-\begin{equation}\label{E:distEventAlwaysOr}
-\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p \lor \Event\Always q \impl \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
-  \> \>   $\Event\Always p \lor \Event\Always q \lor \Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event(\Always p \lor \Always q \lor \Always(p \lor q)) \equiv \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
-  \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$
-\end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
-
-\emph{Proof of Lemma:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
-  \> \>   $\Always p \lor \Always q \impl \Always(p \lor q)$
-\end{tabbing}
-which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \hfill \myqed\\[\lgap]
-
-\begin{equation}\label{E:distAlwaysEventOr}
-\textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
-\end{equation}
-
-\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event p \lor \Always\Event q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
-  \> \>   $\Always(\Event p \lor \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Always\Event(p \lor q)$\\[\lgap]
-\end{tabbing}
-
-Axiom (\ref{E:distAlwaysEventOrAx}) supplies the proof in the second direction.
-\hfill \myqed\\[\lgap]
-
-\begin{equation}\label{E:distEventAlwaysAnd}
-\textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
-\end{equation}
-
-\emph{Proof:} Also by mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always p \land \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
-\end{tabbing}
-
-Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
-\hfill \myqed\\[\lgap]
-
-Theorem (\ref{E:eventAlwaysImp}) states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not vice versa.
-That is, $\Always\Event p$ does not guarantee that eventually $p$ will always hold.
-\begin{equation}\label{E:eventAlwaysImp}
-\Event\Always p \impl \Always\Event p
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p \impl \Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\neg\Event\Always p \lor \Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\Always\neg\Always p \lor \Always\Event p$\\[\lgap]  
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Always\Event\neg p \lor \Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Always\Event(\neg p \lor p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
-  \> \>   $\Always\Event true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth of $\Event$}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
-  \> \>   $true$ \> \myqed
-\end{tabbing}
-
-The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
-(\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
-of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
-\;$\Always\Event p$, or \;$\Event\Always p$.
-\begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
-\end{equation}
-
-\emph{Proof:} Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
-  \> \>   $\Always\Event\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Always\Event p$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
-  \> \>   $\Event\Always\Event p$ \> \myqed
-\end{tabbing}
-
-\begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
-\end{equation}
-
-\emph{Proof:} Also by mutual implication.
-The proof in the first direction follows.
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
-  \> \>   $\Event\Always p$
-\end{tabbing}
-
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-  \> \>   $\Event\Always\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
-  \> \>   $\Always\Event\Always p$ \> \myqed
+  \> \>   $\Event(p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Event(\neg p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\neg p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\neg\Always p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Always p \impl \Event q$ \> \myqed
 \end{tabbing}
 }
 
@@ -2293,69 +2196,13 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-This section concludes with two theorems that are common to all temporal logic systems.
-\begin{equation}\label{E:eventImpAlways}
-\textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
-\end{equation}
-
-\emph{Proof:}
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(p \impl q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\neg\Always p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Always p \impl \Event q$ \> \myqed
-\end{tabbing}
-}
-
-\opt{student}{
-Exercise for the student.\\
-}
-\begin{equation}\label{E:alwaysAndEvent}
-\Always p \land \Event q \impl \Event (p \land q)
-\end{equation}
-
-\emph{Proof:}
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\neg(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
-  \> \>   $\neg\Always p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor (p \land q)) \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor q) \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \Event q \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
-  \> \>   $\Event\neg p \lor true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-  \> \>   $true$ \> \myqed
-\end{tabbing}
-}
-
-\opt{student}{
-Exercise for the student.\\
-}
-
 In the equational system $\mathcal{E}$, Gries and Schneider \cite{LADM} prove the metatheorem (9.16), which states that
 $P$ is a theorem iff $(\all x\drrb P)$ is a theorem.
 Theorems in $\mathcal{E}$ are thus said to be ``implicitly universally quantified.''
 A similar concept applies to temporal logic theorems in $\mathcal{E}$ except that the implicit application is in
 the temporal dimension.
 The following metatheorem shows that theorems ``implicitly always hold.''
-\begin{equation}\label{E:metaAlways}
+\begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
 \end{equation}
 
@@ -2386,8 +2233,239 @@ $P$ can be proved to be a theorem as follows.
 \> \> $true$
 \end{tabbing}
 
-So we have $true\impl P$.
+So, we have $true\impl P$.
 By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $P$. \hfill \myqed
+
+\begin{equation}\label{E:metaEvent}
+\textbf{Metatheorem $\Event$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Event P\impl\Event Q \text{ is a theorem.}
+\end{equation}
+
+\emph{Proof:} Suppose $P\impl Q$ is a theorem.
+Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
+Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Then $\Event P\impl\Event Q$ can be proved to be a theorem as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Event P\impl\Event Q$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$} \\[\lgap]
+\> \> $\Always (P\impl Q)$\\[\lgap]
+\> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
+\> \> $true$
+\end{tabbing}
+
+So, we have $true\impl (\Event P\impl\Event Q)$.
+By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $\Event P\impl\Event Q$. \hfill \myqed
+
+\begin{equation}\label{E:metaAlways}
+\textbf{Metatheorem $\Always$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Always P\impl\Always Q \text{ is a theorem.}
+\end{equation}
+
+\emph{Proof:} Suppose $P\impl Q$ is a theorem.
+Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
+Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Then $\Always P\impl\Always Q$ can be proved to be a theorem as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always P\impl\Always Q$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:distAlwaysImp}) Distributivity of $\Always$ over $\impl$} \\[\lgap]
+\> \> $\Always (P\impl Q)$\\[\lgap]
+\> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
+\> \> $true$
+\end{tabbing}
+
+So, we have $true\impl (\Always P\impl\Always Q)$.
+By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $\Always P\impl\Always Q$. \hfill \myqed\\
+
+The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
+distribute over conjunction and disjunction.
+Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over conjunction only in one direction.
+Similarly, Theorem (\ref{E:distEventAlwaysOr}) shows that $\Event\Always$ distributes over disjunction only in one direction.
+However, Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) show that $\Always\Event$ distributes over
+disjunction and $\Event\Always$ distributes over conjunction in both directions.
+\begin{equation}\label{E:distAlwaysEventAnd}
+\textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $\Always\Event(p \land q) \land \Always\Event p \land \Always\Event q \equiv \Always\Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always(\Event(p \land q) \land \Event p \land \Event q) \equiv \Always\Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
+  \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
+
+\emph{Proof of Lemma:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $\Event(p \land q) \impl \Event p \land \Event q$
+\end{tabbing}
+which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \hfill \myqed\\[\lgap]
+
+\begin{equation}\label{E:distEventAlwaysOr}
+\textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p \lor \Event\Always q \impl \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
+  \> \>   $\Event\Always p \lor \Event\Always q \lor \Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\Always p \lor \Always q \lor \Always(p \lor q)) \equiv \Event\Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
+  \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$
+\end{tabbing}
+which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
+
+\emph{Proof of Lemma:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \impl \Always(p \lor q)$
+\end{tabbing}
+which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \hfill \myqed
+
+\begin{equation}\label{E:distAlwaysEventOr}
+\textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
+\end{equation}
+
+\emph{Proof:} The proof is by mutual implication (3.80), $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event p \lor \Always\Event q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+  \> \>   $\Always(\Event p \lor \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Always\Event(p \lor q)$
+\end{tabbing}
+
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$
+\end{tabbing}
+
+Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (\Always \Event(p\lor q) \land \Event \Always\neg p) \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl (\Event\Always \neg p \impl \Always\Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl (\neg\Always\Event p \impl \Always\Event q)$\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$
+\end{tabbing}
+
+\emph{Proof of Lemma:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   \textit{To be continued}\\[\lgap]
+\end{tabbing}
+
+
+
+
+
+
+\hfill \myqed\\[\lgap]
+
+\begin{equation}\label{E:distEventAlwaysAnd}
+\textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
+\end{equation}
+
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always p \land \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
+\end{tabbing}
+
+Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
+\hfill \myqed\\[\lgap]
+
+The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
+(\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
+of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
+\;$\Always\Event p$, or \;$\Event\Always p$.
+\begin{equation}\label{E:absEvent}
+\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+\emph{Proof:} Proof by Mutual Implication (3.80) $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
+  \> \>   $\Always\Event\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
+  \> \>   $\Event\Always\Event p$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:absAlways}
+\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\end{equation}
+
+\emph{Proof:} Also by mutual implication.
+The proof in the first direction follows.
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
+  \> \>   $\Event\Always p$
+\end{tabbing}
+
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Event\Always\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
+  \> \>   $\Always\Event\Always p$ \> \myqed
+\end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
 
 \subsection{Wait}
 
@@ -2951,7 +3029,7 @@ The proof in the first direction follows.
 \> \> $p \Until q$
 \end{tabbing}
 
-The second direction follows.
+The proof in the second direction follows.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3151,7 +3229,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
 
-\emph{Proof:} By (\ref{E:metaAlways}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\impl p\lor q)$ is a theorem.
+\emph{Proof:} By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\impl p\lor q)$ is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
@@ -3235,7 +3313,7 @@ and the 41 theorems
 (\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$,
 (\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$,
 (\ref{E:impNext}),
-(\ref{E:metaAlways}) Metatheorem,
+(\ref{E:metatheorem}) Metatheorem,
 (\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$,
 (\ref{E:leftZeroWait}) Left zero of $\Wait$,
 (\ref{E:idempWait}) Idempotency of $\Wait$,
