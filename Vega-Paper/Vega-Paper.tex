@@ -2434,24 +2434,21 @@ The proof in the second direction follows.
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
-\emph{Proof:} Also by mutual implication.
-The proof in the first direction follows.
+\emph{Proof:}
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Event\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
-  \> \>   $\Event\Always p$
-\end{tabbing}
-
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-  \> \>   $\Event\Always\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event\Always$ implication}\\[\lgap]
-  \> \>   $\Always\Event\Always p$ \> \myqed
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Always\Event\Always \neg\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\Event\Always\Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
+  \> \>   $\neg\Always\Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\neg\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Event\Always p$ \> \myqed
 \end{tabbing}
 }
 
