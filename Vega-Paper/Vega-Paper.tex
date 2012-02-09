@@ -254,41 +254,40 @@ The general form of a proof step is
 \end{tabbing}
 
 where the expression enclosed in angle brackets $\Gll\;\Ggg$ called the ``hint'' is the justification for the step.
-An example of a proof step from the proof of theorem (\ref{E:distNextAnd}) from Section 3.1 is
+An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ from Section 3.4 is
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\neg\Next (\neg p \lor \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextOr}) with $p,q := \neg p, \neg q$}\\[\lgap]
-  \> \>   $\neg (\Next\neg p \lor \Next \neg q)$
+  \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\Event$}\\[\lgap]
+  \> \>   $p \land \neg\Next\Event\neg p$
 \end{tabbing}
 
-This proof step uses the previously proved theorem (\ref{E:distNextOr}), distributivity of $\Next$ over $\lor$,
-which is $\Next (p \lor q) \equiv \Next p \lor \Next q$.
+This proof step uses the previously proved theorem (\ref{E:defEvent}) Definition of $\Event$,
+which is $\Event q \equiv true \Until q$.
+The justification in the hint $X=Y$ comes from the textual substitution of $\neg p$ for $q$
+in (\ref{E:defEvent}) as follows
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $(\Event q \equiv true \Until q)[q:=\neg p]:\quad \Event \neg p \equiv true \Until \neg p$
+\end{tabbing}
+
 The expressions in Leibniz for the step are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $E:\quad \neg z$\\[\lgap]
-  \> $X:\quad \Next (\neg p \lor \neg q)$\\[\lgap]
-  \> $Y:\quad \Next \neg p \lor \Next \neg q$
+  \> $E:\quad p \land \neg\Next z$\\[\lgap]
+  \> $X:\quad true \Until \neg p$\\[\lgap]
+  \> $Y:\quad \Event \neg p$
 \end{tabbing}
 
 The textual substitutions are
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $E[z:=X]:\quad \neg\Next (\neg p \lor \neg q)$\\[\lgap]
-  \> $E[z:=Y]:\quad \neg\Next (\neg p \lor \neg q)$
-\end{tabbing}
-
-And the justification in the hint $X=Y$ comes from the textual substitution of $\neg p$ for $p$
-and $\neg q$ for $q$ in (\ref{E:distNextOr}) as follows
-
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $(\Next (p \lor q) \equiv \Next p \lor \Next q)[p,q:=\neg p, \neg q]:\quad
-      \Next (\neg p \lor \neg q) \equiv \Next \neg p \lor \Next \neg q$
+  \> $E[z:=X]:\quad p \land \neg\Next(true \Until \neg p)$\\[\lgap]
+  \> $E[z:=Y]:\quad p \land \neg\Next\Event\neg p$
 \end{tabbing}
 
 The proof of a theorem consists of showing the equivalence of that theorem to a previously proved theorem
@@ -868,7 +867,7 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 	\> \>   $\Next\neg p \impl \Next q$\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$ with $p,q := \Next\neg p, \Next p$}\\[\lgap]
 	\> \>   $\neg\Next\neg p \lor \Next q$\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity and (3.12) Double negation $\neg\neg p\equiv p$}\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity and (3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
 	\> \>   $\Next p \lor \Next q$ \> \myqed
 \end{tabbing}
 
@@ -880,9 +879,9 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation $\neg\neg p\equiv p$, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Next (\neg\neg p \land \neg\neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Next\neg(\neg p \lor \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual with $p:= (\neg p \lor \neg q$)}\\[\lgap]
   \> \>   $\neg\Next (\neg p \lor \neg q)$\\[\lgap]
@@ -892,7 +891,7 @@ Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
   \> \>   $\neg(\neg\Next p \lor \neg\Next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\neg(\Next p \land \Next q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Next p \land \Next q$ \> \myqed
 \end{tabbing}
 
@@ -1001,7 +1000,7 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 \firstspacer
 
 \begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom, Partial associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
+\textbf{Axiom, Weak associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 The following four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
@@ -1236,7 +1235,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until (p \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
   \> \>   $(p \Until p) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $p \Until q$
@@ -1262,7 +1261,7 @@ The proof in the first direction follows.
   \> \>   $p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $p \Until (q \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
   \> \>   $(p \Until q) \Until q$
 \end{tabbing}
 
@@ -1532,7 +1531,6 @@ and the $\Always\Until$ implication axiom is required to prove absorption of $\U
 The $\Event\Always$ axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
-The axiom (\ref{E:distEventAlwaysAndAx}) is required to prove the distributivity of $\Event\Always$ over $\land$.
 The $\Until$ implication and $\Always \Until$ implication theorems are apparently unique to this system.
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
@@ -1548,32 +1546,6 @@ The $\Until$ implication and $\Always \Until$ implication theorems are apparentl
 
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
-\end{equation}
-
-%\emph{Proof:}
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $\Event\Always p \impl \Always\Event p$\\[\lgap]
-%  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-%  \> \>   $\neg\Event\Always p \lor \Always\Event p$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-%  \> \>   $\Always\neg\Always p \lor \Always\Event p$\\[\lgap]  
-%  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-%  \> \>   $\Always\Event\neg p \lor \Always\Event p$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
-%  \> \>   $\Always\Event(\neg p \lor p)$\\[\lgap]
-%  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
-%  \> \>   $\Always\Event true$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:eventTrue}) Truth of $\Event$}\\[\lgap]
-%  \> \>   $\Always true$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
-%  \> \>   $true$ \> \myqed
-%\end{tabbing}
-
-\firstspacer
-
-\begin{equation}\label{E:distEventAlwaysAndAx}
-\textbf{Axiom:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
 The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
@@ -1630,7 +1602,7 @@ The following theorem expresses $\Event p$ in terms of $\Always p$ and correspon
   \> \>   $\neg\Always\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\neg\Event\neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$, twice}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Event p$ \> \myqed
 \end{tabbing}
 }
@@ -1665,7 +1637,7 @@ which is (\ref{E:defAlways}) Definition of $\Always$. \hfill \myqed\\[\lgap]
   \> \>   $\Always\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\Event\neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg\Event p$ \> \myqed
 \end{tabbing}
 
@@ -1730,9 +1702,9 @@ As usual, the first describes the current state and the second contains the oper
   \> \>   $\neg(\neg p \lor (true \land \Next(true \Until \neg p)))$\\[\lgap]
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $\neg(\neg p \lor \Next(true \Until \neg p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\neg\neg p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double Negation $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\Event$}\\[\lgap]
   \> \>   $p \land \neg\Next\Event\neg p$\\[\lgap]
@@ -1860,7 +1832,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
   \> \>   $p\impl p\land \Next\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\neg p\lor (p\land \Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg p\lor (\neg\neg p\land \Next\Always p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$ with $p,q := \neg p,\Next\Always p$}\\[\lgap]
   \> \>   $\neg p\lor \Next\Always p$\\[\lgap]
@@ -2043,7 +2015,7 @@ propositional binary operators.
   \> \>   $\neg\Event (\neg p \lor \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\neg (\Event\neg p \lor \Event\neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\neg\Event\neg p \land \neg\Event\neg q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$, twice}\\[\lgap]
   \> \>   $\Always p \land \Always q$ \> \myqed
@@ -2177,7 +2149,7 @@ Exercise for the student.\\
   \> \>   $\neg\Always (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Event\neg (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]  
-  \> $=$  \>  \Hint{(3.47b) De Morgan $\neg (p \lor q) \equiv \neg p \land \neg q$, and (3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$, and (3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event(p \land \neg q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event((p \land \neg q) \lor q) \lor \neg\Event p$\\[\lgap]
@@ -2306,33 +2278,34 @@ which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Event(p \land q) \impl \Event p \land \Event q$
 \end{tabbing}
-which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \hfill \myqed\\[\lgap]
+which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \hfill \myqed
 
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof:} \opt{doc}{ The proof is by (3.61) Contrapositive, $p\impl q\equivs \neg q\impl \neg p$.
+Must prove\\
+$\neg \Event\Always (p \lor q) \impl \neg (\Event\Always p \lor \Event\Always q)$.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p \lor \Event\Always q \impl \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
-  \> \>   $\Event\Always p \lor \Event\Always q \lor \Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event(\Always p \lor \Always q \lor \Always(p \lor q)) \equiv \Event\Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$}\\[\lgap]
-  \> \>   $\Event\Always(p \lor q) \equiv \Event\Always(p \lor q)$
+  \> \>   $\neg \Event\Always (p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always\Event \neg (p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> \>   $\Always\Event (\neg p \land \neg q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEventAnd}) Distributivity of $\Always\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Always\Event \neg p \land \Always\Event \neg q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\Event\Always p \land \neg\Event\Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> \>   $\neg (\Event\Always p\lor \Event\Always q)$ \> \myqed
 \end{tabbing}
-which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.\\[\lgap]
+}
 
-\emph{Proof of Lemma:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \lor \Always q \lor \Always(p \lor q) \equiv \Always(p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
-  \> \>   $\Always p \lor \Always q \impl \Always(p \lor q)$
-\end{tabbing}
-which is (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$. \hfill \myqed
+\opt{student}{
+Exercise for the student.\\
+}
 
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
@@ -2386,7 +2359,7 @@ Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
 \end{tabbing}
 
 Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
@@ -2405,19 +2378,31 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
 
-\emph{Proof:} Also by mutual implication.
-The proof in the first direction follows.
+\emph{Proof:}
+\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always p \land \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event\Always p \land \Event\Always q$\\[\lgap]
+  \> \>   $\Event\Always (p\land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Event\Always (\neg\neg p\land \neg\neg q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> \>   $\Event\Always \neg(\neg p\lor \neg q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\neg\Always\Event (\neg p\lor \neg q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\neg(\Always\Event \neg p\lor \Always\Event \neg q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg(\neg \Event\Always p\lor  \neg \Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\neg\neg (\Event\Always p\land \Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Event\Always p\land \Event\Always q$ \> \myqed
 \end{tabbing}
+}
 
-Axiom (\ref{E:distEventAlwaysAndAx}) supplies the proof in the second direction.
-\hfill \myqed\\[\lgap]
+\opt{student}{
+Exercise for the student.\\
+}
 
 The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
 (\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
@@ -2432,7 +2417,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event\Always$ implication}\\[\lgap]
   \> \>   $\Always\Event\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$
@@ -2465,7 +2450,7 @@ The proof in the second direction follows.
   \> \>   $\Event\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Event\Always\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event\Always$ implication}\\[\lgap]
   \> \>   $\Always\Event\Always p$ \> \myqed
 \end{tabbing}
 }
@@ -2572,10 +2557,10 @@ Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \te
 \> \> $true$ \> \myqed
 \end{tabbing}
 
-Like the \textit{until} operator, the \textit{wait} operator is partially associative.
+Like the \textit{until} operator, the \textit{wait} operator is weakly associative.
 Each $\foll$ step in the proof below is justified in conjunction with (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$.
 \begin{equation}\label{E:waitAssocImp}
-\textbf{Partial associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
+\textbf{Weak associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
 \end{equation}
 
 \emph{Proof:}
@@ -2594,7 +2579,7 @@ Each $\foll$ step in the proof below is justified in conjunction with (4.2) Mono
 \> \> $\Always p\lor \Always (p\Until q) \lor \Always p\Until r\lor (p\Until q)\Until r$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $\Always p\lor \Always (p\Until q) \lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Partial associativity of $\Until$}\\[\lgap]
+\> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
 \> \> $\Always p\lor \Always (p\Until q) \lor p\Until (q\Until r)$\\[\lgap]
 \> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Always \Until$ implication}\\[\lgap]
 \> \> $\Always p\lor p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
@@ -2908,7 +2893,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Wait (p \Wait q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Partial associativity of $\Wait$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
   \> \>   $(p \Wait p) \Wait q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
   \> \>   $p \Wait q$
@@ -2935,7 +2920,7 @@ The proof in the first direction follows.
   \> \>   $p \Wait q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
   \> \>   $p \Wait (q \Wait q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Partial associativity of $\Wait$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait q$
 \end{tabbing}
 
@@ -3254,7 +3239,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait (q \Wait r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitAssocImp}) Partial associativity of $\Wait$}\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
 \> \> $(p \Wait q) \Wait r$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:waitImpAbsR}) Absorption} \\[\lgap]
 \> \> $(p \lor q) \Wait r$ \> \myqed
@@ -3297,7 +3282,7 @@ logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
 \textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
 It presents 44 new linear temporal logic theorems, namely the three axioms
-(\ref{E:untilAssocImp}) Partial associativity of $\Until$,
+(\ref{E:untilAssocImp}) Weak associativity of $\Until$,
 (\ref{E:absUntilAlways}) Absorption,
 (\ref{E:axiomUntilImpl}) $\Until$ implication,
 and the 41 theorems

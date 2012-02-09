@@ -348,7 +348,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \spacer
 
 \begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom, Partial associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
+\textbf{Axiom, Weak associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 \spacer
@@ -553,12 +553,6 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:distEventAlwaysAndAx}
-\textbf{Axiom:}\quad \Event\Always p \land \Event\Always q \impl \Event\Always(p \land q)
 \end{equation}
 
 \spacer
@@ -816,7 +810,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \spacer
 
 \begin{equation}\label{E:waitAssocImp}
-\textbf{Partial associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
+\textbf{Weak associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
 \end{equation}
 
 \spacer
