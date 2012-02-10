@@ -1526,12 +1526,18 @@ The following induction axiom is included in other temporal logic systems but is
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
-The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
-and the $\Always\Until$ implication axiom is required to prove absorption of $\Until$ into $\Always$.
 The $\Event\Always$ axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
+The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
+and the $\Always\Until$ implication axiom is required to prove absorption of $\Until$ into $\Always$.
 The $\Until$ implication and $\Always \Until$ implication theorems are apparently unique to this system.
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\end{equation}
+
+\firstspacer
+
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
@@ -1546,12 +1552,6 @@ The $\Until$ implication and $\Always \Until$ implication theorems are apparentl
 
 \begin{equation}\label{E:andUntilDist}
 \textbf{Axiom, Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
-\end{equation}
-
-\firstspacer
-
-\begin{equation}\label{E:eventAlwaysImp}
-\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
 
 The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
@@ -2468,6 +2468,7 @@ $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually
 $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
+(\ref{E:defWait}) is the only axiom for the \textit{wait} operator.
 (Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
@@ -2694,7 +2695,7 @@ The proof in the first direction follows.
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always (p\land q) \lor (p\land q) \Until r$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-  \> \>   $(p\land q) \Wait r$\\[\lgap]
+  \> \>   $(p\land q) \Wait r$
 \end{tabbing}
 
 The proof in the second direction follows.
@@ -2720,13 +2721,13 @@ The proof in the second direction follows.
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor ((p \land q) \Until r)$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor ((p \land q) \Wait r)$\\[\lgap]
+  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Until r$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) $\Until$ in terms of $\Wait$ and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
-  \> \>   $\Always (p \land q) \lor ((p \land q) \Wait r)$\\[\lgap]
+  \> \>   $\Always (p \land q) \lor (p \land q) \Wait r$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity and  (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
-  \> \>   $((p \land q) \Wait r) \lor ((p \land q) \Wait r)$\\[\lgap]
+  \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(p \land q) \Wait r$ \> \myqed
 \end{tabbing}
