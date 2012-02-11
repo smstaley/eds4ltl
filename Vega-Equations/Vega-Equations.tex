@@ -483,13 +483,13 @@ p \Until q \impl p \lor q
 \textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:absAndIntoEvent}
 \textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
@@ -539,6 +539,12 @@ p \Until q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
@@ -551,8 +557,8 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:eventAlwaysImp}
-\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\begin{equation}\label{E:andUntilDist}
+\textbf{Axiom, Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
 \end{equation}
 
 \spacer
@@ -779,14 +785,20 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \firstspacer
 
-\begin{equation}\label{E:axRightWaitAndDist}
-\textbf{Axiom:}\quad p \Wait r \land q \Wait r \impl (p \land q) \Wait r
+\begin{equation}\label{E:untilFromWait}
+\textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:untilFromWait}
-\textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
+\begin{equation}\label{untilImplWait}
+p\Until q\impl p\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysImpWait}
+\textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
 
 \spacer
@@ -857,12 +869,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{untilImplWait}
-p\Until q\impl p\Wait q
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
@@ -919,12 +925,6 @@ p \Wait q \impl p \lor q
 
 \begin{equation}\label{E:alwaysAsWait}
 \Always p \equiv p \Wait false
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:alwaysImpWait}
-\textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
 
 \spacer

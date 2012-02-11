@@ -1526,7 +1526,7 @@ The following induction axiom is included in other temporal logic systems but is
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
-The $\Event\Always$ axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
+The $\Event\Always$ implication axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
 The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
@@ -2468,7 +2468,7 @@ $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually
 $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
-(\ref{E:defWait}) is the only axiom for the \textit{wait} operator.
+Equation (\ref{E:defWait}) is the only defining axiom for the \textit{wait} operator.
 (Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
