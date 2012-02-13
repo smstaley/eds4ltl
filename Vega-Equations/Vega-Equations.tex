@@ -545,14 +545,8 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:axiomUntilImpl}
-\textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
-\textbf{Axiom, $\Always \Until$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
+\textbf{Axiom, $\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 
 \spacer
@@ -571,6 +565,12 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:axiomUntilImpl}
+\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
 
 \spacer
@@ -793,6 +793,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \begin{equation}\label{untilImplWait}
 p\Until q\impl p\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:andWaitDist}
+\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
 \end{equation}
 
 \spacer
@@ -1027,12 +1033,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitImpAbsL}
 \textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:andWaitDist}
-\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r) \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \spacer

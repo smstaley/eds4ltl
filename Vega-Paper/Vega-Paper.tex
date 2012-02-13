@@ -712,32 +712,32 @@ The corresponding rules for the binary operators are
   \> $((\sigma, j) \models p) \;\equiv\; ((\sigma, j) \models q)$ \quad iff \quad $(\sigma, j) \models p \equiv q$
 \end{tabbing}
 
-One defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
-(\ref{E:axiomUntilImpl}) $\Always p \land \Event q \impl p \Until q$.
-Here is a demonstration of this implication.
+%One defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+%(\ref{E:axiomUntilImpl}) $\Always p \land \Event q \impl p \Until q$.
+%Here is a demonstration of this implication.
+%
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%	\> \>   $(\sigma, j) \models \Always p \land \Event q$\\[\lgap]
+%	\> $=$  \>  \Hint{$((\sigma, j) \models p) \;\land\; ((\sigma, j) \models q)$ iff $(\sigma, j) \models p\land q$}\\[\lgap]
+%	\> \>   $((\sigma, j) \models \Always p) \;\land\; ((\sigma, j) \models \Event q)$\\[\lgap]
+%	\> $=$  \>  \Hint{Semantics of $\Always p$ and $\Event q$}\\[\lgap]
+%	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p) \land (\ext k \dr  k \ge j \rb (\sigma, k) \models q)$\\[\lgap]
+%	\> $=$  \>  \Hintfirst{(9.21) Distributivity of $\land$ over $\ext$, $P\land (\ext x \dr R \rb Q) \equiv (\ext x \dr R \rb P\land Q)$}\\[\lgap]
+%	\>      \>  \Hintlast{as $\neg occurs(\Lq k\Rq ,\Lq (\all i \dr i \ge j \rb (\sigma, i) \models p) \Rq)$}\\[\lgap]
+%	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr i \ge j \rb (\sigma, i) \models p))$\\[\lgap]
+%	\> $=$  \>  \Hint{$i \ge j \equiv j\le i < k\lor k\le i$}\\[\lgap]
+%	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\lor k\le i \rb (\sigma, i) \models p))$\\[\lgap]
+%	\> $=$  \>  \Hint{(8.18) Range split $(\star x \dr R \lor S \rb P) = (\star x \dr R \rb P) \star (\star x \dr S \rb P)$}\\[\lgap]
+%	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)\land (\all i \dr k\le i \rb (\sigma, i) \models p))$\\[\lgap]
+%	\> $\impl$  \>  \Hintfirst{(3.76b) $p\land q\impl p$ and (9.27) Monotonicity of $\ext$}\\[\lgap]
+%	\>      \>  \Hintlast{$(\all x\dr R\rb Q\impl P)\impl ((\ext x\dr R\rb Q)\impl (\ext x\dr R\rb P))$}\\[\lgap]
+%	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)$\\[\lgap]
+%	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
+%	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
+%\end{tabbing}
 
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $(\sigma, j) \models \Always p \land \Event q$\\[\lgap]
-	\> $=$  \>  \Hint{$((\sigma, j) \models p) \;\land\; ((\sigma, j) \models q)$ iff $(\sigma, j) \models p\land q$}\\[\lgap]
-	\> \>   $((\sigma, j) \models \Always p) \;\land\; ((\sigma, j) \models \Event q)$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Always p$ and $\Event q$}\\[\lgap]
-	\> \>   $(\all i \dr i \ge j \rb (\sigma, i) \models p) \land (\ext k \dr  k \ge j \rb (\sigma, k) \models q)$\\[\lgap]
-	\> $=$  \>  \Hintfirst{(9.21) Distributivity of $\land$ over $\ext$, $P\land (\ext x \dr R \rb Q) \equiv (\ext x \dr R \rb P\land Q)$}\\[\lgap]
-	\>      \>  \Hintlast{as $\neg occurs(\Lq k\Rq ,\Lq (\all i \dr i \ge j \rb (\sigma, i) \models p) \Rq)$}\\[\lgap]
-	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr i \ge j \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{$i \ge j \equiv j\le i < k\lor k\le i$}\\[\lgap]
-	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\lor k\le i \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{(8.18) Range split $(\star x \dr R \lor S \rb P) = (\star x \dr R \rb P) \star (\star x \dr S \rb P)$}\\[\lgap]
-	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)\land (\all i \dr k\le i \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $\impl$  \>  \Hintfirst{(3.76b) $p\land q\impl p$ and (9.27) Monotonicity of $\ext$}\\[\lgap]
-	\>      \>  \Hintlast{$(\all x\dr R\rb Q\impl P)\impl ((\ext x\dr R\rb Q)\impl (\ext x\dr R\rb P))$}\\[\lgap]
-	\> \>   $(\ext k \dr  k \ge j \rb (\sigma, k) \models q\land (\all i \dr j\le i < k\rb (\sigma, i) \models p)$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
-	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
-\end{tabbing}
-
-Yet another defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+Another defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
 $p\Until \Always q\impl \Always (p\Until q)$.
 Here is a demonstration of this implication.
 Expanding $p\Until \Always q$,
@@ -1529,23 +1529,16 @@ The following induction axiom is included in other temporal logic systems but is
 The $\Event\Always$ implication axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
-The $\Until$ implication axiom is required to derive an expression for $\Until$ in terms of $\Wait$,
-and the $\Always\Until$ implication axiom is required to prove absorption of $\Until$ into $\Always$.
-The $\Until$ implication and $\Always \Until$ implication theorems are apparently unique to this system.
+The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
+and is apparently unique to this system.
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
 
 \firstspacer
 
-\begin{equation}\label{E:axiomUntilImpl}
-\textbf{Axiom, $\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
-\end{equation}
-
-\firstspacer
-
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
-\textbf{Axiom, $\Always \Until$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
+\textbf{Axiom, $\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 
 \firstspacer
@@ -1564,7 +1557,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until \Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Always \Until$ implication, with $q:=p$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication, with $q:=p$} \\[\lgap]
 \> \> $\Always (p \Until p)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
 \> \> $\Always p$
@@ -1593,6 +1586,26 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
   \> \>   $(p\land true) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p\Until q$ \> \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:axiomUntilImpl}
+\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Always p \land true\Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
+  \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p \Until (p\land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $p \Until p\land p\Until q$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $p\Until q$ \> \myqed
 \end{tabbing}
 
@@ -2490,10 +2503,11 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> $=$ \> \Hint{(\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$} \\[\lgap]
 \> \> $p \Until q \equiv (\Always p\land \Event q)\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
-\> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
+\> \> $\Always p\land \Event q\impl p\Until q$
 \end{tabbing}
-which is (\ref{E:axiomUntilImpl}) Axiom, $\Until$ implication. \hfill \myqed
+which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \hfill \myqed \\[\lgap]
 
+$p\Until q$ is stronger than $p\Wait q$.
 \begin{equation}\label{E:untilImplWait}
 p\Until q\impl p\Wait q
 \end{equation}
@@ -2506,6 +2520,27 @@ p\Until q\impl p\Wait q
 \> \> $p \Wait q\land \Event q$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $p \Wait q$ \> \myqed
+\end{tabbing}
+
+Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$.
+\begin{equation}\label{E:andWaitDist}
+\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land q \Wait r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> \>   $\Always p \land (\Always q \lor q\Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+  \> \>   $(\Always p \land \Always q) \lor (\Always p\land q\Until r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$}\\[\lgap]
+  \> \>   $(\Always p \land \Always q) \lor (p\land q)\Until (p\land r)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
+  \> \>   $\Always (p \land q) \lor (p\land q)\Until (p\land r)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> \>   $(p \land q) \Wait (p \land r)$ \> \myqed
 \end{tabbing}
 
 Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
@@ -2608,7 +2643,7 @@ Each $\foll$ step in the proof below is justified in conjunction with (4.2) Mono
 \> \> $\Always p\lor \Always (p\Until q) \lor (p\Until q)\Until r$\\[\lgap]
 \> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
 \> \> $\Always p\lor \Always (p\Until q) \lor p\Until (q\Until r)$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Always \Until$ implication}\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Until\Always$ implication}\\[\lgap]
 \> \> $\Always p\lor p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
 \> \> $\Always p\lor p\Until (\Always q \lor q\Until r)$\\[\lgap]
@@ -2731,8 +2766,6 @@ The proof in the second direction follows.
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(p \land q) \Wait r$ \> \myqed
 \end{tabbing}
-
-
 
 Like the \textit{until} operator, \textit{wait} is idempotent.
 $true$ is the right zero of both \textit{until} and \textit{wait}.
@@ -3000,8 +3033,7 @@ The following theorem corresponds to the definition of the \textit{eventually} o
 \> \> $\Always p$ \> \myqed
 \end{tabbing}
 
-
-The following theorem for the \textit{wait} operator corresponds to axiom (\ref{E:axiomUntilImpl}) $\Until$ implication.
+The following theorem for the \textit{wait} operator corresponds to (\ref{E:axiomUntilImpl}) $\Until$ implication.
 \begin{equation}\label{E:waitEntailment}
 \textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
 \end{equation}
@@ -3275,11 +3307,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> $\impl$ \> \Hint{(\ref{E:waitImpAbsR}) Absorption} \\[\lgap]
 \> \> $(p \lor q) \Wait r$ \> \myqed
 \end{tabbing}
-
-\begin{equation}\label{E:andWaitDist}
-\textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
-\end{equation}
-[\textit{Not yet proved.}]
 
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
