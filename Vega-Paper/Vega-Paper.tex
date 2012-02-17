@@ -356,7 +356,7 @@ A model $\sigma$ is an infinite sequence of the form
 
 where $s_0$ is the initial state and each state $s_i, 0 \le i$ is the state at time $i$.
 For example, suppose $x$ is an integer variable whose value varies at each step of the computation.
-Then $x$ and the expression $x\ge 10$, known as a state expression, might evolve as follows.\\
+Then, $x$ and the expression $x\ge 10$, known as a state expression, might evolve as follows.\\
 
 \begin{tabular}{c|ccccccc}
   $\sigma$      & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
@@ -1035,7 +1035,7 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 %\> \> $p\Wait r\land \Event r\land q\Wait r\land \Event r$\\[\lgap]
 %\> $=$ \> \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$} \\[\lgap]
 %\> \> $p\Wait r\land q\Wait r\land \Event r$\\[\lgap]
-%\> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Axiom, Right distributivity of $\Wait$ over $\land$} \\[\lgap]
+%\> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
 %\> \> $(p\land q)\Wait r\land \Event r$\\[\lgap]
 %\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
 %\> \> $(p \land q) \Until r$ \> \myqed
@@ -1522,17 +1522,10 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \end{equation}
 
 The following induction axiom is included in other temporal logic systems but is not used in any subsequent proofs in this system.
-\begin{equation}\label{E:induction}
-\textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
-\end{equation}
-
-The $\Event\Always$ implication axiom states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
-Suppose, for example, that $p$ continually oscillates between true and false over time.
-Then the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
 The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
 and is apparently unique to this system.
-\begin{equation}\label{E:eventAlwaysImp}
-\textbf{Axiom, $\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\begin{equation}\label{E:induction}
+\textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
 \firstspacer
@@ -1608,6 +1601,31 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $p\Until q$ \> \myqed
 \end{tabbing}
+
+The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
+Suppose, for example, that $p$ continually oscillates between true and false over time.
+Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\end{equation}
+
+\emph{Proof:}
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true\Until \Always p$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
+  \> \>   $\Always (true\Until \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$ \> \myqed
+\end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
 
 The following theorem expresses $\Event p$ in terms of $\Always p$ and corresponds to the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:eventAsAlways}
@@ -1947,7 +1965,7 @@ Exercise for the student.\\
 
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
-Then the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
+Then, the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
 \begin{equation}\label{E:exAlwaysNot}
 \Always\neg p \impl \neg\Always p
 \end{equation}
@@ -2202,7 +2220,7 @@ The following metatheorem shows that theorems ``implicitly always hold.''
 Case 1. $P$ is a theorem $\impl$ $\Always P$ is a theorem.\\
 Suppose $P$ is a theorem.
 Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$.
-Then $\Always P$ can be proved to be a theorem as follows.
+Then, $\Always P$ can be proved to be a theorem as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always P$\\[\lgap]
@@ -2213,7 +2231,7 @@ Then $\Always P$ can be proved to be a theorem as follows.
 \end{tabbing}
 Case 2. $\Always P$ is a theorem $\impl$ $P$ is a theorem.\\
 Suppose $\Always P$ is a theorem.
-Then $\Always P$ is equivalent to $true$.
+Then, $\Always P$ is equivalent to $true$.
 $P$ can be proved to be a theorem as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2234,7 +2252,7 @@ By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $P$. \hfill \
 \emph{Proof:} Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
 Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
-Then $\Event P\impl\Event Q$ can be proved to be a theorem as follows.
+Then, $\Event P\impl\Event Q$ can be proved to be a theorem as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Event P\impl\Event Q$\\[\lgap]
@@ -2254,7 +2272,7 @@ By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $\Event P\imp
 \emph{Proof:} Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
 Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
-Then $\Always P\impl\Always Q$ can be proved to be a theorem as follows.
+Then, $\Always P\impl\Always Q$ can be proved to be a theorem as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always P\impl\Always Q$\\[\lgap]
@@ -2643,7 +2661,7 @@ Each $\foll$ step in the proof below is justified in conjunction with (4.2) Mono
 \> \> $\Always p\lor \Always (p\Until q) \lor (p\Until q)\Until r$\\[\lgap]
 \> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
 \> \> $\Always p\lor \Always (p\Until q) \lor p\Until (q\Until r)$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Until\Always$ implication}\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
 \> \> $\Always p\lor p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
 \> \> $\Always p\lor p\Until (\Always q \lor q\Until r)$\\[\lgap]
@@ -2655,7 +2673,7 @@ Each $\foll$ step in the proof below is justified in conjunction with (4.2) Mono
 
 The next four distributive theorems for the \textit{wait} operator correspond to, and are proved from,
 the distributive axioms for the \textit{until} operator
-(\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), and (\ref{E:untilAndImp}).
+(\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), and (\ref{E:untilAndEquiv}).
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
