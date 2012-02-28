@@ -517,7 +517,7 @@ The following figure illustrates the temporal segments for which $p$, $q$, and $
 \begin{picture}(360,120)
 \thicklines
 \put(320,110){$(\sigma,n)\models r$}
-\put(0,100)  {\line(1,0){360}}
+\put(0,100)  {\vector(1,0){380}}
 \put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}} \put(340,100) {\circle*{8}}
 \put(18,86)  {$j$} \put(178,86)  {$k$} \put(338,86)  {$n$} 
 \put(168,74) {$k\ge j$} \put(328,74)  {$n\ge k$}
@@ -755,11 +755,11 @@ The following figure illustrates the temporal segments for which $p$ and $q$ hol
 
 \begin{picture}(360,120)
 \thicklines
-\put(0,100)  {\line(1,0){360}}
+\put(0,100)  {\vector(1,0){360}}
 \put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}}
 \put(18,86)  {$j$} \put(178,86)  {$k$}
 \put(168,74) {$k\ge j$}
-\put(180,52) {\line(1,0){180}}
+\put(180,52) {\vector(1,0){180}}
 \put(180,52) {\circle*{8}}
 \put(240,58) {$(\sigma,m)\models q$}
 \put(250,42) {$m\ge k$}
@@ -3344,12 +3344,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]
+[\textit{Not yet proved.}]
 
 \begin{equation}\label{E:notWait}
 \textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
 \end{equation}
-[\textit{Conjectured theorem. Not yet proved.}]
+[\textit{Not yet proved.}]
 
 \section{Conclusion}
 
