@@ -226,23 +226,24 @@ can be taken as either $(p \equiv q) \equiv r$ or $p \equiv (q \equiv r)$.
 This property of equivales is the first axiom in the equational deductive system of \cite{LADM}.
 \\
 
-The equational deductive system relies on the three deductive axioms for equality
+The inference rules for the equational deductive system are Substitution, Leibniz, and Transitivity of equality.
 \[
-\textbf{Reflexivity:}\quad x=x
+\textbf{Substitution:}\quad \frac{E}{E[z:=F]}
 \]
-\[
-\textbf{Symmetry:}\quad (x=y) = (y=x)
-\]
-\[
-\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
-\]
-and the proof rule
 \[
 \textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
 \]
+\[
+\textbf{Transitivity of equality:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
+\]
 
-where the square bracket indicates textual substitution of expression $X$ for variable $z$ and substitution
-of expression $Y$ for variable $z$.
+where the square bracket in $E[z:=F]$ indicates textual substitution of expression $F$ for variable $z$
+everywhere $z$ occurs in $E$.\\
+
+Substitution allows the generalization of a single theorem to represent an infinite number of theorems.
+For example, because $p\impl false \equiv \lnot p$ is a theorem, then, with $p:=p\land q$, the expression
+$(p\land q)\impl false \equiv \lnot (p\land q)$ is also a theorem.\\
+
 Roughly speaking, Leibniz allows for the substitution of equals for equals in a proof step.
 The general form of a proof step is
 
@@ -254,7 +255,7 @@ The general form of a proof step is
 \end{tabbing}
 
 where the expression enclosed in angle brackets $\Gll\;\Ggg$ called the ``hint'' is the justification for the step.
-An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ from Section 3.4 is
+An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ in Section 3.4 is
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -265,7 +266,7 @@ An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) E
 
 This proof step uses the previously proved theorem (\ref{E:defEvent}) Definition of $\Event$,
 which is $\Event q \equiv true \Until q$.
-The justification in the hint $X=Y$ comes from the textual substitution of $\neg p$ for $q$
+The justification in the hint $X=Y$ comes from inference rule Substitution, with the textual substitution of $\neg p$ for $q$
 in (\ref{E:defEvent}) as follows
 
 \begin{tabbing}
@@ -292,21 +293,46 @@ The textual substitutions are
 
 The proof of a theorem consists of showing the equivalence of that theorem to a previously proved theorem
 through a sequence of the proof steps.
-For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \neg\Next\neg p$ from Section 3.1.
+For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \neg\Next\neg p$ in Section 3.1.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next p \equiv \neg\Next\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Next\neg p, \Next p$} \\[\lgap]
-  \> \>   $\neg\Next p \equiv \Next\neg p$
+  \> \>   $\neg\Next p \equiv \Next\neg p$ \\[\lgap]
+  \> which is (\ref{E:selfDual}), Self-dual
 \end{tabbing}
-which is (\ref{E:selfDual}), Self-dual.
+
 In a proof hint, numeric references that contain a decimal point, such as (3.11) above, refer to a theorem in $\mathcal{E}$ from Gries and Schneider \cite{LADM}.\\
+
+Transitivity of equality allows a derivation to be given as a sequence of equivalent expressions, which, at the end,
+proves the equivalence of the first expression in the sequence with the last expression in the sequence.
+For example, here is a two-step proof of (\ref{E:idemUntil}) Idempotency of $\Until$, $p \Until p \equiv p$ in Section (3.2).
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until p\equiv p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $p \lor (p \land \Next(p \Until p))\equiv p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
+  \> \>   $p\equiv p$\\[\lgap]
+  \> which is (3.5) Reflexivity of $\equiv$
+\end{tabbing}
+
+Transitivity of equality is implicit in the proof.
+Because $p \Until p\equiv p$ is equivalent to $p \lor (p \land \Next(p \Until p))\equiv p$,
+and $p \lor (p \land \Next(p \Until p))\equiv p$ is equivalent to $p\equiv p$,
+by transitivity $p \Until p\equiv p$ is equivalent to $p\equiv p$.\\
+
+The logic system $\mathcal{E}$ of \cite{LADM} has 13 axioms for the propositional calculus from which theorems are deduced
+with the above inference rules in the equational style.
+The system also contains a number of metatheorems based on properties of equivalence and implication, which allow the
+proof style to be extended.\\
 
 The proof format is extended to the case where the theorem to be proved is of the form $P \equiv Q$.
 For theorems of this form, the proof may begin with the left hand side and show equivalence to the right hand side
 through a sequence of proof steps.
-For example, here is a proof of (\ref{E:idemUntil}) $p \Until p \equiv p$ from Section 3.2.
+For example, the following proof is the preferred style for the previous proof of (\ref{E:idemUntil}).
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
@@ -317,9 +343,11 @@ For example, here is a proof of (\ref{E:idemUntil}) $p \Until p \equiv p$ from S
   \> \>   $p$
 \end{tabbing}
 
-Gries and Schneider \cite{LADM} also extend the proof format to incorporate implication using its transitive properties
+Gries and Schneider also extend the proof format to incorporate implication using its transitive properties
 with itself and with equivales.
-An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ from Section 3.3.
+Instead of proving a theorem of the form $P\impl Q$ to be equivalent to a previously proved theorem,
+$P$ can be shown to imply $Q$, or $Q$ can be shown to follow from $P$.
+An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ in Section 3.3.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -331,7 +359,7 @@ An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ from Section 3.3.
 \end{tabbing}
 
 Because $\Event p$ equivales $p \lor \Next\Event p$, and $p \lor \Next\Event p$ follows from $p$, it follows by
-transitivity that $\Event p$ follows from $p$.
+mutual transitivity that $\Event p$ follows from $p$.
 
 \subsection{Temporal Logic}
 
@@ -2269,6 +2297,7 @@ By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $\Event P\imp
 \textbf{Metatheorem $\Always$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Always P\impl\Always Q \text{ is a theorem.}
 \end{equation}
 
+\opt{doc}{
 \emph{Proof:} Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
 Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
@@ -2284,6 +2313,12 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem as follows.
 
 So, we have $true\impl (\Always P\impl\Always Q)$.
 By (3.73) Left identity of $\impl$, $true\impl p\equiv p$, we have $\Always P\impl\Always Q$. \hfill \myqed\\
+}
+
+\opt{student}{
+\emph{Proof:}\\
+Exercise for the student.\\
+}
 
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
 distribute over conjunction and disjunction.
@@ -3260,33 +3295,13 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
 \end{equation}
 
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $r \Until p \impl r \Until q$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
-  \> \>   $r \Wait p \land \Event p \impl r \Wait q \land \Event q$\\[\lgap]
-  \> $\foll$  \>  \Hint{(4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$}\\[\lgap]
-  \> \>   $ \Event p \impl \Event q$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
-  \> \>   $\Always (p \impl q)$ \> \myqed
-\end{tabbing}
+[\emph{Conjectured theorem. Not yet proved}]
 
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
 
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Wait r \impl q \Wait r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-  \> \>   $\Always p \lor p \Until r \impl \Always q \lor q \Until r$\\[\lgap]
-  \> $\foll$  \>  \Hint{(4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$}\\[\lgap]
-  \> \>   $\Always p \impl \Always q$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:distAlwaysImp}) Distributivity of $\Always$ over $\impl$}\\[\lgap]
-  \> \>   $\Always (p \impl q)$ \> \myqed
-\end{tabbing}
+[\emph{Not yet proved}]
 
 \begin{equation}\label{E:leftMonoUntil}
 \textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
