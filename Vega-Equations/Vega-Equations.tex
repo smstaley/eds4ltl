@@ -1,11 +1,14 @@
 % David Vega and Stan Warford
 % Pepperdine University
 % File: Vega-Paper
+% !TEX TS-program = xelatex
 
-\documentclass[fleqn, leqno]{article}
+\documentclass[12pt, fleqn, leqno]{article}
 
 \usepackage{times}
 \usepackage{amsmath, amsthm, amssymb,latexsym}
+\usepackage{wasysym}                                % For temporal operators, Diamond and Box
+\usepackage{eucal}                                  % For temporal operators, Until and Wait
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -27,8 +30,8 @@
 \newcommand{\Until}{\;\mathcal{U}\;}
 \newcommand{\Wait}{\;\mathcal{W}\;}
 \newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
-\newcommand{\Event}{\Diamond}
-\newcommand{\Always}{\Box}
+\newcommand{\Event}{\Diamond\,}
+\newcommand{\Always}{\Box\,}
 
 \newcommand{\myqed}{\hfill\rule[-.23ex]{1.2ex}{2.0ex}}
 \newcommand{\spacer}{\vspace{-30pt}}
@@ -214,7 +217,7 @@ $\equiv$ \quad (associative) & Lowest precedence\\
 (3.68)\>$p\lor (p\impl q) \equivs true$\\[\lgap]
 (3.69)\>$p\lor (q\impl p) \equivs q\impl p$\\[\lgap]
 (3.70)\>$p\lor q \impl p\land q \equivs p \equivs q$\\[\lgap]
-(3.71)\>\textbf{Reflexivity of $\impl$ :}\quad $p\impl p \equivs true$\\[\lgap]
+(3.71)\>\textbf{Reflexivity of $\impl$ :}\quad $p\impl p$\\[\lgap]
 (3.72)\>\textbf{Right zero of $\impl$ :}\quad $p\impl true \equivs true$\\[\lgap]
 (3.73)\>\textbf{Left identity of $\impl$ :}\quad $true\impl p \equivs p$\\[\lgap]
 (3.74)\>$p\impl false \equivs \neg p$\\[\lgap]
@@ -264,12 +267,18 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 (4.1)\>$p\impl (q\impl p)$\\[\lgap]
 (4.2)\>\textbf{Monotonicity of $\lor$ :}\quad $(p\impl q) \impl (p\lor r \impl q\lor r)$\\[\lgap]
 (4.3)\>\textbf{Monotonicity of $\land$ :}\quad $(p\impl q) \impl (p\land r \impl q\land r)$\\[\lgap]
-(4.4)\>\textbf{Assume conjuncts of antecedent:}\\[\lgap]
+\end{tabbing}
+
+\subsection*{Proof technique metatheorems.}
+\begin{tabbing}
+(99.99.9)\;\=(m)\;\=\kill
+(4.4)\>\textbf{Deduction (assume conjuncts of antecedent):}\\[\lgap]
       \>To prove $P_{1}\land P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
       \>You cannot use textual substitution in $P_{1}$ or $P_{2}$.\\[\lgap]
 (4.5)\>\textbf{Case analysis:}\quad If $E^{z}_{true}$ and $E^{z}_{false}$ are theorems, then so is $E^{z}_{P}$.\\[\lgap]
 (4.6)\>\textbf{Case analysis:}\quad $(p\lor q\lor r)\land (p\impl s)\land (q\impl s)\land (r\impl s)\impl s$\\[\lgap]
 (4.7)\>\textbf{Mutual implication:}\quad To prove $P\equiv Q$, prove $P\impl Q$ and $Q\impl P$.\\[\lgap]
+(4.7.1)\>\textbf{Truth implication:}\quad To prove $P$, prove $true\impl P$.\\[\lgap]
 (4.9)\>$\neg p\impl false \equivs p$\\
      \>\textbf{Proof by contradiction:}\quad To prove $P$, prove $\neg P\impl false$.\\[\lgap]
 (4.12)\>\textbf{Proof by contrapositive:}\quad To prove $P\impl Q$, prove $\neg Q\impl \neg P$.\\
@@ -447,6 +456,8 @@ p \Until q \impl p \lor q
 \textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
+\newpage
+
 \subsection*{Eventually $\quad\Event$}
 
 \begin{equation}\label{E:defEvent}
@@ -489,7 +500,7 @@ p \Until q \impl p \lor q
 \textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
@@ -639,7 +650,7 @@ p \Until q \impl p \lor q
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
@@ -723,7 +734,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
@@ -776,6 +787,8 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
+
+\newpage
 
 \subsection*{Wait $\quad\Wait$}
 
@@ -1002,10 +1015,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 \spacer
 
 \begin{equation}\label{E:rightMonoUntil}
-\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q) \quad [\textit{Conj theorem. Not yet proved}]
+\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
 \end{equation}
+[\textit{Conjectured theorem. Not yet proved}]
 
-\spacer
+\vspace{-1pc}
 
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r) \quad [\textit{Not yet proved.}]
