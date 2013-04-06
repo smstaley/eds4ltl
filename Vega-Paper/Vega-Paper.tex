@@ -1319,6 +1319,23 @@ Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
+The following theorem shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until q\land \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $p \Until q\land true\Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $(p\land true) \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p\Until q$ \> \myqed
+\end{tabbing}
+
 $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
@@ -1328,13 +1345,9 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
-  \> \>   $p \Until q \lor true \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$}\\[\lgap]
-  \> \>   $(p \lor true) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-  \> \>   $true \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEventIntoUntil})Absorption of $\Event$ into $\Until$}\\[\lgap]
+  \> \>   $p \Until q \land \Event q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening the antecedent}\\[\lgap]
   \> \>   $\Event q$ \> \myqed
 \end{tabbing}
 
@@ -1600,23 +1613,6 @@ The proof in the second direction follows.
 \> \> $\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $p \Until \Always p$ \> \myqed
-\end{tabbing}
-
-The following theorem shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
-\begin{equation}\label{E:absEventIntoUntil}
-\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
-\end{equation}
-
-\emph{Proof:}
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q\land \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $p \Until q\land true\Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $(p\land true) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
-  \> \>   $p\Until q$ \> \myqed
 \end{tabbing}
 
 \begin{equation}\label{E:axiomUntilImpl}
@@ -2184,6 +2180,23 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q
+\end{equation}
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p \land (\Always p \impl \Event q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$ and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
+  \> \>   $\Event\Always p \land \Event (\Always p \impl \Event q)$\\[\lgap]
+  \> $=$  \> \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $\Event\Always p \land (\Event \Always p \impl \Event\Event q)$\\[\lgap]
+  \> $=$  \> \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$} \\[\lgap]
+  \> \>   $\Event\Always p \land (\Event \Always p \impl \Event q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.77) Modus ponens $p\land (p\impl q)\impl q$}\\[\lgap]
+  \> \>   $\Event q$\\[\lgap]
+\end{tabbing}
+
 The monotonicity theorems (\ref{E:alwaysImpNexts}) and (\ref{E:alwaysImpEvents}) have $\Always (p \impl q)$
 as the antecedent.
 Theorem (\ref{E:distAlwaysImp}), distributivity of $\Always$ over $\impl$, has the same antecedent and hence can be considered a
@@ -2543,10 +2556,13 @@ $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually
 $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
-Equation (\ref{E:defWait}) is the only defining axiom for the \textit{wait} operator.
+Equations (\ref{E:defWait}) and (\ref{E:notWait}) are the only defining axioms for the \textit{wait} operator.
 (Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
+\end{equation}
+\begin{equation}\label{E:notWait}
+\textbf{Axiom, Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
 \end{equation}
 
 The defining equation gives $\Wait$ in terms of $\Until$. The following theorem gives $\Until$ in terms of $\Wait$.
@@ -2568,6 +2584,26 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$
 \end{tabbing}
 which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \hfill \myqed \\[\lgap]
+
+\begin{equation}\label{E:notUntil}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
+\end{equation}
+
+\emph{Proof:} (Michael Ortiz)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg q \Wait (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always\neg q \lor \neg q\Until (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\Always\neg q \lor \neg (p \Wait q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+\> \> $\neg (p \Wait q) \lor \neg\Event q $\\[\lgap]
+\> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+\> \> $\neg (p \Wait q \land \Event q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:untilFromWait}) Until in terms of $\Wait$}\\[\lgap]
+\> \> $\neg (p \Until q)$ \quad \myqed \\[\lgap]
+\end{tabbing}
 
 $p\Until q$ is stronger than $p\Wait q$.
 \begin{equation}\label{E:untilImplWait}
@@ -3389,16 +3425,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitOrderingThree}
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
-\end{equation}
-[\textit{Not yet proved.}]
-
-\begin{equation}\label{E:notUntil}
-\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
-\end{equation}
-[\textit{Not yet proved.}]
-
-\begin{equation}\label{E:notWait}
-\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
 \end{equation}
 [\textit{Not yet proved.}]
 
