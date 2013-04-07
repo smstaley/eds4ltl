@@ -221,6 +221,7 @@ $\equiv$ \quad (associative) & Lowest precedence\\
 (3.72)\>\textbf{Right zero of $\impl$ :}\quad $p\impl true \equivs true$\\[\lgap]
 (3.73)\>\textbf{Left identity of $\impl$ :}\quad $true\impl p \equivs p$\\[\lgap]
 (3.74)\>$p\impl false \equivs \neg p$\\[\lgap]
+(3.74.1)\>$\neg p\impl false \equivs p$\\[\lgap]
 (3.75)\>$false\impl p \equivs true$\\[\lgap]
 (3.76)\>\textbf{Weakening/strengthening:}\\
       \> (a)\> $p\impl p\lor q$\quad \quad \quad (Weakening the consequent)\\[\lgap]
@@ -228,6 +229,7 @@ $\equiv$ \quad (associative) & Lowest precedence\\
       \> (c)\> $p\land q \impl p\lor q$\quad \quad \quad (Weakening/strengthening)\\[\lgap]
       \> (d)\> $p\lor (q\land r) \impl p\lor q$\\[\lgap]
       \> (e)\> $p\land q \impl p\land (q \lor r)$\\[\lgap]
+(3.76.1)\>$p\land q \impl p\lor r$\quad \quad \quad (Weakening/strengthening)\\[\lgap]
 (3.77)\>\textbf{Modus ponens:}\quad $p\land (p\impl q)\impl q$\\[\lgap]
 (3.77.1)\>\textbf{Modus tollens:}\quad $(p\impl q)\land \neg q \impl \neg p$\\[\lgap]
 (3.78)\>$(p\impl r) \land (q\impl r) \equivs (p\lor q\impl r)$\\[\lgap]
@@ -280,8 +282,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 (4.6)\>\textbf{Case analysis:}\quad $(p\lor q\lor r)\land (p\impl s)\land (q\impl s)\land (r\impl s)\impl s$\\[\lgap]
 (4.7)\>\textbf{Mutual implication:}\quad To prove $P\equiv Q$, prove $P\impl Q$ and $Q\impl P$.\\[\lgap]
 (4.7.1)\>\textbf{Truth implication:}\quad To prove $P$, prove $true\impl P$.\\[\lgap]
-(4.9)\>$\neg p\impl false \equivs p$\\
-     \>\textbf{Proof by contradiction:}\quad To prove $P$, prove $\neg P\impl false$.\\[\lgap]
+(4.9)\>\textbf{Proof by contradiction:}\quad To prove $P$, prove $\neg P\impl false$.\\[\lgap]
 (4.12)\>\textbf{Proof by contrapositive:}\quad To prove $P\impl Q$, prove $\neg Q\impl \neg P$.\\
 \end{tabbing}
 
@@ -467,6 +468,12 @@ p \Until q \impl p \lor q
 
 \firstspacer
 
+\begin{equation}\label{E:absEventIntoUntil}
+\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
 \end{equation}
@@ -565,12 +572,6 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:absEventIntoUntil}
-\textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
 \end{equation}
 
 \spacer
@@ -678,7 +679,7 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \spacer
 
 \begin{equation}\label{E:exAlwaysNot}
-\Always\neg p \impl \neg\Always p
+\textbf{Distributivity of $\neg$ over $\Always$:}\quad \Always\neg p \impl \neg\Always p
 \end{equation}
 
 \spacer
@@ -721,6 +722,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \begin{equation}\label{E:eventImpAlways}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q
 \end{equation}
 
 \spacer
@@ -799,8 +806,20 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \firstspacer
 
+\begin{equation}\label{E:notWait}
+\textbf{Axiom, Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:untilFromWait}
 \textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:notUntil}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
 \end{equation}
 
 \spacer
@@ -1066,18 +1085,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitOrderingThree}
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:notUntil}
-\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q) \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:notWait}
-\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q) \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \end{document}
