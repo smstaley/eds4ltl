@@ -13,8 +13,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-%\usepackage[student]{optional}
-\usepackage[doc]{optional}
+\usepackage[student]{optional}
+%\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -1418,7 +1418,7 @@ The first describes the current state and the second contains the operation in t
 Exercise for the student.\\
 }
 
-The following four absorption theorems do not seem to appear in the temporal logic literature.
+The following two absorption theorems do not seem to appear in the temporal logic literature.
 \begin{equation}\label{E:absOrIntoEvent}
 \textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
 \end{equation}
@@ -1435,16 +1435,16 @@ The following four absorption theorems do not seem to appear in the temporal log
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
 
-\begin{equation}\label{E:absAndIntoEvent}
-\textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
+\begin{equation}\label{E:absEventIntoAnd}
+\textbf{Absorption of $\Event$ into $\land$:}\quad \Event p \land p \equiv p
 \end{equation}
 
 \emph{Proof:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \land \Event p$\\[\lgap]
+  \> \>   $\Event p \land p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $p \land (p \lor \Next\Event p)$\\[\lgap]
+  \> \>   $(p \lor \Next\Event p) \land p$\\[\lgap]
   \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv q$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
@@ -1785,14 +1785,14 @@ As usual, the first describes the current state and the second contains the oper
 \end{tabbing}
 
 The absorption of $\land$ into $\Always$ corresponds to (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
-while he absorption of $\lor$ into $\Always$ corresponds to (\ref{E:absAndIntoEvent}) the absorption of $\land$ into $\Event$.
+while he absorption of $\Always$ into $\lor$ corresponds to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
 Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
 disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existential.
 When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
 the right side retains the same type of unary operator.
 When existential and universal operators are mixed on the left side,
-as in (\ref{E:absOrIntoEvent}) and (\ref{E:absOrIntoAlways}), the equivalence is just a statement about $p$ at the current time.
-As with (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoEvent}), the following two absorption theorems
+as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAlwaysIntoOr}), the equivalence is just a statement about $p$ at the current time.
+As with (\ref{E:absOrIntoEvent}) and (\ref{E:absEventIntoAnd}), the following two absorption theorems
 do not seem to appear in the temporal logic literature.
 \begin{equation}\label{E:absAndIntoAlways}
 \textbf{Absorption of $\land$ into $\Always$:}\quad p \land \Always p \equiv \Always p
@@ -1816,19 +1816,59 @@ do not seem to appear in the temporal logic literature.
 Exercise for the student.\\
 }
 
-\begin{equation}\label{E:absOrIntoAlways}
-\textbf{Absorption of $\lor$ into $\Always$:}\quad p \lor \Always p \equiv p
+\begin{equation}\label{E:absAlwaysIntoOr}
+\textbf{Absorption of $\Always$ into $\lor$:}\quad \Always p \lor p \equiv p
 \end{equation}
 
 \emph{Proof:}
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \lor \Always p$\\[\lgap]
+  \> \>   $\Always p \lor p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
-  \> \>   $p \lor (p \land \Next\Always p)$\\[\lgap]
+  \> \>   $(p \land \Next\Always p) \lor p$\\[\lgap]
   \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p \land q) \equiv p$}\\[\lgap]
   \> \>   $p$ \quad \myqed
+\end{tabbing}
+}
+
+\opt{student}{
+Exercise for the student.\\
+}
+
+The absorption of $\Event$ into $\Always$ and of $\Always$ into $\Event$ appear to be unique to this system.
+Their proofs are straightforward applications of the previous absorption theorems.
+\begin{equation}\label{E:absEventIntoAlways}
+\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event p \land \Always p \equiv \Always p
+\end{equation}
+
+\emph{Proof:}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event p \land \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$}\\[\lgap]
+  \> \>   $\Event p \land p \land \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEventIntoAnd}) Absorption of $\Event$ into $\land$}\\[\lgap]
+  \> \>   $p \land \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$}\\[\lgap]
+  \> \>   $\Always p$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:absAlwaysIntoEvent}
+\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always p \lor \Event p \equiv \Event p
+\end{equation}
+
+\emph{Proof:}
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \lor \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$}\\[\lgap]
+  \> \>   $\Always p \lor p \lor \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\Always$ into $\lor$}\\[\lgap]
+  \> \>   $ p \lor \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$}\\[\lgap]
+  \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
 }
 
@@ -2890,7 +2930,7 @@ The table below summarizes the eight possibilities of $true$ and $false$ on the 
 \> \> $\Always p \lor p\Until p$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
 \> \> $\Always p \lor p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$}\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\lor$ into $\Always$}\\[\lgap]
 \> \> $p$ \quad \myqed
 \end{tabbing}
 
@@ -3000,7 +3040,7 @@ respectively.
 \> \> $p\lor p\Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p\lor p \Until q\lor \Always p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\lor$ into $\Always$} \\[\lgap]
 \> \> $p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilOrP}) Absorption} \\[\lgap]
 \> \> $p\lor q$ \quad \myqed
@@ -3456,11 +3496,11 @@ and the 41 theorems
 (\ref{E:eventTrue}) Truth of $\Event$,
 (\ref{E:eventFalse}) Falsehood of $\Event$,
 (\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$,
-(\ref{E:absAndIntoEvent}) Absorption of $\land$ into $\Event$,
+(\ref{E:absEventIntoAnd}) Absorption of $\land$ into $\Event$,
 (\ref{E:alwaysTrue}) Truth of $\Always$,
 (\ref{E:alwaysFalse}) Falsehood of $\Always$,
 (\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$,
-(\ref{E:absOrIntoAlways}) Absorption of $\lor$ into $\Always$,
+(\ref{E:absAlwaysIntoOr}) Absorption of $\lor$ into $\Always$,
 (\ref{E:impNext}),
 (\ref{E:metatheorem}) Metatheorem,
 (\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$,

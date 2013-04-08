@@ -504,8 +504,8 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:absAndIntoEvent}
-\textbf{Absorption of $\land$ into $\Event$:}\quad p \land \Event p \equiv p
+\begin{equation}\label{E:absEventIntoAnd}
+\textbf{Absorption of $\Event$ into $\land$:}\quad \Event p \land p \equiv p
 \end{equation}
 
 \spacer
@@ -630,8 +630,20 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:absOrIntoAlways}
-\textbf{Absorption of $\lor$ into $\Always$:}\quad p \lor \Always p \equiv p
+\begin{equation}\label{E:absAlwaysIntoOr}
+\textbf{Absorption of $\Always$ into $\lor$:}\quad \Always p \lor p \equiv p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absEventIntoAlways}
+\textbf{Absorption of $\Event$ into $\Always$:}\quad \Event p \land \Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absAlwaysIntoEvent}
+\textbf{Absorption of $\Always$ into $\Event$:}\quad \Always p \lor \Event p \equiv \Event p
 \end{equation}
 
 \spacer
@@ -640,7 +652,7 @@ p \Until q \impl p \lor q
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:dNextAlways}
 \textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
@@ -652,7 +664,7 @@ p \Until q \impl p \lor q
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
