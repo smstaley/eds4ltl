@@ -133,17 +133,27 @@ Typical of such descriptions with applications to computer science is the text b
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, is the basis of books by Kaldewaij \cite{Kald} and Cohen \cite{Cohen}.
 
-Gries [citation needed] shows that $\mathcal{E}$, also known  as a \textit{calculational} system [citation needed], has several advantages over traditional logic systems.
-The primary advantage of $\mathcal{E}$ over $\mathcal{H}$ is that the equational system has only one proof rule, Leibniz.
-Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system.
-\textit{blah, blah} $\dots$
+Gries and Schneider \cite{Gries1995, Gries1995145} show that $\mathcal{E}$, also known as a \textit{calculational} system, has several advantages over traditional logic systems.
+The primary advantage of $\mathcal{E}$ over $\mathcal{H}$ is that the equational system has only one proof rule, namely inference rule Leibniz.
+Roughly speaking, Leibniz is ``substituting equals for equals'', hence the moniker \textit{equational} deductive system.
+In contrast, $\mathcal{H}$ systems rely on an extensive set of inference rules.
+We find proofs in $\mathcal{E}$ easy to understand and to teach, because the substitution of equals for equals is so common in elementary algebraic manipulations.
+
+Another advantage of $\mathcal{E}$ over $\mathcal{H}$ is the sequential format of its proof syntax.
+Proofs in $\mathcal{H}$ have a bottom-up tree structure, which is sequentialized with multiple references to previously numbered lines.
+In contrast, proofs in $\mathcal{E}$ have a top-down structure and proceed sequentially with each step self-contained.
+
+We agree with Gries and Schneider \cite{LADM} that, ``We need a style of logic that can be used as a tool in every-day work.
+In our experience, an equational logic, which is based on equality and Leibniz's rule for substitution of equals for equals, is best suited for this purpose.''
+These advantages of $\mathcal{E}$ over $\mathcal{H}$ are primarily \textit{human} advantages, not necessarily machine advantages.
+That is, the motivation behind this work is based on teaching and human understanding, as opposed to machine theorem provers or proof assistants.
 
 Linear temporal logic describes how the truth values of propositions change over time.
 It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
 All treatments of linear temporal logic use $\mathcal{H}$ instead of $\mathcal{E}$.
 Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kr\"{o}ger \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 
-In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they extend the equational system $\mathcal{E}$ to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
+In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they first develop $\mathcal{E}$ for propositional and predicate calculus, and then extend it to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
 Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}$ to these additional knowledge domains.
 The treatment is in marked contrast to the traditional one exemplified by the classic text by Rosen \cite{Rosen}.
 
@@ -163,7 +173,7 @@ Section 3 presents the equational deductive system for linear temporal logic.
 
 \section{Background}
 
-The first section below summarizes the equational system $\mathcal{E}$ from Gries and Schneider \cite{LADM}.
+The first section below summarizes the equational system $\mathcal{E}$ from Gries and Schneider LADM \cite{LADM}.
 The summary is minimal, and the remainder of the paper assumes familiarity with $\mathcal{E}$.
 The second section introduces temporal logic and assumes no prior familiarity with it.
 The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
@@ -204,11 +214,11 @@ All the unary operators have the next highest precedence.
 They are necessarily right associative.
 For example, $\neg \Next \neg p$ means $\neg (\Next (\neg p))$.
 In this system, two binary operators that have the same precedence require parentheses to disambiguate.
-As in \cite{LADM}, conjunction $\land$ and disjunction $\lor$ have the same precedence so that $p\land q\lor r$
+As in LADM, conjunction $\land$ and disjunction $\lor$ have the same precedence so that $p\land q\lor r$
 must be disambiguated as either $(p\land q)\lor r$ or $p\land (q\lor r)$.
 This contrasts with many systems in which conjunction has higher precedence than disjunction.
 
-Also consistent with the equational system of \cite{LADM} but different from most other deductive logic systems
+Also consistent with the equational system of LADM but different from most other deductive logic systems
 is the difference between operators equals $=$ and equivales $\equiv$.
 Equals applies to any mathematical type including, {\itshape e.g.\/}, boolean, natural number, and set.
 Equivales applies only to boolean, and is commonly denoted $\leftrightarrow$ in other systems.
@@ -219,7 +229,7 @@ This property of equivales is the first axiom in the equational deductive system
 
 \subsubsection*{Inference rules}
 
-The inference rules for the equational deductive system are Substitution, Leibniz, and Transitivity of equality.
+The inference rules for the equational deductive system are Substitution, Leibniz, Equanimity, and Transitivity.
 \[
 \textbf{Substitution:}\quad \frac{E}{E[z:=F]}
 \]
@@ -227,10 +237,14 @@ The inference rules for the equational deductive system are Substitution, Leibni
 \textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
 \]
 \[
-\textbf{Transitivity of equality:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
+\textbf{Equanimity:}\quad \frac{X, \quad X=Y}{Y}
+\]
+\[
+\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
 \]
 where the square bracket in $E[z:=F]$ indicates textual substitution of expression $F$ for variable $z$
-everywhere $z$ occurs in $E$.
+everywhere $z$ occurs in expression $E$.
+In a typical proof, Substitution and Leibniz are explicit, while Equanimity and Transitivity are implicit.
 
 Substitution allows the generalization of a single theorem to represent an infinite number of theorems.
 For example, because $p\impl false \equiv \lnot p$ is a theorem, then, with $p:=p\land q$, the expression
@@ -244,7 +258,7 @@ The general form of a proof step is
   \> $=$  \>  \Hint{$X=Y$} \\[\lgap]
   \> \>   $E[z:=Y]$
 \end{tabbing}
-where the expression enclosed in angle brackets $\Gll\;\Ggg$ called the ``hint'' is the justification for the step.
+where the expression enclosed in angle brackets $\Gll\;\Ggg$, called the ``hint'', is the justification for the step.
 
 An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ in Section 3.4 is
 \begin{tabbing}
@@ -287,7 +301,9 @@ For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \ne
   \> \>   $\neg\Next p \equiv \Next\neg p$ \\[\lgap]
   \> which is (\ref{E:selfDual}), Self-dual. \quad \myqed
 \end{tabbing}
-In a proof hint, numeric references that contain a decimal point, such as (3.11) above, refer to a theorem in $\mathcal{E}$ from Gries and Schneider \cite{LADM}.
+In a proof hint, numeric references that contain a decimal point, such as (3.11) above, refer to a theorem in $\mathcal{E}$ from LADM.
+Equanimity is implicit in the proof.
+Because $\neg\Next p \equiv \Next\neg p$ (\textit{i.e.} $X$) is a previous theorem, and $\neg\Next p \equiv \Next\neg p$ is equivalent to $\Next p \equiv \neg\Next\neg p$ (\textit{i.e.} $X=Y$), by equinimity $\Next p \equiv \neg\Next\neg p$ (\textit{i.e.} $Y$) is proved.
 
 Transitivity of equality allows a derivation to be given as a sequence of equivalent expressions, which, at the end,
 proves the equivalence of the first expression in the sequence with the last expression in the sequence.
@@ -304,9 +320,9 @@ For example, here is a two-step proof of (\ref{E:idemUntil}) Idempotency of $\Un
   \> which is (3.5) Reflexivity of $\equiv$. \quad \myqed
 \end{tabbing}
 Transitivity of equality is implicit in the proof.
-Because $p \Until p\equiv p$ is equivalent to $p \lor (p \land \Next(p \Until p))\equiv p$,
-and $p \lor (p \land \Next(p \Until p))\equiv p$ is equivalent to $p\equiv p$,
-by transitivity $p \Until p\equiv p$ is equivalent to $p\equiv p$.
+Because $p \Until p\equiv p$ is equivalent to $p \lor (p \land \Next(p \Until p))\equiv p$ (\textit{i.e.} $X=Y$),
+and $p \lor (p \land \Next(p \Until p))\equiv p$ is equivalent to $p\equiv p$ (\textit{i.e.} $Y=Z$),
+by transitivity $p \Until p\equiv p$ is equivalent to $p\equiv p$ (\textit{i.e.} $X=Z$).
 
 \subsubsection*{Proof technique metatheorems}
 
