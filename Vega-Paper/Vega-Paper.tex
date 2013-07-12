@@ -158,11 +158,11 @@ Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}
 The treatment is in marked contrast to the traditional one exemplified by the classic text by Rosen \cite{Rosen}.
 
 Our institution has used LADM at the introductory undergraduate level since its publication and the equational proof style has consequently permeated the computer science curriculum.
-A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain. 
-The only appearance of an equational proof of a temporal logic theorem appears to be a single example in \cite{Schn}, page XX, which otherwise uses a Hilbert-style system for temporal logic.
-Schneider states in \cite{Schn}, page YY, ``\textit{blah, blah}\dots''.
+A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain.
+Schneider \cite{Schn} appears to be the only treatment of linear temporal logic that includes a discussion of $\mathcal{E}$.
+Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example on page 74.
 
-To solve the above problem, this paper presents an equational deductive system for linear temporal logic.
+To solve the above problem, this paper presents an elementary equational deductive system suitable for introducing those schooled in $\mathcal{E}$ to linear temporal logic.
 In the same way that LADM brings the advantages of $\mathcal{E}$ to the treatment of set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
 It presents several new theorems of linear temporal logic and is comprehensive, because it includes all known linear temporal theorems described in the literature.
 Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with $\mathcal{E}$.
@@ -428,6 +428,8 @@ Within the parentheses the quantification consists of three parts:
 \end{itemize}
 A vertical bar separates the operator and dummy variable from the range, and a colon separates the range from the body.
 In the first example above, the operation is addition, the dummy variable is $i$, the range is $1\le i\le n$, and the body is $i^2$.
+An abbreviation is to omit the range when it is $true$.
+For example, $(\all i\drrb P)$ is an abbreviation for $(\all i\dr true \rb P)$.
 
 \subsection{Temporal Logic}
 
@@ -475,8 +477,8 @@ In the above example,
   \> $(\sigma, 3) \models x\ge 10$.
 \end{tabbing}
 The symbol $\models$ means ``satisfies'', so the above expression is read as
-``State 3 of sequence $\sigma$ satisfies $x\ge 10$''.
-Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$''.
+``State 3 of sequence $\sigma$ satisfies $x\ge 10$.''
+Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$.''
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
 \subsubsection*{The \textit{next} operator $\Next$}
@@ -2218,9 +2220,9 @@ Exercise for the student.\\
 In the equational system $\mathcal{E}$, Gries and Schneider \cite{LADM} prove the metatheorem (9.16), which states that
 $P$ is a theorem iff $(\all x\drrb P)$ is a theorem.
 Theorems in $\mathcal{E}$ are thus said to be ``implicitly universally quantified.''
-A similar concept applies to temporal logic theorems in $\mathcal{E}$ except that the implicit application is in
-the temporal dimension.
-The following metatheorem shows that theorems ``implicitly always hold.''
+A similar concept applies to temporal logic theorems in $\mathcal{E}$ except that the implicit application is in the temporal dimension.
+The following metatheorem shows that theorems ``implicitly always hold''.
+Case 1 in the proof below is known as the temporal generalization rule \cite{Schn}, and Case 2 is known as the specialization rule \cite{Manna}.
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
 \end{equation}
@@ -2354,7 +2356,7 @@ Exercise for the student.\\
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
+\emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
