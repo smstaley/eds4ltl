@@ -734,6 +734,10 @@ In the same way that $(\all x\dr R\rb P)$ is equivalent to $\neg (\ext x\dr R\rb
 This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
 $\Always p \equiv \neg\Event\neg p$ assumed in Section 3.4.
 
+The above equational proof illustrates a common advantage of $\mathcal{E}$ over traditional logic systems.
+The same equivalence is proved in \cite{Ben} but only by resorting to proof by mutual implication using proof by contradiction within each case.
+Gries and Schneider \cite{LADM} point out that many equivalence proofs are shorter in $\mathcal{E}$, in which equality is central, than in traditional systems, in which implication is central.
+
 The above demonstration that $(\sigma, j) \models \Always p \equivs (\sigma, j) \models \neg \Event \neg q$ depends on the
 rule, ``$p$ does not hold in a state iff $\neg p$ holds in that state'', written formally as
 \begin{tabbing}
@@ -812,7 +816,7 @@ $p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < 
 Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $m>k$.\\
 $p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and $true$ is the right zero of $\Until$.
 
-From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$ \quad \myqed
+From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$. \quad \myqed
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
