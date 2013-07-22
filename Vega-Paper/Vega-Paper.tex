@@ -1605,7 +1605,7 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $true\Until \Always p$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
-  \> \>   $\Always (true\Until \Always p)$\\[\lgap]
+  \> \>   $\Always (true\Until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
@@ -2387,7 +2387,8 @@ Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
   \> \>   $\Always\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (3.76.2) $(p\impl q) \impl ((q\impl r)\impl (p\impl r))$}\\[\lgap]
+  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
@@ -2415,7 +2416,7 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
   \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
