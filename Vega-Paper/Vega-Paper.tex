@@ -2025,7 +2025,8 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-Theorem (\ref{E:excludedMid}) is the linear temporal version of the excluded middle axiom of propositional logic.
+Theorems (\ref{E:excludedMid}) and (\ref{E:excludedMidb}) are the linear temporal versions of the excluded middle axiom of propositional logic.
+Theorems (\ref{E:contradiction}) and (\ref{E:contradiction}) are the linear temporal versions of the contraction theorem of propositional logic.
 \begin{equation}\label{E:excludedMid}
 \textbf{Temporal excluded middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
@@ -2037,6 +2038,45 @@ Theorem (\ref{E:excludedMid}) is the linear temporal version of the excluded mid
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\Event p \lor \neg\Event p$\\[\lgap]
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:excludedMidb}
+\textbf{Temporal excluded middle:}\quad \Always p \lor \Event\neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \lor \Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always p \lor \neg\Always p$\\[\lgap]
+  \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Always p$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:contradiction}
+\textbf{Temporal contradiction:}\quad \Event p \land \Always\neg p \equivs false
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event p \land \Always\neg p \equivs false$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\Event p \land \neg\Event p \equivs false$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event p$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:contradictionb}
+\textbf{Temporal contradiction:}\quad \Always p \land \Event\neg p \equivs false
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event\neg p \equivs false$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always p \land \neg\Always p \equivs false$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
 
 Theorem (\ref{E:distAlwaysAnd}) shows that $\Always$, a universal operator, distributes over conjunction.
@@ -3232,7 +3272,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
 \> \> $(\Always p \land \Event q) \lor \Always\neg q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-\> \> $(\Always p \lor \Event q) \land \neg \Event q$\\[\lgap]
+\> \> $(\Always p \land \Event q) \lor \neg \Event q$\\[\lgap]
 \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
 \> \> $\Always p \lor \neg \Event q$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
