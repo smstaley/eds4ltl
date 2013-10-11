@@ -2498,7 +2498,7 @@ of any arbitrary length to be collapsed into one of four expressions: \;$\Event 
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
+\emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3319,26 +3319,25 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl q) \land r \Until p \impl r \Until q$\\[\lgap]
   \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land r \Until p \impl r \Until q$}\\[\lgap]
-  \> \>   $true$\\[\lgap]
+  \> \>   $true$
 \end{tabbing}
+
 \emph{Proof of Lemma:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p => q) \land r \Until p$\\[\lgap]
+  \> \>   $\Always (p \impl q) \land r \Until p$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
   \> \>   $((p \impl q) \land r) \Until ((p \impl q) \land p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p \impl q \equiv \lnot p \lor q$}\\[\lgap]
-  \> \>   $((p \impl q) \land r) \Until ((\lnot p \lor q) \land p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44a) Absorption, $p \land (\lnot p \lor q)$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land p \impl q \equivs  p \land q$}\\[\lgap]
   \> \>   $((p \impl q) \land r) \Until (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
   \> \>   $((p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$,}\\[\lgap]
+  \>          \>  \Hintlast{$(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
   \> \>   $((p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $r \Until q$ \> \myqed
+  \> \>   $r \Until q$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
@@ -3350,26 +3349,24 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl q) \land p \Wait r \impl q \Wait r$\\[\lgap]
   \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land p \Wait r \impl q \Wait r$}\\[\lgap]
-  \> \>   $true$\\[\lgap]
+  \> \>   $true$
 \end{tabbing}
+
 \emph{Proof of Lemma:}
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p => q) \land p \Wait r$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:andWaitDist}) Distributivity of $\land$ over $\Wait$}\\[\lgap]
   \> \>   $((p \impl q) \land p) \Wait ((p \impl q) \land r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p \impl q \equiv \lnot p \lor q$}\\[\lgap]
-  \> \>   $((\lnot p \lor q) \land p) \Wait ((p \impl q) \land r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44a) Absorption, $p \land (\lnot p \lor q)$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land p \impl q \equivs  p \land q$}\\[\lgap]
   \> \>   $((p \land q) \Wait ((p \impl q) \land r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftWaitAndDist}) Left Distributivity of $\Wait$ over $\land$}\\[\lgap]
   \> \>   $((p \land q) \Wait (p \impl q) \land (p \land q) \Wait r$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:rightWaitAndDist}) Right Distributivity of $\Wait$ over $\land$}\\[\lgap]
   \> \>   $((p \land q) \Wait (p \impl q) \land p \Wait r \land q \Wait r$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $q \Wait r$ \> \myqed
+  \> \>   $q \Wait r$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:leftMonoUntil}
 \textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
 \end{equation}
