@@ -13,8 +13,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-%\usepackage[student]{optional}
-\usepackage[doc]{optional}
+\usepackage[student]{optional}
+%\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -490,7 +490,7 @@ The semantics of the unary prefix operator $\Next$ are
 \end{tabbing}
 That is, $\Next p$ holds at position $j$ iff $p$ holds at position $j+1$.
 
-For example, in the following sequence $\Next 10\le x< 13$ holds at state $s_1$ because $\Next 10\le x< 13$ holds at state $s_2$.\\[\lllgap]
+For example, in the following sequence $\Next 10\le x< 13$ holds at state $s_1$ because $10\le x< 13$ holds at state $s_2$.\\[\lllgap]
 \begin{tabular}{c|ccccccccc}
   $\sigma$             & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & \dots \\
   \hline
@@ -726,10 +726,10 @@ In the same way that $(\all x\dr R\rb P)$ is equivalent to $\neg (\ext x\dr R\rb
 	\> \>   $\neg (\ext k \dr k \ge j \rb \neg((\sigma,k) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
 	\> \>   $\neg (\ext k \dr k \ge j \rb (\sigma,k) \models \neg p)$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
-	\> \>   $\neg ((\sigma, j) \models \Event \neg q)$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $\Event p$}\\[\lgap]
+	\> \>   $\neg ((\sigma, j) \models \Event \neg p)$\\[\lgap]
 	\> $=$  \>  \Hint{$p$ does not hold in a state iff $\neg p$ holds in that state}\\[\lgap]
-	\> \>   $(\sigma, j) \models \neg \Event \neg q$ \quad \myqed\\
+	\> \>   $(\sigma, j) \models \neg \Event \neg p$ \quad \myqed\\
 \end{tabbing}
 This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
 $\Always p \equiv \neg\Event\neg p$ assumed in Section 3.4.
