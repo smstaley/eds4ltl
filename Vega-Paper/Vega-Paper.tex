@@ -13,8 +13,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-\usepackage[student]{optional}
-%\usepackage[doc]{optional}
+%\usepackage[student]{optional}
+\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -1000,7 +1000,7 @@ Exercise for the student.\\
 \subsection{Until}
 
 This system defines the \textit{until} operator $\Until$ with the following eight axioms.
-The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section (3.5) shows.
+The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section (3.7) shows.
 Thus \textit{next} distributes over all binary operators, both propositional and temporal.
 
 The \textit{until} operator is unlike any propositional binary operator.
@@ -1710,27 +1710,21 @@ As usual, the first describes the current state and the second contains the oper
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Scott Staley)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\neg\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ with $p := \neg p$}\\[\lgap]
-  \> \>   $\neg(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $\neg(\neg p \lor (true \land \Next(true \Until \neg p)))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
-  \> \>   $\neg(\neg p \lor \Next(true \Until \neg p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$ with $p := \neg p$}\\[\lgap]
+  \> \>   $\neg(\neg p\lor\Next\Event\neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
-  \> \>   $\neg\neg p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
-  \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\Event$}\\[\lgap]
-  \> \>   $p \land \neg\Next\Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $p \land \neg\Next\neg\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
+  \> \>   $\neg\neg p\land\neg\Next\Event\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p \equiv p$}\\[\lgap]
+  \> \>   $p\land\neg\Next\Event\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:selfDual}) Self dual}\\[\lgap]
+  \> \>   $p\land\Next\neg\Event\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $p \land \Next\Always p$ \quad \myqed
 \end{tabbing}
 
@@ -2352,45 +2346,41 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Scott Staley)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Always\Event(p \land q) \land \Always\Event p \land \Always\Event q \equiv \Always\Event(p \land q)$\\[\lgap]
+  \> \>   $\Always\Event(p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$}\\[\lgap]
+  \> \>   $\Always(\Event p \land \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always(\Event(p \land q) \land \Event p \land \Event q) \equiv \Always\Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$}\\[\lgap]
-  \> \>   $\Always\Event(p \land q) \equiv \Always\Event(p \land q)$\\[\lgap]
-  \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$.
+  \> \>   $\Always\Event p \land \Always\Event q$
 \end{tabbing}
 
 \emph{Proof of Lemma}:
+By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(p \land q) \land \Event p \land \Event q \equiv \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Event(p \land q) \impl \Event p \land \Event q$\\[\lgap]
-  \> which is (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$. \quad \myqed
+  \> \>   $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
 
-\emph{Proof}: \opt{doc}{ The proof is by (4.12) Contrapositive.
+\emph{Proof}: (Scott Staley)\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\neg \Event\Always (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Always\Event \neg (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
-  \> \>   $\Always\Event (\neg p \land \neg q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEventAnd}) Distributivity of $\Always\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Always\Event \neg p \land \Always\Event \neg q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\neg\Event\Always p \land \neg\Event\Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
-  \> \>   $\neg (\Event\Always p\lor \Event\Always q)$ \quad \myqed
+  \> \>   $\Always\Event(p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$}\\[\lgap]
+  \> \>   $\Always(\Event p \land \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always\Event p \land \Always\Event q$
+\end{tabbing}
+
+\emph{Proof of Lemma}:
+By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
