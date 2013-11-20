@@ -2369,18 +2369,18 @@ By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distrib
 \emph{Proof}: (Scott Staley)\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event(p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$}\\[\lgap]
-  \> \>   $\Always(\Event p \land \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always\Event p \land \Always\Event q$
+  \> \>   $\Event\Always p \lor \Event\Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event(\Always p \lor \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
+  \> \>   $\Event\Always (p \lor q)$
 \end{tabbing}
 
 \emph{Proof of Lemma}:
-By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ the following is a theorem.
+By (\ref{E:metaEvent}) Metatheorem $\Event$ and (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$ \quad \myqed
+  \> \>   $\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
