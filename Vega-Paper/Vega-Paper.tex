@@ -2877,7 +2877,7 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> \> $p \Wait true$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $\Always p \lor p\Until true$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilFalse}) Right zero of $\Until$} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
 \> \> $\Always p \lor true$\\[\lgap]
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
 \> \> $true$ \quad \myqed
@@ -3137,8 +3137,7 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
+\emph{Proof}: (Scott Staley)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p \Until q) \Wait q$\\[\lgap]
@@ -3146,21 +3145,8 @@ The proof in the first direction follows.
 \> \> $\Always (p \Until q)\lor (p \Until q) \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
 \> \> $\Always (p \Until q)\lor p \Until q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
-\> \> $p \Until q \lor p \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
-\> \> $p \Until q$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Until q$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76a) Weakening, $p \impl p \lor q$} \\[\lgap]
-\> \> $\Always (p \Until q)\lor p \Until q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$} \\[\lgap]
-\> \> $\Always (p \Until q)\lor (p \Until q) \Until q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $(p \Until q) \Wait q$ \quad \myqed
+\> $=$ \> \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\Always$ into $\lor$ with $p := p\Until q$} \\[\lgap]
+\> \> $p \Until q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:leftUntilAbsWait}
 \textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
