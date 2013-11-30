@@ -2584,8 +2584,48 @@ That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}
 \> \> $\neg (p \Wait q) \lor \neg\Event q $\\[\lgap]
 \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
 \> \> $\neg (p \Wait q \land \Event q)$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:untilFromWait}) Until in terms of $\Wait$}\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$}\\[\lgap]
 \> \> $\neg (p \Until q)$ \quad \myqed
+\end{tabbing}
+
+Both $\Until$ and $\Wait$ obey the following disjunction rules.
+\begin{equation}\label{E:disjunctUntil}
+\textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \> $\neg\neg (p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \> $\neg (\neg q\Wait (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\neg (\neg p\land \neg q)\Until (q\land \neg (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
+\> \> $( p\lor q)\Until (q\land (p\lor q))$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
+\> \> $(p\lor q) \Until q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:disjunctWait}
+\textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \> $\neg\neg (p\Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\neg (\neg q\Until (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \> $\neg (\neg p\land \neg q)\Wait (q\land \neg (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
+\> \> $( p\lor q)\Wait (q\land (p\lor q))$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
+\> \> $(p\lor q) \Wait q$ \quad \myqed
 \end{tabbing}
 
 (\ref{E:untilImplWait}) shows that $p\Until q$ is stronger than $p\Wait q$.
@@ -3384,7 +3424,7 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
   \> \>   $true$\\[\lgap]
   \> $=$ \> \Hint{$\Always (p\Wait q\impl p\lor q)$ is a theorem} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := p\land \neg q, p, \neg q$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitImpAbsL}
@@ -3404,7 +3444,37 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
 
-[\textit{Not yet proved.}]
+\emph{Proof}: (Scott Staley) The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:untilImplWait}) with $p,q := \neg q, p\land \neg q$}\\[\lgap]
+  \> \>   $\neg q\Until (p\land\neg q)\impl \neg q\Wait(p\land \neg q)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{Lemma: $\neg q\Wait(p\land\neg q)\impl\neg q\Wait p$ and (3.82a) Transitivity,}\\[\lgap]
+  \> \> \Hintlast{$(p\impl q)\land (q\impl r)\impl (p\impl r)$} \\[\lgap]
+  \> \>   $\neg q\Until (p\land\neg q)\impl \neg q\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q\equivs\neg p \lor q$}\\[\lgap]
+  \> \>   $\neg(\neg q\Until (p\land\neg q))\lor \neg q\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$}\\[\lgap]
+  \> \>   $\neg (p\land \neg q)\Wait (q\land \neg(p\land\neg q))\lor \neg q\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$ twice}\\[\lgap]
+  \> \>   $(\neg p\lor q)\Wait (q\land (\neg p\lor q))\lor \neg q\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p\lor q)\equiv p$}\\[\lgap]
+  \> \>   $(\neg p\lor q)\Wait q\lor \neg q\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:disjunctWait}) Disjunction rule of $\Wait$}\\[\lgap]
+  \> \>   $\neg p\Wait q\lor \neg q\Wait p$\\[\lgap]
+\end{tabbing}
+\emph{Proof of Lemma}: The proof is by (4.7.1) Truth implication.
+(3.76b) Strengthening the antecedent $p\land q\impl p$ with $q := \neg q$ is $p\land \neg q\impl p$.
+Therefore, by (\ref{E:metatheorem}) Metatheorem $\Always (p\land \neg q\impl p)$ is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{$\Always (p\land \neg q\impl p)$ is a theorem}\\[\lgap]
+  \> \>   $\Always (p\land \neg q\impl p)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=p\land\neg q,p,\neg q$} \\[\lgap]
+  \> \>   $\neg q\Wait(p\land\neg q)\impl\neg q\Wait p$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:waitOrderingTwo}
 \textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
