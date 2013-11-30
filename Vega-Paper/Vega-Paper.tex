@@ -3462,11 +3462,11 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
   \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p\lor q)\equiv p$}\\[\lgap]
   \> \>   $(\neg p\lor q)\Wait q\lor \neg q\Wait p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:disjunctWait}) Disjunction rule of $\Wait$}\\[\lgap]
-  \> \>   $\neg p\Wait q\lor \neg q\Wait p$\\[\lgap]
+  \> \>   $\neg p\Wait q\lor \neg q\Wait p$
 \end{tabbing}
 \emph{Proof of Lemma}: The proof is by (4.7.1) Truth implication.
 (3.76b) Strengthening the antecedent $p\land q\impl p$ with $q := \neg q$ is $p\land \neg q\impl p$.
-Therefore, by (\ref{E:metatheorem}) Metatheorem $\Always (p\land \neg q\impl p)$ is a theorem.
+Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (p\land \neg q\impl p)$ is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
@@ -3484,7 +3484,40 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem $\Always (p\land \neg q\impl p)$
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 
-[\textit{Not yet proved.}]
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p\Wait (q\land r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma a: $p\Wait (r\land q)\impl p\Wait r$}\\[\lgap]
+  \> \>   $p \Wait r$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma b: $p\Wait r\impl p\Wait (q\Wait r)$}\\[\lgap]
+  \> \>   $p \Wait (q \Wait r)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
+  \> \>   $(p \Wait q) \Wait r$
+\end{tabbing}
+\emph{Proof of Lemma a}: The proof is by (4.7.1) Truth implication.
+(3.76b) Strengthening the antecedent $p\land q\impl p$ with $p := r$ is $r\land q\impl r$.
+Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\land q\impl r)$ is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{$\Always (r\land q\impl r)$ is a theorem}\\[\lgap]
+  \> \>   $\Always (p\land \neg q\impl p)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=r\land q,r,p$} \\[\lgap]
+  \> \>   $p\Wait(r\land q)\impl p\Wait r$
+\end{tabbing}
+\emph{Proof of Lemma b}: The proof is by (4.7.1) Truth implication.
+(\ref{E:waitInsertion}) Insertion with $p,q := q,r$ is $r\impl q\Wait r$.
+Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{$\Always (r\impl q\Wait r)$ is a theorem}\\[\lgap]
+  \> \>   $\Always (r\impl q\Wait r)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=r,q\Wait r,p$} \\[\lgap]
+  \> \>   $p\Wait r\impl p\Wait (q\Wait r)$ \quad \myqed
+\end{tabbing}
+
 
 \section{Conclusion}
 
