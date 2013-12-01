@@ -2019,8 +2019,8 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-Theorems (\ref{E:excludedMid}) and (\ref{E:excludedMidb}) are the linear temporal versions of the excluded middle axiom of propositional logic.
-Theorems (\ref{E:contradiction}) and (\ref{E:contradiction}) are the linear temporal versions of the contraction theorem of propositional logic.
+Theorems (\ref{E:excludedMid}) and (\ref{E:excludedMidb}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
+Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear temporal versions of the contraction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
 \begin{equation}\label{E:excludedMid}
 \textbf{Temporal excluded middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
@@ -2033,7 +2033,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradiction}) are the linear temp
   \> \>   $\Event p \lor \neg\Event p$\\[\lgap]
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:excludedMidb}
 \textbf{Temporal excluded middle:}\quad \Always p \lor \Event\neg p
 \end{equation}
@@ -2046,7 +2045,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradiction}) are the linear temp
   \> \>   $\Always p \lor \neg\Always p$\\[\lgap]
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:contradiction}
 \textbf{Temporal contradiction:}\quad \Event p \land \Always\neg p \equivs false
 \end{equation}
@@ -2059,7 +2057,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradiction}) are the linear temp
   \> \>   $\Event p \land \neg\Event p \equivs false$\\[\lgap]
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:contradictionb}
 \textbf{Temporal contradiction:}\quad \Always p \land \Event\neg p \equivs false
 \end{equation}
@@ -3502,7 +3499,7 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\land q\impl r)$ is 
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{$\Always (r\land q\impl r)$ is a theorem}\\[\lgap]
-  \> \>   $\Always (p\land \neg q\impl p)$\\[\lgap]
+  \> \>   $\Always (r\land q\impl r)$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=r\land q,r,p$} \\[\lgap]
   \> \>   $p\Wait(r\land q)\impl p\Wait r$
 \end{tabbing}
