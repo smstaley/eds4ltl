@@ -13,8 +13,8 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-\usepackage[student]{optional}
-%\usepackage[doc]{optional}
+%\usepackage[student]{optional}
+\usepackage[doc]{optional}
 %\usepackage[pub]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
@@ -1991,28 +1991,20 @@ Exercise for the student.\\
 \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Scott Staley) The proof is by (4.7.1) Truth implication.
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\neg(\Always p \land \Event q) \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
-  \> \>   $\neg\Always p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \neg\Event q \lor \Event(p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor (p \land q)) \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor q) \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \Event q \lor \neg\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$}\\[\lgap]
-  \> \>   $\Event\neg p \lor true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$\\[\lgap]
-  \> which is (3.4). \quad \myqed
+  \> $=$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=true, q$}\\[\lgap]
+  \> \>   $\Always p \land true \Until q \impl (p \land true) \Until (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $\Always p \land true \Until q \impl p\Until (p\land q) \land true \Until (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl p\Until (p\land q) \land \Event (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening the antecedent $p\land q\impl p$, and (3.82a) Transitivity}\\[\lgap]
+  \> \>  \Hintlast{$(p\impl q)\land (q\impl r)\impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
