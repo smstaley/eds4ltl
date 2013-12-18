@@ -1553,7 +1553,7 @@ The following theorem shows how the binary operator \textit{until} absorbs into 
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
+\emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1991,20 +1991,21 @@ Exercise for the student.\\
 \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley) The proof is by (4.7.1) Truth implication.
+\emph{Proof}: (Scott Staley)
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=true, q$}\\[\lgap]
-  \> \>   $\Always p \land true \Until q \impl (p \land true) \Until (p \land q)$\\[\lgap]
+  \> \>   $\Always p \land \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Always p \land true \Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=true, q$}\\[\lgap]
+  \> \>   $(p \land true) \Until (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $\Always p \land true \Until q \impl p\Until (p\land q) \land true \Until (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
-  \> \>   $\Always p \land \Event q \impl p\Until (p\land q) \land \Event (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening the antecedent $p\land q\impl p$, and (3.82a) Transitivity}\\[\lgap]
-  \> \>  \Hintlast{$(p\impl q)\land (q\impl r)\impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$ \quad \myqed
+  \> \>   $p\Until (p\land q) \land true \Until (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening the antecedent $p\land q\impl p$}\\[\lgap]
+  \> \>   $true \Until (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Event (p \land q)$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
@@ -2012,7 +2013,7 @@ Exercise for the student.\\
 }
 
 Theorems (\ref{E:excludedMid}) and (\ref{E:excludedMidb}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
-Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear temporal versions of the contraction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
+Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
 \begin{equation}\label{E:excludedMid}
 \textbf{Temporal excluded middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
