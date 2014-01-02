@@ -755,12 +755,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{E:PrProofRule}
-\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
@@ -853,18 +847,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{E:disjunctUntil}
-\textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:disjunctWait}
-\textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{untilImplWait}
 p\Until q\impl p\Wait q
 \end{equation}
@@ -931,6 +913,42 @@ p\Until q\impl p\Wait q
 
 \spacer
 
+\begin{equation}\label{E:disjunctWait}
+\textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:disjunctUntil}
+\textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:ruleWait}
+\textbf{Rule of $\Wait$:}\quad \neg q \Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:ruleUntil}
+\textbf{Rule of $\Until$:}\quad \neg q \Until q\equivs \Event p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:conRuleWait}
+\textbf{Conjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\land \neg q)\Wait q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:conRuleUntil}
+\textbf{Conjunction rule of $\Until$:}\quad p\Until q\equiv (p\land \neg q)\Until q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}
@@ -989,7 +1007,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
@@ -1013,7 +1031,7 @@ p \Wait q \impl p \lor q
 \textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:leftWaitAbsUtil}
 \textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
@@ -1111,6 +1129,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
+\begin{equation}\label{E:waitOrderingThree}
+\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
@@ -1123,8 +1147,8 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
-\begin{equation}\label{E:waitOrderingThree}
-\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q \quad [\textit{Counterexample}]
 \end{equation}
 
 \end{document}

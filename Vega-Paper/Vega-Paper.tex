@@ -2170,22 +2170,6 @@ Exercise for the student.\\
 \opt{student}{
 Exercise for the student.\\
 }
-\begin{equation}\label{E:PrProofRule}
-\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q
-\end{equation}
-
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p \land (\Always p \impl \Event q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$ and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
-  \> \>   $\Event\Always p \land \Event (\Always p \impl \Event q)$\\[\lgap]
-  \> $=$  \> \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\quad [\textit{Error}]\\[\lgap]
-  \> \>   $\Event\Always p \land (\Event \Always p \impl \Event\Event q)$\\[\lgap]
-  \> $=$  \> \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$} \\[\lgap]
-  \> \>   $\Event\Always p \land (\Event \Always p \impl \Event q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.77) Modus ponens $p\land (p\impl q)\impl q$}\\[\lgap]
-  \> \>   $\Event q$ \quad \myqed
-\end{tabbing}
 
 The monotonicity theorems (\ref{E:alwaysImpNexts}) and (\ref{E:alwaysImpEvents}) have $\Always (p \impl q)$
 as the antecedent.
@@ -2578,46 +2562,6 @@ That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}
 \> \> $\neg (p \Until q)$ \quad \myqed
 \end{tabbing}
 
-Both $\Until$ and $\Wait$ obey the following disjunction rules.
-\begin{equation}\label{E:disjunctUntil}
-\textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
-\end{equation}
-
-\emph{Proof}: (Scott Staley)
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
-\> \> $\neg\neg (p\Until q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
-\> \> $\neg (\neg q\Wait (\neg p\land \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
-\> \> $\neg (\neg p\land \neg q)\Until (q\land \neg (\neg p\land \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
-\> \> $( p\lor q)\Until (q\land (p\lor q))$\\[\lgap]
-\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
-\> \> $(p\lor q) \Until q$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:disjunctWait}
-\textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
-\end{equation}
-
-\emph{Proof}: (Scott Staley)
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Wait q$\\[\lgap]
-\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
-\> \> $\neg\neg (p\Wait q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
-\> \> $\neg (\neg q\Until (\neg p\land \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
-\> \> $\neg (\neg p\land \neg q)\Wait (q\land \neg (\neg p\land \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
-\> \> $( p\lor q)\Wait (q\land (p\lor q))$\\[\lgap]
-\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
-\> \> $(p\lor q) \Wait q$ \quad \myqed
-\end{tabbing}
-
 (\ref{E:untilImplWait}) shows that $p\Until q$ is stronger than $p\Wait q$.
 Therefore, by contrapositive, $\neg (p \Wait q)$ is stronger than $\neg (p \Until q)$.
 \begin{equation}\label{E:untilImplWait}
@@ -2824,7 +2768,7 @@ the distributive axioms for the \textit{until} operator
 \textbf{Right distributivity of $\Wait$ over $\land$}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
+\emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2877,6 +2821,110 @@ The proof in the second direction follows.
   \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(p \land q) \Wait r$ \quad \myqed
+\end{tabbing}
+
+Both $\Wait$ and $\Until$ obey the following disjunction rules.
+\begin{equation}\label{E:disRuleWait}
+\textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \> $\neg\neg (p\Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\neg (\neg q\Until (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \> $\neg (\neg p\land \neg q)\Wait (q\land \neg (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
+\> \> $( p\lor q)\Wait (q\land (p\lor q))$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
+\> \> $(p\lor q) \Wait q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:disRuleUntil}
+\textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \> $\neg\neg (p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \> $\neg (\neg q\Wait (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\neg (\neg p\land \neg q)\Until (q\land \neg (\neg p\land \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$, twice} \\[\lgap]
+\> \> $( p\lor q)\Until (q\land (p\lor q))$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
+\> \> $(p\lor q) \Until q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:ruleWait}
+\textbf{Rule of $\Wait$:}\quad \neg q \Wait q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg q\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
+\> \> $(\neg q\lor q)\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.28) Excluded middle $p\lor \neg p$} \\[\lgap]
+\> \> $true\Wait q$\\[\lgap]
+\> $=$ \> \Hint{\ref{E:leftZeroWait}) Left zero of $\Wait$} \\[\lgap]
+\> \> $true$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:ruleUntil}
+\textbf{Rule of $\Until$:}\quad \neg q \Until q\equivs \Event p
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg q\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:disRuleUntil}) Disjunction rule of $\Until$} \\[\lgap]
+\> \> $(\neg q\lor q)\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.28) Excluded middle $p\lor \neg p$} \\[\lgap]
+\> \> $true\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Until$} \\[\lgap]
+\> \> $\Event q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:conRuleWait}
+\textbf{Conjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\land \neg q)\Wait q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
+\> \> $(p\lor q)\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+\> \> $(p\lor q)\Wait q\land true$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
+\> \> $(p\lor q)\Wait q\land \neg q\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
+\> \> $((p\lor q)\land \neg q)\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q) \equiv p\land q$ with $p,q := \neg q,p$} \\[\lgap]
+\> \> $(p\land \neg q) \Wait q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:conRuleUntil}
+\textbf{Conjunction rule of $\Until$:}\quad p\Until q\equiv (p\land \neg q)\Until q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p\land \neg q)\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+\> \> $(p\land \neg q)\Wait q \land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:conRuleWait}) Conjunction rule of $\Wait$} \\[\lgap]
+\> \> $p\Wait q \land \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+\> \> $p \Until q$ \quad \myqed
 \end{tabbing}
 
 Like the \textit{until} operator, \textit{wait} is idempotent.
@@ -3430,46 +3478,6 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
 \> $\impl$ \> \Hint{(\ref{E:waitImpAbsR}) Absorption} \\[\lgap]
 \> \> $(p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:waitOrdering}
-\textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
-\end{equation}
-
-\emph{Proof}: (Scott Staley) The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilImplWait}) with $p,q := \neg q, p\land \neg q$}\\[\lgap]
-  \> \>   $\neg q\Until (p\land\neg q)\impl \neg q\Wait(p\land \neg q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{Lemma: $\neg q\Wait(p\land\neg q)\impl\neg q\Wait p$ and (3.82a) Transitivity,}\\[\lgap]
-  \> \> \Hintlast{$(p\impl q)\land (q\impl r)\impl (p\impl r)$} \\[\lgap]
-  \> \>   $\neg q\Until (p\land\neg q)\impl \neg q\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q\equivs\neg p \lor q$}\\[\lgap]
-  \> \>   $\neg(\neg q\Until (p\land\neg q))\lor \neg q\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$}\\[\lgap]
-  \> \>   $\neg (p\land \neg q)\Wait (q\land \neg(p\land\neg q))\lor \neg q\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$ twice}\\[\lgap]
-  \> \>   $(\neg p\lor q)\Wait (q\land (\neg p\lor q))\lor \neg q\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p\lor q)\equiv p$}\\[\lgap]
-  \> \>   $(\neg p\lor q)\Wait q\lor \neg q\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:disjunctWait}) Disjunction rule of $\Wait$}\\[\lgap]
-  \> \>   $\neg p\Wait q\lor \neg q\Wait p$
-\end{tabbing}
-\emph{Proof of Lemma}: The proof is by (4.7.1) Truth implication.
-(3.76b) Strengthening the antecedent $p\land q\impl p$ with $q := \neg q$ is $p\land \neg q\impl p$.
-Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (p\land \neg q\impl p)$ is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{$\Always (p\land \neg q\impl p)$ is a theorem}\\[\lgap]
-  \> \>   $\Always (p\land \neg q\impl p)$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=p\land\neg q,p,\neg q$} \\[\lgap]
-  \> \>   $\neg q\Wait(p\land\neg q)\impl\neg q\Wait p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
-\end{equation}
-
-[\textit{Not yet proved.}]
 \begin{equation}\label{E:waitOrderingThree}
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
@@ -3507,14 +3515,32 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
   \> $\impl$ \> \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r:=r,q\Wait r,p$} \\[\lgap]
   \> \>   $p\Wait r\impl p\Wait (q\Wait r)$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:waitOrdering}
+\textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
+\end{equation}
 
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:conRuleWait}) Conjunction rule of $\Wait$ twice}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Wait q \lor (\neg q \land \neg p)\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:waitOrDist}) Left distributivity of $\Wait$ over $\lor$}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Wait (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+  \> \>   $\neg (p\lor q)\Wait (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
+  \> \>   $true$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:waitOrderingTwo}
+\textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
+\end{equation}
 
-\section{Conclusion}
+[\textit{Not yet proved.}]
 
-This paper presents an axiomatic deductive system of linear temporal logic whose theorems are proved with the equational
-logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
-It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
-\textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
+\section{Comparison with previous work}
+
+\subsection{Theorems}
 
 As a check on completeness, we inventoried all the linear temporal logic theorems in Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kroger \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 It presents 44 new linear temporal logic theorems, namely the three axioms
@@ -3564,17 +3590,46 @@ and the 41 theorems
 (\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$,
 (\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$.
 
+\subsection{Progress proof rule}
+
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q
+\end{equation}
+
+\emph{Counterexample:} (Alessandro Monteros)\\[\lgap]
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$                                                     & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & \dots\\
+  \hline
+  $x$                                                          & 0     & 1     & 2     & 3     & 4     & 5     & 6     & 7     & \dots\\
+  $y$                                                          & 1     & 2     & 4     & 8     & 16    & 32    & 64    & 128   & \dots\\
+  $p: x=3\lor x>5$                                             & F     & F     & F     & T     & F     & F     & T     & T     & \dots\\
+  $q: y=2$                                                     & F     & T     & F     & F     & F     & F     & F     & F     & \dots\\
+  $\Always p$                                                  & F     & F     & F     & F     & F     & F     & T     & T     & \dots\\
+  $\Event\Always p$                                            & T     & T     & T     & T     & T     & T     & T     & T     & \dots\\
+  $\Event q$                                                   & T     & T     & F     & F     & F     & F     & F     & F     & \dots\\
+  $\Always p\impl\Event q$                                     & T     & T     & T     & T     & T     & T     & F     & F     & \dots\\
+  $\Event\Always p\land (\Always p\impl\Event q)$              & T     & T     & T     & T     & T     & T     & F     & F     & \dots\\
+  $\Event\Always p\land (\Always p\impl\Event q)\impl\Event q$ & T     & T     & F     & F     & F     & F     & T     & T     & \dots\\
+\end{tabular}\\[\lllgap]
+
+\section{Conclusion}
+
 Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} originally developed $\mathcal{E}$ as a logic system to prove
 program correctness based on an equational style.
 Gries and Schneider extend that system to a theory of sets, a theory of sequences,
 relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
 Similarly, this system extends $\mathcal{E}$ to a theory of linear temporal logic.
+It takes unary operator \textit{next} $\Next$ and binary operator \textit{until} $\Until$ as primitives and defines
+\textit{eventually} $\Event$, \textit{always} $\Always$, and \textit{wait} $\Wait$ in terms of them.
 
+This paper presents an axiomatic deductive system of linear temporal logic whose theorems are proved with the equational
+logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 The equational deductive system $\mathcal{E}$ has several advantages over other logic systems.
 The primary advantage is that the equational system has only one proof rule, Leibniz.
 Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system.
 Neither of the authors, the first of whom was an undergraduate student when most of this work was done,
 has formal training in linear temporal systems.
+
 In our judgement, the progress we were able to make in exploring the structure of linear temporal systems
 is directly attributable to our training in the equational deductive system $\mathcal{E}$.
 We believe the advantages of $\mathcal{E}$ over other logic systems is so substantial that it should be the
