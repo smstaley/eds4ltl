@@ -481,6 +481,17 @@ The symbol $\models$ means ``satisfies'', so the above expression is read as
 Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$.''
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
+There is a distinction between the constant $true$ and the truth value of an expression T in a given state.
+The constant $true$ is an expression that evaluates to T in every state.
+Similarly, there is a distinction between the constant $false$ and the truth value of an expression F in a given state.
+The constant $false$ is an expression that evaluates to F in every state.\\[\lllgap]
+\begin{tabular}{c|ccccccc}
+  $\sigma$      & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
+  \hline
+  $true$        & T     & T     & T     & T     & T     & \dots\\
+  $false$       & F     & F     & F     & F     & F     & \dots
+\end{tabular}
+
 \subsubsection*{The \textit{next} operator $\Next$}
 
 The semantics of the unary prefix operator $\Next$ are
