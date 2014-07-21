@@ -2182,6 +2182,29 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+\textbf{NOTE:} Need commentary and possible name for this theorem.
+\begin{equation}\label{E:eventPImplEventQ}
+(\Event p \impl \Event q) \impl \Event (p \impl q)
+\end{equation}
+
+\emph{Proof}: (Alex Angelo)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Event(\neg p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\neg p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\neg \Always p \lor \Event q$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:exAlwaysNot}) Distributivity of $\neg$ over $\Always$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $\Always \neg p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\Event p \lor \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Event p \impl \Event q$ \quad \myqed
+\end{tabbing}
+
 The monotonicity theorems (\ref{E:alwaysImpNexts}) and (\ref{E:alwaysImpEvents}) have $\Always (p \impl q)$
 as the antecedent.
 Theorem (\ref{E:distAlwaysImp}), distributivity of $\Always$ over $\impl$, has the same antecedent and hence can be considered a
