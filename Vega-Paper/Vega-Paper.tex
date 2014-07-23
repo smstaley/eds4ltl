@@ -1740,7 +1740,7 @@ As usual, the first describes the current state and the second contains the oper
 \end{tabbing}
 
 The absorption of $\land$ into $\Always$ corresponds to (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
-while he absorption of $\Always$ into $\lor$ corresponds to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
+while the absorption of $\Always$ into $\lor$ corresponds to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
 Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
 disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existential.
 When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
@@ -2079,6 +2079,7 @@ Because disjunction is existential, Theorem (\ref{E:distAlwaysOr}) shows that $\
 direction.
 Theorems (\ref{E:distAlwaysEquiv}) and (\ref{E:distAlwaysImp}) show how $\Always$ distributes over the other two
 propositional binary operators.
+Theorems (\ref{E:eventImpAlways}) and (\ref{E:eventPImplEventQ}) show how $\Event$ distributes over $\impl$.
 \begin{equation}\label{E:distAlwaysAnd}
 \textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
@@ -2181,8 +2182,6 @@ Exercise for the student.\\
 \opt{student}{
 Exercise for the student.\\
 }
-
-\textbf{NOTE:} Need commentary and possible name for this theorem.
 \begin{equation}\label{E:eventPImplEventQ}
 (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
@@ -2538,6 +2537,35 @@ The proof in the second direction follows.
 Exercise for the student.\\
 }
 
+The metatheorems and absorption laws imply the following intuitive theorem.
+If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
+\begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
+\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
+\end{equation}
+
+\emph{Proof}: By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+\> \>   $\Always \Always p \land \Always\Event q \impl \Always\Event (p \land q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+\> \>   $\Always p \land \Always\Event q \impl \Always\Event (p \land q)$\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+\> \>   $\Always p \impl (\Always\Event q \impl \Always\Event (p \land q))$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Event\Always p \impl \Event(\Always\Event q \impl \Always\Event (p \land q))$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+\> \>   $\Event\Always p \impl (\Always\Always\Event q \impl \Event\Always\Event (p \land q))$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$ and (\ref{E:absEvent}) Absorption of $\Event$ into $\Always$}\\[\lgap]
+\> \>   $\Event\Always p \impl (\Always\Event q \impl \Always\Event (p \land q))$\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+\> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
+\end{tabbing}
+
 \subsection{Wait}
 
 $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually be true.
@@ -2857,7 +2885,7 @@ The proof in the second direction follows.
   \> \>   $(p \land q) \Wait r$ \quad \myqed
 \end{tabbing}
 
-Both $\Wait$ and $\Until$ obey the following disjunction rules.
+Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, which give rise, in turn, to expanded distributivity theorems of $\neg$ over $\Wait$ and $\Until$.
 \begin{equation}\label{E:disRuleWait}
 \textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
 \end{equation}
@@ -2960,8 +2988,42 @@ Both $\Wait$ and $\Until$ obey the following disjunction rules.
 \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:notWait2}
+\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
+\end{equation}
 
-Like the \textit{until} operator, \textit{wait} is idempotent.
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (p\Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$} \\[\lgap]
+\> \> $\neg q \Until (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:conRuleUntil}) Conjunction rule of $\Until$ with $p,q:=\neg q, \neg p\land\neg q$} \\[\lgap]
+\> \> $(\neg q \land \neg(\neg p \land \neg q)) \Until (\neg p \land \neg q)$\\[\lgap]
+\> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+\> \> $(\neg q \land (p \lor q)) \Until (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ with $p,q:=\neg q,p$} \\[\lgap]
+\> \> $(p \land \neg q) \Until (\neg p \land \neg q)$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:notUntil2}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \> $\neg q \Wait (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:conRuleWait}) Conjunction rule of $\Wait$ with $p,q:=\neg q, \neg p\land\neg q$} \\[\lgap]
+\> \> $(\neg q \land \neg(\neg p \land \neg q)) \Wait (\neg p \land \neg q)$\\[\lgap]
+\> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+\> \> $(\neg q \land (p \lor q)) \Wait (\neg p \land \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ with $p,q:=\neg q,p$} \\[\lgap]
+\> \> $(p \land \neg q) \Wait (\neg p \land \neg q)$ \quad \myqed
+\end{tabbing}
+
+Like the \textit{until} operator, the \textit{wait} operator is idempotent.
 $true$ is the right zero of both \textit{until} and \textit{wait}.
 $false$ is the left identity of both \textit{until} and \textit{wait}.
 \begin{equation}\label{E:idempWait}
