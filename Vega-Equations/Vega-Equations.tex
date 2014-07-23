@@ -825,6 +825,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
 
+\spacer
+
+\begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
+\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
+\end{equation}
+
 \newpage
 
 \subsection*{Wait $\quad\Wait$}
@@ -955,6 +961,18 @@ p\Until q\impl p\Wait q
 
 \spacer
 
+\begin{equation}\label{E:notWait2}
+\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:notUntil2}
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}
@@ -1001,7 +1019,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitAndOr}
 \textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
@@ -1013,7 +1031,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
@@ -1149,24 +1167,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitOrderingTwo}
 \textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:benAri1334}
-\textbf{Ben-Ari (13.34):}\quad \Event\Always p \land\Always\Event q \impl \Always\Event(p\land q) \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:benAriP260a}
-\textbf{Ben-Ari, p. 260a:}\quad \neg(p \Wait q) \equiv (p\land\neg q)\Until (\neg p\land \neg q) \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:benAriP260b}
-\textbf{Ben-Ari, p. 260b:}\quad \neg(p \Until q) \equiv (p\land\neg q)\Wait (\neg p\land \neg q) \quad [\textit{Not yet proved.}]
 \end{equation}
 
 \spacer
