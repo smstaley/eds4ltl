@@ -2138,28 +2138,6 @@ Exercise for the student.\\
   \> \>   $\Always(p \land q) \equiv \Always (p \land q)$\\[\lgap]
   \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=\Always(p \land q)$. \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\Always$ over $\impl$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
-\end{equation}
-
-\emph{Proof}:
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \impl q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Distributivity of $\Always$ over $\equiv$}\\[\lgap]
-  \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
-  \> \>   $\Always p \impl \Always q$ \quad \myqed
-\end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:eventImpAlways}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
@@ -2204,11 +2182,10 @@ Exercise for the student.\\
   \> \>   $\Event p \impl \Event q$ \quad \myqed
 \end{tabbing}
 
-The monotonicity theorems (\ref{E:alwaysImpNexts}) and (\ref{E:alwaysImpEvents}) have $\Always (p \impl q)$
+The monotonicity theorems (\ref{E:alwaysImpNexts}), (\ref{E:alwaysImpEvents}), and (\ref{E:distAlwaysImp}) have $\Always (p \impl q)$
 as the antecedent.
-Theorem (\ref{E:distAlwaysImp}), distributivity of $\Always$ over $\impl$, has the same antecedent and hence can be considered a
-monotonicity theorem as well.
-Theorems (\ref{E:distAlwaysImp}), (\ref{E:alwaysImpNexts}), and (\ref{E:alwaysImpEvents}) show that all unary temporal
+Theorem (\ref{E:distAlwaysImp}) can be considered distributivity of $\Always$ over $\impl$ as well.
+Theorems (\ref{E:alwaysImpNexts}), (\ref{E:alwaysImpEvents}), and (\ref{E:distAlwaysImp}) show that all unary temporal
 operators are monotonic.
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
@@ -2254,6 +2231,28 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$\\[\lgap]
   \> which is (3.4). \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+Exercise for the student.\\
+}
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
+\end{equation}
+
+\emph{Proof}:
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Distributivity of $\Always$ over $\equiv$}\\[\lgap]
+  \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $\Always p \impl \Always q$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
@@ -2543,7 +2542,7 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
 
-\emph{Proof}: By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\emph{Proof}: (Scott Staley) By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
@@ -2989,7 +2988,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:notWait2}
-\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
+\textbf{Conjunctive distributivity of $\neg$ over $\Wait$:}\; \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
 \end{equation}
 
 \emph{Proof}: (Scott Staley)
@@ -3006,7 +3005,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $(p \land \neg q) \Until (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:notUntil2}
-\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
+\textbf{Conjunctive distributivity of $\neg$ over $\Until$:}\; \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
 \end{equation}
 
 \emph{Proof}: (Scott Staley)
