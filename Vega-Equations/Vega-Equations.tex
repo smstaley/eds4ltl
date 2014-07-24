@@ -743,12 +743,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{E:distAlwaysImp}
-\textbf{Distributivity of $\Always$ over $\impl$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:eventImpAlways}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
@@ -769,6 +763,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysImp}
+\textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
 
 \subsection*{Proof metatheorems}
@@ -962,13 +962,13 @@ p\Until q\impl p\Wait q
 \spacer
 
 \begin{equation}\label{E:notWait2}
-\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
+\textbf{Conjunctive distributivity of $\neg$ over $\Wait$:}\; \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:notUntil2}
-\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
+\textbf{Conjunctive distributivity of $\neg$ over $\Until$:}\; \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
 \end{equation}
 
 \spacer
