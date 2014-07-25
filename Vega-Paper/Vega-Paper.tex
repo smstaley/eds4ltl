@@ -1980,6 +1980,7 @@ Exercise for the student.\\
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then, the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
+Theorem (\ref{E:alwaysAndEvent}) shows how $\Event$ distributes over $\land$.
 \begin{equation}\label{E:exAlwaysNot}
 \textbf{Distributivity of $\neg$ over $\Always$:}\quad \Always\neg p \impl \neg\Always p
 \end{equation}
@@ -1999,7 +2000,7 @@ Then, the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is fal
 Exercise for the student.\\
 }
 \begin{equation}\label{E:alwaysAndEvent}
-\Always p \land \Event q \impl \Event (p \land q)
+\textbf{Distributivity of $\Event$ over $\land$:}\quad \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
 \emph{Proof}: (Scott Staley)
@@ -2077,9 +2078,8 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
 Theorem (\ref{E:distAlwaysAnd}) shows that $\Always$, a universal operator, distributes over conjunction.
 Because disjunction is existential, Theorem (\ref{E:distAlwaysOr}) shows that $\Always$ distributes over it in only one
 direction.
-Theorems (\ref{E:distAlwaysEquiv}) and (\ref{E:distAlwaysImp}) show how $\Always$ distributes over the other two
-propositional binary operators.
-Theorems (\ref{E:eventImpAlways}) and (\ref{E:eventPImplEventQ}) show how $\Event$ distributes over $\impl$.
+Theorem (\ref{E:distAlwaysEquiv}) shows how $\Always$ distributes over $\equiv$.
+Theorems  (\ref{E:eventImpAlways}) and (\ref{E:eventPImplEventQ}) show how $\Event$ distributes over $\impl$.
 \begin{equation}\label{E:distAlwaysAnd}
 \textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
@@ -2161,7 +2161,7 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 \begin{equation}\label{E:eventPImplEventQ}
-(\Event p \impl \Event q) \impl \Event (p \impl q)
+\textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
 
 \emph{Proof}: (Alex Angelo)
