@@ -10,6 +10,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
+\usepackage{booktabs}                               % For table rules
+\usepackage{boxedminipage}                          % For boxing text in Hasse diagram
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
@@ -598,31 +600,37 @@ Expanding $p\Until (q\Until r)$,
 	\> \>   $(\ext k \dr k\ge j \rb (\ext n \dr n\ge k \rb (\sigma,n)\models r \land (\all m \dr k\le m < n \rb (\sigma,m)\models q))$\\[\lgap]
 	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$
 \end{tabbing}
-The following figure illustrates the temporal segments for which $p$, $q$, and $r$ hold for \\$p\Until(q\Until r)$.\\[\lgap]
-\begin{picture}(360,120)
-\thicklines
-\put(320,110){$(\sigma,n)\models r$}
-\put(0,100)  {\vector(1,0){380}}
-\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}} \put(340,100) {\circle*{8}}
-\put(18,86)  {$j$} \put(178,86)  {$k$} \put(338,86)  {$n$} 
-\put(168,74) {$k\ge j$} \put(328,74)  {$n\ge k$}
-\put(180,52) {\line(1,0){156}}
-\put(180,52) {\circle*{8}} \put(340,52) {\circle{8}}
-\put(240,58) {$(\sigma,m)\models q$}
-\put(240,42) {$k\le m < n$}
-\put(20,20)  {\line(1,0){156}}
-\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}
-\put(80,28) {$(\sigma,i)\models p$}
-\put(80,10) {$j\le i < k$}
-\end{picture}\\[\lgap]
-To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $p\Until q$ holds between $j$ and $n$,
-given that $p$, $q$, and $r$ hold as above.
+
+Figure \ref{temporal-segments-until-until} illustrates the temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
+To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $p\Until q$ holds between $j$ and $n$, given that $p$, $q$, and $r$ hold as above.
 
 Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
 $p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.
 
 Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $k<m<n$.\\
 $p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, and $true$ is the right zero of $\Until$.
+
+\begin{figure}[t]
+\centering
+\begin{picture}(360,110)
+\thicklines
+\put(320,100){$(\sigma,n)\models r$}
+\put(0,90)  {\vector(1,0){380}}
+\put(20,90) {\circle*{8}} \put(180,90) {\circle*{8}} \put(340,90) {\circle*{8}}
+\put(18,76)  {$j$} \put(178,76)  {$k$} \put(338,76)  {$n$} 
+\put(168,64) {$k\ge j$} \put(328,64)  {$n\ge k$}
+\put(180,42) {\line(1,0){156}}
+\put(180,42) {\circle*{8}} \put(340,42) {\circle{8}}
+\put(240,48) {$(\sigma,m)\models q$}
+\put(240,32) {$k\le m < n$}
+\put(20,10)  {\line(1,0){156}}
+\put(20,10)  {\circle*{8}} \put(180,10) {\circle{8}}
+\put(80,18) {$(\sigma,i)\models p$}
+\put(80,0) {$j\le i < k$}
+\end{picture}
+\caption{The temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
+\label{temporal-segments-until-until}}
+\end{figure}
 
 From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $j\le i<n$.
 Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively. \quad \myqed\\[\llgap]
@@ -802,22 +810,29 @@ Expanding $p\Until \Always q$,
 	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
 	\> \>   $(\ext k \dr k\ge j \rb (\all m \dr m\ge k \rb (\sigma, m) \models q) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$
 \end{tabbing}
-The following figure illustrates the temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.\\[\lgap]
-\begin{picture}(360,120)
+
+\begin{figure}[t]
+\centering
+\begin{picture}(360,110)
 \thicklines
-\put(0,100)  {\vector(1,0){360}}
-\put(20,100) {\circle*{8}} \put(180,100) {\circle*{8}}
-\put(18,86)  {$j$} \put(178,86)  {$k$}
-\put(168,74) {$k\ge j$}
-\put(180,52) {\vector(1,0){180}}
-\put(180,52) {\circle*{8}}
-\put(240,58) {$(\sigma,m)\models q$}
-\put(250,42) {$m\ge k$}
-\put(20,20)  {\line(1,0){156}}
-\put(20,20)  {\circle*{8}} \put(180,20) {\circle{8}}
-\put(80,28) {$(\sigma,i)\models p$}
-\put(80,10) {$j\le i < k$}
-\end{picture}\\[\lgap]
+\put(0,90)  {\vector(1,0){360}}
+\put(20,90) {\circle*{8}} \put(180,90) {\circle*{8}}
+\put(18,76)  {$j$} \put(178,76)  {$k$}
+\put(168,64) {$k\ge j$}
+\put(180,42) {\vector(1,0){180}}
+\put(180,42) {\circle*{8}}
+\put(240,48) {$(\sigma,m)\models q$}
+\put(250,32) {$m\ge k$}
+\put(20,10)  {\line(1,0){156}}
+\put(20,10)  {\circle*{8}} \put(180,10) {\circle{8}}
+\put(80,18) {$(\sigma,i)\models p$}
+\put(80,0) {$j\le i < k$}
+\end{picture}
+\caption{The temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
+\label{temporal-segments-until-always}}
+\end{figure}
+
+Figure \ref{temporal-segments-until-always} illustrates the temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
 To prove that $p\Until \Always q\impl \Always (p\Until q)$ it suffices to show that $p\Until q$ holds for all time greater than or equal to $j$,
 given that $p$ and $q$ hold as above.
 
@@ -2259,6 +2274,97 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+\begin{figure}[t]
+\centering
+\begin{tabular}{ c c c }
+  \begin{picture}(126,96)
+  \thicklines
+  \put(54,14) {\line(0,1){62}}
+  \put(54,76) {\circle*{4}} \put(54,45) {\circle*{4}} \put(54,14) {\circle*{4}}
+  \put(30,84) {$\Event p\land \Event q$}
+  \put(58,60) {(\ref{E:distEventAnd})}
+  \put(62,42) {$\Event (p\land q)$}
+  \put(58,24) {(\ref{E:alwaysAndEvent})}
+  \put(30,0) {$\Always p\land \Event q$}
+  \end{picture}
+&
+  \begin{picture}(126,96)
+  \thicklines
+  \put(54,14) {\line(0,1){31}}
+  \put(54,45) {\circle*{4}} \put(54,14) {\circle*{4}}
+  \put(30,54) {$\Always (p\lor q)$}
+  \put(58,24) {(\ref{E:distAlwaysOr})}
+  \put(30,0) {$\Always p\lor \Always q$}
+  \end{picture}
+&
+  \begin{picture}(126,96)
+  \thicklines
+  \put(54,14) {\line(0,1){31}}
+  \put(54,45) {\circle*{4}} \put(54,14) {\circle*{4}}
+  \put(30,54) {$\Always p\equiv \Always q$}
+  \put(58,24) {(\ref{E:distAlwaysEquiv})}
+  \put(30,0) {$\Always (p\equiv q)$}
+  \end{picture}
+\\
+  \begin{picture}(126,116)
+  \thicklines
+  \put(54,14) {\line(0,1){31}}
+  \put(54,45) {\circle*{4}} \put(54,14) {\circle*{4}}
+  \put(38,54) {$\Always\Event p$}
+  \put(58,24) {(\ref{E:eventAlwaysImp})}
+  \put(38,0) {$\Event\Always p$}
+  \end{picture}
+&
+  \begin{picture}(126,116)
+  \thicklines
+  \put(54,76) {\circle*{4}} \put(54,76) {\line(1,-1){31}}
+  \put(23,45) {\circle*{4}} \put(23,45) {\line(1,1){31}} 
+  \put(85,45) {\circle*{4}} \put(85,45) {\line(-1,-1){31}}
+  \put(54,14) {\circle*{4}} \put(54,14) {\line(-1,1){31}}
+  \put(48,84) {$\Event p$}
+  \put(8,42) {$p$}
+  \put(92,42) {$\Next p$}
+  \put(48,0) {$\Always p$}
+  \put(16,64) {(\ref{E:impEvent})}  \put(72,64) {(\ref{E:nextEvent})}
+  \put(16,20) {(\ref{E:impAlways})} \put(72,20) {(\ref{E:impAlwaysN})}
+  \end{picture}
+&
+  \begin{picture}(126,116)
+  \thicklines
+  \put(54,32) {\line(0,1){31}}
+  \put(54,63) {\circle*{4}} \put(54,32) {\circle*{4}}
+  \put(32,80){\fbox{\parbox{36pt}{\centering $\Event\neg p$ $\neg\Always p$}}}
+  \put(32,8){\fbox{\parbox{36pt}{\centering $\Always\neg p$ $\neg\Event p$}}}
+  \put(78,80) {(\ref{E:dualAlways})}
+  \put(58,44) {(\ref{E:exAlwaysNot})}
+  \put(78,8) {(\ref{E:dualEvent})}
+  \end{picture}
+\\
+  \begin{picture}(126,128)
+  \thicklines
+  \put(109,76) {\circle*{4}} \put(109,76) {\line(1,-1){62}}
+  \put(171,14) {\circle*{4}} \put(171,14) {\line(1,1){62}} \put(171,76) {\circle*{4}} \put(171,14) {\line(0,1){62}}
+  \put(233,76) {\circle*{4}} \put(233,76) {\line(1,-1){62}} \put(295,14) {\circle*{4}}
+  \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
+  \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
+  \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
+  \put(116,40) {(\ref{E:alwaysImpNexts})}
+  \put(174,56) {(\ref{E:distAlwaysImp})}
+  \put(208,40) {(\ref{E:alwaysImpEvents})}
+  \put(272,40) {(\ref{E:eventPImplEventQ})}
+  \put(266,94) {(\ref{E:eventImpAlways})}
+  \end{picture}
+\end{tabular}
+\caption{Seven Hasse diagrams showing some implication relations of linear temporal logic.
+\label{hasse}}
+\end{figure}
+
+Because the transitivity relation is reflexive, antisymmetric, and transitive, it defines a partially ordered set on linear temporal logic expressions.
+Figure \ref{hasse} is a collection of seven Hasse diagrams showing some implication relations. 
+
+
+
+
 \subsection{Proof metatheorems}
 
 In the equational system $\mathcal{E}$, Gries and Schneider \cite{LADM} prove the metatheorem (9.16), which states that
@@ -2988,7 +3094,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:notWait2}
-\textbf{Conjunctive distributivity of $\neg$ over $\Wait$:}\; \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
+\textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
 \end{equation}
 
 \emph{Proof}: (Scott Staley)
@@ -3005,7 +3111,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $(p \land \neg q) \Until (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:notUntil2}
-\textbf{Conjunctive distributivity of $\neg$ over $\Until$:}\; \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
+\textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
 \end{equation}
 
 \emph{Proof}: (Scott Staley)
@@ -3072,29 +3178,6 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$}\\[\lgap]
 \> \> $q$ \quad \myqed
 \end{tabbing}
-
-The table below summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.\\[\lllgap]
-\renewcommand\arraystretch{1.5}
-\begin{tabular}{ l | l }
-  \hline                       
-  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
-  &
-  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
-  \hline                       
-  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
-  &
-  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
-  \hline                       
-  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
-  &
-  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
-  \hline  
-  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
-  &
-  (\ref{E:alwaysAsWait}) $p \Wait false\equiv \Always p$ \\
-  \hline                       
-\end{tabular}\\[\llgap]
-\renewcommand\arraystretch{1}
 
 The following theorem for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator.
 \begin{equation}\label{E:waitToOr}
@@ -3258,7 +3341,35 @@ The proof in the second direction follows.
   \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
 
+\begin{figure}[t]
+\centering
+\renewcommand\arraystretch{1.2}
+\begin{tabular}{ l l }
+  \toprule
+  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
+  &
+  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
+  \midrule
+  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
+  &
+  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
+  \midrule
+  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
+  &
+  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
+  \midrule
+  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
+  &
+  (\ref{E:alwaysAsWait}) $p \Wait false\equiv \Always p$ \\
+  \bottomrule
+\end{tabular}
+\renewcommand\arraystretch{1}
+\caption{The eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+\label{true-false-wait-until}}
+\end{figure}
+
 The following theorem corresponds to the definition of the \textit{eventually} operator (\ref{E:defEvent}).
+Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
 \begin{equation}\label{E:alwaysAsWait}
 \Always p \equiv p \Wait false
 \end{equation}
