@@ -225,7 +225,7 @@ is the difference between operators equals $=$ and equivales $\equiv$.
 Equals applies to any mathematical type including, {\itshape e.g.\/}, boolean, natural number, and set.
 Equivales applies only to boolean, and is commonly denoted $\leftrightarrow$ in other systems.
 Another difference is that equals is conjunctive, while equivales is associative.
-For example, the expression $p = q = r$ means $(p = q) \land (q = r)$, while the expression $p \equiv q \equiv r$
+For example, the expression $p = q = r$ has conjunctive meaning $(p = q) \land (q = r)$, while the expression $p \equiv q \equiv r$
 can be taken as either $(p \equiv q) \equiv r$ or $p \equiv (q \equiv r)$.
 This property of equivales is the first axiom in the equational deductive system of \cite{LADM}.
 
@@ -262,7 +262,7 @@ The general form of a proof step is
 \end{tabbing}
 where the expression enclosed in angle brackets $\Gll\;\Ggg$, called the ``hint'', is the justification for the step.
 
-An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ in Section 3.4 is
+An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ in Section \ref{section-always} is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
@@ -293,7 +293,7 @@ The textual substitutions are
 
 The proof of a theorem consists of showing the equivalence of that theorem to a previously proved theorem
 through a sequence of the proof steps.
-For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \neg\Next\neg p$ in Section 3.1.
+For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \neg\Next\neg p$ in Section \ref{section-next}.
 
 \emph{Proof}:
 \begin{tabbing}
@@ -309,7 +309,7 @@ Because $\neg\Next p \equiv \Next\neg p$ (\textit{i.e.} $X$) is a previous theor
 
 Transitivity of equality allows a derivation to be given as a sequence of equivalent expressions, which, at the end,
 proves the equivalence of the first expression in the sequence with the last expression in the sequence.
-For example, here is a two-step proof of (\ref{E:idemUntil}) Idempotency of $\Until$, $p \Until p \equiv p$ in Section (3.2).
+For example, here is a two-step proof of (\ref{E:idemUntil}) Idempotency of $\Until$, $p \Until p \equiv p$ in Section \ref{section-until}.
 
 \emph{Proof}:
 \begin{tabbing}
@@ -384,7 +384,7 @@ The following mutual transitivity theorems justify this extension.
       \> (b)\> $(p\equiv q) \land (q\impl r) \impl (p\impl r)$\\[\lgap]
       \> (c)\> $(p\impl q) \land (q\equiv r) \impl (p\impl r)$
 \end{tabbing}
-An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ in Section 3.3.
+An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ in Section \ref{section-event}.
 
 \emph{Proof}:
 \begin{tabbing}
@@ -400,38 +400,62 @@ mutual transitivity that $\Event p$ follows from $p$.
 
 \subsubsection*{Predicate calculus}
 
-The predicate calculus of the equational system unifies quantification between mathematics and logic with nine axioms that apply to Abelian monoids, denoted $\star$, in general.
+The predicate calculus of the equational system has a consistent quantification notation that applies to Abelian monoids in both mathematics and logic.
+Denoting a general Abelian monoid as the infix operator $\star$, the form of a quantification is
+\[
+(\star\; dummies\dr range\rb body)
+\]
+All quantifications have explicit scope for the dummy variable denoted by the outer parentheses.
+Within the parentheses the quantification consists of three parts:
+\begin{itemize}
+\item the infix operator $\star$ and dummy variable(s),
+\item the range, which is a boolean expression, and
+\item the body, which is an expression that is type compatible with the operator $\star$.
+\end{itemize}
+A vertical bar separates the operator and dummy variable from the range, and a colon separates the range from the body.
+An abbreviation is to omit the range when it is $true$.
+For example, $(\all i\drrb P)$ is an abbreviation for $(\all i\dr true \rb P)$.
 
-For example, the standard way to write the sum of the squares of the first $n$ positive integers is
+For example, the standard mathematical notation for writing the sum of the squares of the first $n$ positive integers is
 \[
 \sum_{i=1}^{n}i^2
 \]
-where $\star$ is $+$ and $\upSigma$ is the quantified symbol for addition.
+where $\star$ is Abelian monoid $+$ and $\upSigma$ is the quantified symbol for addition.
 The equational notation for the same expression is
 \[
 (\upSigma i\dr 1\le i\le n \rb i^2)
 \]
-Similarly, the standard way to write that there exists a number between 10 and 20 inclusive that divides $n$ is
+Similarly, the standard logic notation for writing that there exists a number between 10 and 20 inclusive that divides $n$ is
 \[
 \ext i(10\le i\le 20 \land \divides(i,n))
 \]
-where $\star$ is $\lor$, $\ext$ is the quantified symbol for disjunction, and $\divides$ is a predicate that is true when $i$ divides $n$.
+where $\star$ is Abelian monoid $\lor$, $\ext$ is the quantified symbol for disjunction, and $\divides$ is a predicate that is true when $i$ divides $n$.
 The equational notation for the same expression is
 \[
 (\ext i\dr 10\le i\le 20 \rb \divides(i,n))
 \]
 
-All such quantifications have explicit scope for the dummy variable denoted by the outer parentheses.
-Within the parentheses the quantification consists of three parts:
-\begin{itemize}
-\item the operator and dummy variable(s),
-\item the range, which is a boolean expression, and
-\item the body, which is an expression that is type compatible with the operator $\star$.
-\end{itemize}
-A vertical bar separates the operator and dummy variable from the range, and a colon separates the range from the body.
-In the first example above, the operation is addition, the dummy variable is $i$, the range is $1\le i\le n$, and the body is $i^2$.
-An abbreviation is to omit the range when it is $true$.
-For example, $(\all i\drrb P)$ is an abbreviation for $(\all i\dr true \rb P)$.
+Predicate calculus in the equational system of LADM begins with nine general axioms that apply to all Abelian monoids.
+For example, here are the first two axioms.
+\begin{tabbing}
+(99.99)\;\=(m)\;\=\kill
+For symmetric and associative binary operator $\star$ with identity $u$.\\[\lgap]
+(8.13)\>\textbf{Axiom, Empty range:}\quad $(\star x \dr false \rb P) =u$\\[\lgap]
+(8.14)\>\textbf{Axiom, One-point rule:}\quad Provided $\neg occurs(\Lq x\Rq ,\Lq E\Rq)$,\\[\lgap]
+      \>$(\star x\dr x=E\rb P) = P[x:=E]$
+\end{tabbing}
+It has two axioms for universal quantification.
+\begin{tabbing}
+(99.99)\;\=(m)\;\=\kill
+(9.2)\>\textbf{Axiom, Trading:}\quad $(\all x\dr R\rb P)\equiv (\all x\drrb R\impl P)$\\[\lgap]
+(9.5)\>\textbf{Axiom, Distributivity of $\lor$ over $\all$ :}\quad Provided $\neg occurs(\Lq x\Rq ,\Lq P\Rq)$,\\[\lgap]
+      \>$P\lor (\all x\dr R\rb Q)\equiv (\all x\dr R\rb P\lor Q)$
+\end{tabbing}
+And it has one axiom for existential quantification.
+\begin{tabbing}
+(99.99)\;\=(m)\;\=\kill
+(9.17)\>\textbf{Axiom, Generalized De Morgan:}\quad $(\ext x\dr R\rb P)\equiv \neg (\all x\dr R\rb \neg P)$
+\end{tabbing}
 
 \subsection{Temporal Logic}
 
@@ -571,7 +595,7 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> $=$  \>  \Hint{Case $q$ holds in state $s_j$}\\[\lgap]
 	\> \>   $true$ \quad \myqed
 \end{tabbing}
-This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in Section 3.2.
+This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in Section \ref{section-until}.
 $true$ is the right zero of the \textit{until} operator.
 
 The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\[\lllgap]
@@ -635,7 +659,7 @@ $p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, a
 From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $j\le i<n$.
 Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively. \quad \myqed\\[\llgap]
 This theorem does not seem to appear in the linear temporal logic literature.
-It is the basis of axiom (\ref{E:untilAssocImp}), Weak associativity of $\Until$, $p \Until (q \Until r) \impl (p \Until q) \Until r$ in Section 3.2.
+It is the basis of axiom (\ref{E:untilAssocImp}), Weak associativity of $\Until$, $p \Until (q \Until r) \impl (p \Until q) \Until r$ in Section \ref{section-until}.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
@@ -690,7 +714,7 @@ Namely, $true \Until q$ is equivalent to $\Event q$.
 	\> \>   $(\sigma, j) \models \Event q$ \quad \myqed
 \end{tabbing}
 This relationship is the basis of the definition of $\Event p$ in (\ref{E:defEvent}) $\Event p \equiv true \Until p$
-assumed in Section 3.3.
+assumed in Section \ref{section-event}.
 
 \subsubsection*{The \textit{always} operator $\Always$}
 
@@ -751,7 +775,7 @@ In the same way that $(\all x\dr R\rb P)$ is equivalent to $\neg (\ext x\dr R\rb
 	\> \>   $(\sigma, j) \models \neg \Event \neg p$ \quad \myqed\\
 \end{tabbing}
 This relationship is the basis of the definition of $\Always p$ in equation (\ref{E:defAlways})
-$\Always p \equiv \neg\Event\neg p$ assumed in Section 3.4.
+$\Always p \equiv \neg\Event\neg p$ assumed in Section \ref{section-always}.
 
 The above equational proof illustrates a common advantage of $\mathcal{E}$ over traditional logic systems.
 The same equivalence is proved in \cite{Ben} but only by resorting to proof by mutual implication using proof by contradiction within each case.
@@ -881,7 +905,7 @@ A numbered reference enclosed in parentheses \textit{with} a decimal point is a 
 theorem from the propositional calculus in \cite{LADM}.
 The terms ``definition'' and ``axiom'' are synonymous.
 
-\subsection{Next}
+\subsection{Next}\label{section-next}
 
 The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
@@ -1023,10 +1047,10 @@ and, by induction, hold at all states.
 Exercise for the student.\\
 }
 
-\subsection{Until}
+\subsection{Until}\label{section-until}
 
 This system defines the \textit{until} operator $\Until$ with the following eight axioms.
-The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section (3.7) shows.
+The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section \ref{section-wait} shows.
 Thus \textit{next} distributes over all binary operators, both propositional and temporal.
 
 The \textit{until} operator is unlike any propositional binary operator.
@@ -1126,7 +1150,7 @@ Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) co
 possibilities of constants $true$ and $false$ on either side of $\Until$.
 None of these three theorems seem to appear in the temporal logic literature.
 The fourth possibility with $true$ as the left argument is the basis of the definition of the \textit{eventually}
-operator $\Event$ in Section 3.3.
+operator $\Event$ in Section \ref{section-event}.
 \begin{equation}\label{E:leftIdUntil}
 \textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
 \end{equation}
@@ -1308,7 +1332,7 @@ The proof in the second direction follows.
   \> \>   $p \Until q$ \quad \myqed
 \end{tabbing}
 
-\subsection{Eventually}
+\subsection{Eventually}\label{section-event}
 
 Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
 Equation (\ref{E:defEvent}) is its only defining axiom.
@@ -1546,7 +1570,7 @@ Exercise for the student.\\
   \> \>   $\Event p \land \Event q$ \quad \myqed
 \end{tabbing}
 
-\subsection{Always}
+\subsection{Always}\label{section-always}
 
 This system defines the \textit{always} operator $\Always$ in terms of the \textit{eventually} operator $\Event$.
 $\Always p$ is true when $p$ is true in the current state and in all future states.
@@ -2676,7 +2700,7 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
 \end{tabbing}
 
-\subsection{Wait}
+\subsection{Wait}\label{section-wait}
 
 $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually be true.
 $p\Wait q$ has no such guarantee.
