@@ -831,6 +831,11 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
 
+\spacer
+
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
+\end{equation}
 \newpage
 
 \subsection*{Wait $\quad\Wait$}
@@ -1167,12 +1172,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \begin{equation}\label{E:waitOrderingTwo}
 \textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r \quad [\textit{Not yet proved.}]
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:PrProofRule}
-\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q \quad [\textit{Counterexample}]
 \end{equation}
 
 \end{document}
