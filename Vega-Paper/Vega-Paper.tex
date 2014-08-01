@@ -2699,6 +2699,28 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
 \> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:PrProofRule}
+\textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
+\end{equation}
+
+\emph{Proof}: (Scott Staley)\quad By (3.77) Modus ponens, $p\land (p\impl q)\impl q$ with $p,q:=\Always p,\Event q$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Always p\land (\Always p\impl \Event q)\impl \Event q$\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+\> \>   $\Always p\impl ((\Always p\impl \Event q)\impl \Event q$)
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Event\Always p\impl \Event((\Always p\impl \Event q)\impl \Event q$)\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+\> \>   $\Event\Always p\impl (\Always(\Always p\impl \Event q)\impl \Event\Event q$)\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+\> \>   $\Event\Always p\impl (\Always(\Always p\impl \Event q)\impl \Event q$)\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+\> \>   $\Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q$ \quad \myqed
+\end{tabbing}
 
 \subsection{Wait}\label{section-wait}
 
@@ -3824,28 +3846,6 @@ and the 41 theorems
 (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,
 (\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$,
 (\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$.
-
-\subsection{Progress proof rule}
-
-\begin{equation}\label{E:PrProofRule}
-\textbf{Progress proof rule:}\quad \Event\Always p \land (\Always p \impl \Event q) \impl \Event q
-\end{equation}
-
-\emph{Counterexample:} (Alessandro Monteros)\\[\lgap]
-\begin{tabular}{c|ccccccccccc}
-  $\sigma$                                                     & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & \dots\\
-  \hline
-  $x$                                                          & 0     & 1     & 2     & 3     & 4     & 5     & 6     & 7     & \dots\\
-  $y$                                                          & 1     & 2     & 4     & 8     & 16    & 32    & 64    & 128   & \dots\\
-  $p: x=3\lor x>5$                                             & F     & F     & F     & T     & F     & F     & T     & T     & \dots\\
-  $q: y=2$                                                     & F     & T     & F     & F     & F     & F     & F     & F     & \dots\\
-  $\Always p$                                                  & F     & F     & F     & F     & F     & F     & T     & T     & \dots\\
-  $\Event\Always p$                                            & T     & T     & T     & T     & T     & T     & T     & T     & \dots\\
-  $\Event q$                                                   & T     & T     & F     & F     & F     & F     & F     & F     & \dots\\
-  $\Always p\impl\Event q$                                     & T     & T     & T     & T     & T     & T     & F     & F     & \dots\\
-  $\Event\Always p\land (\Always p\impl\Event q)$              & T     & T     & T     & T     & T     & T     & F     & F     & \dots\\
-  $\Event\Always p\land (\Always p\impl\Event q)\impl\Event q$ & T     & T     & F     & F     & F     & F     & T     & T     & \dots\\
-\end{tabular}\\[\lllgap]
 
 \section{Conclusion}
 
