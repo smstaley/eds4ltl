@@ -387,6 +387,12 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
+\begin{equation}\label{E:untilExcludedMiddle}
+\Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -466,6 +472,12 @@ p \Until q \impl p \lor q
 \end{equation}
 
 \firstspacer
+
+\begin{equation}\label{E:distEventUntil}
+\textbf{Distributivity of $\Event$ over $\Until$:}\quad \Event (p\Until q)\impl \Event p\Until q
+\end{equation}
+
+\spacer
 
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
@@ -858,6 +870,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
+\begin{equation}\label{E:distEventWait}
+\textbf{Distributivity of $\Event$ over $\Wait$:}\quad \Event (p\Wait q)\impl \Event p\Wait q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
 \end{equation}
@@ -890,6 +908,12 @@ p\Until q\impl p\Wait q
 
 \begin{equation}\label{E:expansionWait}
 \textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:waitExcludedMiddle}
+\Wait \textbf{excluded middle:}\quad p \Wait q \lor p\Wait \neg q
 \end{equation}
 
 \spacer
@@ -950,6 +974,18 @@ p\Until q\impl p\Wait q
 
 \begin{equation}\label{E:ruleUntil}
 \textbf{Rule of $\Until$:}\quad \neg q \Until q\equivs \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:pImplQWaitP}
+(p\impl q)\Wait p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventPImplPImplUntilp}
+\Event p\impl(p\impl q)\Until p
 \end{equation}
 
 \spacer
@@ -1018,13 +1054,13 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitAndQ}
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:waitAndOr}
 \textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
@@ -1088,6 +1124,12 @@ p \Wait q \impl p \lor q
 
 \begin{equation}\label{E:absorpEventWait}
 \textbf{Absorption of $\Wait$ into $\Event$:}\quad \Event q \Wait q \equiv \Event q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:absWaitAlways}
+\textbf{Absorption of $\Wait$ into $\Always$:}\quad \Always p\land p\Wait q\equiv \Always p
 \end{equation}
 
 \spacer
@@ -1171,7 +1213,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \spacer
 
 \begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r \quad [\textit{Not yet proved.}]
+\textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
 \end{equation}
 
 \end{document}

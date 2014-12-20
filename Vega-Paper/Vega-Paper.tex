@@ -3905,10 +3905,23 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
   \> \>   $true$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
+\textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
 \end{equation}
 
-[\textit{Not yet proved.}]
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:conRuleWait}) Conjunction rule of $\Wait$ twice}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Wait q \lor (\neg q \land \neg p)\Wait p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:waitOrDist}) Left distributivity of $\Wait$ over $\lor$}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Wait (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+  \> \>   $\neg (p\lor q)\Wait (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
+  \> \>   $true$ \quad \myqed
+\end{tabbing}
 
 \section{Comparison with previous work}
 
