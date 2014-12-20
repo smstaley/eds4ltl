@@ -1107,7 +1107,21 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \begin{equation}\label{E:untilAndEquiv}
 \textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
 \end{equation}
+\begin{equation}\label{E:untilExcludedMiddle}
+\Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
+\end{equation}
 
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until q \lor p\Until \neg q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionUntil}) Expansion, twice} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Until q))\lor \neg q \lor (p\land \Next (p\Until \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
+\> \> $true \lor (p\land \Next (p\Until q)) \lor (p\land \Next (p\Until \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
+\> \> $true$ \quad \myqed
+\end{tabbing}
 Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
@@ -1339,6 +1353,21 @@ Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
+\begin{equation}\label{E:distEventUntil}
+\textbf{Distributivity of $\Event$ over $\Until$:}\quad \Event (p\Until q)\impl \Event p\Until q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event (p\Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true\Until (p\Until q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
+  \> \>   $(true\Until p) \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Event p\Until q$ \quad \myqed
+\end{tabbing}
 The following theorem shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
@@ -2409,7 +2438,7 @@ Case 1 in the proof below is known as the temporal generalization rule \cite{Sch
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof of each case is by (4.4) Deduction.
 
-Case 1. $P$ is a theorem $\impl$ $\Always P$ is a theorem.\\
+Case 1. If $P$ is a theorem then $\Always P$ is a theorem.\\
 Suppose $P$ is a theorem.
 Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$.
 Then, $\Always P$ can be proved to be a theorem as follows.
@@ -2422,7 +2451,7 @@ Then, $\Always P$ can be proved to be a theorem as follows.
 \> \> $true$
 \end{tabbing}
 
-Case 2. $\Always P$ is a theorem $\impl$ $P$ is a theorem.\\
+Case 2. If $\Always P$ is a theorem then $P$ is a theorem.\\
 Suppose $\Always P$ is a theorem.
 Then, $\Always P$ is equivalent to $true$.
 $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
@@ -2756,6 +2785,29 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:distEventWait}
+\textbf{Distributivity of $\Event$ over $\Wait$:}\quad \Event (p\Wait q)\impl \Event p\Wait q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event (p\Wait q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true\Until (p\Wait q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
+  \> \>   $true\Until (\Always p\lor p\Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+  \> \>   $true\Until \Always p\lor true\Until (p\Until q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $true\Until \Always p\lor (true\Until p)\Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
+  \> \>   $\Event \Always p\lor \Event p\Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $\Always\Event p\lor \Event p\Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
+  \> \>   $\Event p\Wait q$ \quad \myqed
+\end{tabbing}
 
 (\ref{E:notUntil}) proves Distributivity of $\neg$ over $\Until$ using (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
@@ -2874,6 +2926,21 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) corresponds to e
 \> \> $\Always p\lor p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:waitExcludedMiddle}
+\Wait \textbf{excluded middle:}\quad p \Wait q \lor p\Wait \neg q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Wait q \lor p\Wait \neg q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion, twice} \\[\lgap]
+\> \> $q\lor (p\land \Next (p\Wait q))\lor \neg q \lor (p\land \Next (p\Wait \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
+\> \> $true \lor (p\land \Next (p\Wait q)) \lor (p\land \Next (p\Wait \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
+\> \> $true$ \quad \myqed
 \end{tabbing}
 
 Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \textit{until}.
@@ -3109,6 +3176,42 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $true\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Until$} \\[\lgap]
 \> \> $\Event q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:pImplQWaitP}
+(p\impl q)\Wait p
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p\impl q)\Wait p$\\[\lgap]
+\> $=$ \> \Hint{(3.59) Implication $p\impl q\equiv \neg p\lor q$} \\[\lgap]
+\> \> $(\neg p \lor q)\Wait p$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$} \\[\lgap]
+\> \> $\neg p \Wait p\lor q\Wait p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
+\> \> $true\lor q\Wait p$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$} \\[\lgap]
+\> \> $true$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:eventPImplPImplUntilp}
+\Event p\impl(p\impl q)\Until p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p\impl q)\Until p$\\[\lgap]
+\> $=$ \> \Hint{(3.59) Implication $p\impl q\equiv \neg p\lor q$} \\[\lgap]
+\> \> $(\neg p\lor q)\Until p$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $\neg p \Until p\lor q\Until p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:ruleUntil}) Rule of $\Until$} \\[\lgap]
+\> \> $\Event p\lor q\Until p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+\> \> $\Event p\lor (q\Wait p\land \Event p)$\\[\lgap]
+\> $=$ \> \Hint{(3.43b) Absorption $p\lor (p\land q)\equiv p$} \\[\lgap]
+\> \> $\Event p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:conRuleWait}
 \textbf{Conjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\land \neg q)\Wait q
@@ -3534,7 +3637,19 @@ The following theorem corresponds to (\ref{E:absUntilAlways}) Absorption of $\Un
 \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
 \> \> $\Event q$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:absWaitAlways}
+\textbf{Absorption of $\Wait$ into $\Always$:}\quad \Always p\land p\Wait q\equiv \Always p
+\end{equation}
 
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always p\land p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p\land (\Always p\lor p\Until q)$\\[\lgap]
+\> $=$ \> \Hint{(3.43a) Absorption $p\land (p\lor q) \equiv p$} \\[\lgap]
+\> \> $\Always p$ \quad \myqed
+\end{tabbing}
 The following theorem corresponds to (\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$. 
 \begin{equation}\label{E:absAlwaysWait}
 \textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
