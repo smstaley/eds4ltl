@@ -180,7 +180,7 @@ The summary is minimal, and the remainder of the paper assumes familiarity with 
 The second section introduces temporal logic and assumes no prior familiarity with it.
 The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
 
-\subsection{Equational Deductive Systems}
+\subsection{Equational Deductive Systems}\label{sec-equational-deductive-systems}
 
 \subsubsection*{Propositional calculus}
 
@@ -397,6 +397,30 @@ An example is a proof of (\ref{E:impEvent}) $p \impl \Event p$ in Section \ref{s
 \end{tabbing}
 Because $\Event p$ equivales $p \lor \Next\Event p$, and $p \lor \Next\Event p$ follows from $p$, it follows by
 mutual transitivity that $\Event p$ follows from $p$.
+
+The following two theorems from LADM provide a further extension to proof steps with implication.
+\begin{tabbing}
+(9.99)\;\=(m)\;\=\kill
+(4.2)\>\textbf{Monotonicity of $\lor$ :}\quad $(p\impl q) \impl (p\lor r \impl q\lor r)$\\[\lgap]
+(4.3)\>\textbf{Monotonicity of $\land$ :}\quad $(p\impl q) \impl (p\land r \impl q\land r)$
+\end{tabbing}
+They are required to justify an implication when the antecedent of the implication is a conjunct or disjunct.
+For example, here is a proof step where the antecedent $p\Until q$ is a disjunct in the expression $\Always p\lor p \Until q$.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always p\lor p \Until q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \> $\Always p\lor \Event q$
+\end{tabbing}
+Previously proved theorem (\ref{E:eventuality}) Eventuality is $p \Until q \impl \Event q$.
+The application of (4.2) is with the following textual substitution.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $((p\impl q) \impl (p\lor r \impl q\lor r))[p,q,r := p\Until q, \Event q, \Always p]$\\[\lgap]
+\> $=$ \> \Hint{Textual substitution} \\[\lgap]
+\> \> $(p\Until q\impl \Event q) \impl (p\Until q\lor \Always p \impl \Event q\lor \Always p)$
+\end{tabbing}
+In other words, because $p\Until q$ implies $\Event q$, $p\Until q\lor \Always p$ implies $\Event q\lor \Always p$.
 
 \subsubsection*{Predicate calculus}
 
@@ -904,6 +928,9 @@ theorem in this paper.
 A numbered reference enclosed in parentheses \textit{with} a decimal point is a reference to an axiom or a
 theorem from the propositional calculus in \cite{LADM}.
 The terms ``definition'' and ``axiom'' are synonymous.
+
+The propositional calculus theorems from LADM are included in a companion document. \cite{vegaTheorems}
+The following exposition includes the theorems from LADM in the proof hints except for (4.2) and (4.3) Monotonicity, which are described in Section \ref{sec-equational-deductive-systems}.
 
 \subsection{Next}\label{section-next}
 
@@ -2232,7 +2259,7 @@ Exercise for the student.\\
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
 
-\emph{Proof}: (Alex Angelo)
+\emph{Proof}: (Alexandra Angelo)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event (p \impl q)$\\[\lgap]
@@ -2588,7 +2615,7 @@ Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (3.76.2) $(p\impl q) \impl ((q\impl r)\impl (p\impl r))$}\\[\lgap]
-  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
+  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
@@ -3079,8 +3106,7 @@ The proof in the second direction follows.
   \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
   \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
-  \> $\impl$ \> \Hintfirst{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$, twice and (4.2) Monotonicity of $\lor$,} \\[\lgap]
-  \> \> \Hintlast{$(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (p \land r) \lor (p \land q) \Until (q \land r)$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until ((p \land r) \lor (q \land r))$\\[\lgap]
@@ -3088,21 +3114,19 @@ The proof in the second direction follows.
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (r \land (p \lor q))$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until (r \land (p \lor q)) \land q \Until (r \land (p \lor q)))$\\[\lgap]
-  \> $\impl$ \> \Hintfirst{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$, twice and (4.2) Monotonicity of $\lor$,} \\[\lgap]
-  \> \> \Hintlast{$(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r \land p \Until (p \lor q) \land q \Until r \land q \Until (p \lor q))$\\[\lgap]
-  \> $\impl$ \> \Hintfirst{(3.76b) Strengthening, $p \land q \impl p$ and (4.2) Monotonicity of $\lor$,} \\[\lgap]
-  \> \> \Hintlast{$(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p \land q \impl p$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r\land q\Until r)$\\[\lgap]
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \land q) \Until r$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$} \\[\lgap]
   \> \>   $(\Always p\land \Always q) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
   \> \>   $\Always (p \land q) \lor (p \land q) \Wait r$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity and  (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity and  (4.2) Monotonicity of $\lor$} \\[\lgap]
   \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(p \land q) \Wait r$ \quad \myqed
@@ -3333,7 +3357,10 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> \> $q$ \quad \myqed
 \end{tabbing}
 
-The following theorem for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator.
+Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator.
+It states that $p \Wait q$ is stronger than $p \lor q$.
+Theorem (\ref{E:orToWait}) states that $\Always(p \lor q)$ is stronger than $p \Wait q$.
+
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
@@ -3346,6 +3373,19 @@ p \Wait q \impl p \lor q
 \> \> $q \lor (p \land \Next(p \Wait q))$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:orToWait}
+\Always (p\lor q) \impl p \Wait q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always (p\lor q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity} \\[\lgap]
+\> \> $(p\lor q)\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
+\> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
 
 Insertion for the \textit{wait} operator corresponds to
@@ -3551,7 +3591,7 @@ The following theorem for the \textit{wait} operator corresponds to (\ref{E:axio
 \> \> $p \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $\Always p\lor p \Until q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$, $(p\impl q) \impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $\Always p\lor \Event q$ \quad \myqed
 \end{tabbing}
 
@@ -3678,7 +3718,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Wait q \land \Always\neg q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication and (4.3) Monotonicity of $\land$} \\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \Always\neg q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
 \> \> $(\Always p \lor \Event q) \land \neg \Event q$\\[\lgap]
@@ -3695,7 +3735,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until q \lor \Always\neg q$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $(\Always p \land \Event q) \lor \Always\neg q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
 \> \> $(\Always p \land \Event q) \lor \neg \Event q$\\[\lgap]
@@ -3712,7 +3752,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg\Always p\land p \Wait q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication and (4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication and (4.3) Monotonicity of $\land$} \\[\lgap]
 \> \> $\neg\Always p\land (\Always p \lor \Event q)$\\[\lgap]
 \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
 \> \> $\neg\Always p\land \Event q$\\[\lgap]
@@ -3727,7 +3767,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg\Always p\lor p \Until q$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$} \\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $\neg\Always p\lor (\Always p\land \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
 \> \> $\neg\Always p\lor \Event q$\\[\lgap]
@@ -3738,7 +3778,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (r \Until p \impl r \Until q)$\\[\lgap]
@@ -3748,7 +3788,7 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> \>   $true$
 \end{tabbing}
 
-\emph{Proof of Lemma:}
+\emph{Proof of Lemma}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \land r \Until p$\\[\lgap]
@@ -3758,8 +3798,7 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> \>   $((p \impl q) \land r) \Until (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
   \> \>   $((p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$,}\\[\lgap]
-  \>          \>  \Hintlast{$(p\impl q)\impl (p\land r\impl q\land r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $((p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $r \Until q$ \quad \myqed
@@ -3768,7 +3807,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
 
-\emph{Proof:}
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (p \Wait r \impl q \Wait r)$\\[\lgap]
@@ -3778,7 +3817,7 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> \>   $true$
 \end{tabbing}
 
-\emph{Proof of Lemma:}
+\emph{Proof of Lemma}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p => q) \land p \Wait r$\\[\lgap]
@@ -3908,20 +3947,35 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
 \textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
 \end{equation}
 
-
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:conRuleWait}) Conjunction rule of $\Wait$ twice}\\[\lgap]
-  \> \>   $(\neg p\land \neg q) \Wait q \lor (\neg q \land \neg p)\Wait p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:waitOrDist}) Left distributivity of $\Wait$ over $\lor$}\\[\lgap]
-  \> \>   $(\neg p\land \neg q) \Wait (p\lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
-  \> \>   $\neg (p\lor q)\Wait (p\lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   $\Always (p \Wait q \land \neg q \Wait r)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \Wait q) \land \Always(\neg q \Wait r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ with (\ref{E:waitToOr}) and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
+  \> \>   $\Always (p \lor q) \land \Always(\neg q \lor r)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ((p \lor q) \land (\neg q \lor r))$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$}\\[\lgap]
+  \> \>   $\Always (p \lor r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:orToWait})}\\[\lgap]
+  \> \>   $p\Wait r$
 \end{tabbing}
+
+\emph{Proof of Lemma}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.76b) Distributivity of $\land$ over $\lor$, $p\land(q\lor r) \equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+  \> \>   $((p\lor q)\land \neg q)\lor ((p\lor q)\land r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $((p\lor q)\land \neg q)\lor (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p\land q)\equiv p$}\\[\lgap]
+  \> \>   $p\lor q$
+\end{tabbing}
+The above proof shows that $(p\lor q)\land (\neg q\lor r) \impl p\lor q$ is a theorem.
+Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always (p\lor q)\land (\neg q\lor r) \impl \Always (p\lor q)$ is a theorem. \quad \myqed
 
 \section{Comparison with previous work}
 
