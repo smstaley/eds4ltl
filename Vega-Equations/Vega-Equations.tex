@@ -92,14 +92,13 @@
 \begin{abstract}
 The first section of this document is a collection of the axioms and theorems of the
 propositional calculus in Gries and Schneider's
-book \textit{A Logical Approach to Discrete Math}, Springer-Verlag, 1993.
-The numbering is consistent with that text.
-Additional theorems not included or numbered in LADM are indicated by a three-part
-number.
+book \textit{A Logical Approach to Discrete Math}, Springer-Verlag, 1993 (LADM).
+The numbering is consistent with that text with the chapter number followed by the equation number separated by a period.
+Additional theorems, either not included in LADM or included but not numbered, are indicated by a three-part number with two period separators.
 The second section is a collection of the axioms and theorems of linear temporal logic
 in Vega and Warford's paper \textit{An Equational Deductive System for Linear Temporal Logic}
 (EDS4LTL),
-Pepperdine University Research Report, Natural Science Division, 2009.
+Pepperdine University Research Report, Natural Science Division, 2015.
 \end{abstract}
 
 \subsection*{Table of Precedences}
@@ -1038,11 +1037,17 @@ p \Wait q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:orToWait}
+\Always (p\lor q) \impl p \Wait q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitInsertion}
 \textbf{Insertion:}\quad q \impl p \Wait q
 \end{equation}
 
-\spacer
+\newpage
 
 \begin{equation}\label{E:waitOrP}
 \textbf{Absorption:}\quad p\lor p\Wait q\equiv p\lor q
@@ -1054,7 +1059,7 @@ p \Wait q \impl p \lor q
 \textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
 \end{equation}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:waitAndQ}
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q

@@ -113,8 +113,7 @@
 This paper presents an equational deductive system for linear temporal logic.
 It differs from previous developments of temporal logic in several respects.
 First, the proofs are given in the equational logic developed by Dijkstra and Scholten as opposed to the older Hilbert-style logics.
-Second, it presents several new and interesting linear temporal theorems, including the associative
-properties of the \textit{until} operator.
+Second, it includes all known linear temporal logic theorems plus many new and interesting theorems.
 Third, although space limitations preclude giving a proof of every theorem in this paper,
 every theorem has been proved with equational logic.
 The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic for those 
@@ -153,7 +152,7 @@ That is, the motivation behind this work is based on teaching and human understa
 Linear temporal logic describes how the truth values of propositions change over time.
 It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
 All treatments of linear temporal logic use $\mathcal{H}$ instead of $\mathcal{E}$.
-Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kr\"{o}ger \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
+Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kröger and Merz \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 
 In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they first develop $\mathcal{E}$ for propositional and predicate calculus, and then extend it to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
 Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}$ to these additional knowledge domains.
@@ -166,16 +165,19 @@ Although he presents a temporal logic equational proof justification, the only a
 
 To solve the above problem, this paper presents an elementary equational deductive system suitable for introducing those schooled in $\mathcal{E}$ to linear temporal logic.
 In the same way that LADM brings the advantages of $\mathcal{E}$ to the treatment of set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
-It presents several new theorems of linear temporal logic and is comprehensive, because it includes all known linear temporal theorems described in the literature.
+
+The paper also adds to the linear temporal logic literature by proving many interesting and previously unknown theorems.
+It is also comprehensive, as it includes all known linear temporal theorems described in the literature.
 Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with $\mathcal{E}$.
 
 Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
 It also defines the syntax and semantics of linear temporal logic.
 Section 3 presents the equational deductive system for linear temporal logic.
+Section 4 summarizes previous linear temporal logic axiomatization systems and compares them with the current work.
 
 \section{Background}
 
-The first section below summarizes the equational system $\mathcal{E}$ from Gries and Schneider LADM \cite{LADM}.
+The first section below summarizes the equational system $\mathcal{E}$ from LADM.
 The summary is minimal, and the remainder of the paper assumes familiarity with $\mathcal{E}$.
 The second section introduces temporal logic and assumes no prior familiarity with it.
 The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
@@ -198,7 +200,18 @@ By convention, upper-case letters ({\itshape e.g.\/} $X$, $Y$, \dots) represent 
 and lower-case letters ({\itshape e.g.\/} $x$, $y$, \dots) represent variables.
 In the propositional calculus, the constants are {\itshape true\/} and {\itshape false\/}.
 
-Here is the table of precedences.\\[\lllgap]
+Figure \ref{precedence-table} is the table of precedences.
+Textual substitution has the highest precedence.
+All the unary operators have the next highest precedence.
+They are necessarily right associative.
+For example, $\neg \Next \neg p$ means $\neg (\Next (\neg p))$.
+In this system, two binary operators that have the same precedence require parentheses to disambiguate.
+As in LADM, conjunction $\land$ and disjunction $\lor$ have the same precedence so that $p\land q\lor r$
+must be disambiguated as either $(p\land q)\lor r$ or $p\land (q\lor r)$.
+This contrasts with many systems in which conjunction has higher precedence than disjunction.
+
+\begin{figure}[t]
+\centering
 \setlength\extrarowheight{2pt}
 \begin{tabular}{lr}
 \hline
@@ -210,15 +223,10 @@ $\lor$\quad $\land$ &\\
 $\impl$\quad $\foll$ &\\
 $\equiv$ \quad (associative) & Lowest precedence\\
 \hline
-\end{tabular}\\[\lllgap]
-Textual substitution has the highest precedence.
-All the unary operators have the next highest precedence.
-They are necessarily right associative.
-For example, $\neg \Next \neg p$ means $\neg (\Next (\neg p))$.
-In this system, two binary operators that have the same precedence require parentheses to disambiguate.
-As in LADM, conjunction $\land$ and disjunction $\lor$ have the same precedence so that $p\land q\lor r$
-must be disambiguated as either $(p\land q)\lor r$ or $p\land (q\lor r)$.
-This contrasts with many systems in which conjunction has higher precedence than disjunction.
+\end{tabular}
+\caption{Precedence of the propositional and temporal logic operators.
+\label{precedence-table}}
+\end{figure}
 
 Also consistent with the equational system of LADM but different from most other deductive logic systems
 is the difference between operators equals $=$ and equivales $\equiv$.
@@ -227,7 +235,7 @@ Equivales applies only to boolean, and is commonly denoted $\leftrightarrow$ in 
 Another difference is that equals is conjunctive, while equivales is associative.
 For example, the expression $p = q = r$ has conjunctive meaning $(p = q) \land (q = r)$, while the expression $p \equiv q \equiv r$
 can be taken as either $(p \equiv q) \equiv r$ or $p \equiv (q \equiv r)$.
-This property of equivales is the first axiom in the equational deductive system of \cite{LADM}.
+This property of equivales is the first axiom in the equational deductive system of LADM.
 
 \subsubsection*{Inference rules}
 
@@ -921,16 +929,18 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 \section{The Equational Temporal System}
 
 This section presents an axiomatic deductive system of temporal logic and proves its theorems with the equational
-logic $\mathcal{E}$ of \cite{LADM}.
+logic $\mathcal{E}$ of Gries and Schneider \cite{LADM} (LADM).
 Theorems cited in a proof hint take two forms.
-A numbered reference enclosed in parentheses \textit{without} a decimal point is a reference to an axiom or a previously-proved
+A numbered reference enclosed in parentheses \textit{without} a period is a reference to an axiom or a previously-proved
 theorem in this paper.
-A numbered reference enclosed in parentheses \textit{with} a decimal point is a reference to an axiom or a
-theorem from the propositional calculus in \cite{LADM}.
+A numbered reference enclosed in parentheses \textit{with} a period is a reference to an axiom or a
+theorem from the propositional calculus in LADM.
+The numbering is consistent with that text with the chapter number followed by the equation number separated by the period.
+Additional theorems, either not included in LADM or included but not numbered, are indicated by a three-part number with two period separators.
 The terms ``definition'' and ``axiom'' are synonymous.
 
-The propositional calculus theorems from LADM are included in a companion document. \cite{vegaTheorems}
-The following exposition includes the theorems from LADM in the proof hints except for (4.2) and (4.3) Monotonicity, which are described in Section \ref{sec-equational-deductive-systems}.
+The propositional calculus theorems from LADM, together with a listing of the theorems of this paper, are included in a companion document. \cite{vegaTheorems}
+The following exposition includes the theorems from LADM in the proof hints, except that theorems are omitted for (4.2) and (4.3) Monotonicity, as they are described in Section \ref{sec-equational-deductive-systems}.
 
 \subsection{Next}\label{section-next}
 
@@ -1031,7 +1041,7 @@ Exercise for the student. Hint: Start with mutual implication.\\
 
 Now, $true$ holds in the next state, and $false$ does not hold in the next state.
 Theorems (\ref{E:nextTruth}) and (\ref{E:nextFalse}) are unique to this system.
-In equational logic, $true$ is theorem (3.4) and is equivalent to all other theorems.
+In the equational logic of LADM, $true$ is theorem (3.4) and is equivalent to all other theorems.
 Theorem (\ref{E:nextTruth}) shows that all propositional logic theorems hold at the next state
 and, by induction, hold at all states.
 \begin{equation}\label{E:nextTruth}
@@ -3979,14 +3989,28 @@ Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always (p\lor q)\lan
 
 \section{Comparison with previous work}
 
-\subsection{Theorems}
+As a check on comprehensiveness, we inventoried all the linear temporal logic theorems in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben2}.
+This section compares the axiomatization systems of those sources with this work.
 
-As a check on completeness, we inventoried all the linear temporal logic theorems in Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kroger \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
-It presents 44 new linear temporal logic theorems, namely the three axioms
+\subsection{Kröger and Merz}
+
+\subsection{Manna and Pnueli}
+
+\subsection{Schneider}
+
+\subsection{Emerson}
+
+\subsection{Ben-Ari}
+
+\subsection{New theorems}
+
+This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
+Three are the axioms
 (\ref{E:untilAssocImp}) Weak associativity of $\Until$,
-(\ref{E:absUntilAlways}) Absorption,
-(\ref{E:axiomUntilImpl}) $\Until$ implication,
-and the 41 theorems
+(\ref{E:absUntilAlways}) Absorption, and
+(\ref{E:axiomUntilImpl}) $\Until$ implication.
+
+The remaining 41 are the theorems
 (\ref{E:nextTruth}) Truth of $\Next$,
 (\ref{E:nextFalse}) Falsehood of $\Next$,
 (\ref{E:untilFalse}),
