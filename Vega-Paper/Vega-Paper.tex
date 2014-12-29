@@ -3978,14 +3978,16 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.76b) Distributivity of $\land$ over $\lor$, $p\land(q\lor r) \equiv (p\land q)\lor (p\land r)$}\\[\lgap]
-  \> \>   $((p\lor q)\land \neg q)\lor ((p\lor q)\land r)$\\[\lgap]
+  \> \>   $(p\land (\neg q\lor r))\lor (q\land (\neg q\lor r))$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $((p\lor q)\land \neg q)\lor (p\lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p\land q)\equiv p$}\\[\lgap]
-  \> \>   $p\lor q$
+  \> \>   $p\lor (q\land (\neg q\lor r))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
+  \> \>   $p\lor (q\land r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\lor r$
 \end{tabbing}
-The above proof shows that $(p\lor q)\land (\neg q\lor r) \impl p\lor q$ is a theorem.
-Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always (p\lor q)\land (\neg q\lor r) \impl \Always (p\lor q)$ is a theorem. \quad \myqed
+The above proof shows that $(p\lor q)\land (\neg q\lor r) \impl p\lor r$ is a theorem.
+Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always ((p\lor q)\land (\neg q\lor r)) \impl \Always (p\lor r)$ is a theorem. \quad \myqed
 
 \section{Comparison with previous work}
 
