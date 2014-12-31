@@ -112,17 +112,48 @@
 \begin{abstract}
 This paper presents an equational deductive system for linear temporal logic.
 It differs from previous developments of temporal logic in several respects.
-First, the proofs are given in the equational logic developed by Dijkstra and Scholten as opposed to the older Hilbert-style logics.
+First, the proofs are given in the equational logic developed by Dijkstra and Scholten, and extended by Gries and Schneider, as opposed to the older Hilbert-style logics.
 Second, it includes all known linear temporal logic theorems plus many new and interesting theorems.
 Third, although space limitations preclude giving a proof of every theorem in this paper,
 every theorem has been proved with equational logic.
-The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic for those 
-already familiar with equational logic.
+The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic.
 \end{abstract}
 
 \thispagestyle{plain}
 
 \section{Introduction}
+
+All axiomatic logic systems have three components --- inference rules, axioms, and theorems.
+Both inference rules and axioms are assumed.
+Theorems are proved from axioms using inference rules.
+From a computational systems perspective, the inference rules process axioms as input and produce theorems as output.
+Figure \ref{logic-systems} shows the parallel between traditional computational systems and axiomatic logic systems.
+In the same way that a processor executes program statements with input to produce output, a proof uses inference rules with axioms to produce theorems.
+
+\begin{figure}[t]
+\centering
+\begin{picture}(440,46)
+\thicklines
+\put(0,24) {\fbox{\parbox{36pt}{\centering Input}}}
+\put(43,28) {\vector(1,0){20}}
+\put(63,24) {\fbox{\parbox{56pt}{\centering Processing}}}
+\put(126,28) {\vector(1,0){20}}
+\put(146,24) {\fbox{\parbox{42pt}{\centering Output}}}
+\put(48,0) {Computational systems}
+
+\put(220,24) {\fbox{\parbox{36pt}{\centering Axioms}}}
+\put(263,28) {\vector(1,0){20}}
+\put(283,24) {\fbox{\parbox{56pt}{\centering Inference\\rules}}}
+\put(346,28) {\vector(1,0){20}}
+\put(366,24) {\fbox{\parbox{48pt}{\centering Theorems}}}
+\put(248,0) {Axiomatic logic systems}
+
+\end{picture}
+\caption{Computational systems and axiomatic logic systems.
+\label{logic-systems}}
+\end{figure}
+
+\subsubsection*{Propositional logic systems}
 
 Propositional calculus is a formal system of logic based on the unary operator negation $\neg$,
 the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),
@@ -130,45 +161,70 @@ and equivalence $\equiv$ (also written $\leftrightarrow$),
 variables (lowercase letters $p$, $q$, \dots), and the constants $true$ and $false$.
 Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics to describe the propositional calculus.
 Typical of such descriptions with applications to computer science is the text by Ben-Ari \cite{Ben}.
+A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.
 
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, is the basis of books by Kaldewaij \cite{Kald} and Cohen \cite{Cohen}.
+In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules --- Substitution, Leibniz, Equanimity, and Transitivity.
+In $\mathcal{E}$, modus ponens plays a secondary role.
+It is not an inference rule, nor is it assumed as an axiom, but instead is proved as a theorem from the axioms using the inference rules.
 
 Gries and Schneider \cite{Gries1995, Gries1995145} show that $\mathcal{E}$, also known as a \textit{calculational} system, has several advantages over traditional logic systems.
-The primary advantage of $\mathcal{E}$ over $\mathcal{H}$ is that the equational system has only one proof rule, namely inference rule Leibniz.
-Roughly speaking, Leibniz is ``substituting equals for equals'', hence the moniker \textit{equational} deductive system.
-In contrast, $\mathcal{H}$ systems rely on an extensive set of inference rules.
+The primary advantage of $\mathcal{E}$ over $\mathcal{H}$ systems is that the equational system has only four proof rules, with inference rule Leibniz as the primary one.
+Roughly speaking, Leibniz is ``substituting equals for equals,'' hence the moniker \textit{equational} deductive system.
+In contrast, $\mathcal{H}$ systems rely on a more extensive set of inference rules.
 We find proofs in $\mathcal{E}$ easy to understand and to teach, because the substitution of equals for equals is so common in elementary algebraic manipulations.
 
-Another advantage of $\mathcal{E}$ over $\mathcal{H}$ is the sequential format of its proof syntax.
-Proofs in $\mathcal{H}$ have a bottom-up tree structure, which is sequentialized with multiple references to previously numbered lines.
+Another major advantage of $\mathcal{E}$ over $\mathcal{H}$ systems is the sequential format of its proof syntax.
+Proofs in $\mathcal{H}$ systems have a bottom-up tree structure, which is sequentialized with multiple references to previously numbered lines.
+For example, a proof of formula $f_2$ might begin by establishing the validity  of a formula $f_1$ on lines 1 through 4.
+Then, on lines 5 through 9, it might establish the validity of $f_1\impl f_2$.
+Then, on line 10, it would refer back to lines 4 and 9 and invoke modus ponens to establish the validity of $f_2$.
+
 In contrast, proofs in $\mathcal{E}$ have a top-down structure and proceed sequentially with each step self-contained.
+There is no need to number the lines in a proof in $\mathcal{E}$ because reference is never made to a previous intermediate step of the proof.
+Instead, each line depends only on the immediately preceding line by invoking a previously-proved theorem or an axiom.
+
+There is an analogy between the proof style of $\mathcal{H}$ systems versus the proof style of $\mathcal{E}$ and the unstructured goto style of programming versus structured programming.
+In the same way that the goto statement produces spaghetti code that is more difficult to understand than structured code, proofs in $\mathcal{H}$ systems are more difficult to understand than proofs in $\mathcal{E}$.
+It is perhaps not coincidental that Dijkstra, who ignited the goto controversy with his famous CACM letter \cite{Dijkstra:1968:LEG:362929.362947}, was the prime developer of $\mathcal{E}$.
 
 We agree with Gries and Schneider \cite{LADM} that, ``We need a style of logic that can be used as a tool in every-day work.
 In our experience, an equational logic, which is based on equality and Leibniz's rule for substitution of equals for equals, is best suited for this purpose.''
-These advantages of $\mathcal{E}$ over $\mathcal{H}$ are primarily \textit{human} advantages, not necessarily machine advantages.
+These advantages of $\mathcal{E}$ over $\mathcal{H}$ systems are primarily \textit{human} advantages, not necessarily machine advantages.
 That is, the motivation behind this work is based on teaching and human understanding, as opposed to machine theorem provers or proof assistants.
-
-Linear temporal logic describes how the truth values of propositions change over time.
-It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
-All treatments of linear temporal logic use $\mathcal{H}$ instead of $\mathcal{E}$.
-Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kröger and Merz \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 
 In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they first develop $\mathcal{E}$ for propositional and predicate calculus, and then extend it to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
 Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}$ to these additional knowledge domains.
 The treatment is in marked contrast to the traditional one exemplified by the classic text by Rosen \cite{Rosen}.
 
-Our institution has used LADM at the introductory undergraduate level since its publication and the equational proof style has consequently permeated the computer science curriculum.
+\subsubsection*{Linear temporal logic systems}
+
+Linear temporal logic describes how the truth values of propositions change over time.
+It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
+All treatments of linear temporal logic use $\mathcal{H}$ systems instead of $\mathcal{E}$.
+Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kröger and Merz \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
+
+Each of these authors describes the semantics of the above temporal operators and provides an axiomatization for linear temporal logic.
+One characteristic of these $\mathcal{H}$ systems is the introduction of temporal inference rules along with temporal axioms from which temporal theorems are proved.
+Section \ref{comparison-previous-work} summarizes these systems and compares them with this work.
+
+Our institution has used LADM at the introductory undergraduate level since its publication, and the equational proof style has consequently permeated the computer science curriculum.
 A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain.
 Schneider \cite{Schn} appears to be the only treatment of linear temporal logic that includes a discussion of $\mathcal{E}$.
 Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example on page 74.
 
-To solve the above problem, this paper presents an elementary equational deductive system suitable for introducing those schooled in $\mathcal{E}$ to linear temporal logic.
-In the same way that LADM brings the advantages of $\mathcal{E}$ to the treatment of set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
+To solve the above problem, this paper presents a comprehensive equational deductive system suitable for introducing those versed in $\mathcal{E}$ to linear temporal logic.
+In the same way that LADM brings the advantages of $\mathcal{E}$ to set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
+
+This axiomatization follows the spirit of $\mathcal{E}$ in its design to minimize the number of inference rules.
+A unique characteristic of this system is the complete absence of any temporal inference rules.
+It extends the propositional calculus of LADM using only the same four inference rules of $\mathcal{E}$ along with additional temporal axioms.
+In our judgment, the absence of temporal inference rules brings the same clarity to linear temporal logic that $\mathcal{E}$ brings to the propositional calculus.
 
 The paper also adds to the linear temporal logic literature by proving many interesting and previously unknown theorems.
-It is also comprehensive, as it includes all known linear temporal theorems described in the literature.
-Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with $\mathcal{E}$.
+It is comprehensive, as we have tried to include all known linear temporal theorems described in the literature.
+Although space limitations preclude giving a proof of every theorem in this paper, we have proved every theorem with $\mathcal{E}$.
 
 Section 2 describes the deductive axioms and the proof rules for $\mathcal{E}$.
 It also defines the syntax and semantics of linear temporal logic.
@@ -178,9 +234,9 @@ Section 4 summarizes previous linear temporal logic axiomatization systems and c
 \section{Background}
 
 The first section below summarizes the equational system $\mathcal{E}$ from LADM.
-The summary is minimal, and the remainder of the paper assumes familiarity with $\mathcal{E}$.
+The summary is minimal, and assumes the reader is familiar with the propositional and predicate calculus.
 The second section introduces temporal logic and assumes no prior familiarity with it.
-The paper can serve as an introduction to temporal logic for those familiar with $\mathcal{E}$.
+The paper can serve as an introduction to linear temporal logic.
 
 \subsection{Equational Deductive Systems}\label{sec-equational-deductive-systems}
 
@@ -489,7 +545,7 @@ And it has one axiom for existential quantification.
 (9.17)\>\textbf{Axiom, Generalized De Morgan:}\quad $(\ext x\dr R\rb P)\equiv \neg (\all x\dr R\rb \neg P)$
 \end{tabbing}
 
-\subsection{Temporal Logic}
+\subsection{Linear Temporal Logic}
 
 The operators of propositional calculus, $\neg$, $=$, $\land$, $\lor$, $\impl$, $\foll$, and $\equiv$ are static.
 That is, they apply at a single point in time.
@@ -3989,7 +4045,7 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
 The above proof shows that $(p\lor q)\land (\neg q\lor r) \impl p\lor r$ is a theorem.
 Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always ((p\lor q)\land (\neg q\lor r)) \impl \Always (p\lor r)$ is a theorem. \quad \myqed
 
-\section{Comparison with previous work}
+\section{Comparison with previous work}\label{comparison-previous-work}
 
 As a check on comprehensiveness, we inventoried all the linear temporal logic theorems in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben2}.
 This section compares the axiomatization systems of those sources with this work.
