@@ -130,6 +130,24 @@ From a computational systems perspective, the inference rules process axioms as 
 Figure \ref{logic-systems} shows the parallel between traditional computational systems and axiomatic logic systems.
 In the same way that a processor executes program statements with input to produce output, a proof uses inference rules with axioms to produce theorems.
 
+In a conventional computational system, placement of the hardware/software boundary is a design decision.
+Any given computational task can be implemented either in hardware or in software.
+The tradeoff in such systems is usually between speed of execution and flexibility.
+Usually, a task implemented in hardware executes faster than if it is implemented in software.
+However, once implemented in hardware a task is more difficult to modify or extend than if it is implemented in software.
+One goal of RISC design is to simplify the hardware by moving tasks from hardware to software.
+For example, CISC machines provide complex addressing modes with hardware circuits to compute array cell addresses.
+The equivalent address computation is done in software in a RISC machine.
+
+A similar design decision exists in axiomatic logic systems with the placement of the inference rule/axiom boundary.
+It is possible to have two different logic systems produce equivalent sets of theorems but with different sets of inference rules and axioms.
+What is an inference rule in one system might be a corresponding axiom in the other.
+The tradeoff is more subjective in logic systems, as there is apparently no metric of goodness that can be quantified as objectively as can the speed of execution in computational systems.
+
+This paper presents a logic system that places the boundary between inference rules and axioms to minimize the number of inference rules.
+We maintain that the primary advantage of such a system is a human one.
+That is, proofs in such systems are easier to understand and to design than in other systems.
+
 \begin{figure}[t]
 \centering
 \begin{picture}(440,46)
@@ -326,33 +344,32 @@ The general form of a proof step is
 \end{tabbing}
 where the expression enclosed in angle brackets $\Gll\;\Ggg$, called the ``hint'', is the justification for the step.
 
-An example of a proof step from the proof of theorem (\ref{E:expansionAlways}) Expansion of $\Always$ in Section \ref{section-always} is
+An example of a proof step from the proof of theorem (\ref{E:eventAlwaysPAndAlwaysEventQ}) in Section \ref{section-always-continued} is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Defintion of $\Event$}\\[\lgap]
-  \> \>   $p \land \neg\Next\Event\neg p$
+\> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+\> \>   $\Always \Always p \land \Always\Event q \impl \Always\Event (p \land q)$
 \end{tabbing}
-This proof step uses the previously proved theorem (\ref{E:defEvent}) Definition of $\Event$,
-which is $\Event q \equiv true \Until q$.
-The justification in the hint $X=Y$ comes from inference rule Substitution, with the textual substitution of $\neg p$ for $q$
-in (\ref{E:defEvent}) as follows
+This proof step uses the previously proved theorem (\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$,
+which is $\Always (p \land q) \equiv \Always p \land \Always q$.
+The justification in the hint $X=Y$ comes from inference rule Substitution, with the textual substitution of $\Always p$ for $p$ and $\Event q$ for $q$ in (\ref{E:distAlwaysAnd}) as follows
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $(\Event q \equiv true \Until q)[q:=\neg p]:\quad \Event \neg p \equiv true \Until \neg p$
+  \> $(\Always (p \land q) \equiv \Always p \land \Always q)[p,q:=\Always p, \Event q]:\quad \Always (\Always p \land \Event q) \equiv \Always \Always p \land \Always \Event q$
 \end{tabbing}
 The expressions in Leibniz for the step are
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $E:\quad p \land \neg\Next z$\\[\lgap]
-  \> $X:\quad true \Until \neg p$\\[\lgap]
-  \> $Y:\quad \Event \neg p$
+  \> $E:\quad z \impl \Always\Event (p \land q)$\\[\lgap]
+  \> $X:\quad \Always (\Always p \land \Event q)$\\[\lgap]
+  \> $Y:\quad \Always \Always p \land \Always \Event q$
 \end{tabbing}
 The textual substitutions are
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $E[z:=X]:\quad p \land \neg\Next(true \Until \neg p)$\\[\lgap]
-  \> $E[z:=Y]:\quad p \land \neg\Next\Event\neg p$
+  \> $E[z:=X]:\quad \Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
+  \> $E[z:=Y]:\quad \Always \Always p \land \Always\Event q \impl \Always\Event (p \land q)$
 \end{tabbing}
 
 The proof of a theorem consists of showing the equivalence of that theorem to a previously proved theorem
@@ -2586,7 +2603,7 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always P\impl\Always Q$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:distAlwaysImp}) Distributivity of $\Always$ over $\impl$} \\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$} \\[\lgap]
 \> \> $\Always (P\impl Q)$\\[\lgap]
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
@@ -2597,7 +2614,7 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 Exercise for the student.\\
 }
 
-\subsection{Always, continued}
+\subsection{Always, continued}\label{section-always-continued}
 
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
 distribute over conjunction and disjunction.
