@@ -1285,11 +1285,11 @@ operator $\Event$ in Section \ref{section-event}.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $false \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor (false \land \Next(false \Until q))$\\[\lgap]
+  \> \>   $q \lor (false \land \Next(false \Until q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
-  \> \>   $p \lor false$\\[\lgap]
+  \> \>   $q \lor false$\\[\lgap]
   \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$}\\[\lgap]
-  \> \>   $p$ \quad \myqed
+  \> \>   $q$ \quad \myqed
 \end{tabbing}
 }
 
@@ -1599,7 +1599,7 @@ The following two absorption theorems do not seem to appear in the temporal logi
   \> \>   $\Event p \land p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
   \> \>   $(p \lor \Next\Event p) \land p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
 
