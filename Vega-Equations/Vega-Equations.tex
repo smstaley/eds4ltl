@@ -356,12 +356,6 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
-\begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom, Weak associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:untilOrEquiv}
 \textbf{Axiom, Left distributivity of $\Until$ over $\lor$ :}\quad p \Until (q \lor r) \equiv p \Until q \lor p \Until r
 \end{equation}
@@ -382,6 +376,18 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \begin{equation}\label{E:untilAndEquiv}
 \textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdem}
+\textbf{Axiom, Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Axiom, Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
 \spacer
@@ -450,18 +456,6 @@ p \Until q \impl p \lor q
 \textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
 
-\spacer
-
-\begin{equation}\label{E:untilIdem}
-\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:untilIdemR}
-\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
-\end{equation}
-
 \newpage
 
 \subsection*{Eventually $\quad\Event$}
@@ -471,12 +465,6 @@ p \Until q \impl p \lor q
 \end{equation}
 
 \firstspacer
-
-\begin{equation}\label{E:distEventUntil}
-\textbf{Distributivity of $\Event$ over $\Until$:}\quad \Event (p\Until q)\impl \Event p\Until q
-\end{equation}
-
-\spacer
 
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
@@ -869,12 +857,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
-\begin{equation}\label{E:distEventWait}
-\textbf{Distributivity of $\Event$ over $\Wait$:}\quad \Event (p\Wait q)\impl \Event p\Wait q
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
 \end{equation}
@@ -919,12 +901,6 @@ p\Until q\impl p\Wait q
 
 \begin{equation}\label{E:leftZeroWait}
 \textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:waitAssocImp}
-\textbf{Weak associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
 \end{equation}
 
 \spacer
@@ -1122,7 +1098,7 @@ p \Wait q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:rightUntilAbsWait}
-\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
+\textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q \quad [Not\; yet\; proved.]
 \end{equation}
 
 \spacer
@@ -1200,13 +1176,13 @@ p \Wait q \land \Always\neg q \impl \Always p
 \spacer
 
 \begin{equation}\label{E:waitImpAbsL}
-\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
+\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r \quad [Not\; yet\; proved.]
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:waitOrderingThree}
-\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r \quad [Not\; yet\; proved.]
 \end{equation}
 
 \spacer
