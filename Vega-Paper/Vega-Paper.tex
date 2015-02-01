@@ -716,55 +716,6 @@ The \textit{until} operator $\Until$ is not associative as shown by the followin
   $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots
 \end{tabular}\\[\lllgap]
 States $s_1$ and $s_2$ in the last two rows of the above table are counterexamples, because the two expressions differ in these states.
-However, $p\Until (q\Until r) \impl (p\Until q)\Until r$.
-
-\emph{Proof}:
-Expanding $p\Until (q\Until r)$,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $(\sigma,j) \models p\Until (q\Until r)$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
-	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models (q \Until r) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
-	\> \>   $(\ext k \dr k\ge j \rb (\ext n \dr n\ge k \rb (\sigma,n)\models r \land (\all m \dr k\le m < n \rb (\sigma,m)\models q))$\\[\lgap]
-	\> \>   $\quad \quad \land \; (\all i \dr j\le i < k \rb (\sigma, i) \models p)\;)$
-\end{tabbing}
-
-Figure \ref{temporal-segments-until-until} illustrates the temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
-To prove that $p\Until (q\Until r) \impl (p\Until q)\Until r$ it suffices to show that $p\Until q$ holds between $j$ and $n$, given that $p$, $q$, and $r$ hold as above.
-
-Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
-$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.
-
-Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $k<m<n$.\\
-$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $k<m<n$, and $true$ is the right zero of $\Until$.
-
-\begin{figure}[t]
-\centering
-\begin{picture}(360,110)
-\thicklines
-\put(320,100){$(\sigma,n)\models r$}
-\put(0,90)  {\vector(1,0){380}}
-\put(20,90) {\circle*{8}} \put(180,90) {\circle*{8}} \put(340,90) {\circle*{8}}
-\put(18,76)  {$j$} \put(178,76)  {$k$} \put(338,76)  {$n$} 
-\put(168,64) {$k\ge j$} \put(328,64)  {$n\ge k$}
-\put(180,42) {\line(1,0){156}}
-\put(180,42) {\circle*{8}} \put(340,42) {\circle{8}}
-\put(240,48) {$(\sigma,m)\models q$}
-\put(240,32) {$k\le m < n$}
-\put(20,10)  {\line(1,0){156}}
-\put(20,10)  {\circle*{8}} \put(180,10) {\circle{8}}
-\put(80,18) {$(\sigma,i)\models p$}
-\put(80,0) {$j\le i < k$}
-\end{picture}
-\caption{The temporal segments for which $p$, $q$, and $r$ hold for $p\Until(q\Until r)$.
-\label{temporal-segments-until-until}}
-\end{figure}
-
-From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $j\le i<n$.
-Because $r$ holds at $(\sigma,n)$, $(p\Until q)\Until r$ holds between $j$ and $n$ inclusively. \quad \myqed\\[\llgap]
-This theorem does not seem to appear in the linear temporal logic literature.
-It is the basis of axiom (\ref{E:untilAssocImp}), Weak associativity of $\Until$, $p \Until (q \Until r) \impl (p \Until q) \Until r$ in Section \ref{section-until}.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
@@ -926,7 +877,7 @@ The corresponding rules for the binary operators are
 %	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
 %\end{tabbing}
 
-Another defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+One defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
 $p\Until \Always q\impl \Always (p\Until q)$.
 
 \emph{Proof}:
@@ -1171,7 +1122,6 @@ true in the next state.
 Thus, $q$ relates to the definition through disjunction, which is existential,
 while $p$ relates through conjunction, which is universal.
 Consequently, the \textit{until} operator is neither symmetric (\textit{i.e.} commutative) nor associative.
-Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one direction.
 \begin{equation}\label{E:distNextUntil}
 \textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
 \end{equation}
@@ -1186,12 +1136,6 @@ Axiom (\ref{E:untilAssocImp}) shows that the associativity holds in only one dir
 
 \begin{equation}\label{E:untilFalse}
 \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
-\end{equation}
-
-\firstspacer
-
-\begin{equation}\label{E:untilAssocImp}
-\textbf{Axiom, Weak associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p \Until q) \Until r
 \end{equation}
 
 The following four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
@@ -1217,6 +1161,25 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \begin{equation}\label{E:untilAndEquiv}
 \textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
 \end{equation}
+
+The following two axioms are the absorption laws of the \textit{until} operator.
+All systems have these two absorption theorems, because the \textit{until} operator is not associative.
+Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
+This paper follows Schneider \cite{Schn}, which refers to them as absorption properties.
+\begin{equation}\label{E:untilIdem}
+\textbf{Axiom, Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Axiom, Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
+\end{equation}
+
+Theorem (\ref{E:untilExcludedMiddle}) is the \textit{until} version of excluded middle.
+Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
+Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
+axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
 \begin{equation}\label{E:untilExcludedMiddle}
 \Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
 \end{equation}
@@ -1232,7 +1195,6 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
-Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
@@ -1246,9 +1208,6 @@ Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent
   \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
-axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
 \begin{equation}\label{E:zeroUntil}
 \textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
 \end{equation}
@@ -1407,55 +1366,6 @@ appear in the temporal logic literature.
   \> \>   $p \Until q$ \quad \myqed
 \end{tabbing}
 
-The following two theorems are the absorption laws of the \textit{until} operator.
-All systems have these two absorption theorems, because the \textit{until} operator is not associative.
-Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
-This paper follows Schneider \cite{Schn}, which refers to them as absorption properties.
-\begin{equation}\label{E:untilIdem}
-\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
-\end{equation}
-
-\emph{Proof}:The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until (p \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
-  \> \>   $(p \Until p) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
-  \> \>   $p \Until q$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilInsertion}) Insertion with $q := p \Until q$}\\[\lgap]
-  \> \>   $p \Until (p \Until q)$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:untilIdemR}
-\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
-\end{equation}
-
-\emph{Proof}: Also by mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
-  \> \>   $p \Until (q \Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
-  \> \>   $(p \Until q) \Until q$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p \Until q) \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilImpOr})}\\[\lgap]
-  \> \>   $p \Until q \lor q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilOrQ}) Absorption}\\[\lgap]
-  \> \>   $p \Until q$ \quad \myqed
-\end{tabbing}
-
 \subsection{Eventually}\label{section-event}
 
 Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
@@ -1463,21 +1373,7 @@ Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
 \textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
-\begin{equation}\label{E:distEventUntil}
-\textbf{Distributivity of $\Event$ over $\Until$:}\quad \Event (p\Until q)\impl \Event p\Until q
-\end{equation}
 
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event (p\Until q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true\Until (p\Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
-  \> \>   $(true\Until p) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Event p\Until q$ \quad \myqed
-\end{tabbing}
 The following theorem shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
@@ -2895,29 +2791,6 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:distEventWait}
-\textbf{Distributivity of $\Event$ over $\Wait$:}\quad \Event (p\Wait q)\impl \Event p\Wait q
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event (p\Wait q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true\Until (p\Wait q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
-  \> \>   $true\Until (\Always p\lor p\Until q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-  \> \>   $true\Until \Always p\lor true\Until (p\Until q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $true\Until \Always p\lor (true\Until p)\Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ twice}\\[\lgap]
-  \> \>   $\Event \Always p\lor \Event p\Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $\Always\Event p\lor \Event p\Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
-  \> \>   $\Event p\Wait q$ \quad \myqed
-\end{tabbing}
 
 (\ref{E:notUntil}) proves Distributivity of $\neg$ over $\Until$ using (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
@@ -3068,40 +2941,6 @@ Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \te
 \> \> $true \lor true\Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true \equiv true$}\\[\lgap]
 \> \> $true$ \quad \myqed
-\end{tabbing}
-
-Like the \textit{until} operator, the \textit{wait} operator is weakly associative.
-Each $\foll$ step in the proof below is justified in conjunction with (4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$.
-\begin{equation}\label{E:waitAssocImp}
-\textbf{Weak associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \Wait q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $(p \Wait q) \Wait r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always (p \Wait q) \lor (p\Wait q)\Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always (\Always p\lor p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
-\> $\foll$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
-\> \> $\Always\Always p\lor \Always (p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-\> \> $\Always p\lor \Always (p\Until q) \lor (\Always p\lor p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$} \\[\lgap]
-\> \> $\Always p\lor \Always (p\Until q) \lor \Always p\Until r\lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \> $\Always p\lor \Always (p\Until q) \lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \>  \Hint{(\ref{E:untilAssocImp}) Weak associativity of $\Until$}\\[\lgap]
-\> \> $\Always p\lor \Always (p\Until q) \lor p\Until (q\Until r)$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
-\> \> $\Always p\lor p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-\> \> $\Always p\lor p\Until (\Always q \lor q\Until r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always p\lor p\Until (q\Wait r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $p \Wait (q \Wait r)$ \quad \myqed
 \end{tabbing}
 
 The next four distributive theorems for the \textit{wait} operator correspond to, and are proved from,
