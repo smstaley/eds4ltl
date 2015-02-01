@@ -157,14 +157,14 @@ That is, proofs in such systems are easier to understand and to design than in o
 \put(63,24) {\fbox{\parbox{56pt}{\centering Processing}}}
 \put(126,28) {\vector(1,0){20}}
 \put(146,24) {\fbox{\parbox{42pt}{\centering Output}}}
-\put(48,0) {Computational systems}
+\put(40,0) {Computational systems}
 
 \put(220,24) {\fbox{\parbox{36pt}{\centering Axioms}}}
 \put(263,28) {\vector(1,0){20}}
 \put(283,24) {\fbox{\parbox{56pt}{\centering Inference\\rules}}}
 \put(346,28) {\vector(1,0){20}}
 \put(366,24) {\fbox{\parbox{48pt}{\centering Theorems}}}
-\put(248,0) {Axiomatic logic systems}
+\put(250,0) {Axiomatic logic systems}
 
 \end{picture}
 \caption{Computational systems and axiomatic logic systems.
@@ -3410,42 +3410,50 @@ respectively.
 \> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
 
-The left and right absorption theorems for $\Wait$ correspond to the left and right absorption theorems
+The left and right absorption theorems for $\Wait$ correspond to, and are proved from, the left and right absorption theorems
 for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Wait (p \Wait q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
-  \> \>   $(p \Wait p) \Wait q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
-  \> \>   $p \Wait q$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Wait q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) Insertion with $q := p \Wait q$}\\[\lgap]
-  \> \>   $p \Wait (p \Wait q)$ \quad \myqed
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ twice} \\[\lgap]
+  \> \>   $p \Until (p \Until q \lor \Always p) \lor \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+  \> \>   $p \Until (p \Until q) \lor p\Until \Always p \lor \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absUntilAlways}) Absorption of $\Until$ into $\Always$ and (3.26) Idempotency of $\lor$, $p\lor p \equiv p$}\\[\lgap]
+  \> \>   $p \Until (p \Until q) \lor \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$}\\[\lgap]
+  \> \>   $p \Until q \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitAbsR}
 \textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
 \end{equation}
 
-\emph{Proof}:The proof is by (4.7) Mutual implication.
+\emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Wait q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:idempWait}) Idempotency of $\Wait$}\\[\lgap]
-  \> \>   $p \Wait (q \Wait q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitAssocImp}) Weak associativity of $\Wait$}\\[\lgap]
-  \> \>   $(p \Wait q) \Wait q$
+  \> \>   $(p \Wait q)\Wait q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
+  \> \>   $(p \Until q\lor \Always p)\Wait q$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$}\\[\lgap]
+  \> \>   $(p \Until q)\Wait q \lor \Always p\Wait q$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $(p \Until q)\Until q \lor \Always p\Wait q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$}\\[\lgap]
+  \> \>   $p \Until q \lor \Always p\Wait q$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p \Until q \lor \Always \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $p \Until q \lor \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
+  \> \>   $p \Wait q$
 \end{tabbing}
 The proof in the second direction follows.
 \begin{tabbing}
@@ -3919,9 +3927,8 @@ This section compares the axiomatization systems of those sources with this work
 \subsection{New theorems}
 
 This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
-Three are the axioms
-(\ref{E:untilAssocImp}) Weak associativity of $\Until$,
-(\ref{E:absUntilAlways}) Absorption, and
+Two are the axioms
+(\ref{E:absUntilAlways}) Absorption and
 (\ref{E:axiomUntilImpl}) $\Until$ implication.
 
 The remaining 41 are the theorems
