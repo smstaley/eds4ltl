@@ -1955,20 +1955,18 @@ Theorem (\ref{E:impNext}) is unique to this system.
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Ravi Mohan)
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p\impl \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $p\impl p\land \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\neg p\lor (p\land \Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
-  \> \>   $\neg p\lor (\neg\neg p\land \Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$ with $p,q := \neg p,\Next\Always p$}\\[\lgap]
-  \> \>   $\neg p\lor \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+  \> \>   $(p\impl p)\land (p\impl\Next\Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$}\\[\lgap]
+  \> \>   $true\land (p\impl\Next\Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p \impl \Next\Always p$ \quad \myqed
 \end{tabbing}
 }

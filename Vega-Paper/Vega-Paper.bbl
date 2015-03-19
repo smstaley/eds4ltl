@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+
+\bibitem{Ben}
+Mordechai Ben-Ari.
+\newblock {\em Mathematical Logic for Computer Science}.
+\newblock Springer-Verlag, London, second edition, 2001.
+
+\bibitem{Ben2}
+Mordechai Ben-Ari.
+\newblock {\em Principles of Concurrent and Distributed Programming}.
+\newblock Addison-Wesley Pearson, Harlow, England, second edition, 2006.
+
+\bibitem{Cohen}
+Edward Cohen.
+\newblock {\em Programming in the 1990's: An Introduction to the Calculation of
+  Programs}.
+\newblock Springer-Verlag, New York, 1990.
+
+\bibitem{Dijkstra:1968:LEG:362929.362947}
+Edsger~W. Dijkstra.
+\newblock Letters to the editor: Go to statement considered harmful.
+\newblock {\em Commun. ACM}, 11(3):147--148, March 1968.
+
+\bibitem{DandS}
+Edsger~W. Dijkstra and Carel~S. Scholten.
+\newblock {\em Predicate Calculus and Program Semantics}.
+\newblock Springer-Verlag, New York, 1990.
+
+\bibitem{Emer}
+E.~Allen Emerson.
+\newblock Temporal and modal logic.
+\newblock In {\em Handbook of Theoretical Computer Science}, pages 995--1072.
+  Elsevier, 1990.
+
+\bibitem{Feij}
+Wim H.~H. Feijen.
+\newblock Exercises in formula manipulation.
+\newblock In E.W. Dijkstra, editor, {\em Formal Development of Programs}, pages
+  139--158. Addison-Wesley, Menlo Park, 1990.
+
+\bibitem{Gries1995}
+David Gries.
+\newblock Monotonicity in calculational proofs.
+\newblock In {\em Correct System Design, Recent Insight and Advances, (to Hans
+  Langmaack on the occasion of his retirement from his professorship at the
+  University of Kiel)}, pages 79--85, London, UK, 1999. Springer-Verlag.
+
+\bibitem{LADM}
+David Gries and Fred~B. Schneider.
+\newblock {\em A Logical Approach to Discrete Math}.
+\newblock Springer-Verlag, New York, 1994.
+
+\bibitem{Gries1995145}
+David Gries and Fred~B. Schneider.
+\newblock Equational propositional logic.
+\newblock {\em Information Processing Letters}, 53(3):145 -- 152, 1995.
+
+\bibitem{Kald}
+Anne Kaldewaij.
+\newblock {\em Programming: The Derivation of Algorithms}.
+\newblock Prentice-Hall International (UK) Ltd., 1990.
+
+\bibitem{Kroger}
+Fred Kröger and Stephan Merz.
+\newblock {\em Temporal Logic and State Systems}.
+\newblock Springer-Verlag, Berlin, first edition, 2008.
+
+\bibitem{Manna}
+Zohar Manna and Amir Pnueli.
+\newblock {\em The Temporal Logic of Reactive and Concurrent Systems: v. 1,
+  Specification}.
+\newblock Springer-Verlag, New York, first edition, 1992.
+
+\bibitem{Rosen}
+Kenneth~H. Rosen.
+\newblock {\em Discrete Mathematics and Its Applications}.
+\newblock McGraw-Hill, New York, sixth edition, 2007.
+
+\bibitem{Schn}
+Fred~B. Schneider.
+\newblock {\em On Concurrent Programming}.
+\newblock Springer-Verlag, New York, first edition, 1997.
+
+\bibitem{vegaTheorems}
+David Vega and J.~Stanley Warford.
+\newblock {\em Theorems from Vega and Warford's EDS4LTL}.
+\newblock Pepperdine University Research Report, Natural Science Division,
+  2015.
+
+\end{thebibliography}
