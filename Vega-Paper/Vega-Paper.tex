@@ -2075,7 +2075,7 @@ Exercise for the student.\\
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}: (Scott Staley, Ravi Mohan)
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2084,11 +2084,7 @@ Exercise for the student.\\
   \> \>   $\Always p \land true \Until q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=true, q$}\\[\lgap]
   \> \>   $(p \land true) \Until (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $p\Until (p\land q) \land true \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening the antecedent $p\land q\impl p$}\\[\lgap]
-  \> \>   $true \Until (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $p,q:=p\land true,p\land q$}\\[\lgap]
   \> \>   $\Event (p \land q)$ \quad \myqed
 \end{tabbing}
 }
