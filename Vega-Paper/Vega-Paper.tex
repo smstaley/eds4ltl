@@ -2732,23 +2732,16 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)\quad By (3.77) Modus ponens, $p\land (p\impl q)\impl q$ with $p,q:=\Always p,\Event q$, the following is a theorem.
+\emph{Proof}: (Scott Staley)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $\Always p\land (\Always p\impl \Event q)\impl \Event q$\\[\lgap]
-\> $=$  \>  \Hint{(3.65) Shunting $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-\> \>   $\Always p\impl ((\Always p\impl \Event q)\impl \Event q$)
-\end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $\Event\Always p\impl \Event((\Always p\impl \Event q)\impl \Event q$)\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
-\> \>   $\Event\Always p\impl (\Always(\Always p\impl \Event q)\impl \Event\Event q$)\\[\lgap]
+\> \>   $\Event\Always p \land \Always(\Always p \impl \Event q)$\\[\lgap]
+\> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+\> \>   $\Event\Always p \land (\Event\Always p \impl \Event\Event q)$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-\> \>   $\Event\Always p\impl (\Always(\Always p\impl \Event q)\impl \Event q$)\\[\lgap]
-\> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-\> \>   $\Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q$ \quad \myqed
+\> \>   $\Event\Always p \land (\Event\Always p \impl \Event q)$\\[\lgap]
+\> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+\> \>   $\Event q$ \quad \myqed
 \end{tabbing}
 
 \subsection{Wait}\label{section-wait}
