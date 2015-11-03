@@ -1614,7 +1614,7 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
-The following induction axiom is included in other temporal logic systems but is not used in any subsequent proofs in this system.
+The following induction axiom is included in other temporal logic systems.
 The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
 and is apparently unique to this system.
 \begin{equation}\label{E:induction}
@@ -1951,6 +1951,7 @@ Exercise for the student.\\
 }
 
 Theorem (\ref{E:impNext}) is unique to this system.
+Theorem (\ref{E:pSwitches}) states that if $p$ holds and eventually $\neg p$ holds, there must eventually be a state where $p$ holds in that state and it does not hold in the next state.
 \begin{equation}\label{E:impNext}
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
@@ -1973,6 +1974,31 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \opt{student}{
 Exercise for the student.\\
 }
+\begin{equation}\label{E:pSwitches}
+p\land \Event\neg p \impl \Event(p\land\Next\neg p)
+\end{equation}
+
+\emph{Proof}: By contrapositive, $\neg\Event(p\land\Next\neg p)\impl\neg(p\land \Event\neg p)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg\Event(p\land\Next\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\Always\neg(p\land\Next\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\Always(\neg p\lor\neg\Next\neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
+  \> \>   $\Always(\neg p\lor\Next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Always(p\impl\Next p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+  \> \>   $p\impl\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\neg p\lor\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\neg p\lor\neg\Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\neg(p\land \Event\neg p)$ \quad \myqed
+\end{tabbing}
 
 The following four strengthening theorems for $\Always$ contrast with the weakening theorems
 (\ref{E:impEvent}) and (\ref{E:nextEvent})
@@ -2986,7 +3012,7 @@ the distributive axioms for the \textit{until} operator
 \> \> $p \Wait q \land p \Wait r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:rightWaitAndDist}
-\textbf{Right distributivity of $\Wait$ over $\land$}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
+\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
@@ -3039,6 +3065,30 @@ The proof in the second direction follows.
   \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
   \> \>   $(p \land q) \Wait r$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:rightWaitImplDist}
+\textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $(p \impl q) \Wait r\land p \Wait r \impl q \Wait r$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \impl q) \Wait r\land p \Wait r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
+  \> \>   $(p\land p\impl q) \Wait r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land p \impl q \equivs  p \land q$}\\[\lgap]
+  \> \>   $(p\land q) \Wait r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
+  \> \>   $p\Wait r\land q\Wait r$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $q\Wait r$ \quad \myqed
 \end{tabbing}
 
 Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, which give rise, in turn, to expanded distributivity theorems of $\neg$ over $\Wait$ and $\Until$.
@@ -3471,7 +3521,7 @@ The proof in the second direction follows.
   \midrule
   (\ref{E:defEvent}) $true \Until q \equiv \Event q$
   &
-  (\ref{E:alwaysAsWait}) $p \Wait false\equiv \Always p$ \\
+  (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law:\; $p \Wait false\equiv \Always p$ \\
   \bottomrule
 \end{tabular}
 \renewcommand\arraystretch{1}
@@ -3482,7 +3532,7 @@ The proof in the second direction follows.
 The following theorem corresponds to the definition of the \textit{eventually} operator (\ref{E:defEvent}).
 Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
 \begin{equation}\label{E:alwaysAsWait}
-\Always p \equiv p \Wait false
+\textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
 \end{equation}
 
 \emph{Proof}:
@@ -3495,6 +3545,19 @@ Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ 
 \> \> $\Always p\lor false$\\[\lgap]
 \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:eventAsWait}
+\textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
+\end{equation}
+
+\emph{Proof}: (Scott Staley)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg(\neg p \Wait false)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law with $p := \neg p$} \\[\lgap]
+\> \> $\neg\Always\neg p$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
+\> \> $\Event p$ \quad \myqed
 \end{tabbing}
 
 The following theorem for the \textit{wait} operator corresponds to (\ref{E:axiomUntilImpl}) $\Until$ implication.

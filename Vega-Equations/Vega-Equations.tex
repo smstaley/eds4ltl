@@ -662,6 +662,12 @@ p \impl \Always p \equiv p \impl \Next\Always p
 
 \spacer
 
+\begin{equation}\label{E:pSwitches}
+p\land \Event\neg p \impl \Event(p\land\Next\neg p)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
@@ -922,7 +928,13 @@ p\Until q\impl p\Wait q
 \spacer
 
 \begin{equation}\label{E:rightWaitAndDist}
-\textbf{Right distributivity of $\Wait$ over $\land$}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
+\textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:rightWaitImplDist}
+\textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
 \end{equation}
 
 \spacer
@@ -1066,7 +1078,13 @@ p \Wait q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:alwaysAsWait}
-\Always p \equiv p \Wait false
+\textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventAsWait}
+\textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
 \end{equation}
 
 \spacer
