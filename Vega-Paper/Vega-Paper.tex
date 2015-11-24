@@ -3203,17 +3203,13 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \emph{Proof}: (Scott Staley)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Wait q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
-\> \> $(p\lor q)\Wait q$\\[\lgap]
-\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
-\> \> $(p\lor q)\Wait q\land true$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
-\> \> $(p\lor q)\Wait q\land \neg q\Wait q$\\[\lgap]
+\> \> $(p\land \neg q) \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
-\> \> $((p\lor q)\land \neg q)\Wait q$\\[\lgap]
-\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q) \equiv p\land q$ with $p,q := \neg q,p$} \\[\lgap]
-\> \> $(p\land \neg q) \Wait q$ \quad \myqed
+\> \> $p\Wait q\land \neg q\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
+\> \> $p\Wait q\land true$\\[\lgap]
+\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+\> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:conRuleUntil}
 \textbf{Conjunction rule of $\Until$:}\quad p\Until q\equiv (p\land \neg q)\Until q
