@@ -104,7 +104,10 @@
    J. Stanley Warford\\
    Computer Science Department\\
    Pepperdine University\\
-   Malibu, CA 90263}
+   Malibu, CA 90263
+   \and
+   Scott Staley\\
+   Affiliation}
 \date{} % Required for no date to appear in heading
 
 \begin{document}
@@ -1795,7 +1798,7 @@ As usual, the first describes the current state and the second contains the oper
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
@@ -2542,7 +2545,7 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Event(p \land q)$\\[\lgap]
@@ -2562,7 +2565,7 @@ By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distrib
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)\opt{doc}{
+\emph{Proof}:\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always p \lor \Event\Always q$\\[\lgap]
@@ -2732,7 +2735,7 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley) By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\emph{Proof}: By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
@@ -2758,7 +2761,7 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \>   $\Event\Always p \land \Always(\Always p \impl \Event q)$\\[\lgap]
@@ -3070,7 +3073,7 @@ The proof in the second direction follows.
 \textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $(p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)$\\[\lgap]
@@ -3096,7 +3099,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p\Wait q$\\[\lgap]
@@ -3115,7 +3118,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p\Until q$\\[\lgap]
@@ -3134,7 +3137,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Rule of $\Wait$:}\quad \neg q \Wait q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg q\Wait q$\\[\lgap]
@@ -3149,7 +3152,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Rule of $\Until$:}\quad \neg q \Until q\equivs \Event q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg q\Until q$\\[\lgap]
@@ -3200,7 +3203,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Conjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\land \neg q)\Wait q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p\land \neg q) \Wait q$\\[\lgap]
@@ -3215,7 +3218,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Conjunction rule of $\Until$:}\quad p\Until q\equiv (p\land \neg q)\Until q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p\land \neg q)\Until q$\\[\lgap]
@@ -3230,7 +3233,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg (p\Wait q)$\\[\lgap]
@@ -3247,7 +3250,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg (p\Until q)$\\[\lgap]
@@ -3546,7 +3549,7 @@ Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ 
 \textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\neg(\neg p \Wait false)$\\[\lgap]
@@ -3591,7 +3594,7 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p \Until q) \Wait q$\\[\lgap]
@@ -3869,7 +3872,7 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
 \textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p\Wait (q\land r)$\\[\lgap]
@@ -3906,7 +3909,7 @@ Therefore, by (\ref{E:metatheorem}) Metatheorem, $\Always (r\impl q\Wait r)$ is 
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
 
-\emph{Proof}: (Scott Staley)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
