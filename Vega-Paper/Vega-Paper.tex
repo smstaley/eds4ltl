@@ -1449,6 +1449,7 @@ Exercise for the student.\\
 
 Expansion of $\Event$, like expansion of $\Until$, has two disjuncts.
 The first describes the current state and the second contains the operation in the next state.
+The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow directly from expansion of $\Event$.
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
@@ -1471,38 +1472,6 @@ The first describes the current state and the second contains the operation in t
 \opt{student}{
 Exercise for the student.\\
 }
-
-The following two absorption theorems do not seem to appear in the temporal logic literature.
-\begin{equation}\label{E:absOrIntoEvent}
-\textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \lor \Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $p \lor p \lor \Next\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$}\\[\lgap]
-  \> \>   $p \lor \Next\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $\Event p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:absEventIntoAnd}
-\textbf{Absorption of $\Event$ into $\land$:}\quad \Event p \land p \equiv p
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event p \land p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$}\\[\lgap]
-  \> \>   $(p \lor \Next\Event p) \land p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43a) Absorption, $p\land (p \lor q) \equiv p$}\\[\lgap]
-  \> \>   $p$ \quad \myqed
-\end{tabbing}
-
-The following six theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
@@ -1533,6 +1502,34 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $\foll$  \>  \Hint{(3.76a) Weakening the consequent, $p \impl p\lor q$}\\[\lgap]
   \> \>   $\Next p$ \quad \myqed
 \end{tabbing}
+
+The following two absorption theorems do not seem to appear in the temporal logic literature.
+\begin{equation}\label{E:absOrIntoEvent}
+\textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
+\end{equation}
+
+\emph{Proof}: (Ravi Mohan)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \lor \Event p \equiv \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.57) Definition of Implication, $p\impl q \equivs p\lor q \equivs q$}\\[\lgap]
+  \> \>   $p\impl \Event p$\\[\lgap]
+  \> which is (\ref{E:impEvent}) Weakening of $\Event$. \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:absEventIntoAnd}
+\textbf{Absorption of $\Event$ into $\land$:}\quad \Event p \land p \equiv p
+\end{equation}
+
+\emph{Proof}: (Ravi Mohan)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event p \land p \equiv p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $p\impl \Event p$\\[\lgap]
+  \> which is (\ref{E:impEvent}) Weakening of $\Event$. \quad \myqed
+\end{tabbing}
+
+The following six theorems for $\Event$ are common to all temporal logic systems.
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
 \end{equation}
