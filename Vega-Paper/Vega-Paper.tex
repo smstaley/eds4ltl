@@ -3719,13 +3719,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\neg\Always p\land p \Wait q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:waitEntailment}) $\Wait$ implication and (4.3) Monotonicity of $\land$} \\[\lgap]
-\> \> $\neg\Always p\land (\Always p \lor \Event q)$\\[\lgap]
-\> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-\> \> $\neg\Always p\land \Event q$\\[\lgap]
-\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-\> \> $\Event q$ \quad \myqed
+\> \> $\neg\Always p\land p \Wait q \impl \Event q$\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
+\> \> $p\Wait q \impl (\neg\Always p\impl \Event q)$\\[\lgap]
+\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+\> \> $p\Wait q \impl (\Always p\lor \Event q)$\\[\lgap]
+\> which is (\ref{E:waitEntailment}) $\Wait$ implication \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilEntailEvent}
 \Event q\impl \neg\Always p\lor p \Until q
@@ -3734,13 +3733,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\neg\Always p\lor p \Until q$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \> $\neg\Always p\lor (\Always p\land \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\neg p \land q) \equiv p \lor q$}\\[\lgap]
-\> \> $\neg\Always p\lor \Event q$\\[\lgap]
-\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \> $\Event q$ \quad \myqed
+\> \> $\Event q\impl \neg\Always p\lor p \Until q$\\[\lgap]
+\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+\> \> $\Event q\impl (\Always p\impl p \Until q)$\\[\lgap]
+\> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
+\> \> $\Event q\land \Always p\impl p \Until q$\\[\lgap]
+\> which is (\ref{E:axiomUntilImpl}) $\Until$ implication \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:rightMonoUntil}
 \textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
