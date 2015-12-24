@@ -1336,37 +1336,29 @@ appear in the temporal logic literature.
   \> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $q$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:untilAndOr}
-\textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q \land (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $(q \lor (p \land \Next(p \Until q))) \land (p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
-  \> \>   $q \lor (p \land p \land \Next(p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \Until q$ \quad \myqed
-\end{tabbing}
 \begin{equation}\label{E:untilOrAnd}
 \textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q \lor (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q)) \lor (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \Until q$ \quad \myqed
+  \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
+  \> \>   $p \Until q \impl p \lor q$\\[\lgap]
+  \> which is (\ref{E:untilImpOr}) \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:untilAndOr}
+\textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
+\end{equation}
+
+\emph{Proof}: (Ravi Mohan)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until q \land (p \lor q) \equiv p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $p \Until q \impl p \lor q$\\[\lgap]
+  \> which is (\ref{E:untilImpOr}) \quad \myqed
 \end{tabbing}
 
 \subsection{Eventually}\label{section-event}
