@@ -998,7 +998,7 @@ Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
   \> \>   $\Next p \equiv \neg\Next\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Next\neg p, \Next p$} \\[\lgap]
   \> \>   $\neg\Next p \equiv \Next\neg p$ \\[\lgap]
-  \> which is (\ref{E:selfDual}), Self-dual. \quad \myqed
+  \> which is (\ref{E:selfDual}) Self-dual. \quad \myqed
 \end{tabbing}
 
 Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
@@ -1346,7 +1346,7 @@ appear in the temporal logic literature.
   \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
   \> \>   $p \Until q \impl p \lor q$\\[\lgap]
-  \> which is (\ref{E:untilImpOr}) \quad \myqed
+  \> which is (\ref{E:untilImpOr}). \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilAndOr}
 \textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
@@ -1358,7 +1358,7 @@ appear in the temporal logic literature.
   \> \>   $p \Until q \land (p \lor q) \equiv p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $p \Until q \impl p \lor q$\\[\lgap]
-  \> which is (\ref{E:untilImpOr}) \quad \myqed
+  \> which is (\ref{E:untilImpOr}). \quad \myqed
 \end{tabbing}
 
 \subsection{Eventually}\label{section-event}
@@ -2951,6 +2951,8 @@ Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \te
 The next four distributive theorems for the \textit{wait} operator correspond to, and are proved from,
 the distributive axioms for the \textit{until} operator
 (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), and (\ref{E:untilAndEquiv}).
+The proof of (\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$ is an example of one benefit of $\mathcal{E}$, with its emphasis on equality, over $\mathcal{H}$, with its emphasis on implication and modus ponens.
+Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), we had an earlier proof based on mutual implication that required 20 steps.
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
@@ -3007,57 +3009,78 @@ the distributive axioms for the \textit{until} operator
 \textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
 
-\emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Wait r \land q \Wait r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-  \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
-  \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p\land q) \Until r$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always (p\land q) \lor (p\land q) \Until r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-  \> \>   $(p\land q) \Wait r$
+\> \>$p \Wait r \land q \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \>$\neg\neg(p \Wait r \land q \Wait r)$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$} \\[\lgap]
+\> \>$\neg(\neg(p \Wait r) \lor \neg(q \Wait r))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$, twice} \\[\lgap]
+\> \>$\neg(\neg r \Until (\neg p \land \neg r) \lor \neg r \Until (\neg q \land \neg r))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left Distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \>$\neg(\neg r \Until ((\neg p \land \neg r)\lor (\neg q \land \neg r))$\\[\lgap]
+\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+\> \>$\neg(\neg r \Until (\neg r\land(\neg p\lor \neg q)))$\\[\lgap]
+\> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$} \\[\lgap]
+\> \>$\neg(\neg r \Until (\neg r\land\neg (p\land q)))$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> \>$\neg\neg((p\land q)\Wait r)$\\[\lgap]
+\> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
+\> \>$(p\land q)\Wait r$ \quad \myqed
 \end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Wait r \land q \Wait r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-  \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (p \land r) \lor (p \land q) \Until (q \land r)$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until ((p \land r) \lor (q \land r))$\\[\lgap]
-  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (r \land (p \lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until (r \land (p \lor q)) \land q \Until (r \land (p \lor q)))$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r \land p \Until (p \lor q) \land q \Until r \land q \Until (p \lor q))$\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p \land q \impl p$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r\land q\Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Until r$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$} \\[\lgap]
-  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Wait r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
-  \> \>   $\Always (p \land q) \lor (p \land q) \Wait r$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity and  (4.2) Monotonicity of $\lor$} \\[\lgap]
-  \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
-  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
-  \> \>   $(p \land q) \Wait r$ \quad \myqed
-\end{tabbing}
+%\emph{Proof}: The proof is by (4.7) Mutual implication.
+%The proof in the first direction follows.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $p \Wait r \land q \Wait r$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+%  \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
+%  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
+%  \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p\land q) \Until r$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+%  \> \>   $\Always (p\land q) \lor (p\land q) \Until r$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+%  \> \>   $(p\land q) \Wait r$
+%\end{tabbing}
+%The proof in the second direction follows.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $p \Wait r \land q \Wait r$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+%  \> \>   $(\Always p\lor p \Until r) \land (\Always q\lor q \Until r)$\\[\lgap]
+%  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (\Always p \land q\Until r) \lor (\Always q\land p \Until r)$\\[\lgap]
+%  \> $\impl$ \> \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (p \land r) \lor (p \land q) \Until (q \land r)$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until ((p \land r) \lor (q \land r))$\\[\lgap]
+%  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \land q) \Until (r \land (p \lor q))$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until (r \land (p \lor q)) \land q \Until (r \land (p \lor q)))$\\[\lgap]
+%  \> $\impl$ \> \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$, twice and (4.2) Monotonicity of $\lor$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r \land p \Until (p \lor q) \land q \Until r \land q \Until (p \lor q))$\\[\lgap]
+%  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p \land q \impl p$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r) \lor (p \Until r\land q\Until r)$\\[\lgap]
+%  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \Until r\land q\Until r)$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Until r$\\[\lgap]
+%  \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$} \\[\lgap]
+%  \> \>   $(\Always p\land \Always q) \lor (p \land q) \Wait r$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
+%  \> \>   $\Always (p \land q) \lor (p \land q) \Wait r$\\[\lgap]
+%  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity and  (4.2) Monotonicity of $\lor$} \\[\lgap]
+%  \> \>   $((p \land q) \Wait r) \lor (p \land q) \Wait r$\\[\lgap]
+%  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
+%  \> \>   $(p \land q) \Wait r$ \quad \myqed
+%\end{tabbing}
 \begin{equation}\label{E:rightWaitImplDist}
 \textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
 \end{equation}
@@ -3724,7 +3747,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $p\Wait q \impl (\neg\Always p\impl \Event q)$\\[\lgap]
 \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
 \> \> $p\Wait q \impl (\Always p\lor \Event q)$\\[\lgap]
-\> which is (\ref{E:waitEntailment}) $\Wait$ implication \quad \myqed
+\> which is (\ref{E:waitEntailment}) $\Wait$ implication. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilEntailEvent}
 \Event q\impl \neg\Always p\lor p \Until q
@@ -3738,7 +3761,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $\Event q\impl (\Always p\impl p \Until q)$\\[\lgap]
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
 \> \> $\Event q\land \Always p\impl p \Until q$\\[\lgap]
-\> which is (\ref{E:axiomUntilImpl}) $\Until$ implication \quad \myqed
+\> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:rightMonoUntil}
 \textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
