@@ -1179,38 +1179,14 @@ This paper follows Schneider \cite{Schn}, which refers to them as absorption pro
 \textbf{Axiom, Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
-Theorem (\ref{E:untilExcludedMiddle}) is the \textit{until} version of excluded middle.
-Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
 Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
 axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
-\begin{equation}\label{E:untilExcludedMiddle}
-\Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Until q \lor p\Until \neg q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionUntil}) Expansion, twice} \\[\lgap]
-\> \> $q\lor (p\land \Next (p\Until q))\lor \neg q \lor (p\land \Next (p\Until \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
-\> \> $true \lor (p\land \Next (p\Until q)) \lor (p\land \Next (p\Until \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
-\> \> $true$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:idemUntil}
-\textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor (p \land \Next(p \Until p))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
-  \> \>   $p$ \quad \myqed
-\end{tabbing}
+Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
+Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
+possibilities of constants $true$ and $false$ on either side of $\Until$.
+None of these three theorems seem to appear in the temporal logic literature.
+The fourth possibility with $true$ as the left argument is the basis of the definition of the \textit{eventually}
+operator $\Event$ in Section \ref{section-event}.
 \begin{equation}\label{E:zeroUntil}
 \textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
 \end{equation}
@@ -1226,17 +1202,9 @@ axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
   \> \>   $true$ \quad \myqed
 \end{tabbing}
 }
-
 \opt{student}{
 Exercise for the student.\\
 }
-
-Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
-Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
-possibilities of constants $true$ and $false$ on either side of $\Until$.
-None of these three theorems seem to appear in the temporal logic literature.
-The fourth possibility with $true$ as the left argument is the basis of the definition of the \textit{eventually}
-operator $\Event$ in Section \ref{section-event}.
 \begin{equation}\label{E:leftIdUntil}
 \textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
 \end{equation}
@@ -1254,13 +1222,42 @@ operator $\Event$ in Section \ref{section-event}.
   \> \>   $q$ \quad \myqed
 \end{tabbing}
 }
-
 \opt{student}{
 Exercise for the student.\\
 }
 
+Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
+Theorem (\ref{E:untilExcludedMiddle}) is the \textit{until} version of excluded middle.
 Theorem (\ref{E:untilImpOr}) is interesting because it relates the temporal expression on the left hand side
 to the propositional expression on the right hand side.
+\begin{equation}\label{E:idemUntil}
+\textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $p \lor (p \land \Next(p \Until p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
+  \> \>   $p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:untilExcludedMiddle}
+\Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
+\end{equation}
+
+\emph{Proof}: (Ravi Mohan)
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until q \lor p\Until \neg q$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+\> \> $p \Until (q \lor \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
+\> \> $p \Until true$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
+\> \> $true$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
