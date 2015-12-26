@@ -390,6 +390,12 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
+\begin{equation}\label{E:rightUntilImplDist}
+\textbf{Right distributivity of $\Until$ over $\impl$:}\quad (p \impl q) \Until r\impl (p \Until r \impl q \Until r)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:zeroUntil}
 \textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
 \end{equation}
@@ -875,6 +881,12 @@ p\Until q\impl p\Wait q
 
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:alwaysWaitImpl}
+\textbf{$\Wait\Always$ Implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
 \end{equation}
 
 \spacer

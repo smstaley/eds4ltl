@@ -1178,6 +1178,30 @@ This paper follows Schneider \cite{Schn}, which refers to them as absorption pro
 \begin{equation}\label{E:untilIdemR}
 \textbf{Axiom, Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
+\begin{equation}\label{E:rightUntilImplDist}
+\textbf{Right distributivity of $\Until$ over $\impl$:}\quad (p \impl q) \Until r\impl (p \Until r \impl q \Until r)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \impl q) \Until r\impl (p \Until r \impl q \Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $(p \impl q) \Until r\land p \Until r \impl q \Until r$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \impl q) \Until r\land p \Until r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+  \> \>   $(p\land (p\impl q)) \Until r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
+  \> \>   $(p\land q) \Until r$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$} \\[\lgap]
+  \> \>   $p\Until r\land q\Until r$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $q\Until r$ \quad \myqed
+\end{tabbing}
 
 Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
 axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
@@ -2090,7 +2114,7 @@ Exercise for the student.\\
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
-\emph{Proof}: (Scott Staley, Ravi Mohan)
+\emph{Proof}: (Ravi Mohan)
 \opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2855,10 +2879,30 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> \>   $(p \land q) \Wait (p \land r)$ \quad \myqed
 \end{tabbing}
 
+Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ Implication.
 Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
 for the \textit{until} operator.
 The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
 the \textit{eventually} operator, which is existential, is in the consequent of the implication in Eventuality.
+\begin{equation}\label{E:alwaysWaitImpl}
+\textbf{$\Wait\Always$ Implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always (p \Wait q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always (\Always p\lor p \Until q)$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$} \\[\lgap]
+\> \> $\Always\Always p\lor \Always(p \Until q)$\\[\lgap]
+\> $=$ \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+\> \> $\Always p\lor \Always(p \Until q)$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
+\> \> $\Always p\lor p \Until \Always q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ with $q := \Always q$} \\[\lgap]
+\> \> $p \Wait \Always q$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:alwaysImpWait}
 \textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
