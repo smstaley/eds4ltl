@@ -378,14 +378,14 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
-\begin{equation}\label{E:untilIdem}
-\textbf{Axiom, Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
+\begin{equation}\label{E:leftAssocUntil}
+\textbf{Axiom, Left associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:untilIdemR}
-\textbf{Axiom, Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
+\begin{equation}\label{E:rightAssocUntil}
+\textbf{Axiom, Right associativity of $\Until$:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
 \end{equation}
 
 \spacer
@@ -458,6 +458,18 @@ p \Until q \impl p \lor q
 
 \begin{equation}\label{E:untilAndOr}
 \textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdem}
+\textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilIdemR}
+\textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
 
 \newpage
@@ -1203,14 +1215,14 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
-\begin{equation}\label{E:waitImpAbsL}
-\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r \quad [\textit{Not yet proved.}]
+\begin{equation}\label{E:leftAssocWait}
+\textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
 
 \spacer
 
-\begin{equation}\label{E:waitOrderingThree}
-\textbf{Ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r \quad [\textit{Not yet proved.}]
+\begin{equation}\label{E:rightAssocWait}
+\textbf{Right associativity of $\Wait$:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 
 \spacer
