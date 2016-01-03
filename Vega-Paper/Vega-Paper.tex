@@ -1301,7 +1301,7 @@ p \Until q \impl p \lor q
 Exercise for the student.\\
 }
 \begin{equation}\label{E:untilInsertion}
-\textbf{Insertion:}\quad q \impl p \Until q
+\textbf{$\Until$ Insertion:}\quad q \impl p \Until q
 \end{equation}
 
 \emph{Proof}:
@@ -1394,7 +1394,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until (p \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) Insertion, with $q:=p\Until q$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=p\Until q$} \\[\lgap]
 \> \> $p \Until q$\\
 \end{tabbing}
 The proof in the second direction follows.
@@ -1713,7 +1713,7 @@ The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) Insertion, with $q:=\Always p$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $p \Until \Always p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:axiomUntilImpl}
@@ -3450,7 +3450,7 @@ p \Wait q \impl p \lor q
 Insertion for the \textit{wait} operator corresponds to
 (\ref{E:untilInsertion}) Insertion for the \textit{until} operator.
 \begin{equation}\label{E:waitInsertion}
-\textbf{Insertion:}\quad q \impl p \Wait q
+\textbf{$\Wait$ Insertion:}\quad q \impl p \Wait q
 \end{equation}
 
 \emph{Proof}:

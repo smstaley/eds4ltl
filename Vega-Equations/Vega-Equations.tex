@@ -9,6 +9,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
+%\usepackage[plain]{optional}
+\usepackage[inventory]{optional}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -291,6 +293,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
+\opt{inventory}{K27\\}
 
 \firstspacer
 
@@ -423,12 +426,14 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
+\opt{inventory}{M205\\}
 
 \spacer
 
 \begin{equation}\label{E:untilInsertion}
-\textbf{Insertion:}\quad q \impl p \Until q
+\textbf{$\Until$ Insertion:}\quad q \impl p \Until q
 \end{equation}
+\opt{inventory}{M205\\}
 
 \spacer
 
@@ -515,6 +520,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
+\opt{inventory}{M205\\}
 
 \spacer
 
@@ -611,6 +617,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
+\opt{inventory}{K27\\}
 
 \spacer
 
@@ -689,6 +696,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
+\opt{inventory}{S61, M205\\}
 
 \spacer
 
@@ -791,12 +799,14 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
+\opt{inventory}{S61\\}
 
 \subsection*{Proof metatheorems}
 
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
 \end{equation}
+\opt{inventory}{S61 (generalization)\\}
 
 \firstspacer
 
@@ -1044,6 +1054,7 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
+\opt{inventory}{M205\\}
 
 \spacer
 
@@ -1054,8 +1065,9 @@ p \Wait q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:waitInsertion}
-\textbf{Insertion:}\quad q \impl p \Wait q
+\textbf{$\Wait$ Insertion:}\quad q \impl p \Wait q
 \end{equation}
+\opt{inventory}{M205\\}
 
 \newpage
 
