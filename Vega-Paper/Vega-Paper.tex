@@ -3295,9 +3295,7 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $\neg p \Until p\lor q\Until p$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:ruleUntil}) Rule of $\Until$} \\[\lgap]
 \> \> $\Event p\lor q\Until p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
-\> \> $\Event p\lor (q\Wait p\land \Event p)$\\[\lgap]
-\> $=$ \> \Hint{(3.43b) Absorption $p\lor (p\land q)\equiv p$} \\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $\Event p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:conRuleWait}
@@ -3490,46 +3488,37 @@ respectively.
 \textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Wait q\lor q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
-\> \> $q\lor (p\land \Next (p\Wait q)) \lor q$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
-\> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
-\> \> $p\Wait q$ \quad \myqed
+\> \> $p\Wait q\lor q\equiv p\Wait q$\\[\lgap]
+\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
+\> \> $q\impl p\Wait q$\\[\lgap]
+\> which is (\ref{E:waitInsertion}) $\Wait$ Insertion. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitAndQ}
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Wait q\land q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
-\> \> $(q\lor (p\land \Next (p\Wait q))) \land q$\\[\lgap]
-\> $=$ \> \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$} \\[\lgap]
-\> \> $q$ \quad \myqed
+\> \> $p\Wait q\land q\equiv q$\\[\lgap]
+\> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+\> \> $q\impl p\Wait q$\\[\lgap]
+\> which is (\ref{E:waitInsertion}) $\Wait$ Insertion. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitAndOr}
 \textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p\Wait q\land (p\lor q)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
-\> \> $(q\lor (p\land \Next (p\Wait q))) \land (p\lor q)$\\[\lgap]
-\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$} \\[\lgap]
-\> \> $q\lor (p\land \Next (p\Wait q) \land p)$\\[\lgap]
-\> $=$ \> \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$} \\[\lgap]
-\> \> $q\lor (p\land \Next (p\Wait q))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
-\> \> $p\Wait q$ \quad \myqed
+\> \> $p\Wait q\land (p\lor q) \equiv p\Wait q$\\[\lgap]
+\> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+\> \> $p\Wait q\impl p\lor q$\\[\lgap]
+\> which is (\ref{E:waitToOr}). \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitOrAnd}
 \textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
