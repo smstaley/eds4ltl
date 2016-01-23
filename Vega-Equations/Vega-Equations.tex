@@ -293,14 +293,14 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
-\opt{inventory}{K27, M206(FU3), M208\\}
+\opt{inventory}{K27, M206(FU3), M208, S64(3.21a)\\}
 
 \firstspacer
 
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
-\opt{inventory}{M209, M217(FX2)\\}
+\opt{inventory}{M209, M217(FX2), S64(3.21b)\\}
 
 \spacer
 
@@ -313,14 +313,14 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
-\opt{inventory}{M208, M264(T2)\\}
+\opt{inventory}{M208, M264(T2), S65(3.22b)\\}
 
 \spacer
 
 \begin{equation}\label{E:distNextAnd}
 \textbf{Distributivity of $\Next$ over $\land$:}\quad \Next (p \land q) \equiv \Next p \land \Next q
 \end{equation}
-\opt{inventory}{M208, M264(T1)\\}
+\opt{inventory}{M208, M264(T1), S65(3.22a)\\}
 
 \spacer
 
@@ -524,14 +524,14 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
-\opt{inventory}{M206(FE2), M264(T13)\\}
+\opt{inventory}{M206(FE2), M264(T13), S65(3.26)\\}
 
 \spacer
 
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
-\opt{inventory}{M205(FR6), M264(T10)\\}
+\opt{inventory}{M205(FR6), M264(T10), S63(3.16c)\\}
 
 \spacer
 
@@ -556,27 +556,28 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
 \end{equation}
-\opt{inventory}{M207(FI2), M264(T11)\\}
+\opt{inventory}{M207(FI2), M264(T11), S63(3.18b)\\}
 
 \spacer
 
 \begin{equation}\label{E:dNextEvent}
 \textbf{Exchange of $\Next$ and $\Event$:}\quad \Next\Event p \equiv \Event\Next p
 \end{equation}
-\opt{inventory}{M208\\}
+\opt{inventory}{M208, S65(3.22d)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventOr}
 \textbf{Distributivity of $\Event$ over $\lor$:}\quad \Event(p \lor q) \equiv \Event p \lor \Event q
 \end{equation}
-\opt{inventory}{M210(FD2), M264(T12)\\}
+\opt{inventory}{M210(FD2), M264(T12), S63(3.17b)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \impl \Event p \land \Event q
 \end{equation}
+\opt{inventory}{S63(3.17a)\\}
 
 \subsection*{Always $\quad\Always$}
 
@@ -590,7 +591,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:induction}
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
-\opt{inventory}{M217(FX5)\\}
+\opt{inventory}{M217(FX5), S64(3.21e)\\}
 
 \spacer
 
@@ -621,27 +622,28 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
+\opt{inventory}{S63(3.16e)\\}
 
 \spacer
 
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \neg\Always\neg p
 \end{equation}
-\opt{inventory}{M199, M217\\}
+\opt{inventory}{M199, M217, S62(3.15)\\}
 
 \spacer
 
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
-\opt{inventory}{K27, M206(FU1)\\}
+\opt{inventory}{K27, M206(FU1), S63(3.16b)\\}
 
 \spacer
 
 \begin{equation}\label{E:dualEvent}
 \textbf{Dual of $\Event$:}\quad \neg\Event p \equiv \Always\neg p
 \end{equation}
-\opt{inventory}{M206(FU1)\\}
+\opt{inventory}{M206(FU1), S63(3.16a)\\}
 
 \spacer
 
@@ -660,7 +662,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
-\opt{inventory}{M206(FE1), M264(T3)\\}
+\opt{inventory}{M206(FE1), M264(T3), S65(3.25)\\}
 
 \spacer
 
@@ -691,14 +693,14 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
-\opt{inventory}{M207(FI1), M264(T7)\\}
+\opt{inventory}{M207(FI1), M264(T7), S63(3.18a)\\}
 
 \newpage
 
 \begin{equation}\label{E:dNextAlways}
 \textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
 \end{equation}
-\opt{inventory}{M208\\}
+\opt{inventory}{M208, S65(3.22c)\\}
 
 \spacer
 
@@ -711,33 +713,35 @@ p \impl \Always p \equiv p \impl \Next\Always p
 \begin{equation}\label{E:pSwitches}
 p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \end{equation}
+\opt{inventory}{S65(3.22e)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
-\opt{inventory}{S61, M205, M217(FX0), M264(T4)\\}
+\opt{inventory}{M205, M217(FX0), M264(T4), S61(3.10a)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysE}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Event p
 \end{equation}
+\opt{inventory}{S63(3.16d)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysN}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next p
 \end{equation}
-\opt{inventory}{M264(T6)\\}
+\opt{inventory}{M264(T6), S64(3.21c)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysNA}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next\Always p
 \end{equation}
-\opt{inventory}{M217(FX4), M264(T5)\\}
+\opt{inventory}{M217(FX4), M264(T5), S64(3.21d)\\}
 
 \spacer
 
@@ -750,6 +754,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:alwaysAndEvent}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
+\opt{inventory}{S63(3.16h)\\}
 
 \spacer
 
@@ -780,13 +785,14 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distAlwaysAnd}
 \textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
-\opt{inventory}{M210(FD1), M264(T9)\\}
+\opt{inventory}{M210(FD1), M264(T9), S62(3.12a)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysOr}
 \textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \impl \Always (p \lor q)
 \end{equation}
+\opt{inventory}{S62(3.12b)\\}
 
 \spacer
 
@@ -799,6 +805,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:eventImpAlways}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
 \end{equation}
+\opt{inventory}{S63(3.16g)\\}
 
 \spacer
 
@@ -811,26 +818,28 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
+\opt{inventory}{S65(3.22f)\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
+\opt{inventory}{S63(3.16f)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
-\opt{inventory}{S61, M217(FX3)\\}
+\opt{inventory}{M217(FX3), S61(3.10b)\\}
 
 \subsection*{Proof metatheorems}
 
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
 \end{equation}
-\opt{inventory}{S61 (Generalization), M222(Rule GEN), M223(Rule SPEC)\\}
+\opt{inventory}{M222(Rule GEN), M223(Rule SPEC), S61(3.11 Generalization)\\}
 
 \firstspacer
 
@@ -851,40 +860,42 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
+\opt{inventory}{S63(3.17c)\\}
 
 \firstspacer
 
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
+\opt{inventory}{S63(3.17f)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
-\opt{inventory}{M211(FD9)\\}
+\opt{inventory}{M211(FD9), S63(3.17d)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
-\opt{inventory}{M211(FD10)\\}
+\opt{inventory}{M211(FD10), S63(3.17e)\\}
 
 \spacer
 
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
-\opt{inventory}{M208(FA1)\\}
+\opt{inventory}{M208(FA1), S63(3.18d)\\}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
-\opt{inventory}{M208(FA2)\\}
+\opt{inventory}{M208(FA2), S63(3.18c)\\}
 
 \spacer
 
@@ -939,6 +950,7 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
 \end{equation}
+\opt{inventory}{S66(3.33a)\\}
 
 \spacer
 
@@ -951,21 +963,21 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:alwaysImpWait}
 \textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
-\opt{inventory}{M217(FX7)\\}
+\opt{inventory}{M217(FX7), S65(3.27a)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
-\opt{inventory}{M208\\}
+\opt{inventory}{M208, S66(3.33b)\\}
 
 \spacer
 
 \begin{equation}\label{E:expansionWait}
 \textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
-\opt{inventory}{M206(FE4), M217(FX6)\\}
+\opt{inventory}{M206(FE4), M217(FX6), S65(3.27b)\\}
 
 \spacer
 
@@ -984,32 +996,35 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
-\opt{inventory}{M210(FD5), M266(T32)\\}
+\opt{inventory}{M210(FD5), M266(T32), S66(3.33d)\\}
 
 \spacer
 
 \begin{equation}\label{E:rightWaitOrDist}
 \textbf{Right distributivity of $\Wait$ over $\lor$:}\quad p \Wait r \lor q \Wait r \impl (p \lor q) \Wait r
 \end{equation}
+\opt{inventory}{S66(3.33f)\\}
 
 \spacer
 
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
 \end{equation}
+\opt{inventory}{S66(3.33e)\\}
 
 \spacer
 
 \begin{equation}\label{E:rightWaitAndDist}
 \textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
-\opt{inventory}{M210(FD6), M266(T31)\\}
+\opt{inventory}{M210(FD6), M266(T31), S66(3.33c)\\}
 
 \spacer
 
 \begin{equation}\label{E:rightWaitImplDist}
 \textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
 \end{equation}
+\opt{inventory}{S66(3.33g)\\}
 
 \spacer
 
@@ -1108,7 +1123,7 @@ p \Wait q \impl p \lor q
 \begin{equation}\label{E:waitInsertion}
 \textbf{$\Wait$ Insertion:}\quad q \impl p \Wait q
 \end{equation}
-\opt{inventory}{M205(FR6)\\}
+\opt{inventory}{M205(FR6), S66(3.28)\\}
 
 \newpage
 
@@ -1145,33 +1160,35 @@ p \Wait q \impl p \lor q
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
-\opt{inventory}{M207(FI3), M266(T34)\\}
+\opt{inventory}{M207(FI3), M266(T34), S66(3.32b)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitAbsR}
 \textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
 \end{equation}
-\opt{inventory}{M207(FI4), M266(T33)\\}
+\opt{inventory}{M207(FI4), M266(T33), S66(3.32a)\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysAsWait}
 \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
 \end{equation}
-\opt{inventory}{M199\\}
+\opt{inventory}{M199, S66(3.29)\\}
 
 \spacer
 
 \begin{equation}\label{E:eventAsWait}
 \textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
 \end{equation}
+\opt{inventory}{S66(3.30)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitEntailment}
 \textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
 \end{equation}
+\opt{inventory}{S66(3.31a)\\}
 
 \spacer
 
@@ -1224,6 +1241,7 @@ p \Wait q \impl p \lor q
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}
+\opt{inventory}{S66(3.31b)\\}
 
 \spacer
 
@@ -1236,6 +1254,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{equation}\label{E:waitEntailEvent}
 \neg\Always p\land p \Wait q \impl \Event q
 \end{equation}
+\opt{inventory}{S66(3.31c)\\}
 
 \spacer
 
@@ -1254,6 +1273,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
+\opt{inventory}{S66(3.35a)\\}
 
 \spacer
 
@@ -1266,39 +1286,41 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{equation}\label{E:rightMonoWait}
 \textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)
 \end{equation}
+\opt{inventory}{S66(3.35b)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
-\opt{inventory}{M266(T36)\\}
+\opt{inventory}{M266(T36), S66(3.32c)\\}
 
 \spacer
 
 \begin{equation}\label{E:leftAssocWait}
 \textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
-\opt{inventory}{M266(T37)\\}
+\opt{inventory}{M266(T37), S66(3.32d)\\}
 
 \spacer
 
 \begin{equation}\label{E:rightAssocWait}
 \textbf{Right associativity of $\Wait$:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
+\opt{inventory}{S66(3.34c)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
-\opt{inventory}{M266(T38)\\}
+\opt{inventory}{M266(T38), S66(3.34a)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitOrderingTwo}
 \textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
 \end{equation}
-\opt{inventory}{M266(T35), (A closer look here is needed.)\\}
+\opt{inventory}{M266(T35), (A closer look here is needed.), S66(3.34b)\\}
 
 \end{document}
