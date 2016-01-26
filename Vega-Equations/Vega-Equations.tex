@@ -293,14 +293,14 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
-\opt{inventory}{K27, M206(FU3), M208, S64(3.21a)\\}
+\opt{inventory}{M206(FU3), M208, S64(3.21a), K27(T1)\\}
 
 \firstspacer
 
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
-\opt{inventory}{M209, M217(FX2), S64(3.21b)\\}
+\opt{inventory}{M209, M217(FX2), S64(3.21b), K29(T14)\\}
 
 \spacer
 
@@ -313,21 +313,21 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
-\opt{inventory}{M208, M264(T2), S65(3.22b)\\}
+\opt{inventory}{M208, M264(T2), S65(3.22b), K29(T16)\\}
 
 \spacer
 
 \begin{equation}\label{E:distNextAnd}
 \textbf{Distributivity of $\Next$ over $\land$:}\quad \Next (p \land q) \equiv \Next p \land \Next q
 \end{equation}
-\opt{inventory}{M208, M264(T1), S65(3.22a)\\}
+\opt{inventory}{M208, M264(T1), S65(3.22a), K29(T15)\\}
 
 \spacer
 
 \begin{equation}\label{E:distNextEquiv}
 \textbf{Distributivity of $\Next$ over $\equiv$:}\quad \Next (p \equiv q) \equiv \Next p \equiv \Next q
 \end{equation}
-\opt{inventory}{M208\\}
+\opt{inventory}{M208, K29(T17)\\}
 
 \spacer
 
@@ -524,20 +524,21 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
-\opt{inventory}{M206(FE2), M264(T13), S65(3.26)\\}
+\opt{inventory}{M206(FE2), M264(T13), S65(3.26), K30(T29)\\}
 
 \spacer
 
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
-\opt{inventory}{M205(FR6), M264(T10), S63(3.16c)\\}
+\opt{inventory}{M205(FR6), M264(T10), S63(3.16c), K28(T5)\\}
 
 \spacer
 
 \begin{equation}\label{E:nextEvent}
 \textbf{Weakening of $\Event$:}\quad \Next p \impl \Event p
 \end{equation}
+\opt{inventory}{K28(T7)\\}
 
 \spacer
 
@@ -556,28 +557,28 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
 \end{equation}
-\opt{inventory}{M207(FI2), M264(T11), S63(3.18b)\\}
+\opt{inventory}{M207(FI2), M264(T11), S63(3.18b), K28(T11)\\}
 
 \spacer
 
 \begin{equation}\label{E:dNextEvent}
 \textbf{Exchange of $\Next$ and $\Event$:}\quad \Next\Event p \equiv \Event\Next p
 \end{equation}
-\opt{inventory}{M208, S65(3.22d)\\}
+\opt{inventory}{M208, S65(3.22d), K28(T13)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventOr}
 \textbf{Distributivity of $\Event$ over $\lor$:}\quad \Event(p \lor q) \equiv \Event p \lor \Event q
 \end{equation}
-\opt{inventory}{M210(FD2), M264(T12), S63(3.17b)\\}
+\opt{inventory}{M210(FD2), M264(T12), S63(3.17b), K29(T19)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventAnd}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \impl \Event p \land \Event q
 \end{equation}
-\opt{inventory}{S63(3.17a)\\}
+\opt{inventory}{S63(3.17a), K29(T25)\\}
 
 \subsection*{Always $\quad\Always$}
 
@@ -622,28 +623,28 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
-\opt{inventory}{S63(3.16e)\\}
+\opt{inventory}{S63(3.16e), K28(T9)\\}
 
 \spacer
 
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \neg\Always\neg p
 \end{equation}
-\opt{inventory}{M199, M217, S62(3.15)\\}
+\opt{inventory}{M199, M217, S62(3.15), K20\\}
 
 \spacer
 
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
-\opt{inventory}{K27, M206(FU1), S63(3.16b)\\}
+\opt{inventory}{M206(FU1), S63(3.16b), K27(T2)\\}
 
 \spacer
 
 \begin{equation}\label{E:dualEvent}
 \textbf{Dual of $\Event$:}\quad \neg\Event p \equiv \Always\neg p
 \end{equation}
-\opt{inventory}{M206(FU1), S63(3.16a)\\}
+\opt{inventory}{M206(FU1), S63(3.16a), K28(T3)\\}
 
 \spacer
 
@@ -662,7 +663,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
-\opt{inventory}{M206(FE1), M264(T3), S65(3.25)\\}
+\opt{inventory}{M206(FE1), M264(T3), S65(3.25), K30(T28)\\}
 
 \spacer
 
@@ -693,14 +694,14 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
-\opt{inventory}{M207(FI1), M264(T7), S63(3.18a)\\}
+\opt{inventory}{M207(FI1), M264(T7), S63(3.18a), K28(T10)\\}
 
 \newpage
 
 \begin{equation}\label{E:dNextAlways}
 \textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
 \end{equation}
-\opt{inventory}{M208, S65(3.22c)\\}
+\opt{inventory}{M208, S65(3.22c), K28(T12)\\}
 
 \spacer
 
@@ -720,21 +721,21 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:impAlways}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl p
 \end{equation}
-\opt{inventory}{M205, M217(FX0), M264(T4), S61(3.10a)\\}
+\opt{inventory}{M205, M217(FX0), M264(T4), S61(3.10a), K28(T4)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysE}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Event p
 \end{equation}
-\opt{inventory}{S63(3.16d)\\}
+\opt{inventory}{S63(3.16d), K28(T8)\\}
 
 \spacer
 
 \begin{equation}\label{E:impAlwaysN}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next p
 \end{equation}
-\opt{inventory}{M264(T6), S64(3.21c)\\}
+\opt{inventory}{M264(T6), S64(3.21c), K28(T6)\\}
 
 \spacer
 
@@ -785,20 +786,21 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distAlwaysAnd}
 \textbf{Distributivity of $\Always$ over $\land$:}\quad \Always (p \land q) \equiv \Always p \land \Always q
 \end{equation}
-\opt{inventory}{M210(FD1), M264(T9), S62(3.12a)\\}
+\opt{inventory}{M210(FD1), M264(T9), S62(3.12a), K29(T18)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysOr}
 \textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \impl \Always (p \lor q)
 \end{equation}
-\opt{inventory}{S62(3.12b)\\}
+\opt{inventory}{S62(3.12b), K29(T23)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
+\opt{inventory}{K32\\}
 
 \spacer
 
@@ -812,27 +814,28 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:eventPImplEventQ}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
+\opt{inventory}{K29(T24)\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
-\opt{inventory}{S65(3.22f)\\}
+\opt{inventory}{S65(3.22f), K30(T30)\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
-\opt{inventory}{S63(3.16f)\\}
+\opt{inventory}{S63(3.16f), K30(T31)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
-\opt{inventory}{M217(FX3), S61(3.10b)\\}
+\opt{inventory}{M217(FX3), S61(3.10b), K29(T22)\\}
 
 \subsection*{Proof metatheorems}
 
@@ -860,42 +863,42 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
-\opt{inventory}{S63(3.17c)\\}
+\opt{inventory}{S63(3.17c), K29(T26)\\}
 
 \firstspacer
 
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
-\opt{inventory}{S63(3.17f)\\}
+\opt{inventory}{S63(3.17f), K29(T27)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
-\opt{inventory}{M211(FD9), S63(3.17d)\\}
+\opt{inventory}{M211(FD9), S63(3.17d), K29(T20)\\}
 
 \spacer
 
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
-\opt{inventory}{M211(FD10), S63(3.17e)\\}
+\opt{inventory}{M211(FD10), S63(3.17e), K29(T21)\\}
 
 \spacer
 
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
-\opt{inventory}{M208(FA1), S63(3.18d)\\}
+\opt{inventory}{M208(FA1), S63(3.18d), K32(T37)\\}
 
 \spacer
 
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
-\opt{inventory}{M208(FA2), S63(3.18c)\\}
+\opt{inventory}{M208(FA2), S63(3.18c), K33(T38)\\}
 
 \spacer
 
