@@ -353,7 +353,7 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 \begin{equation}\label{E:expansionUntil}
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
-\opt{inventory}{M206(FE3)\\}
+\opt{inventory}{M206(FE3), K67(Tb4), K70(Tb13)\\}
 
 \spacer
 
@@ -506,6 +506,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
 \end{equation}
+\opt{inventory}{K71(unt2)\\}
 
 \spacer
 
@@ -842,7 +843,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
 \end{equation}
-\opt{inventory}{M222(Rule GEN), M223(Rule SPEC), S61(3.11 Generalization)\\}
+\opt{inventory}{M222(Rule GEN), M223(Rule SPEC), S61(3.11 Generalization), K59(L2.6.1)\\}
 
 \firstspacer
 
@@ -918,7 +919,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p\lor p \Until q
 \end{equation}
-\opt{inventory}{M206(FWS1)\\}
+\opt{inventory}{M206(FWS1), K67(Tb3)\\}
 
 \firstspacer
 
@@ -966,21 +967,21 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:alwaysImpWait}
 \textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
-\opt{inventory}{M217(FX7), S65(3.27a)\\}
+\opt{inventory}{M217(FX7), S65(3.27a), K71(unl2)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
-\opt{inventory}{M208, S66(3.33b)\\}
+\opt{inventory}{M208, S66(3.33b), K73(Tb19)\\}
 
 \spacer
 
 \begin{equation}\label{E:expansionWait}
 \textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
-\opt{inventory}{M206(FE4), M217(FX6), S65(3.27b)\\}
+\opt{inventory}{M206(FE4), M217(FX6), S65(3.27b), K70(Tb14)\\}
 
 \spacer
 
@@ -999,7 +1000,7 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
-\opt{inventory}{M210(FD5), M266(T32), S66(3.33d)\\}
+\opt{inventory}{M210(FD5), M266(T32), S66(3.33d), K73(Tb21)\\}
 
 \spacer
 
@@ -1013,14 +1014,14 @@ p\Until q\impl p\Wait q
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
 \end{equation}
-\opt{inventory}{S66(3.33e)\\}
+\opt{inventory}{S66(3.33e), K73(Tb22)\\}
 
 \spacer
 
 \begin{equation}\label{E:rightWaitAndDist}
 \textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
-\opt{inventory}{M210(FD6), M266(T31), S66(3.33c)\\}
+\opt{inventory}{M210(FD6), M266(T31), S66(3.33c), K73(Tb20)\\}
 
 \spacer
 
@@ -1163,21 +1164,21 @@ p \Wait q \impl p \lor q
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
-\opt{inventory}{M207(FI3), M266(T34), S66(3.32b)\\}
+\opt{inventory}{M207(FI3), M266(T34), S66(3.32b), K73(Tb23)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitAbsR}
 \textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
 \end{equation}
-\opt{inventory}{M207(FI4), M266(T33), S66(3.32a)\\}
+\opt{inventory}{M207(FI4), M266(T33), S66(3.32a), K73(Tb24)\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysAsWait}
 \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
 \end{equation}
-\opt{inventory}{M199, S66(3.29)\\}
+\opt{inventory}{M199, S66(3.29), K69(Tb10)\\}
 
 \spacer
 
