@@ -974,6 +974,13 @@ p\Until q\impl p\Wait q
 
 \spacer
 
+\begin{equation}\label{E:EventWaitequiv}
+\textbf{$\Wait\Event$ Equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
+\end{equation}
+\opt{inventory}{M287\\}
+
+\spacer
+
 \begin{equation}\label{E:alwaysWaitImpl}
 \textbf{$\Wait\Always$ Implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
 \end{equation}

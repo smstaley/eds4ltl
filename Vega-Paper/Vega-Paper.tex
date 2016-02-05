@@ -2962,6 +2962,22 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> \>   $(p \land q) \Wait (p \land r)$ \quad \myqed
 \end{tabbing}
 
+% sms begin
+\begin{equation}\label{E:EventWaitequiv}
+\textbf{$\Wait\Event$ Equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Wait \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p\lor p \Until \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$} \\[\lgap]
+\> \> $\Always p \lor \Event q$ \quad \myqed
+\end{tabbing}
+%sms end
+
 Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ Implication.
 Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
 for the \textit{until} operator.
