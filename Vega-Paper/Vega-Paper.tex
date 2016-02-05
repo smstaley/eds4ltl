@@ -1460,6 +1460,36 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
 
+%sms-begin
+It is also the case that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
+\begin{equation}\label{E:absUntilIntoEvent}
+\textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until \Event q \equiv \Event q
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
+\>\> $p \Until (true \Until q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) {Axiom, Left associativity of $\Until$, } with $q := true, r := q$} \\[\lgap]
+\> \> $(p \lor true) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) {Zero of $\lor$ :}\quad $p\lor true\equiv true$} \\[\lgap]
+\> \> $true \Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
+\> \> $\Event q$
+
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $ \Event q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) {$\Until$ Insertion:}$\quad q \impl p \Until q$, with $q := \Event q$} \\[\lgap]
+\> \> $p \Until \Event q$ \quad \myqed
+\end{tabbing}
+%sms-end
+
 $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
