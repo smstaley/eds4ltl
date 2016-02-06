@@ -1460,7 +1460,7 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
 
-%sms-begin
+% sms begin
 It is also the case that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
 \begin{equation}\label{E:absUntilIntoEvent}
 \textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until \Event q \equiv \Event q
@@ -1488,7 +1488,7 @@ The proof in the second direction follows.
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) {$\Until$ Insertion:}$\quad q \impl p \Until q$, with $q := \Event q$} \\[\lgap]
 \> \> $p \Until \Event q$ \quad \myqed
 \end{tabbing}
-%sms-end
+% sms end
 
 $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
@@ -2976,7 +2976,7 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
 \> $=$ \> \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$} \\[\lgap]
 \> \> $\Always p \lor \Event q$ \quad \myqed
 \end{tabbing}
-%sms end
+% sms end
 
 Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ Implication.
 Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
@@ -3482,6 +3482,7 @@ p \Wait q \impl p \lor q
 \> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$ \quad \myqed
 \end{tabbing}
+
 \begin{equation}\label{E:orToWait}
 \Always (p\lor q) \impl p \Wait q
 \end{equation}
@@ -3495,6 +3496,23 @@ p \Wait q \impl p \lor q
 \> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:notqimpliespToWait}
+\Always (\neg q \impl p) \impl p \Wait q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always (\neg q \impl p)$\\[\lgap]
+\> $=$ \> \Hint{(3.59) Implication, \quad $p\impl q \equivs \neg p \lor q$ and (3.24) Symmetry of $\lor$, \quad $p\lor q \equiv q\lor p$ } \\[\lgap]
+\> \> $\Always (p \lor q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$} \\[\lgap]
+\> \> $p \Wait q$ \quad \myqed
+\end{tabbing}
+
+% sms end
 
 Insertion for the \textit{wait} operator corresponds to
 (\ref{E:untilInsertion}) Insertion for the \textit{until} operator.
