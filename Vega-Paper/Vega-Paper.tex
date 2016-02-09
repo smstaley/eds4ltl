@@ -2312,8 +2312,86 @@ Exercise for the student.\\
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
   \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=\Always p \lor \Always q$. \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:framelawnext}
+\textbf{Frame Law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
+\end{equation}
+
+\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Next q \impl \Next (p \land q)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Next q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Next p \land \Next q $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
+  \> \>   $\Next (p \land q)$\quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:framelawEvent}
+\textbf{Frame Law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
+\end{equation}
+
+\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Event q \impl \Event (p \land q)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> which is (\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$. \quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:framelawAlways}
+\textbf{Frame Law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
+\end{equation}
+
+\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Always q \impl \Always (p \land q)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q \impl \Always (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \land q) \impl \Always (p \land q)$\\[\lgap]
+   \> which is (3.71) Reflexivity of $\impl$, $p\impl p$ with $p:=\Always (p \land q)$. \quad \myqed
+\end{tabbing}
+
+% sms end
+
+
+% sms begin
+\begin{equation}\label{E:distNextEquiv2}
+\textbf{Logical Equivalence Law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \equiv q) $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p:=(p \equiv q)$ }\\[\lgap]
+  \> \>   $\Next (p \equiv q) $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextEquiv}) Distributivity of $\Next$ over $\equiv$}\\[\lgap]
+  \> \>   $(\Next p \equiv  \Next q)$\quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:LELevent}
+\textbf{Logical Equivalence Law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
+\end{equation}
+
+\emph{Proof}: *** to be added after location decision ***
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \equiv q) $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p:=(p \equiv q)$ }\\[\lgap]
+  \> \>   $\Next (p \equiv q) $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextEquiv}) Distributivity of $\Next$ over $\equiv$}\\[\lgap]
+  \> \>   $(\Next p \equiv  \Next q)$\quad \myqed
+\end{tabbing}
+% sms end
+
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
+\textbf{Logical Equivalence Law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
 
 \emph{Proof}:
@@ -2437,7 +2515,7 @@ Exercise for the student.\\
   \> \>   $\Always (p \impl q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Distributivity of $\Always$ over $\equiv$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Logical Equivalence Law of $\Always$}\\[\lgap]
   \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
@@ -2445,6 +2523,8 @@ Exercise for the student.\\
   \> \>   $\Always p \impl \Always q$ \quad \myqed
 \end{tabbing}
 }
+
+
 \opt{student}{
 Exercise for the student.\\
 }
