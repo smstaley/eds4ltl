@@ -812,9 +812,46 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \opt{inventory}{S62(3.12b), K29(T23), E8, B242, B266(T14.5)\\}
 
 \spacer
+% sms begin
+\begin{equation}\label{E:framelawnext}
+\textbf{Frame Law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
+\end{equation}
+\opt{inventory}{K30(T32)\\}
+
+\spacer
+
+\begin{equation}\label{E:framelawEvent}
+\textbf{Frame Law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
+\end{equation}
+\opt{inventory}{K31(T34)\\}
+
+\spacer
+
+\begin{equation}\label{E:framelawAlways}
+\textbf{Frame Law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
+\end{equation}
+\opt{inventory}{K31(T33)\\}
+
+\spacer
+
+\begin{equation}\label{E:distNextEquiv2}
+\textbf{Logical Equivalence Law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\end{equation}
+\opt{inventory}{K32\\}
+
+\spacer
+
+\begin{equation}\label{E:LELevent}
+\textbf{Logical Equivalence Law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
+\end{equation}
+\opt{inventory}{K32\\}
+
+\spacer
+
+% sms end
 
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Distributivity of $\Always$ over $\equiv$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
+\textbf{Logical Equivalence Law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
 \opt{inventory}{K32\\}
 
