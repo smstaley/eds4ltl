@@ -2529,6 +2529,38 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
+% sms begin
+\begin{equation}\label{E:tempGenLaw}
+\textbf{Temporal Generalization Law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (\Always p \impl q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$, with $p:=\Always p$}\\[\lgap]
+  \> \>   $\Always \Always p \impl \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Always p \impl \Always q$ \quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:tempPartLaw}
+\textbf{Temporal Particularization Law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( p \impl \Event q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$, with $q:=\Event q$}\\[\lgap]
+  \> \>   $\Event p \impl \Event \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event p \impl \Event q$ \quad \myqed
+\end{tabbing}
+% sms end
+
 \begin{figure}[t]
 \centering
 \begin{tabular}{ c c c }
