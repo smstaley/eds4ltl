@@ -2383,10 +2383,17 @@ And now,
 
 % sms begin
 \begin{equation}\label{E:framelawAlways}
-\textbf{Frame Law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
+\textbf{Frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
 \end{equation}
 
-\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Always q \impl \Always (p \land q)$
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \land q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \land q)$
+\end{tabbing}
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Always q \impl \Always (p \land q)$\\[\lgap]
@@ -2400,7 +2407,7 @@ And now,
 
 % sms begin
 \begin{equation}\label{E:distNextEquiv2}
-\textbf{Logical Equivalence Law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
 
 \emph{Proof}:
@@ -2416,22 +2423,62 @@ And now,
 
 % sms begin
 \begin{equation}\label{E:LELevent}
-\textbf{Logical Equivalence Law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
+\textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
 \end{equation}
 
-\emph{Proof}: *** to be added after location decision ***
+\emph{Proof}: 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) $\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p:=(p \equiv q)$ }\\[\lgap]
-  \> \>   $\Next (p \equiv q) $\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distNextEquiv}) Distributivity of $\Next$ over $\equiv$}\\[\lgap]
-  \> \>   $(\Next p \equiv  \Next q)$\quad \myqed
+  \> \>   $\Always (p \equiv q) \impl (\Event p \equiv \Event q) $\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication, $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
+  \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)\land (\Event q \impl \Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+  \> \>   $(\Always (p \equiv q) \impl (\Event p \impl \Event q)) \land (\Always (p \equiv q) \impl (\Event q \impl \Event p))$
+  \end{tabbing}
+And now, proof of the first conjunct
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+ \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always (p \equiv q) \land \Event p \impl \Event q$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \equiv q) \land \Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event ((p \equiv q) \land p)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
+  \> \>   $\Event (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ }\\[\lgap]
+  \> \>   $\Event p \land \Event q $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event q$\quad \myqed
+\end{tabbing}
+And now, proof of the second conjunct
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+ \> \>   $\Always (p \equiv q) \impl (\Event q \impl \Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always (p \equiv q) \land \Event q \impl \Event p$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \equiv q) \land \Event q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event ((p \equiv q) \land q)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
+  \> \>   $\Event (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ }\\[\lgap]
+  \> \>   $\Event p \land \Event q $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event p$\quad \myqed
 \end{tabbing}
 % sms end
 
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Logical Equivalence Law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
+\textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
 
 \emph{Proof}:
@@ -2555,7 +2602,7 @@ Exercise for the student.\\
   \> \>   $\Always (p \impl q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always (p \land q \equiv p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Logical Equivalence Law of $\Always$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Logical equivalence law of $\Always$}\\[\lgap]
   \> \>   $\Always(p \land q) \equiv \Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always p \land \Always q \equiv \Always p$\\[\lgap]
@@ -2571,7 +2618,7 @@ Exercise for the student.\\
 
 % sms begin
 \begin{equation}\label{E:tempGenLaw}
-\textbf{Temporal Generalization Law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
+\textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
 
 \emph{Proof}:
@@ -2587,7 +2634,7 @@ Exercise for the student.\\
 
 % sms begin
 \begin{equation}\label{E:tempPartLaw}
-\textbf{Temporal Particularization Law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
+\textbf{Temporal particularization law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
 \end{equation}
 
 \emph{Proof}:
