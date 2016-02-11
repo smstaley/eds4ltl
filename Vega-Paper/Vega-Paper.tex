@@ -2344,13 +2344,19 @@ Exercise for the student.\\
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
   \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=\Always p \lor \Always q$. \quad \myqed
 \end{tabbing}
-
 % sms begin
 \begin{equation}\label{E:framelawnext}
-\textbf{Frame Law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
+\textbf{Frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
 \end{equation}
 
-\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Next q \impl \Next (p \land q)$
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Next q \impl \Next (p \land q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Next q \impl \Next (p \land q)$
+\end{tabbing}
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Next q $\\[\lgap]
@@ -2360,15 +2366,17 @@ Exercise for the student.\\
   \> \>   $\Next (p \land q)$\quad \myqed
 \end{tabbing}
 % sms end
-
 % sms begin
 \begin{equation}\label{E:framelawEvent}
-\textbf{Frame Law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
+\textbf{Frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
 \end{equation}
 
-\emph{Proof}: By (3.65) Shunting, prove the following equivalent expression: $\Always p \land \Event q \impl \Event (p \land q)$
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \land q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
   \> which is (\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$. \quad \myqed
 \end{tabbing}
 % sms end
@@ -3685,7 +3693,7 @@ p \Wait q \impl p \lor q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always (\neg q \impl p)$\\[\lgap]
-\> $=$ \> \Hint{(3.59) Implication, \quad $p\impl q \equivs \neg p \lor q$ and (3.24) Symmetry of $\lor$, \quad $p\lor q \equiv q\lor p$ } \\[\lgap]
+\> $=$ \> \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$ and (3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$ } \\[\lgap]
 \> \> $\Always (p \lor q)$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
