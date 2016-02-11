@@ -1817,7 +1817,7 @@ Exercise for the student.\\
 
 Whereas the \textit{next} operator $\Next$ is its own dual, the \textit{eventually} operator $\Event$
 and the \textit{always} operator $\Always$
-are mutually dual.
+are mutually dual, as are $\Event \Always$ and $\Always\Event$.
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
@@ -1843,6 +1843,38 @@ are mutually dual.
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg\Event p$ \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:dualEventAlways}
+\textbf{Dual of $\Event \Always$:}\quad \neg \Event\Always p \equiv \Always\Event \neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg \Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$, with $p:=\Always p$}\\[\lgap]
+  \> \>   $\Always \neg \Always p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always\Event \neg p$ \quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:dualAlwaysEvent}
+\textbf{Dual of $\Always \Event$:}\quad \neg \Always\Event p \equiv \Event \Always\neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg \Always\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$, with $p:=\Event p$}\\[\lgap]
+  \> \>   $\Event \neg \Event p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\Event\Always \neg p$ \quad \myqed
+\end{tabbing}
+% sms end
 
 Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of $\Always$, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
@@ -2740,6 +2772,10 @@ Exercise for the student.\\
 
 \subsection{Always, continued}\label{section-always-continued}
 
+% sms begin
+
+% sms end
+
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
 distribute over conjunction and disjunction.
 Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over conjunction only in one direction.
@@ -2934,6 +2970,37 @@ The proof in the second direction follows.
 Exercise for the student.\\
 }
 
+% sms begin
+\begin{equation}\label{E:absAlwaysEvent}
+\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event\Always\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$, with $p:=\Event p$}\\[\lgap]
+  \> \>   $\Event \Always \Event p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$ \quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:absEventAlways}
+\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event \Always \Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$, with $p:=\Always p$}\\[\lgap]
+  \> \>   $\Always \Event \Always p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Event \Always p$ \quad \myqed
+\end{tabbing}
+% sms end
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}

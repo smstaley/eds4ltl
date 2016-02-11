@@ -664,6 +664,22 @@ p \Until q \impl p \lor q
 
 \spacer
 
+% sms begin
+\begin{equation}\label{E:dualEventAlways}
+\textbf{Dual of $\Event \Always$:}\quad \neg \Event\Always p \equiv \Always\Event \neg p
+\end{equation}
+\opt{inventory}{E7\\}
+
+\spacer
+
+\begin{equation}\label{E:dualAlwaysEvent}
+\textbf{Dual of $\Always \Event$:}\quad \neg \Always\Event p \equiv \Event \Always\neg p
+\end{equation}
+\opt{inventory}{E7\\}
+
+\spacer
+% sms end
+
 \begin{equation}\label{E:alwaysTrue}
 \textbf{Truth of $\Always$:}\quad \Always true \equiv true
 \end{equation}
@@ -971,6 +987,21 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \opt{inventory}{M208(FA2), S63(3.18c), K33(T38), E8, B244, B268(T14.11a)\\}
 
 \spacer
+% sms begin
+\begin{equation}\label{E:absAlwaysEvent}
+\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+
+\begin{equation}\label{E:absEventAlways}
+\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+% sms end
 
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
