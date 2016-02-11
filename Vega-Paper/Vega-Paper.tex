@@ -2435,7 +2435,7 @@ And now,
   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
   \> \>   $(\Always (p \equiv q) \impl (\Event p \impl \Event q)) \land (\Always (p \equiv q) \impl (\Event q \impl \Event p))$
   \end{tabbing}
-And now, proof of the first conjunct
+And now, proof of the first conjunct follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
  \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)$\\[\lgap]
@@ -2455,7 +2455,7 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $\Event q$\quad \myqed
 \end{tabbing}
-And now, proof of the second conjunct
+And now, proof of the second conjunct follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
  \> \>   $\Always (p \equiv q) \impl (\Event q \impl \Event p)$\\[\lgap]
@@ -2828,7 +2828,51 @@ Exercise for the student.\\
 \subsection{Always, continued}\label{section-always-continued}
 
 % sms begin
+\begin{equation}\label{E:monoAlwaysEvent}
+\textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
+\end{equation}
 
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ is a theorem.}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl (\Event p \impl \Event q)$\\[\lgap]
+  \end{tabbing}
+  By (\ref{E:metaAlways}) Metatheorem $\Always$ the following is a theorem.
+  \begin{tabbing}
+  \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+ \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ 
+  and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p,q := \Event p, \Event q$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)$ \quad \myqed
+\end{tabbing}
+% sms end
+
+% sms begin
+\begin{equation}\label{E:monoEventAlways}
+\textbf{Monotonicity of $\Event\Always$:}\quad \Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ is a theorem.}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl (\Always p \impl \Always q)$\\[\lgap]
+  \end{tabbing}
+  By (\ref{E:metaAlways}) Metatheorem $\Always$ the following is a theorem.
+  \begin{tabbing}
+  \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+ \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ 
+  and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $p,q := \Always p, \Always q$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)$ \quad \myqed
+\end{tabbing}
 % sms end
 
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$

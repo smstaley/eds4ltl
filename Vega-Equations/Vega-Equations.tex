@@ -946,12 +946,28 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \subsection*{Always, continued}
 
+% sms begin
+\begin{equation}\label{E:monoAlwaysEvent}
+\textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
+\end{equation}
+\opt{inventory}{E9\\}
+
+\firstspacer
+
+\begin{equation}\label{E:monoEventAlways}
+\textbf{Monotonicity of $\Event\Always$:}\quad \Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)
+\end{equation}
+\opt{inventory}{E9\\}
+
+\spacer
+% sms end
+
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
 \opt{inventory}{S63(3.17c), K29(T26), E8\\}
 
-\firstspacer
+\spacer
 
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
