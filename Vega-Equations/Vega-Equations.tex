@@ -1069,6 +1069,14 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \opt{inventory}{M199, M206(FSW1), E9\\}
 
 \spacer
+% sms  begin
+\begin{equation}\label{E:EmersonEquiv}
+\textbf{Emerson equivalence of $\Wait$:}\quad p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
+\end{equation}
+\opt{inventory}{E9\\}
+
+\spacer
+% sms end
 
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)

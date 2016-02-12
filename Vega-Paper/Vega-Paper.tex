@@ -3210,6 +3210,8 @@ Equations (\ref{E:defWait}) and (\ref{E:notWait}) are the only defining axioms f
 \textbf{Axiom, Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
 \end{equation}
 
+
+
 The defining equation gives $\Wait$ in terms of $\Until$. The following theorem gives $\Until$ in terms of $\Wait$.
 \begin{equation}\label{E:untilFromWait}
 \textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
@@ -3229,6 +3231,38 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:EmersonEquiv}
+\textbf{Emerson equivalence of $\Wait$:}\quad p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
+\end{equation}
+
+\emph{Proof}:
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \land \neg q) \lor p \Until q$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $(\Always p \land \Always \neg q) \lor p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
+  \> \>   $(\Always p \lor p \Until q) \land (\Always \neg q \lor p \Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$ }\\[\lgap]
+  \> \>   $p \Wait q \land (\Always \neg q \lor p \Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$}\\[\lgap]
+  \> \>   $p \Wait q \land (\Always \neg q \lor (p \Wait q \land \Event q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
+  \> \>   $p \Wait q \land ((\Always \neg q \lor p \Wait q) \land (\Always \neg q \lor \Event q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:excludedMid}) Temporal excluded middle and (3.39) Identity of $\land$, $p\land true\equiv p$ }\\[\lgap]
+  \> \>   $p \Wait q \land (\Always \neg q \lor p \Wait q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
+  \> \>   $p \Wait q$ \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+Exercise for the student.\\
+}
+
+% sms end
 
 (\ref{E:notUntil}) proves Distributivity of $\neg$ over $\Until$ using (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
