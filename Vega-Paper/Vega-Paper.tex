@@ -2784,6 +2784,26 @@ $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \> $=$ \> \Hint{$\Always P$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+% sms begin
+\begin{equation}\label{E:metaNext}
+\textbf{Metatheorem $\Next$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Next P\impl\Next Q \text{ is a theorem.}
+\end{equation}
+
+\emph{Proof}: The proof is by (4.4) Deduction.
+Suppose $P\impl Q$ is a theorem.
+Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
+Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Next P\impl\Next Q$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$} \\[\lgap]
+\> \> $\Always (P\impl Q)$\\[\lgap]
+\> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
+\> \> $true$ \quad \myqed
+\end{tabbing}
+% sms end
+
 \begin{equation}\label{E:metaEvent}
 \textbf{Metatheorem $\Event$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Event P\impl\Event Q \text{ is a theorem.}
 \end{equation}
