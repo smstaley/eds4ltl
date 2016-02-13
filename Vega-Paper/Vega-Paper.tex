@@ -3197,6 +3197,44 @@ The proof in the second direction follows.
 \end{tabbing}
 % sms end
 
+% sms begin
+\begin{equation}\label{E:BenAriequiv1}
+\textbf{Ben-Ari equivalence:}\quad \Always (\Always\Event p \impl \Event q) \equiv (\Always\Event q \lor \Event\Always\neg p)
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (\Always\Event p \impl \Event q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p,q := \Always\Event p, \Event q$}\\[\lgap]
+  \> \>   $\Always\Always\Event p \impl \Always\Event q$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+ \> \>   $\Always\Event p \impl \Always\Event q$\\[\lgap]
+ \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+ \> \>   $\neg\Always\Event p \lor \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
+  \> \>   $\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
+ \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
+  \> \>   $ \Always\Event q \lor \Event\Always\neg p $
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+ \> \>   $\Always (\Always\Event p \impl \Event q)$\\[\lgap]
+ \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+ \> \>   $\Always (\neg\Always\Event p \lor \Event q)$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+  \> \>   $\Always\neg\Always\Event p \lor \Always\Event q$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
+ \> \>   $\Always\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
+ \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
+  \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
+\end{tabbing}
+% sms end
+
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
