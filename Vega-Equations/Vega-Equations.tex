@@ -1250,7 +1250,36 @@ p\Until q\impl p\Wait q
 \opt{inventory}{B260\\}
 
 \spacer
+% sms begin
+\begin{equation}\label{E:DualUntil1}
+\textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv q \Wait (p \land q)
+\end{equation}
+\opt{inventory}{B259\\}
 
+\spacer
+
+\begin{equation}\label{E:DualUntil2}
+\textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv ( \neg p \land q) \Wait (p \land q)
+\end{equation}
+\opt{inventory}{B259\\}
+
+\spacer
+
+\begin{equation}\label{E:DualWait1}
+\textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv q \Until (p \land q)
+\end{equation}
+\opt{inventory}{B259\\}
+
+\spacer
+
+\begin{equation}\label{E:DualWait2}
+\textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv (\neg p \land q) \Until (p \land q)
+\end{equation}
+\opt{inventory}{B259\\}
+
+\spacer
+
+% sms end
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}

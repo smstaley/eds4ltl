@@ -3797,6 +3797,59 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $(p \land \neg q) \Wait (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
 
+In the text by Ben-Ari \cite{Ben} the dual of the binary operator $p \Until q$ is defined as $\neg(\neg p \Until \neg q)$ 
+and called the Release operator. To avoid adding another operator to our system, we use the following four theorems
+when working with duality.
+% sms begin
+\begin{equation}\label{E:DualUntil1}
+\textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv q \Wait (p \land q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (\neg p \Until \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
+\> \> $q \Wait (p \land q)$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:DualUntil2}
+\textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv ( \neg p \land q) \Wait (p \land q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (\neg p \Until \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notUntil2}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
+\> \> $( \neg p \land q) \Wait (p \land q)$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:DualWait1}
+\textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv q \Until (p \land q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (\neg p \Wait \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
+\> \> $q \Until (p \land q)$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:DualWait2}
+\textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv (\neg p \land q) \Until (p \land q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\neg (\neg p \Wait \neg q)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait2}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
+\> \> $(\neg p \land q) \Until (p \land q)$ \quad \myqed
+\end{tabbing}
+% sms end
+
 Like the \textit{until} operator, the \textit{wait} operator is idempotent.
 $true$ is the right zero of both \textit{until} and \textit{wait}.
 $false$ is the left identity of both \textit{until} and \textit{wait}.
