@@ -446,7 +446,7 @@ p \Until q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:untilInsertion}
-\textbf{$\Until$ Insertion:}\quad q \impl p \Until q
+\textbf{$\Until$ insertion:}\quad q \impl p \Until q
 \end{equation}
 \opt{inventory}{M205\\}
 
@@ -830,35 +830,35 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \spacer
 % sms begin
 \begin{equation}\label{E:framelawnext}
-\textbf{Frame Law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
+\textbf{Frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
 \end{equation}
 \opt{inventory}{K30(T32)\\}
 
 \spacer
 
 \begin{equation}\label{E:framelawEvent}
-\textbf{Frame Law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
+\textbf{Frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
 \end{equation}
 \opt{inventory}{K31(T34)\\}
 
 \spacer
 
 \begin{equation}\label{E:framelawAlways}
-\textbf{Frame Law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
+\textbf{Frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
 \end{equation}
 \opt{inventory}{K31(T33)\\}
 
 \spacer
 
 \begin{equation}\label{E:distNextEquiv2}
-\textbf{Logical Equivalence Law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
 \opt{inventory}{K32\\}
 
 \spacer
 
 \begin{equation}\label{E:LELevent}
-\textbf{Logical Equivalence Law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
+\textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
 \end{equation}
 \opt{inventory}{K32\\}
 
@@ -867,7 +867,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 % sms end
 
 \begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Logical Equivalence Law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
+\textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
 \opt{inventory}{K32\\}
 
@@ -910,14 +910,14 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 % sms begin
 \begin{equation}\label{E:tempGenLaw}
-\textbf{Temporal Generalization Law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
+\textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
 \opt{inventory}{K31(T35)\\}
 
 \spacer
 
 \begin{equation}\label{E:tempPartLaw}
-\textbf{Temporal Particularization Law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
+\textbf{Temporal particularization law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
 \end{equation}
 \opt{inventory}{K31(T36)\\}
 
@@ -1116,14 +1116,14 @@ p\Until q\impl p\Wait q
 \spacer
 
 \begin{equation}\label{E:EventWaitequiv}
-\textbf{$\Wait\Event$ Equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
+\textbf{$\Wait\Event$ equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
 \end{equation}
 \opt{inventory}{M287\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysWaitImpl}
-\textbf{$\Wait\Always$ Implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
+\textbf{$\Wait\Always$ implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
 \end{equation}
 
 \spacer
@@ -1327,7 +1327,7 @@ p \Wait q \impl p \lor q
 \spacer
 
 \begin{equation}\label{E:waitInsertion}
-\textbf{$\Wait$ Insertion:}\quad q \impl p \Wait q
+\textbf{$\Wait$ insertion:}\quad q \impl p \Wait q
 \end{equation}
 \opt{inventory}{M205(FR6), S66(3.28)\\}
 
