@@ -956,7 +956,33 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 \subsubsection*{Duality}\label{section-duality}
 
+% sms begin
 To be written.
+We extend the development of duality in Gries and Schneider \cite{LADM} section (2.3) to LTL as follows. First, start by modifying definition
+(2.2) to include the temporal operators.
+
+(2.2 LTL) Definition. The \textit{dual} $P_D$ of a LTL expression $P$ is constructed from $P$ by interchanging occurrences of\\[\lllgap]
+\begin{tabular}{c}
+$true$ and $false$,\\
+$\land$ and $\lor$,\\
+$\equiv$ and $\nequiv$,\\
+$\impl$ and $\nfoll$,\\
+$\foll$ and $\nimpl$,\\
+$\Next$ and $\Next$ (self dual),\\
+$\Always$ and $\Event$,\\
+$p \Until q$ and $q \Wait (p \land q)$,\\
+$p \Wait q$ and $q \Until (p \land q)$.
+\end{tabular}\\[\lllgap]
+
+With the modified definition of $P_D$ we can use (2.3) Metatheorem Duality in Gries and Schneider \cite{LADM} 
+section (2.3) without change. The proof of this metatheorem is outside the scope of this paper.\\[\lllgap]
+
+ \begin{tabular}{cc}
+(2.3) Metatheorem Duality.
+&(a) $P \equiv \neg P_D$\\
+&(b) $(P \equiv Q) \equiv (P_D \equiv Q_D)$
+\end{tabular}\\[\lllgap]
+% sms end
 
 \section{The Equational Temporal System}
 
