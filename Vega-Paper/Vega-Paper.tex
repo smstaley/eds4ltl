@@ -956,10 +956,10 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 \subsubsection*{Duality}\label{section-duality}
 
-% sms begin
-To be written.
-We extend the development of duality in Gries and Schneider \cite{LADM} section (2.3) to LTL as follows. First, start by modifying definition
-(2.2) to include the temporal operators.
+\textit{To be written/edited.}
+
+We extend the development of duality in Gries and Schneider \cite{LADM} section (2.3) to LTL as follows.
+First, start by modifying definition (2.2) to include the temporal operators.
 
 (2.2 LTL) Definition. The \textit{dual} $P_D$ of a LTL expression $P$ is constructed from $P$ by interchanging occurrences of\\[\lllgap]
 \begin{tabular}{c}
@@ -975,14 +975,23 @@ $p \Wait q$ and $q \Until (p \land q)$.
 \end{tabular}\\[\lllgap]
 
 With the modified definition of $P_D$ we can use (2.3) Metatheorem Duality in Gries and Schneider \cite{LADM} 
-section (2.3) without change. The proof of this metatheorem is outside the scope of this paper.\\[\lllgap]
+section (2.3) without change.
+The proof of this metatheorem is outside the scope of this paper.\\[\lllgap]
 
  \begin{tabular}{cc}
 (2.3) Metatheorem Duality.
 &(a) $P \equiv \neg P_D$\\
 &(b) $(P \equiv Q) \equiv (P_D \equiv Q_D)$
 \end{tabular}\\[\lllgap]
-% sms end
+
+Ben-Ari \cite{Ben} defines the \textit{release} operator $\mathcal{R}$ as
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $p\;\mathcal{R}\; q\equivs \neg(\neg p \Until \neg q)$
+\end{tabbing}
+to be the dual of the binary operator.
+To avoid adding another operator to our system, we use the following four theorems
+when working with duality.
 
 \section{The Equational Temporal System}
 
@@ -2852,8 +2861,6 @@ the following is a theorem.
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)$ \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:monoEventAlways}
 \textbf{Monotonicity of $\Event\Always$:}\quad \Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)
 \end{equation}
@@ -3252,10 +3259,8 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:EmersonEquiv}
-\textbf{Emerson equivalence of $\Wait$:}\quad p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
+p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 \end{equation}
 
 \emph{Proof}:
@@ -3282,8 +3287,6 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \opt{student}{
 Exercise for the student.\\
 }
-
-% sms end
 
 (\ref{E:notUntil}) proves Distributivity of $\neg$ over $\Until$ using (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
@@ -3345,8 +3348,6 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
   \> \>   $(p \land q) \Wait (p \land r)$ \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:EventWaitequiv}
 \textbf{$\Wait\Event$ Equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
 \end{equation}
@@ -3360,7 +3361,6 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
 \> $=$ \> \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$} \\[\lgap]
 \> \> $\Always p \lor \Event q$ \quad \myqed
 \end{tabbing}
-% sms end
 
 Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ Implication.
 Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
@@ -3797,11 +3797,6 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ with $p,q:=\neg q,p$} \\[\lgap]
 \> \> $(p \land \neg q) \Wait (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
-
-In the text by Ben-Ari \cite{Ben} the dual of the binary operator $p \Until q$ is defined as $\neg(\neg p \Until \neg q)$ 
-and called the Release operator. To avoid adding another operator to our system, we use the following four theorems
-when working with duality.
-% sms begin
 \begin{equation}\label{E:DualUntil1}
 \textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv q \Wait (p \land q)
 \end{equation}
@@ -3813,7 +3808,6 @@ when working with duality.
 \> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $q \Wait (p \land q)$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:DualUntil2}
 \textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv ( \neg p \land q) \Wait (p \land q)
 \end{equation}
@@ -3825,7 +3819,6 @@ when working with duality.
 \> $=$ \> \Hint{(\ref{E:notUntil2}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $( \neg p \land q) \Wait (p \land q)$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:DualWait1}
 \textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv q \Until (p \land q)
 \end{equation}
@@ -3837,7 +3830,6 @@ when working with duality.
 \> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $q \Until (p \land q)$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:DualWait2}
 \textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv (\neg p \land q) \Until (p \land q)
 \end{equation}
@@ -3849,7 +3841,6 @@ when working with duality.
 \> $=$ \> \Hint{(\ref{E:notWait2}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $(\neg p \land q) \Until (p \land q)$ \quad \myqed
 \end{tabbing}
-% sms end
 
 Like the \textit{until} operator, the \textit{wait} operator is idempotent.
 $true$ is the right zero of both \textit{until} and \textit{wait}.
@@ -3902,10 +3893,8 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> \> $q$ \quad \myqed
 \end{tabbing}
 
-Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator.
-It states that $p \Wait q$ is stronger than $p \lor q$.
-Theorem (\ref{E:orToWait}) states that $\Always(p \lor q)$ is stronger than $p \Wait q$.
-
+Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator and shows that $p \Wait q$ is stronger than $p \lor q$.
+Theorem (\ref{E:orToWait}) shows that $\Always(p \lor q)$ is stronger than $p \Wait q$.
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
@@ -3919,7 +3908,6 @@ p \Wait q \impl p \lor q
 \> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:orToWait}
 \Always (p\lor q) \impl p \Wait q
 \end{equation}
@@ -3933,8 +3921,6 @@ p \Wait q \impl p \lor q
 \> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:notqimpliespToWait}
 \Always (\neg q \impl p) \impl p \Wait q
 \end{equation}
@@ -3948,8 +3934,6 @@ p \Wait q \impl p \lor q
 \> $\impl$ \> \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
-
-% sms end
 
 Insertion for the \textit{wait} operator corresponds to
 (\ref{E:untilInsertion}) Insertion for the \textit{until} operator.
