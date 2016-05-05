@@ -1425,7 +1425,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until (p \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=p\Until q$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=p\Until q$} \\[\lgap]
 \> \> $p \Until q$\\
 \end{tabbing}
 The proof in the second direction follows.
@@ -1486,7 +1486,6 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
 
-% sms begin
 It is also the case that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
 \begin{equation}\label{E:absUntilIntoEvent}
 \textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until \Event q \equiv \Event q
@@ -1499,9 +1498,9 @@ The proof in the first direction follows.
 \> \> $p \Until \Event q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \>\> $p \Until (true \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) {Axiom, Left associativity of $\Until$, } with $q := true, r := q$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$ with $q,r := true,q$} \\[\lgap]
 \> \> $(p \lor true) \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.29) {Zero of $\lor$ :}\quad $p\lor true\equiv true$} \\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
 \> \> $true \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$
@@ -1511,10 +1510,9 @@ The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $ \Event q$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) {$\Until$ Insertion:}$\quad q \impl p \Until q$, with $q := \Event q$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q := \Event q$} \\[\lgap]
 \> \> $p \Until \Event q$ \quad \myqed
 \end{tabbing}
-% sms end
 
 $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
 \begin{equation}\label{E:eventuality}
@@ -1869,8 +1867,6 @@ are mutually dual, as are $\Event \Always$ and $\Always\Event$.
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg\Event p$ \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:dualEventAlways}
 \textbf{Dual of $\Event \Always$:}\quad \neg \Event\Always p \equiv \Always\Event \neg p
 \end{equation}
@@ -1884,9 +1880,6 @@ are mutually dual, as are $\Event \Always$ and $\Always\Event$.
   \> $=$ \> \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Always\Event \neg p$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:dualAlwaysEvent}
 \textbf{Dual of $\Always \Event$:}\quad \neg \Always\Event p \equiv \Event \Always\neg p
 \end{equation}
@@ -1900,7 +1893,6 @@ are mutually dual, as are $\Event \Always$ and $\Always\Event$.
   \> $=$ \> \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\Event\Always \neg p$ \quad \myqed
 \end{tabbing}
-% sms end
 
 Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of $\Always$, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
@@ -2370,7 +2362,6 @@ Exercise for the student.\\
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
   \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=\Always p \lor \Always q$. \quad \myqed
 \end{tabbing}
-% sms begin
 \begin{equation}\label{E:framelawnext}
 \textbf{Frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
 \end{equation}
@@ -2391,8 +2382,6 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
   \> \>   $\Next (p \land q)$\quad \myqed
 \end{tabbing}
-% sms end
-% sms begin
 \begin{equation}\label{E:framelawEvent}
 \textbf{Frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
 \end{equation}
@@ -2405,9 +2394,6 @@ And now,
   \> \>   $\Always p \land \Event q \impl \Event (p \land q)$\\[\lgap]
   \> which is (\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$. \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:framelawAlways}
 \textbf{Frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \land q))
 \end{equation}
@@ -2417,21 +2403,11 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \impl (\Always q \impl \Always (p \land q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always p \land \Always q \impl \Always (p \land q)$
-\end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Always q \impl \Always (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always (p \land q) \impl \Always (p \land q)$\\[\lgap]
    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$ with $p:=\Always (p \land q)$. \quad \myqed
 \end{tabbing}
-
-% sms end
-
-
-% sms begin
 \begin{equation}\label{E:distNextEquiv2}
 \textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
@@ -2440,14 +2416,11 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \equiv q) $\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p:=(p \equiv q)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$ with $p:=(p \equiv q)$ }\\[\lgap]
   \> \>   $\Next (p \equiv q) $\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextEquiv}) Distributivity of $\Next$ over $\equiv$}\\[\lgap]
-  \> \>   $(\Next p \equiv  \Next q)$\quad \myqed
+  \> \>   $\Next p \equiv  \Next q$\quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:LELevent}
 \textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
 \end{equation}
@@ -2461,10 +2434,10 @@ And now,
   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
   \> \>   $(\Always (p \equiv q) \impl (\Event p \impl \Event q)) \land (\Always (p \equiv q) \impl (\Event q \impl \Event p))$
   \end{tabbing}
-And now, proof of the first conjunct follows.
+Proof of the first conjunct follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
- \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)$\\[\lgap]
+  \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always (p \equiv q) \land \Event p \impl \Event q$
 \end{tabbing}
@@ -2474,17 +2447,17 @@ And now,
   \> \>   $\Always (p \equiv q) \land \Event p$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$}\\[\lgap]
   \> \>   $\Event ((p \equiv q) \land p)$\\[\lgap]
-   \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
   \> \>   $\Event (p \land q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ }\\[\lgap]
   \> \>   $\Event p \land \Event q $\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $\Event q$\quad \myqed
 \end{tabbing}
-And now, proof of the second conjunct follows.
+Proof of the second conjunct follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
- \> \>   $\Always (p \equiv q) \impl (\Event q \impl \Event p)$\\[\lgap]
+  \> \>   $\Always (p \equiv q) \impl (\Event q \impl \Event p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always (p \equiv q) \land \Event q \impl \Event p$
 \end{tabbing}
@@ -2501,8 +2474,6 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $\Event p$\quad \myqed
 \end{tabbing}
-% sms end
-
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
@@ -2637,12 +2608,9 @@ Exercise for the student.\\
 \end{tabbing}
 }
 
-
 \opt{student}{
 Exercise for the student.\\
 }
-
-% sms begin
 \begin{equation}\label{E:tempGenLaw}
 \textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
@@ -2651,14 +2619,11 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (\Always p \impl q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$, with $p:=\Always p$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p:=\Always p$}\\[\lgap]
   \> \>   $\Always \Always p \impl \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always p \impl \Always q$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:tempPartLaw}
 \textbf{Temporal particularization law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
 \end{equation}
@@ -2667,12 +2632,11 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ( p \impl \Event q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$, with $q:=\Event q$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $q:=\Event q$}\\[\lgap]
   \> \>   $\Event p \impl \Event \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event p \impl \Event q$ \quad \myqed
 \end{tabbing}
-% sms end
 
 \begin{figure}[t]
 \centering
@@ -2810,7 +2774,6 @@ $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \> $=$ \> \Hint{$\Always P$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
-% sms begin
 \begin{equation}\label{E:metaNext}
 \textbf{Metatheorem $\Next$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Next P\impl\Next Q \text{ is a theorem.}
 \end{equation}
@@ -2828,8 +2791,6 @@ Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth impli
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
-% sms end
-
 \begin{equation}\label{E:metaEvent}
 \textbf{Metatheorem $\Event$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Event P\impl\Event Q \text{ is a theorem.}
 \end{equation}
@@ -2873,29 +2834,24 @@ Exercise for the student.\\
 
 \subsection{Always, continued}\label{section-always-continued}
 
-% sms begin
 \begin{equation}\label{E:monoAlwaysEvent}
 \textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ is a theorem.}\\[\lgap]
-  \> \>   $\Always (p \impl q) \impl (\Event p \impl \Event q)$\\[\lgap]
-  \end{tabbing}
-  By (\ref{E:metaAlways}) Metatheorem $\Always$ the following is a theorem.
+By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$
+the following is a theorem.
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
- \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ 
-  and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p,q := \Event p, \Event q$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
+  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
+  \>     \>  \Hintlast{with $p,q := \Event p, \Event q$}\\[\lgap]
+  \> \>   ($\Always (p \impl q) \impl \Always (\Event p \impl \Event q))\;\land\; (\Always (\Event p \impl \Event q) \impl (\Always\Event p \impl \Always\Event q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)$ \quad \myqed
 \end{tabbing}
-% sms end
 
 % sms begin
 \begin{equation}\label{E:monoEventAlways}
@@ -2903,23 +2859,19 @@ Exercise for the student.\\
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ is a theorem.}\\[\lgap]
-  \> \>   $\Always (p \impl q) \impl (\Always p \impl \Always q)$\\[\lgap]
-  \end{tabbing}
-  By (\ref{E:metaAlways}) Metatheorem $\Always$ the following is a theorem.
+By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$
+the following is a theorem.
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
- \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ 
-  and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $p,q := \Always p, \Always q$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
+  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
+  \>     \>  \Hintlast{with $p,q := \Always p, \Always q$}\\[\lgap]
+  \> \>   ($\Always (p \impl q) \impl \Always (\Always p \impl \Always q))\;\land\; (\Always (\Always p \impl \Always q) \impl (\Event\Always p \impl \Event\Always q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
-% sms end
 
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
 distribute over conjunction and disjunction.
@@ -3114,8 +3066,6 @@ The proof in the second direction follows.
 \opt{student}{
 Exercise for the student.\\
 }
-
-% sms begin
 \begin{equation}\label{E:absAlwaysEvent}
 \textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
@@ -3124,14 +3074,11 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always \Event\Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$, with $p:=\Event p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$ with $p:=\Event p$}\\[\lgap]
   \> \>   $\Event \Always \Event p$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:absEventAlways}
 \textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
 \end{equation}
@@ -3140,14 +3087,11 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event \Always \Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$, with $p:=\Always p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$ with $p:=\Always p$}\\[\lgap]
   \> \>   $\Always \Event \Always p$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
   \> \>   $\Event \Always p$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:absNextAlwaysEvent}
 \textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
 \end{equation}
@@ -3157,7 +3101,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, with $p := \Always \Event p$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p := \Always \Event p$}\\[\lgap]
   \> \>   $\Event\Always\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
   \> \>   $\Always\Event p$
@@ -3169,9 +3113,6 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysNA}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $\Next\Always\Event p$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:absNextEventAlways}
 \textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
 \end{equation}
@@ -3181,7 +3122,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next\Event\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, with $p :=  \Event\Always p$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p :=  \Event\Always p$}\\[\lgap]
   \> \>   $\Event\Event\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event\Always p$
@@ -3195,11 +3136,8 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p := \Event\Always p$}\\[\lgap]
   \> \>   $\Next\Event\Always p$ \quad \myqed
 \end{tabbing}
-% sms end
-
-% sms begin
 \begin{equation}\label{E:BenAriequiv1}
-\textbf{Ben-Ari equivalence:}\quad \Always (\Always\Event p \impl \Event q) \equiv (\Always\Event q \lor \Event\Always\neg p)
+\Always (\Always\Event p \impl \Event q) \equiv \Always\Event q \lor \Event\Always\neg p
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
@@ -3233,7 +3171,6 @@ The proof in the second direction follows.
  \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
   \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
 \end{tabbing}
-% sms end
 
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
