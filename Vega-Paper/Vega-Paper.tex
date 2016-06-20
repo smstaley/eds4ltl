@@ -99,8 +99,9 @@
 \title{An Equational Deductive System\\for Linear Temporal Logic}
 }
 
-\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009
-        and academic year 2009-10.}\\
+\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Pepperdine University, Summer 2009 and academic year 2009-10.}\\
+   Vega affiliation
+   \and
    J. Stanley Warford\\
    Computer Science Department\\
    Pepperdine University\\
@@ -115,19 +116,20 @@
 \maketitle
 \begin{abstract}
 This paper presents an equational deductive system for linear temporal logic.
-It differs from previous developments of temporal logic in several respects.
-First, the proofs are given in the equational logic developed by Dijkstra and Scholten, and extended by Gries and Schneider, as opposed to the older Hilbert-style logics.
-Second, it includes all known linear temporal logic theorems plus many new and interesting theorems.
-Third, although space limitations preclude giving a proof of every theorem in this paper,
-every theorem has been proved with equational logic.
-The summary of equational logic is minimal, and the paper can serve as an introduction to linear temporal logic.
+Equational deductive systems, developed by Dijkstra and Scholten and extended by Gries and Schneider, are based on only four inference rules -- Substitution, Leibniz, Equinimity, and Transitivity.
+Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system.
+Proofs in equational deductive systems are simpler for humans to write and analyze compared to proofs in Hilbert-style systems.
+This paper extends the equational deductive system of Gries and Schneider to linear temporal logic, using only the same four inference rules.
+The system includes all known linear temporal logic theorems plus many new and interesting ones.
+Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with equational logic.
+The paper can serve as an introduction to linear temporal logic.
 \end{abstract}
 
 \thispagestyle{plain}
 
 \section{Introduction}
 
-All axiomatic logic systems have three components --- inference rules, axioms, and theorems.
+All axiomatic logic systems have three components -- inference rules, axioms, and theorems.
 Both inference rules and axioms are assumed.
 Theorems are proved from axioms using inference rules.
 From a computational systems perspective, the inference rules process axioms as input and produce theorems as output.
@@ -187,7 +189,7 @@ A key feature of such systems is their multiplicity of inference rules and the i
 
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic based on an equational style.
 This equational deductive system, $\mathcal{E}$, is the basis of books by Kaldewaij \cite{Kald} and Cohen \cite{Cohen}.
-In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules --- Substitution, Leibniz, Equanimity, and Transitivity.
+In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity.
 In $\mathcal{E}$, modus ponens plays a secondary role.
 It is not an inference rule, nor is it assumed as an axiom, but instead is proved as a theorem from the axioms using the inference rules.
 
@@ -233,8 +235,9 @@ Section \ref{comparison-previous-work} summarizes these systems and compares the
 
 Our institution has used LADM at the introductory undergraduate level since its publication, and the equational proof style has consequently permeated the computer science curriculum.
 A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain.
-Schneider \cite{Schn} appears to be the only treatment of linear temporal logic that includes a discussion of $\mathcal{E}$.
-Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example on page 74.
+Schneider \cite{Schn} includes a discussion of $\mathcal{E}$.
+Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example (page 74).
+Likewise, Baier and Katoen \cite{Baier} have a single equational proof of a linear temporal logic theorem (page 246) in their chapter on linear temporal logic.
 
 To solve the above problem, this paper presents a comprehensive equational deductive system suitable for introducing those versed in $\mathcal{E}$ to linear temporal logic.
 In the same way that LADM brings the advantages of $\mathcal{E}$ to set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
