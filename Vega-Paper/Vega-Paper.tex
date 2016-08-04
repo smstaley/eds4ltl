@@ -1971,6 +1971,35 @@ As usual, the first describes the current state and the second contains the oper
   \> \>   $p \land \Next\Always p$ \quad \myqed
 \end{tabbing}
 
+% sms begin
+% This is Ben-Ari Axiom 3 on page 263
+
+\begin{equation}\label{E:expansionAlways2}
+\textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next p \land \Next\Always p
+\end{equation}
+
+\emph{Proof}:
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \land \Next p \land \Next\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
+  \> \>   $p \land \Next (p \land \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $p \land \Next (p \land p \land \Next \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $p \land \Next (p \land \Next \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $p \land \Next \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $\Always p$ \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+Exercise for the student.\\
+}
+% sms end
+
 The absorption of $\land$ into $\Always$ corresponds to (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
 while the absorption of $\Always$ into $\lor$ corresponds to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
 Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
