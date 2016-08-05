@@ -2449,6 +2449,76 @@ And now,
   \> \>   $\Always (p \land q) \impl \Always (p \land q)$\\[\lgap]
    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$ with $p:=\Always (p \land q)$. \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:disjframelawnext}
+\textbf{Disjunctive frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \lor q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Next q \impl \Next (p \lor q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Next q \impl \Next (p \lor q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Next q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Next p \land \Next q $\\[\lgap]
+   \> $\impl$ \> \Hint{(3.76c) (Weakening/strengthening), $p\land q \impl p \lor q$} \\[\lgap]
+   \> \>   $\Next p \lor \Next q $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
+  \> \>   $\Next (p \lor q)$\quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:disjframelawEvent}
+\textbf{Disjunctive frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \lor q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \lor q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \lor q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysE}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Event p \land \Event q $\\[\lgap]
+   \> $\impl$ \> \Hint{(3.76c) (Weakening/strengthening), $p\land q \impl p \lor q$} \\[\lgap]
+   \> \>   $\Event p \lor \Event q $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+  \> \>   $\Event (p \lor q)$\quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:disjframelawAlways}
+\textbf{Disjunctive frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \lor q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \lor q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \lor q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q $\\[\lgap]
+   \> $\impl$ \> \Hint{(3.76c) (Weakening/strengthening), $p\land q \impl p \lor q$} \\[\lgap]
+   \> \>   $\Always p \lor \Always q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+  \> \>   $\Always (p \lor q)$\quad \myqed
+\end{tabbing}
+
+% sms end
 \begin{equation}\label{E:distNextEquiv2}
 \textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
