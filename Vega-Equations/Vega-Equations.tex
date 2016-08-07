@@ -836,6 +836,44 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \spacer
 % sms begin
+
+\begin{equation}\label{E:distNextEquiv2}
+\textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\end{equation}
+\opt{inventory}{K32\\}
+
+\spacer
+
+\begin{equation}\label{E:LELevent}
+\textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
+\end{equation}
+\opt{inventory}{K32\\}
+
+\spacer
+
+\begin{equation}\label{E:distAlwaysEquiv}
+\textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
+\end{equation}
+\opt{inventory}{K32\\}
+
+% sms end
+\spacer
+
+\begin{equation}\label{E:eventImpAlways}
+\textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
+\end{equation}
+\opt{inventory}{S63(3.16g)\\}
+
+\spacer
+
+\begin{equation}\label{E:eventPImplEventQ}
+\textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
+\end{equation}
+\opt{inventory}{K29(T24), B242\\}
+
+\spacer
+
+% sms begin
 \begin{equation}\label{E:framelawnext}
 \textbf{Frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
 \end{equation}
@@ -877,42 +915,13 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \spacer
 
-\begin{equation}\label{E:distNextEquiv2}
-\textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
+\begin{equation}\label{E:implframelawnext}
+\textbf{Implicative frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \impl q))
 \end{equation}
-\opt{inventory}{K32\\}
-
-\spacer
-
-\begin{equation}\label{E:LELevent}
-\textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
-\end{equation}
-\opt{inventory}{K32\\}
 
 \spacer
 
 % sms end
-
-\begin{equation}\label{E:distAlwaysEquiv}
-\textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
-\end{equation}
-\opt{inventory}{K32\\}
-
-\spacer
-
-\begin{equation}\label{E:eventImpAlways}
-\textbf{Distributivity of $\Event$ over $\impl$:}\quad \Event (p \impl q) \equiv (\Always p \impl \Event q)
-\end{equation}
-\opt{inventory}{S63(3.16g)\\}
-
-\spacer
-
-\begin{equation}\label{E:eventPImplEventQ}
-\textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
-\end{equation}
-\opt{inventory}{K29(T24), B242\\}
-
-\spacer
 
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
