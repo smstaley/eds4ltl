@@ -2664,6 +2664,112 @@ And now,
    \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Next q ,(\Always p \land \Next p)$. \quad \myqed
 \end{tabbing}
 
+\begin{equation}\label{E:implframelawEvent}
+\textbf{Implicative frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \impl q))
+\end{equation}
+
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \impl q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl  (\Always p \impl \Event q)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q  \land \Always p \impl \Event q$\\[\lgap]
+   \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Event q ,(\Always p \land \Always p)$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:implframelawAlways}
+\textbf{Implicative frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \impl q))
+\end{equation}
+
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \impl q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \land q) \impl \Always (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land (p\impl q) \equivs p\land q$}\\[\lgap]
+  \> \>   $\Always (p \land (p \impl q)) \impl \Always (p \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always p \land \Always (p \impl q) \impl \Always (p \impl q)$\\[\lgap]
+   \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Always (p \impl q) ,\Always p$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:equivframelawnext}
+\textbf{Equivalence frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \equiv q))
+\end{equation}
+
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Next q \impl \Next (p \equiv q)) $\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Next q \impl \Next (p \equiv q) $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextEquiv}) Distributivity of $\Next$ over $\equiv$}\\[\lgap]
+  \> \>   $\Always p \land \Next q \impl (\Next p \equiv \Next q) $\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication, $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
+  \> \>   $\Always p \land \Next q \impl (\Next p \impl \Next q) \land (\Next q \impl \Next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+  \> \>   $(\Always p \land \Next q \impl (\Next p \impl \Next q)) \land (\Always p \land \Next q \impl (\Next q \impl \Next p))$
+  \end{tabbing}
+Proof of the first conjunct follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Next q \impl (\Next p \impl \Next q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \impl (\Next q \impl \Next p \impl \Next q)$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distNextImp}) Axiom, Distributivity of $\Next$ over $\impl$}\\[\lgap]
+  \> \>   $\Always p \impl (\Next q \impl \Next (p \impl q))$\\[\lgap]
+  \> which is (\ref{E:implframelawnext}) Implicative frame law of $\Next$. \quad \myqed
+\end{tabbing}
+Proof of the second conjunct follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Next q \impl (\Next q \impl \Next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$, and (3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $\Always p  \land \Next q \impl \Next p$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p  \land \Next q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$, with $p,q := \Always p, \Next q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$ }\\[\lgap]
+  \> \>   $\Next p$\quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:equivframelawEvent}
+\textbf{Equivalence frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \equiv q))
+\end{equation}
+
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \equiv q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.70) $p\lor q \impl p\land q \equivs p \equivs q$}\\[\lgap]
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \lor q \impl p \land q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $\Always p \impl (\Event q \impl (\Always (p \lor q) \impl \Event (p \land q)))$\\[\lgap]
+   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r), twice.$}\\[\lgap]
+  \> \>   $\Always p \land \Event q  \land \Always (p \lor q) \impl \Event (p \land q) $\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p  \land (p \lor q) \land \Event q  \impl \Event (p \land q)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
+   \> \>   $\Always p  \land \Event q  \impl \Event (p \land q)$\\[\lgap]
+   \> which is (\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:equivframelawAlways}
+\textbf{Equivalence frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \equiv q))
+\end{equation}
+
+
 % sms end of Frame Laws
 
 The monotonicity theorems (\ref{E:alwaysImpNexts}), (\ref{E:alwaysImpEvents}), and (\ref{E:distAlwaysImp}) have $\Always (p \impl q)$
