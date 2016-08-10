@@ -2738,7 +2738,7 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p  \land \Next q $\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$, with $p,q := \Always p, \Next q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$, with $p,q := \Always p, \Next q$ }\\[\lgap]
   \> \>   $\Always p$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$ }\\[\lgap]
   \> \>   $\Next p$\quad \myqed
@@ -2769,6 +2769,51 @@ And now,
 \textbf{Equivalence frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \equiv q))
 \end{equation}
 
+\emph{Proof}: 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \equiv q)) $\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \equiv q) $\\[\lgap]
+  \> $=$  \>  \Hint{(3.80) Mutual implication, $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always ( (p \impl  q) \land (q \impl  p))$\\[\lgap]
+     \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \impl  q) \land \Always (q \impl  p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+  \> \>   $(\Always p \land \Always q \impl \Always( p \impl  q)) \land (\Always p \land \Always q \impl \Always (q \impl p))$
+  \end{tabbing}
+Proof of the first conjunct follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q \impl \Always( p \impl  q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \impl ( \Always q \impl \Always( p \impl  q))$\\[\lgap]
+  \> which is (\ref{E:implframelawAlways}) Implicative frame law of $\Always$. \quad \myqed
+\end{tabbing}
+Proof of the second conjunct follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q \impl \Always (q \impl p)$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \land q) \impl \Always (q \impl p)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.66) $p\land (p\impl q) \equivs p\land q$ with $p, q := q , p$}\\[\lgap]
+  \> \>   $\Always (q \land (q \impl p)) \impl \Always (q \impl p)$\\[\lgap]
+    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always q \land \Always (q \impl p) \impl \Always (q \impl p)$\\[\lgap]
+   \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Always (q \impl p) ,\Always q$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:untilframelawnext}
+\textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
+\end{equation}
+
+\begin{equation}\label{E:untilframelawEvent}
+\textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
+\end{equation}
+
+\begin{equation}\label{E:untilframelawAlways}
+\textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
+\end{equation}
 
 % sms end of Frame Laws
 
@@ -4179,6 +4224,28 @@ Insertion for the \textit{wait} operator corresponds to
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$ \quad \myqed
 \end{tabbing}
+
+% sms begin
+The next three theorems 
+(\ref{E:waitframelawnext}),
+(\ref{E:waitframelawEvent}),
+and
+(\ref{E:waitframelawAlways})
+complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:untilframelawAlways}).
+
+\begin{equation}\label{E:waitframelawnext}
+\textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
+\end{equation}
+
+\begin{equation}\label{E:waitframelawEvent}
+\textbf{$\Wait$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Wait q))
+\end{equation}
+
+\begin{equation}\label{E:waitframelawAlways}
+\textbf{$\Wait$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Wait q))
+\end{equation}
+
+% sms end
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
 (\ref{E:untilOrP}),
