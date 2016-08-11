@@ -4283,14 +4283,63 @@ complete the set of frame laws which included the theorems from (\ref{E:framelaw
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>   $\Always p \impl (\Next q \impl \Next (p \Wait q))$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
+	\> \>   $\Always p \impl \Next (q \impl p \Wait q)$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:waitInsertion}) $q \impl p \Wait q$ is a theorem, therefore $q \impl p \Wait q \equiv true$}\\[\lgap]
+	\> \>   $\Always p \impl \Next true$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
+	\> \>   $\Always p \impl true$\\[\lgap]
+	\> $=$  \>  \Hint{(3.72) Right zero of $\impl$, $p\impl true \equivs true$ with $p := \Always p$}\\[\lgap]
+	\> \>   $true$ \quad \myqed
+\end{tabbing}
 
 \begin{equation}\label{E:waitframelawEvent}
 \textbf{$\Wait$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Wait q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \Wait q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \Wait q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication } \\[\lgap]
+   \> \>   $p \Until q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:untilImplWait}) $p\Until q\impl p\Wait q$ } \\[\lgap]
+   \> \>   $p \Wait q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Wait q$ }\\[\lgap]
+  \> \>   $\Event (p \Wait q) $\quad \myqed
+\end{tabbing}
 
 \begin{equation}\label{E:waitframelawAlways}
 \textbf{$\Wait$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Wait q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \Wait q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \Wait q))$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q $\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
+  \> \>   $\Always p \land p \Wait \Always q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
+   \> \>   $\Always p \land \Always (p \Wait  q) $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ with $p,q := \Always (p \Wait q), \Always p$} \\[\lgap]
+  \> \>   $\Always (p \Wait q) $\quad \myqed
+\end{tabbing}
 
 % sms end
 
