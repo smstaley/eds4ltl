@@ -2806,14 +2806,61 @@ Proof of the second conjunct follows.
 \begin{equation}\label{E:untilframelawnext}
 \textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>   $\Always p \impl (\Next q \impl \Next (p \Until q))$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
+	\> \>   $\Always p \impl \Next (q \impl p \Until q)$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:untilInsertion}) $q \impl p \Until q$ is a theorem, therefore $q \impl p \Until q \equiv true$}\\[\lgap]
+	\> \>   $\Always p \impl \Next true$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
+	\> \>   $\Always p \impl true$\\[\lgap]
+	\> $=$  \>  \Hint{(3.72) Right zero of $\impl$, $p\impl true \equivs true$ with $p := \Always p$}\\[\lgap]
+	\> \>   $true$ \quad \myqed
+\end{tabbing}
 
 \begin{equation}\label{E:untilframelawEvent}
 \textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \Until q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication } \\[\lgap]
+   \> \>   $p \Until q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Until q$ }\\[\lgap]
+  \> \>   $\Event (p \Until q) $\quad \myqed
+\end{tabbing}
 
 \begin{equation}\label{E:untilframelawAlways}
 \textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
 \end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \Until q))$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q $\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
+  \> \>   $\Always p \land p \Until \Always q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Until\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
+   \> \>   $\Always p \land \Always (p \Until  q) $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ with $p,q := \Always (p \Until q), \Always p$} \\[\lgap]
+  \> \>   $\Always (p \Until q) $\quad \myqed
+\end{tabbing}
 
 % sms end of Frame Laws
 
