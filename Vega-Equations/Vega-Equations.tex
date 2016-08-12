@@ -1616,6 +1616,24 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
+\begin{equation}\label{E:mixuntilImpAbsR}
+\textbf{Mixed $\Wait\Until$ Absorption:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:mix2untilImpAbsR}
+\textbf{Mixed $\Until\Wait$ Absorption:}\quad (p \Until q) \Wait r \impl (p \lor q) \Wait r
+\end{equation}
+
+\spacer
+% sms begin
+\begin{equation}\label{E:mix3untilImpAbsR}
+\textbf{Mixed $\Wait\Until$ Absorption:}\quad (p \Wait q) \Until r \impl (p \lor q) \Wait r
+\end{equation}
+
+\spacer
+% sms end
 \begin{equation}\label{E:leftAssocWait}
 \textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
