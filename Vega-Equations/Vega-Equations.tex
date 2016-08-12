@@ -9,8 +9,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
-%\usepackage[plain]{optional}
-\usepackage[inventory]{optional}
+\usepackage[plain]{optional}
+%\usepackage[inventory]{optional}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -1600,6 +1600,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)
 \end{equation}
 \opt{inventory}{S66(3.35b)\\}
+
+\spacer
+
+\begin{equation}\label{E:untilImpAbsR}
+\textbf{Absorption:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
+\end{equation}
 
 \spacer
 

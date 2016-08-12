@@ -4811,6 +4811,24 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> $\foll$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$}\\[\lgap]
   \> \>   $\Always (p \impl q)$ \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:untilImpAbsR}
+\textbf{Absorption:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}), $\Always (p\Until q\impl p\lor q)$ is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{$\Always (p\Until q\impl p\lor q)$ is a theorem} \\[\lgap]
+  \> \>   $\Always (p\Until q\impl p\lor q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q,r := p\Until q, p\lor q, r$}\\[\lgap]
+  \> \>   $(p \Until q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
+\end{tabbing}
+% sms end
+
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
@@ -4822,9 +4840,10 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\
   \> \>   $true$\\[\lgap]
   \> $=$ \> \Hint{$\Always (p\Wait q\impl p\lor q)$ is a theorem} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := p\land \neg q, p, \neg q$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q,r := p\Wait q, p\lor q, r$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
+
 \begin{equation}\label{E:leftAssocWait}
 \textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
