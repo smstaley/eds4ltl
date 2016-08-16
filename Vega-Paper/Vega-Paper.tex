@@ -5004,6 +5004,43 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \>   $p \Wait (q \land r)$ \quad \myqed
 \end{tabbing}
+
+% sms begin
+\begin{equation}\label{E:mix6untilImpAbsR}
+\textbf{Mixed $\Until\Wait$ Absorption:}\quad p \Until (q \land r) \impl (p \Until q) \Wait r
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $(p \Until q) \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \>   $\Always (p \Until q) \lor (p \Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \>   $(p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$ } \\[\lgap]
+\> \>   $p \Until (q \land r)$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:mix7untilImpAbsR}
+\textbf{Mixed $\Wait\Until$ Absorption:}\quad p \Until (q \land r) \impl (p \Wait q) \Until r
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $(p \Wait q) \Until r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \>   $(\Always p \lor p \Until q) \Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Axiom, Right distributivity of $\Until$ over $\lor$ } \\[\lgap]
+\> \>   $\Always p \Until r \lor (p \Until q) \Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \>   $(p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$ } \\[\lgap]
+\> \>   $p \Until (q \land r)$ \quad \myqed
+\end{tabbing}
+% sms end
+
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
