@@ -2533,6 +2533,13 @@ Exercise for the student.\\
 %
 % sms - Frame Laws Here (except for Wait Laws).
 %
+The next three theorems
+(\ref{E:framelawnext}),
+(\ref{E:framelawEvent}),
+and
+(\ref{E:framelawAlways})
+come from Kröger and Merz\cite{Kroger} and say that if $\Always p$ holds then $p$ may be "added"
+(by conjunction) under each temporal operator.
 \begin{equation}\label{E:framelawnext}
 \textbf{Frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \land q))
 \end{equation}
@@ -2579,7 +2586,8 @@ And now,
   \> \>   $\Always (p \land q) \impl \Always (p \land q)$\\[\lgap]
    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$ with $p:=\Always (p \land q)$. \quad \myqed
 \end{tabbing}
-
+In theorems (\ref{E:disjframelawnext}) to (\ref{E:untilframelawAlways}) the frame laws are proven
+to extend to all binary propositional and temporal operators.
 \begin{equation}\label{E:disjframelawnext}
 \textbf{Disjunctive frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \lor q))
 \end{equation}
@@ -4281,8 +4289,7 @@ The next three theorems
 (\ref{E:waitframelawEvent}),
 and
 (\ref{E:waitframelawAlways})
-complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:untilframelawAlways}).
-
+complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:untilframelawAlways})
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
