@@ -3508,6 +3508,199 @@ The proof in the second direction follows.
   \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
 \end{tabbing}
 
+% sms begin
+\begin{equation}\label{E:BenAriequiv2}
+\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q
+\end{equation}
+
+[This proof is not complete yet ...]
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction is by (4.9) Proof by contradiction. Let $r \equiv ((p \lor \Always q) \land (\Always p \lor q))$.
+Then we prove $\Always r \impl \Always p \lor \Always q$ by proving
+$\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg (\Always r \impl \Always p \lor \Always q )$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+ \> \>   $\neg(\neg \Always r \lor \Always p \lor \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$ twice.}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
+   \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \land (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+   \> $\impl$  \>  \Hint{Lemma: $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \land \Always p \land \Always q$\\[\lgap]
+   \> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p\land q \equiv q\land p$}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \Always p \land  \neg \Always q \land \Always q $\\[\lgap]
+    \> $=$  \>  \Hint{(3.42) Contradiction, $p\land\neg p \equivs false$, twice}\\[\lgap]
+  \> \>   $\Always r \land false \land false $\\[\lgap]
+  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $\Always r \land false$\\[\lgap]
+   \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
+  \> \>   $false$\\[\lgap]
+\end{tabbing}
+
+\emph{Proof of Lemma}:
+The proof is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+\end{tabbing}
+
+\emph{Proof of Lemma A}:
+$(p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lor (p \land q)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p \lor \Always q) \land (\Always p \lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+\end{tabbing}
+
+\emph{Proof of Lemma B}:
+$(\Always r \land \neg \Always p \land \neg \Always q) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+\end{tabbing}
+
+
+The proof in the second direction is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$
+\end{tabbing}
+Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (\Always \Event(p\lor q) \land \Event \Always\neg p) \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (3.76.2) $(p\impl q) \impl ((q\impl r)\impl (p\impl r))$}\\[\lgap]
+  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl (\Event\Always \neg p \impl \Always\Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl (\neg\Always\Event p \impl \Always\Event q)$\\[\lgap]
+	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$
+\end{tabbing}
+
+\emph{Proof of Lemma C}:
+$(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q) $
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \lor \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+\end{tabbing}
+
+\emph{Proof of Lemma D}:
+$\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$
+
+The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$ with $p,q := (\Always p \lor \Always q), (p \land q)$ is a theorem.} \\[\lgap]
+\> \> $\Always p \lor \Always q \impl \Always p \lor \Always q \lor (p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (\Always p \lor \Always q \impl \Always p \lor \Always q \lor (p \land q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p, q := ( \Always p \lor \Always q), (\Always p \lor \Always q \lor (p \land q)) $}\\[\lgap]
+  \> \>   $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$\\[\lgap]
+\end{tabbing}
+
+\emph{Proof of Lemma E}:
+$\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\end{tabbing}
+Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+\end{tabbing}
+% sms end
+
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
