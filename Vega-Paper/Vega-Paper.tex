@@ -3542,12 +3542,14 @@ $\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
 \end{tabbing}
 
 \emph{Proof of Lemma}:
+$(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$
+
 The proof is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
+   \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$ with $p:= \Always r \land \neg \Always p \land \neg \Always q$ is a theorem.}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
 \end{tabbing}
@@ -3612,30 +3614,21 @@ The proof in the second direction is by (4.7.1) Truth implication and (\ref{E:in
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$
+  \> $=$  \>  \Hint{Lemma C: $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q)$ is a theorem.}\\[\lgap]
+  \> \>   $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q)$
 \end{tabbing}
-Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (\Always \Event(p\lor q) \land \Event \Always\neg p) \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (3.76.2) $(p\impl q) \impl ((q\impl r)\impl (p\impl r))$}\\[\lgap]
-  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \impl (\Event\Always \neg p \impl \Always\Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \impl (\neg\Always\Event p \impl \Always\Event q)$\\[\lgap]
-	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$
+  \> \>   $\Always ((\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+ \> \>   $(\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q))$\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{Lemma D: $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$ }\\[\lgap]
+ \>     \>  \Hintmid{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$,}\\[\lgap]
+ \>     \>  \Hintlast{with $p, q, r := (\Always p \lor \Always q), \Always (\Always p \lor \Always q), \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \impl \Always (\Always p \lor \Always q \lor (p \land q))$\\[\lgap]
+   \> $=$  \>  \Hint{Lemma E: $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
+  \> \>   $(\Always p \lor \Always q) \impl \Always ((p \lor \Always q) \land (\Always p \lor q))$\\[\lgap]
 \end{tabbing}
 
 \emph{Proof of Lemma C}:
