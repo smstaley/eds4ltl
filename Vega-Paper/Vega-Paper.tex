@@ -992,9 +992,13 @@ Ben-Ari \cite{Ben} defines the \textit{release} operator $\mathcal{R}$ as
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> $p\;\mathcal{R}\; q\equivs \neg(\neg p \Until \neg q)$
 \end{tabbing}
-to be the dual of the binary operator.
+to be the dual of the binary operator $\Until$.
 To avoid adding another operator to our system, we use the following four theorems
-when working with duality.
+(\ref{E:DualUntil1}) Dual of $\Until$,
+(\ref{E:DualUntil2}) Dual of $\Until$,
+(\ref{E:DualWait1}) Dual of $\Wait$,
+(\ref{E:DualWait2}) Dual of $\Wait$
+when working with duality of the binary temporal operators $\Until$ and $\Wait$.
 
 \section{The Equational Temporal System}
 
@@ -3507,13 +3511,10 @@ The proof in the second direction follows.
  \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
   \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
 \end{tabbing}
-
 % sms begin
 \begin{equation}\label{E:BenAriequiv2}
 \Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q
 \end{equation}
-
-[This proof is not complete yet ...]
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction is by (4.9) Proof by contradiction. Let $r \equiv ((p \lor \Always q) \land (\Always p \lor q))$.
@@ -3538,7 +3539,7 @@ $\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
   \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
   \> \>   $\Always r \land false$\\[\lgap]
    \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
-  \> \>   $false$\\[\lgap]
+  \> \>   $false$ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma}:
@@ -3550,19 +3551,36 @@ The proof is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
   \> \>   $true$\\[\lgap]
    \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$ with $p:= \Always r \land \neg \Always p \land \neg \Always q$ is a theorem.}\\[\lgap]
   \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma A: $ r \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ twice} \\[\lgap]
+ \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( \neg \Always p \land \neg \Always q \land ( p \land q))$\\[\lgap]
+ \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$} \\[\lgap]
+ \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl  ( p \land q)$\\[\lgap]
 \end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+  \> \>   $\Always ((\Always r \land \neg \Always p \land \neg \Always q ) \impl  ( p \land q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p, q := ( \Always r \land \neg \Always p \land \neg \Always q), (p \land q) $}\\[\lgap]
+  \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q ) \impl  \Always ( p \land q))$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma B: $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q ) $ is a theorem.}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+  \end{tabbing}
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+   \> \>   $\Always ((\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q ))$\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+ \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>  \Hintlast{with $p, q, r :=  (\Always r \land \neg \Always p \land \neg \Always q )$, $\Always (\Always r \land \neg \Always p \land \neg \Always q )$, $\Always (p \land q ) $}\\[\lgap]
+  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always (p \land q )$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q $ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma A}:
@@ -3570,21 +3588,14 @@ $(p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lo
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $(p \lor \Always q) \land (\Always p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
-\end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+  \> \>   $((p \lor \Always q) \land \Always p) \lor ((p \lor \Always q) \land q)$\\[\lgap]
+   \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$, twice} \\[\lgap]
+  \> \>   $(\Always p \land p) \lor (\Always p \land \Always q) \lor (p \land q) \lor (\Always q \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$, twice}\\[\lgap]
+  \> \>   $\Always p \lor (\Always p \land \Always q) \lor (p \land q) \lor \Always q $\\[\lgap]
+  \> $=$ \> \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$ and (3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$} \\[\lgap]
+  \> \>   $\Always p \lor \Always q \lor (p \land q)$ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma B}:
@@ -3592,23 +3603,23 @@ $(\Always r \land \neg \Always p \land \neg \Always q) \impl \Next (\Always r \l
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $(r \land \Next \Always r) \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $=$ \> \Hint{(3.36) Symmetry of $\land$, $p\land q \equiv q\land p$} \\[\lgap]
+  \> \>   $ \Next \Always r \land ( r \land \neg \Always p \land \neg \Always q)$\\[\lgap]
+   \> $=$  \>  \Hint{Lemma A: $ r \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
+   \> \>   $ \Next \Always r \land ( ( \Always p \lor \Always q \lor ( p \land q)) \land \neg \Always p \land \neg \Always q)$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
+   \> \>   $ \Next \Always r \land ( \neg \Always p \land \neg \Always q \land (p \land q))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$ for $\neg \Always p \equiv \neg p \lor \neg \Next \Always p$, and (\ref{E:selfDual}) Self dual}\\[\lgap]
+   \> \>   $ \Next \Always r \land (p \land q) \land ( \neg p \lor \Next \neg \Always p) \land ( \neg q \lor \Next \neg \Always q)$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
+   \> \>   $ \Next \Always r \land p \land  \Next \neg \Always p \land q \land \Next \neg \Always q$\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$, with $p,q := ( \Next \Always r  \land  \Next \neg \Always p \land \Next \neg \Always q), (p \land q)$ }\\[\lgap]
+     \> \>   $ \Next \Always r  \land  \Next \neg \Always p \land \Next \neg \Always q$\\[\lgap]
+      \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
+       \> \>   $ \Next (\Always r  \land \neg \Always p \land \neg \Always q)$ \quad \myqed
 \end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
-\end{tabbing}
-
 
 The proof in the second direction is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
 \begin{tabbing}
@@ -3628,7 +3639,7 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
  \>     \>  \Hintlast{with $p, q, r := (\Always p \lor \Always q), \Always (\Always p \lor \Always q), \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always (\Always p \lor \Always q \lor (p \land q))$\\[\lgap]
    \> $=$  \>  \Hint{Lemma E: $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
-  \> \>   $(\Always p \lor \Always q) \impl \Always ((p \lor \Always q) \land (\Always p \lor q))$\\[\lgap]
+  \> \>   $(\Always p \lor \Always q) \impl \Always ((p \lor \Always q) \land (\Always p \lor q))$ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma C}:
@@ -3636,21 +3647,12 @@ $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q) $
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \lor \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
-\end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$, twice}\\[\lgap]
+   \> \>   $(p \land \Next \Always p) \lor (q \land \Next \Always q)$\\[\lgap]
+    \> $\impl$ \> \Hint{(4.2) Monotonicity of $\lor$ and (3.76b) Strengthening, $p \land q \impl p$, twice} \\[\lgap]
+     \> \>   $\Next \Always p \lor \Next \Always q$\\[\lgap]
+     \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
+     \> \>   $\Next (\Always p \lor \Always q)$ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma D}:
@@ -3668,29 +3670,25 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (\Always p \lor \Always q \impl \Always p \lor \Always q \lor (p \land q))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p, q := ( \Always p \lor \Always q), (\Always p \lor \Always q \lor (p \land q)) $}\\[\lgap]
-  \> \>   $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$\\[\lgap]
+  \> \>   $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma E}:
 $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$
+
+The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
+\> \>   $true$\\[\lgap]
+ \> $=$  \>  \Hint{Lemma A: $(p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lor (p \land q)$ is a theorem.}\\[\lgap]
+ \>\>	$(p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lor (p \land q)$
 \end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+  \>\>	$\Always ((p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lor (p \land q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Logical equivalence law of $\Always$}\\[\lgap]
+  \>\>	$\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$ \quad \myqed
 \end{tabbing}
 % sms end
 
