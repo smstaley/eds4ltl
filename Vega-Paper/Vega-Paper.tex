@@ -3517,7 +3517,7 @@ The proof in the second direction follows.
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction is by (4.9) Proof by contradiction. Let $r \equiv ((p \lor \Always q) \land (\Always p \lor q))$.
+The proof in the first direction is by (4.9) Proof by contradiction. Let $r \equiv (p \lor \Always q) \land (\Always p \lor q)$.
 Then we prove $\Always r \impl \Always p \lor \Always q$ by proving
 $\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
 
@@ -3526,11 +3526,11 @@ $\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
   \> \>   $\neg (\Always r \impl \Always p \lor \Always q )$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
  \> \>   $\neg(\neg \Always r \lor \Always p \lor \Always q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$ twice.}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
    \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
   \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \land (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
-   \> $\impl$  \>  \Hint{Lemma: $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+   \> $\impl$  \>  \Hint{Lemma: $\Always r \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \land \Always p \land \Always q$\\[\lgap]
    \> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p\land q \equiv q\land p$}\\[\lgap]
   \> \>   $\Always r \land \neg \Always p \land \Always p \land  \neg \Always q \land \Always q $\\[\lgap]
@@ -3543,32 +3543,32 @@ $\neg (\Always r \impl \Always p \lor \Always q ) \impl false$.
 \end{tabbing}
 
 \emph{Proof of Lemma}:
-$(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$
+$\Always r \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$
 
 The proof is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-   \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$ with $p:= \Always r \land \neg \Always p \land \neg \Always q$ is a theorem.}\\[\lgap]
-  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+   \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$ with $p:= \Always r \land \neg \Always p \land \neg \Always q$}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl r \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A: $ r \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
-  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q$\\[\lgap]
    \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ twice} \\[\lgap]
- \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl ( \neg \Always p \land \neg \Always q \land ( p \land q))$\\[\lgap]
+ \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \neg \Always p \land \neg \Always q \land ( p \land q)$\\[\lgap]
  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$} \\[\lgap]
- \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl  ( p \land q)$\\[\lgap]
+ \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl p \land q$\\[\lgap]
 \end{tabbing}
 Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ((\Always r \land \neg \Always p \land \neg \Always q ) \impl  ( p \land q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p, q := ( \Always r \land \neg \Always p \land \neg \Always q), (p \land q) $}\\[\lgap]
-  \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q ) \impl  \Always ( p \land q))$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma B: $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q ) $ is a theorem.}\\[\lgap]
-  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+  \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q  \impl p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
+  \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q ) \impl  \Always ( p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma B: $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
   \end{tabbing}
 Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
