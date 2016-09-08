@@ -3181,10 +3181,11 @@ Exercise for the student.\\
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$
-the following is a theorem.
-  \begin{tabbing}
-  \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$
+the following is a theorem.}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
