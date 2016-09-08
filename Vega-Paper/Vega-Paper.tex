@@ -3552,15 +3552,17 @@ The proof is by (4.7.1) Truth implication and (\ref{E:induction}) Induction.
   \> \>   $true$\\[\lgap]
    \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$ with $p:= \Always r \land \neg \Always p \land \neg \Always q$}\\[\lgap]
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+ \>     \>  \Hintmid{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$,}\\[\lgap]
+ \>     \>  \Hintlast{with $p, q, r := \Always r \land \neg \Always p \land \neg \Always q, \Always r \land \neg \Always p \land \neg \Always q, r \land \neg \Always p \land \neg \Always q$}\\[\lgap]
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl r \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A: $ r \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q$\\[\lgap]
    \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ twice} \\[\lgap]
  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \neg \Always p \land \neg \Always q \land ( p \land q)$\\[\lgap]
- \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$} \\[\lgap]
- \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl p \land q$\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+ \>     \>  \Hintlast{with $p, q, r := \Always r \land \neg \Always p \land \neg \Always q, \neg \Always p \land \neg \Always q \land ( p \land q), (p \land q))$}\\[\lgap]
+ \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl p \land q$
 \end{tabbing}
 Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
@@ -3568,20 +3570,12 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
   \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q  \impl p \land q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
   \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q ) \impl  \Always ( p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma B: $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$}\\[\lgap]
-  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
-  \end{tabbing}
-Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-   \> \>   $\Always ((\Always r \land \neg \Always p \land \neg \Always q ) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q ))$\\[\lgap]
- \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
- \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always (\Always r \land \neg \Always p \land \neg \Always q )$\\[\lgap]
- \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
-  \> \>  \Hintlast{with $p, q, r :=  (\Always r \land \neg \Always p \land \neg \Always q )$, $\Always (\Always r \land \neg \Always p \land \neg \Always q )$, $\Always (p \land q ) $}\\[\lgap]
-  \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always (p \land q )$\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{Lemma B:  $\Always r \land \neg \Always p \land \neg \Always q  \impl \Always (\Always r \land \neg \Always p \land \neg \Always q )$ }\\[\lgap]
+ \>     \>  \Hintmid{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$,}\\[\lgap]
+ \>     \>  \Hintlast{with $p, q, r := \Always r \land \neg \Always p \land \neg \Always q , \Always (\Always r \land \neg \Always p \land \neg \Always q ),  \Always ( p \land q)$}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q  \impl \Always (p \land q )$\\[\lgap]
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-   \> \>   $(\Always r \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q $ \quad \myqed
+   \> \>   $\Always r \land \neg \Always p \land \neg \Always q  \impl \Always p \land \Always q $ \quad \myqed
 \end{tabbing}
 
 \emph{Proof of Lemma A}:
@@ -3598,9 +3592,25 @@ $(p \lor \Always q) \land (\Always p \lor q) \equiv \Always p \lor \Always q \lo
   \> $=$ \> \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$ and (3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$} \\[\lgap]
   \> \>   $\Always p \lor \Always q \lor (p \land q)$ \quad \myqed
 \end{tabbing}
-
 \emph{Proof of Lemma B}:
-$(\Always r \land \neg \Always p \land \neg \Always q) \impl \Next (\Always r \land \neg \Always p \land \neg \Always q)$
+$\Always r \land \neg \Always p \land \neg \Always q  \impl \Always (\Always r \land \neg \Always p \land \neg \Always q )$
+
+The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $true$\\[\lgap]
+ \> $=$  \>  \Hint{Lemma C: $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$ is a theorem.}\\[\lgap]
+  \> \>   $\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q )$
+  \end{tabbing}
+Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+   \> \>   $\Always (\Always r \land \neg \Always p \land \neg \Always q  \impl \Next (\Always r \land \neg \Always p \land \neg \Always q ))$\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+ \> \>   $\Always r \land \neg \Always p \land \neg \Always q  \impl \Always (\Always r \land \neg \Always p \land \neg \Always q )$ \quad \myqed
+\end{tabbing}
+\emph{Proof of Lemma C}:
+$\Always r \land \neg \Always p \land \neg \Always q \impl \Next (\Always r \land \neg \Always p \land \neg \Always q)$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always r \land \neg \Always p \land \neg \Always q$\\[\lgap]
@@ -3626,25 +3636,25 @@ The proof in the second direction is by (4.7.1) Truth implication and (\ref{E:in
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma C: $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q)$ is a theorem.}\\[\lgap]
-  \> \>   $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q)$
+  \> $=$  \>  \Hint{Lemma D: $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$ is a theorem.}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$
 \end{tabbing}
 Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ((\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q))$\\[\lgap]
+  \> \>   $\Always (\Always p \lor \Always q \impl \Next (\Always p \lor \Always q))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
  \> \>   $(\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q))$\\[\lgap]
- \> $\impl$  \>  \Hintfirst{Lemma D: $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$ }\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{Lemma E: $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$ }\\[\lgap]
  \>     \>  \Hintmid{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$,}\\[\lgap]
  \>     \>  \Hintlast{with $p, q, r := (\Always p \lor \Always q), \Always (\Always p \lor \Always q), \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always (\Always p \lor \Always q \lor (p \land q))$\\[\lgap]
-   \> $=$  \>  \Hint{Lemma E: $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
-  \> \>   $(\Always p \lor \Always q) \impl \Always ((p \lor \Always q) \land (\Always p \lor q))$ \quad \myqed
+   \> $=$  \>  \Hint{Lemma F: $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$}\\[\lgap]
+  \> \>   $\Always p \lor \Always q \impl \Always ((p \lor \Always q) \land (\Always p \lor q))$ \quad \myqed
 \end{tabbing}
 
-\emph{Proof of Lemma C}:
-$(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q) $
+\emph{Proof of Lemma D}:
+$\Always p \lor \Always q \impl \Next (\Always p \lor \Always q) $
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \lor \Always q$\\[\lgap]
@@ -3656,7 +3666,7 @@ $(\Always p \lor \Always q) \impl \Next (\Always p \lor \Always q) $
      \> \>   $\Next (\Always p \lor \Always q)$ \quad \myqed
 \end{tabbing}
 
-\emph{Proof of Lemma D}:
+\emph{Proof of Lemma E}:
 $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$
 
 The proof is by (4.7.1) Truth implication.
@@ -3674,7 +3684,7 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
   \> \>   $\Always (\Always p \lor \Always q) \impl \Always (\Always p \lor \Always q \lor (p \land q))$ \quad \myqed
 \end{tabbing}
 
-\emph{Proof of Lemma E}:
+\emph{Proof of Lemma F}:
 $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$
 
 The proof is by (4.7.1) Truth implication.
