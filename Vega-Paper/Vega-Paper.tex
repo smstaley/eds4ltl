@@ -2954,6 +2954,27 @@ Exercise for the student.\\
 \opt{student}{
 Exercise for the student.\\
 }
+% begin sms
+\begin{equation}\label{E:NextConRule}
+\textbf{Consequence rule of $\Next$:}\quad \Always ( p \impl q \land q \impl \Next r \land r \impl s) \impl (p \impl \Next s)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( p \impl q \land q \impl \Next r \land r \impl s)$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land \Always (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
+    \> \>   $ p \impl q \land q \impl \Next r \land \Always (r \impl s)$\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+     \> \>   $ p \impl \Next r \land \Always (r \impl s)$\\[\lgap]
+     \> $\impl$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $ p \impl \Next r \land \Next r \impl \Next s$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Next s$\quad \myqed
+\end{tabbing}
+% end sms
 \begin{equation}\label{E:tempGenLaw}
 \textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
