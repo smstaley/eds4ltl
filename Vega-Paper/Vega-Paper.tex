@@ -2956,23 +2956,96 @@ Exercise for the student.\\
 }
 % begin sms
 \begin{equation}\label{E:NextConRule}
-\textbf{Consequence rule of $\Next$:}\quad \Always ( p \impl q \land q \impl \Next r \land r \impl s) \impl (p \impl \Next s)
+\textbf{Consequence rule of $\Next$:}\quad \Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s)) \impl (p \impl \Next s)
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ( p \impl q \land q \impl \Next r \land r \impl s)$\\[\lgap]
+  \> \>   $\Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s))$\\[\lgap]
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land \Always (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
-    \> \>   $ p \impl q \land q \impl \Next r \land \Always (r \impl s)$\\[\lgap]
+    \> \>   $ (p \impl q) \land (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
     \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-     \> \>   $ p \impl \Next r \land \Always (r \impl s)$\\[\lgap]
+     \> \>   $ (p \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$ and (4.3) Monotonicity of $\land$} \\[\lgap]
-  \> \>   $ p \impl \Next r \land \Next r \impl \Next s$\\[\lgap]
+  \> \>   $ (p \impl \Next r) \land (\Next r \impl \Next s)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Next s$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:EventConRule}
+\textbf{Consequence rule of $\Event$:}\quad \Always ( (p \impl q) \land (q \impl \Event r) \land (r \impl s)) \impl (p \impl \Event s)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( (p \impl q) \land (q \impl \Event r) \land (r \impl s))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land \Always (q \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
+    \> \>   $ (p \impl q) \land (q \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+     \> \>   $ (p \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
+     \> $\impl$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $ (p \impl \Event r) \land (\Event r \impl \Event s)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Event s$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:AlwaysConRule}
+\textbf{Consequence rule of $\Always$:}\quad \Always ( (p \impl q) \land (q \impl \Always r) \land (r \impl s)) \impl (p \impl \Always s)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( (p \impl q) \land (q \impl \Always r) \land (r \impl s))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land \Always (q \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
+    \> \>   $ (p \impl q) \land (q \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+     \> \>   $ (p \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
+     \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $ (p \impl \Always r) \land (\Always r \impl \Always s)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Always s$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:EventCatRule}
+\textbf{Catenation rule of $\Event$:}\quad \Always ( (p \impl \Event q) \land (q \impl \Event r)) \impl (p \impl \Event r)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( (p \impl \Event q) \land (q \impl \Event r))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \impl \Event q) \land \Always (q \impl \Event r)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> \>   $(p \impl \Event q) \land \Always (q \impl \Event r)$\\[\lgap]
+     \> $\impl$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $ (p \impl \Event q) \land (\Event q \impl \Event \Event r)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+   \> \>   $ (p \impl \Event q) \land (\Event q \impl \Event r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Event r$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:AlwaysCatRule}
+\textbf{Catenation rule of $\Always$:}\quad \Always ((p \impl \Always q) \land (q \impl \Always r)) \impl (p \impl \Always r)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl \Always q) \land (q \impl \Always r))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
+  \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \>     \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Always r$\quad \myqed
 \end{tabbing}
 % end sms
 \begin{equation}\label{E:tempGenLaw}

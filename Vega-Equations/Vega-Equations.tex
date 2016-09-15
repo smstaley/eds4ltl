@@ -994,9 +994,37 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 % sms begin
 \begin{equation}\label{E:NextConRule}
-\textbf{Consequence rule of $\Next$:}\quad \Always ( p \impl q \land q \impl \Next r \land r \impl s) \impl (p \impl \Next s)
+\textbf{Consequence rule of $\Next$:}\quad \Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s)) \impl (p \impl \Next s)
 \end{equation}
 \opt{inventory}{S65(3.23)\\}
+
+\spacer
+
+\begin{equation}\label{E:EventConRule}
+\textbf{Consequence rule of $\Event$:}\quad \Always ( (p \impl q) \land (q \impl \Event r) \land (r \impl s)) \impl (p \impl \Event s)
+\end{equation}
+\opt{inventory}{S63(3.19)\\}
+
+\spacer
+
+\begin{equation}\label{E:AlwaysConRule}
+\textbf{Consequence rule of $\Always$:}\quad \Always ( (p \impl q) \land (q \impl \Always r) \land (r \impl s)) \impl (p \impl \Always s)
+\end{equation}
+\opt{inventory}{S62(3.13)\\}
+
+\spacer
+
+\begin{equation}\label{E:EventCatRule}
+\textbf{Catenation rule of $\Event$:}\quad \Always ( (p \impl \Event q) \land (q \impl \Event r)) \impl (p \impl \Event r)
+\end{equation}
+\opt{inventory}{S64(3.20)\\}
+
+\spacer
+
+\begin{equation}\label{E:AlwaysCatRule}
+\textbf{Catenation rule of $\Always$:}\quad \Always ((p \impl \Always q) \land (q \impl \Always r)) \impl (p \impl \Always r)
+\end{equation}
+\opt{inventory}{S62(3.14)\\}
 
 \spacer
 
