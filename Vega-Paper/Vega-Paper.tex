@@ -3047,6 +3047,26 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:CompInductRule}
+\textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( p \impl (q \land \Next p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+   \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land \Always (p \impl \Next p)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
+   \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
+    \> $\impl$ \> \Hintfirst{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+     \> \>  \Hintlast{and (3.36) Symmetry of $\land$, $p\land q \equiv q\land p$}\\[\lgap]
+     \> \>   $(p \impl \Always p) \land (\Always p \impl \Always q) $\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $ p \impl \Always q$\quad \myqed
+\end{tabbing}
 % end sms
 \begin{equation}\label{E:tempGenLaw}
 \textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
