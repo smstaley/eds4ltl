@@ -1485,6 +1485,20 @@ p \Wait q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:waitInduct1}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl (p \Wait q))
+\end{equation}
+\opt{inventory}{Inspired by S66(3.36)\\}
+
+\spacer
+
+\begin{equation}\label{E:waitInduct2}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl (q \land \Next p)) \impl  (p \impl (p \Wait q))
+\end{equation}
+\opt{inventory}{Inspired by S66(3.36)\\}
+
+\spacer
+
 % sms end
 
 \begin{equation}\label{E:waitOrP}

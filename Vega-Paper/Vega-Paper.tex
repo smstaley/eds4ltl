@@ -4660,7 +4660,34 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ with $p,q := \Always (p \Wait q), \Always p$} \\[\lgap]
   \> \>   $\Always (p \Wait q) $\quad \myqed
 \end{tabbing}
-
+\begin{equation}\label{E:waitInduct1}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl (p \Wait q))
+\end{equation}
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:induction}) Induction is an axiom}\\[\lgap]
+  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:waitInduct2}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl (q \land \Next p)) \impl  (p \impl (p \Wait q))
+\end{equation}
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule is a theorem}\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl p \Wait \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl \Always (p \Wait \ q))$\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl  (p \Wait \ q))$ \quad \myqed
+\end{tabbing}
 % sms end
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
