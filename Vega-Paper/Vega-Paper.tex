@@ -4669,7 +4669,11 @@ And now,
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:induction}) Induction is an axiom}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
+    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+    \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+   \> \>   $\Always (p \impl \Next p) \land p \impl  p \Wait q$\\[\lgap]
+    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitInduct2}
@@ -4681,12 +4685,16 @@ And now,
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule is a theorem}\\[\lgap]
   \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)$\\[\lgap]
+   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+   \> \>   $\Always ( p \impl (q \land \Next p)) \land p  \impl \Always q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl p \Wait \Always q)$\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \land p  \impl  p \Wait \Always q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl \Always (p \Wait \ q))$\\[\lgap]
+  \> \>   $\Always ( p \impl (q \land \Next p)) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
     \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl  (p \Wait \ q))$ \quad \myqed
+  \> \>   $\Always ( p \impl (q \land \Next p)) \land p \impl p \Wait \ q$ \\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+   \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl  (p \Wait \ q))$ \quad \myqed
 \end{tabbing}
 % sms end
 
