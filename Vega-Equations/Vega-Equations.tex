@@ -9,8 +9,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
-\usepackage[plain]{optional}
-%\usepackage[inventory]{optional}
+%\usepackage[plain]{optional}
+\usepackage[inventory]{optional}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -608,7 +608,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:induction}
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
-\opt{inventory}{M217(FX5), S64(3.21e), B242, B263(Ax4)\\}
+\opt{inventory}{M217(FX5), M264(Rule CI), S64(3.21e), B242, B263(Ax4)\\}
 
 \spacer
 
@@ -733,7 +733,7 @@ p \Until q \impl p \lor q
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
-\opt{inventory}{M207(FI1), M264(T7), S63(3.18a), K28(T10), E8, B238(C13.21), B244, B266(T14.6)\\}
+\opt{inventory}{M207(FI1), M264(T7), M264(Rule $\Always$G), S63(3.18a), K28(T10), E8, B238(C13.21), B244, B266(T14.6)\\}
 
 \newpage
 
@@ -840,7 +840,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:distNextEquiv2}
 \textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
-\opt{inventory}{K32\\}
+\opt{inventory}{M264(Rule $\Next$M (b)), K32\\}
 
 \spacer
 
@@ -974,21 +974,21 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
-\opt{inventory}{S65(3.22f), K30(T30), E9\\}
+\opt{inventory}{M264(Rule $\Next$M (a)), S65(3.22f), K30(T30), E9\\}
 
 \spacer
 
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
-\opt{inventory}{S63(3.16f), K30(T31), E9, B268(T14.10d)\\}
+\opt{inventory}{M264(Rule $\Event$M), S63(3.16f), K30(T31), E9, B268(T14.10d)\\}
 
 \spacer
 
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
-\opt{inventory}{M217(FX3), S61(3.10b), K29(T22), E9, B242, B237(T13.15), B263(Ax1)\\}
+\opt{inventory}{M217(FX3), M264(Rule $\Always$M), S61(3.10b), K29(T22), E9, B242, B237(T13.15), B263(Ax1)\\}
 
 \spacer
 
@@ -1017,7 +1017,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:EventCatRule}
 \textbf{Catenation rule of $\Event$:}\quad \Always ( (p \impl \Event q) \land (q \impl \Event r)) \impl (p \impl \Event r)
 \end{equation}
-\opt{inventory}{S64(3.20)\\}
+\opt{inventory}{M264(Rule $\Event$T), S64(3.20)\\}
 
 \spacer
 
@@ -1031,7 +1031,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:CompInductRule}
 \textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
 \end{equation}
-\opt{inventory}{S65(3.24b)\\}
+\opt{inventory}{M264(Rule $\Always$I), S65(3.24b)\\}
 
 \spacer
 
