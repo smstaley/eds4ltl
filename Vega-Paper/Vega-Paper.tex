@@ -2266,6 +2266,20 @@ Exercise for the student.\\
 \opt{student}{
 Exercise for the student.\\
 }
+% sms begin
+\begin{equation}\label{E:impAlwaysAN}
+\textbf{$\Next$ generalization:}\quad \Always p \impl \Always\Next p
+\end{equation}
+\emph{Proof}: The proof is by Truth equivalence.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:impAlwaysNA}) Strengthening of $\Always$ is a theorem}\\[\lgap]
+  \> \>   $\Always p \impl \Next \Always p$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
+   \> \>   $\Always p \impl \Always\Next p$ \quad \myqed
+\end{tabbing}
+% sms end
 
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
@@ -3066,6 +3080,52 @@ Exercise for the student.\\
      \> \>   $(p \impl \Always p) \land (\Always p \impl \Always q) $\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:EventConfRule}
+\textbf{$\Event$ Confluence:}\quad \Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \impl (p \impl \Event t)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \impl (p \impl \Event t)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \land p \impl \Event t$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \land p $\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (p \impl \Event (q \lor r)) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t) \land p $\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+     \> \>   $(p \impl \Event (q \lor r)) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t) \land p $\\[\lgap]
+     \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+ \> \>   $\Event (q \lor r) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t)$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+ \> \>   $(\Event q \lor \Event r) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t)$\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$ twice}\\[\lgap]
+ \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event\Event t) \land (\Event r \impl \Event\Event t)$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$ twice}\\[\lgap]
+ \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event t) \land (\Event r \impl \Event t)$\\[\lgap]
+ \> $=$ \> \Hint{(3.59) Implication $p\impl q\equiv \neg p\lor q$ twice} \\[\lgap]
+ \> \>   $(\Event q \lor \Event r) \land (\neg\Event q \lor \Event t) \land (\neg\Event r \lor \Event t)$\\[\lgap]
+ \> $\impl$  \>  \Hint{Lemma: $(p \lor q) \land (\neg q \lor r)\impl (p\lor r)$ and (4.3) Monotonicity of $\land$ twice}\\[\lgap]
+ \> \>   $\Event t$ \\[\lgap]
+\end{tabbing}
+\emph{Proof of Lemma}: $(p \lor q) \land (\neg q \lor r)\impl (p\lor r)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land(q\lor r) \equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+  \> \>   $(p\land (\neg q\lor r))\lor (q\land (\neg q\lor r))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\lor (q\land (\neg q\lor r))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
+  \> \>   $p\lor (q\land r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\lor r$ \quad \myqed
 \end{tabbing}
 % end sms
 \begin{equation}\label{E:tempGenLaw}
