@@ -1026,7 +1026,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:EventCatRule}
 \textbf{Catenation rule of $\Event$:}\quad \Always ( (p \impl \Event q) \land (q \impl \Event r)) \impl (p \impl \Event r)
 \end{equation}
-\opt{inventory}{M264(Rule $\Event$T), S64(3.20)\\}
+\opt{inventory}{M264(Rule $\Event$T), S64(3.20), K49(chain)\\}
 
 \spacer
 
@@ -1679,6 +1679,20 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)
 \end{equation}
 \opt{inventory}{S66(3.35b)\\}
+
+\spacer
+
+\begin{equation}\label{E:waitstrength}
+\textbf{$\Wait$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Wait q \impl r \Wait s)
+\end{equation}
+\opt{inventory}{M266(Rule$\Wait$M), S66(3.39)\\}
+
+\spacer
+
+\begin{equation}\label{E:waitCatRule}
+\textbf{$\Wait$ catenation rule:}\quad \Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \impl (p \impl q \Wait s)
+\end{equation}
+\opt{inventory}{M266(Rule$\Wait$T), S66(3.40)\\}
 
 \spacer
 

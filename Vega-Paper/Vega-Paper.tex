@@ -5228,6 +5228,53 @@ p \Wait q \land \Always\neg q \impl \Always p
 \end{tabbing}
 
 % sms begin
+\begin{equation}\label{E:waitstrength}
+\textbf{$\Wait$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Wait q \impl r \Wait s)
+\end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \impl (p \Wait q \impl r \Wait s)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \land p \Wait q \impl r \Wait s$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \land p \Wait q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (p \impl r) \land \Always (q \impl s) \land p \Wait q$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> \>   $\Always (p \impl r) \land p \Wait s$\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$}\\[\lgap]
+      \> \>   $r \Wait s$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:waitCatRule}
+\textbf{$\Wait$ catenation rule:}\quad \Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \impl (p \impl q \Wait s)
+\end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \impl (p \impl q \Wait s)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \land p \impl q \Wait s$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \land p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (p \impl q \Wait r) \land \Always (r \impl q \Wait s) \land p$\\[\lgap]
+     \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+      \> \>   $(p \impl q \Wait r) \land \Always (r \impl q \Wait s) \land p$\\[\lgap]
+      \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+       \> \>   $q \Wait r \land \Always (r \impl q \Wait s)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p, q, r := r, q \Wait s, q$ }\\[\lgap]
+    \> \>   $q \Wait (q \Wait s)$\\[\lgap]  
+    \> $=$  \>  \Hint{(\ref{E:waitAbsL}) Left absorption of $\Wait$}\\[\lgap]
+      \> \>   $q \Wait s$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:untilImpAbsR}
 \textbf{Absorption:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
 \end{equation}
