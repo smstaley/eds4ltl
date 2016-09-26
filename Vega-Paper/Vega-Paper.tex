@@ -3906,6 +3906,39 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
 \> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
 \end{tabbing}
+% sms begin
+\begin{equation}\label{E:kroger49}
+ \Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \impl (\Always p \impl \Next \Always \Event r)
+\end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \impl (\Always p \impl \Next \Always \Event r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \land \Always p \impl \Next \Always \Event r$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \land \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (\Always p \impl \Event q) \land \Always (q \impl \Next r) \land \Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, with $p := \Always p$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+     \> \>   $\Always (\Always p \impl \Event q) \land \Always (q \impl \Next r) \land \Event\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:monoAlwaysEvent}) Monotonicity of $\Always\Event$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+    \> \>   $(\Always\Event\Always p \impl \Always\Event\Event q) \land \Always (q \impl \Next r) \land \Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$ and (\ref{E:IdemEvent}) Absorption of $\Event$ }\\[\lgap]
+      \> \>   $(\Event\Always p \impl \Always\Event q) \land \Always (q \impl \Next r) \land \Event\Always p$\\[\lgap]
+      \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+         \> \>   $ \Always\Event q \land \Always (q \impl \Next r)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:monoAlwaysEvent}) Monotonicity of $\Always\Event$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+    \> \>   $ \Always\Event q \land (\Always\Event q \impl \Always\Event\Next r)$\\[\lgap]
+     \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+     \> \>   $ \Always\Event\Next r$\\[\lgap]
+      \> $=$  \>  \Hint{(\ref{E:dNextEvent}) Exchange of $\Next$ and $\Event$ and (\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
+      \> \>   $ \Next\Always\Event r$  \quad \myqed
+\end{tabbing}
+% sms end
 \begin{equation}\label{E:PrProofRule}
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
