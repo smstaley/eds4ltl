@@ -9,8 +9,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
-%\usepackage[plain]{optional}
-\usepackage[inventory]{optional}
+\usepackage[plain]{optional}
+%\usepackage[inventory]{optional}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -234,7 +234,7 @@ $\equiv$ \quad (associative) & Lowest precedence\\
       \> (e)\> $p\land q \impl p\land (q \lor r)$\\[\lgap]
 (3.76.1)\>$p\land q \impl p\lor r$\quad \quad \quad (Weakening/strengthening)\\[\lgap]
 (3.76.2)\>$(p\impl q) \impl ((q\impl r)\impl (p\impl r))$\\[\lgap]
-(3.76.3)\>$(p\lor q) \land (\neg q \lor r)\impl (p\lor r))$\\[\lgap]
+(3.76.3)\>$(p\lor q) \land (\neg q \lor r)\impl (p\lor r)$\\[\lgap]
 (3.77)\>\textbf{Modus ponens:}\quad $p\land (p\impl q)\impl q$\\[\lgap]
 (3.77.1)\>\textbf{Modus tollens:}\quad $(p\impl q)\land \neg q \impl \neg p$\\[\lgap]
 (3.77.2)\>$((p \impl q) \impl (r \impl s)) \land (s \impl t) \impl ((p \impl q) \impl (r \impl t))$\\[\lgap]
@@ -247,7 +247,8 @@ $\equiv$ \quad (associative) & Lowest precedence\\
       \> (b)\> $(p\equiv q) \land (q\impl r) \impl (p\impl r)$\\[\lgap]
       \> (c)\> $(p\impl q) \land (q\equiv r) \impl (p\impl r)$\\[\lgap]
 (3.82.1)\>\textbf{Transitivity of $\equiv$ :}\quad $(p\equiv q)\land (q\equiv r)\impl (p\equiv r)$\\[\lgap]
-(3.82.2)\>$(p\equiv q)\impl (p\impl q)$\\
+(3.82.2)\>$(p\equiv q)\impl (p\impl q)$\\[\lgap]
+(3.82.3)\>$((p\impl q)\impl (r\impl s)) \land (s \impl t) \impl ((p \impl q) \impl (r \impl t))$\\
 \end{tabbing}
 
 \subsection*{Leibniz as an axiom}
