@@ -3127,6 +3127,24 @@ And now,
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $p\lor r$ \quad \myqed
 \end{tabbing}
+
+\begin{equation}\label{E:EventIntro}
+\textbf{$\Event$ introduction rule:}\quad \Always (( p \lor \Next q) \impl q) \impl \Event (p \impl q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (( p \lor \Next q) \impl q)$\\[\lgap]
+   \> $=$ \> \Hint{(3.78) $(p\impl r) \land (q\impl r) \equivs (p\lor q\impl r)$} \\[\lgap]
+    \> \>   $\Always (( p \impl q) \land (\Next q \impl q))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always ( p \impl q) \land \Always (\Next q \impl q)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
+   \> \>   $\Always ( p \impl q)$\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:impAlwaysE}) Strengthening of $\Always$}\\[\lgap]
+    \> \>   $\Event ( p \impl q)$ \quad \myqed
+\end{tabbing}
 % end sms
 \begin{equation}\label{E:tempGenLaw}
 \textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
