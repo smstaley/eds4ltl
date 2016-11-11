@@ -5620,14 +5620,47 @@ This section compares the axiomatization systems of those sources with this work
 
 \subsection{Emerson}
 
-Section 6.3 in Emerson \cite{Emer} is a treatment of deductive systems for temporal logic.
-Following is a list of the axioms of this system with the corresponding theorems of this work.\\
+Section 6.3 in Emerson \cite{Emer} is a treatment of deductive systems for temporal logic. As an example
+of a deductive system, an axiomatization of CTL (Computational Tree Logic) is presented. Since CTL extends
+LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, we can
+develop a set of axioms for LTL by elimination of the extra quantifiers. This takes the axiom set of Emerson from 15 to 10 axioms.
+Following is a list of the 10 axioms of this Emerson LTL system with the corresponding theorems of this work.\\
 
-The two stated rules of inference are\\
+
+
+(Ax1) All validities of propositional logic. Also assumed in this work.\\
+
+(Ax2) $\Event q \equiv true \Until q$ This is (\ref{E:defEvent}) Definition of $\Event$.\\
+
+(Ax2b) $\Always p \equiv \neg \Event \neg p$ This is (\ref{E:defAlways}) Definition of $\Always$.\\
+
+(Ax4) $\Next (p \lor q) \equiv \Next p \lor \Next q$ This is a theorem (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$.\\
+
+(Ax5) $\Next p \equiv \neg\Next\neg p$ This is a theorem(\ref{E:linearity}) Linearity.\\
+
+(Ax6) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
+
+(Ax8) $\Next true$ This is a theorem (\ref{E:nextTruth}) Truth of $\Next$.\\
+
+(Ax9) $\Always ( r \impl (\neg q \land \Next r)) \impl (r \impl \neg (p \Until q))$ This is a theorem that follows from (Ax9b) 
+and the theorem $\neg \Event q \impl \neg (p \Until q)$ which is the contrapositive of theorem (\ref{E:eventuality}) Eventuality.\\
+
+(Ax9b) $\Always ( r \impl (\neg q \land \Next r)) \impl (r \impl \neg \Event q)$ This is a theorem (\ref{E:CompInductRule})
+ Computational induction rule with $ p, q := r, \neg q$.\\
+
+(Ax11) $\Always (p \impl q) \impl (\Next p \impl \Next q)$ This is a theorem(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.\\
+
+The two stated rules of inference in the Emerson deductive system are: R1 (Generalization), which is (\ref{E:metatheorem}) Metatheorem,
+and R2 (Modus Ponens), which is a theorem (3.77) in this work.\\
 
 Contrast Emerson's system with ours.\\
 
+The above shows that all the deductive power of the Emerson axiomatization is covered in this equational deductive system. All the axioms of Emerson are either axioms in this work, or are theorems derivable in this work.\\
+
 Summarize Emerson's discussion in this section.\\
+
+Taking a subset of the CTL deductive system of Emerson needed for LTL, we show that this work has all the axioms, 
+theorems and inference rules to have the same deductive power as that system, which is claimed to be both sound and complete.\\
 
 \subsection{Ben-Ari}
 
