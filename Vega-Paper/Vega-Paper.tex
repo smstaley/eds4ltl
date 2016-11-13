@@ -5616,6 +5616,58 @@ This section compares the axiomatization systems of those sources with this work
 
 \subsection{Manna and Pnueli}
 
+Sections 3.5-3.7 in Manna and Pnueli \cite{Manna} defines a proof system used in their textbook for reasoning about LTL.
+They develop an H-style system using the inference rule Modus Ponens as the primary reasoning method.
+Manna and Pnueli start with $\Next$ and $\Wait$ as the basic temporal operators. The rest of the temporal operators
+are defined as follows by Manna and Pnueli and references to their equivalents in this work shown:\\
+
+$\Always p \equiv p \Wait false$   This is theorem (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law.\\
+
+$\Event p \equiv \neg \Always \neg p$   This is theorem (\ref{E:eventAsAlways}) $\Event p \equiv \neg \Always \neg p$. \\
+
+$p \Until q \equiv p \Wait q \land \Event q$   This is theorem (\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$.\\
+
+The axiomatization of LTL in Manna and Pnueli consists of 8 Axioms and 4 inference rules. The following is
+a list of the 8 axioms of the Manna and Pnueli LTL proof system with the corresponding theorems of this work.\\
+
+(FX0) $\Always p \impl p$ This is a theorem (\ref{E:impAlways}) Strengthening of $\Always$.\\
+
+(FX1) $\Always (\Next \neg p \equiv \neg \Next p)$ This is a theorem that follows from (\ref{E:metatheorem}) Metatheorem
+and axiom (\ref{E:selfDual}) Self-dual.\\
+
+(FX2) $\Always (\Next (p \impl q)  \equiv ( \Next p \impl \Next q))$ This is a theorem that follows
+from (\ref{E:metatheorem}) Metatheorem and axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
+
+(FX3) $\Always (\Always (p \impl q)  \impl ( \Always p \impl \Always q))$ This is a theorem that follows
+from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.\\
+
+(FX4) $\Always p \impl \Always \Next p$ This is a theorem (\ref{E:impAlwaysAN}) $\Next$ generalization.\\
+
+(FX5) $\Always  (p \impl \Next p)  \impl  \Always (p \impl \Always p)$ This is a theorem that follows
+from (\ref{E:metaAlways}) Metatheorem $\Always$ and axiom (\ref{E:induction}) Induction.\\
+
+(FX6) $\Always (p \Wait q \equiv q \lor (p \land \Next (p \Wait q)))$ This is a theorem that follows
+from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:expansionWait}) Expansion of $\Wait$.\\
+
+(FX7) $\Always (\Always p \impl p \Wait q)$ This is a theorem that follows
+from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
+
+
+The four stated rules of inference in the Manna and Pnueli deductive system are: Rule GEN (Generalization),
+Rule SPEC (specialization), Rule INST (instantiation) and Rule MP (modus ponens).
+These inference rules exist in this work in the form of (\ref{E:metatheorem}) Metatheorem for GEN and SPEC, textual 
+substitution for INST and theorem (3.77) Modus ponens for MP.\\
+
+Contrast Manna and Pnueli system with ours.\\
+
+The above shows that all the deductive power of the Manna and Pnueli axiomatization is covered in this equational deductive system. All the axioms of Manna and Pnueli are either axioms in this work, or are theorems derivable in this work.\\
+
+Summarize Manna and Pnueli discussion in this section.\\
+
+We have shown above that this work has all the axioms, 
+theorems and inference rules to have the same deductive power as the Manna and Pnueli system.\\
+
+
 \subsection{Schneider}
 
 \subsection{Emerson}
