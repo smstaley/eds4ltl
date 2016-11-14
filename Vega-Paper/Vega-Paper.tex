@@ -5768,6 +5768,50 @@ theorems and inference rules to have the same deductive power as that system, wh
 
 \subsection{Ben-Ari}
 
+Chapter 14 in Ben-Ari \cite{Ben} defines the axioms and inference rules of a deductive system
+for LTL. The system takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and gives axioms
+for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$. The $\Wait$ operator is not covered
+in this system for LTL.\\
+
+The axiomatization of LTL in Ben-Ari consists of 8 Axioms and 2 inference rules. The following is
+a list of the 8 axioms of the Ben-Ari LTL proof system with the corresponding equivalent theorems of this work.\\
+
+(Axiom 0) All validities of propositional logic. Also assumed in this work.\\
+
+(Axiom 1) $\Always (p \impl q)  \impl ( \Always p \impl \Always q)$ This is a theorem
+ (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.\\
+
+(Axiom 2) $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$ 
+This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
+
+(Axiom 3) $\Always p \equiv p \land \Next p \land \Next\Always p$ This is a theorem
+ (\ref{E:expansionAlways2}) Expansion of $\Always$.\\
+ 
+ (Axiom 4) $\Always  (p \impl \Next p)  \impl   (p \impl \Always p)$ This is an axiom (\ref{E:induction}) Induction.\\
+ 
+ (Axiom 5) $\Next p \equiv \neg\Next\neg p$ This is a theorem(\ref{E:linearity}) Linearity.\\
+ 
+ (Axiom 6) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
+
+(Axiom 7) $p \Until q \impl \Event q$ This is a theorem (\ref{E:eventuality}) Eventuality.\\
+
+The two stated rules of inference in the Ben-Ari deductive system are: Modus ponens and generalization.
+These inference rules exist in this work in the form of  
+theorem (3.77) Modus ponens and (\ref{E:metatheorem}) Metatheorem.\\
+
+Contrast Ben-Ari system with ours.\\
+
+The above shows that all the deductive power of the Ben-Ari axiomatization is covered in this equational deductive system. All the axioms of Ben-Ari are either axioms in this work, or are theorems derivable in this work.
+An important difference is we place equal emphasis on having both the $\Until$ and $\Wait$
+operators equally represented in the deductive system, whereas Ben-Ari mainly discusses the $\Until$ operator.
+Of course, either operator can be defined in terms of the other with no loss of expressive power. In Chapter 14 Ben-Ari also
+sketches soundness and completeness results for the axiomatization he presents.\\
+
+Summarize Ben-Ari discussion in this section.\\
+
+We have shown above that this work has all the axioms, 
+theorems and inference rules to have the same deductive power as the Ben-Ari system.\\
+
 \subsection{New theorems}
 
 This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
