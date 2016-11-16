@@ -5610,9 +5610,56 @@ Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always ((p\lor q)\la
 \section{Comparison with previous work}\label{comparison-previous-work}
 
 As a check on comprehensiveness, we inventoried all the linear temporal logic theorems in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
-This section compares the axiomatization systems of those sources with this work.
+This section compares the axiomatization systems of those sources with this work. In each of the following sections we translate
+the axioms and inference rules from the reference's notation to the notation we use in this paper to facilitate comparison.
+At the same time we keep the numbering system of each reference in place.
 
 \subsection{Kröger and Merz}
+
+Section 2.3 in Kröger and Merz \cite{Kroger} defines the axioms and inference rules of a deductive system
+for LTL. The system takes the temporal operators $\Always$ and $\Next$ as basic and gives axioms
+for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$. The $\Until$ operator
+and  $\Wait$ operator are introduced with four defining axioms in section 3.1 as an extension to LTL.\\
+
+The axiomatization of LTL in Kröger and Merz consists of 8 Axioms and 3 inference rules. The following is
+a list of the 8 axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work.\\
+
+(taut) All tautologically valid formulas. Also assumed in this work.\\
+
+(ltl1) $\Next \neg p \equiv \neg \Next p$ This is an axiom (\ref{E:selfDual}) Self-dual.\\
+
+(ltl2, ltl2') $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$ 
+This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
+
+(ltl3, ltl3') $\Always p \equiv p \land \Next\Always p$ This is a theorem
+ (\ref{E:expansionAlways}) Expansion of $\Always$.\\
+  
+(Tb13) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
+
+(unt2) $p \Until q \impl \Event q$ This is a theorem (\ref{E:eventuality}) Eventuality.\\
+
+(Tb14) $p \Wait q \equiv q \lor (p \land \Next (p \Wait q))$ This is an axiom (\ref{E:expansionWait}) Expansion of $\Wait$.\\
+
+(unl2) $\Always p \impl p \Wait q$ This is a theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
+
+The three stated rules of inference in the Kröger and Merz deductive system are: (mp) Modus ponens,
+(nex) next introduction and (ind) Induction.
+These inference rules exist in this work in the form of  
+theorem (3.77) Modus ponens,  theorem (\ref{E:impAlwaysN}) Strengthening of $\Always$
+and theorem (\ref{E:CompInductRule}) Computational induction rule.\\
+
+Contrast Kroger system with ours.\\
+
+The above shows that all the deductive power of the Kröger and Merz axiomatization is covered
+in this equational deductive system. All the axioms of Kröger and Merz are either axioms
+in this work, or are theorems derivable in this work. In section 2.3 Kröger and Merz also
+sketches soundness and completeness results for the axiomatization presented.\\
+
+Summarize Kroger discussion in this section.\\
+
+We have shown above that this work has all the axioms, 
+theorems and inference rules to have the same deductive power as the Kröger and Merz system.\\
+
 
 \subsection{Manna and Pnueli}
 
