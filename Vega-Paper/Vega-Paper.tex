@@ -416,7 +416,7 @@ by transitivity $p \Until p\equiv p$ is equivalent to $p\equiv p$ (\textit{i.e.}
 
 \subsubsection*{Proof technique metatheorems}
 
-The logic system $\mathcal{E}$ of \cite{LADM} has 13 axioms for the propositional calculus from which theorems are deduced
+The logic system $\mathcal{E}$ of LADM \cite{LADM} has 13 axioms for the propositional calculus from which theorems are deduced
 with the above inference rules in the equational style.
 The system also contains a number of metatheorems based on properties of equivalence and implication, which allow the
 proof style to be extended.
@@ -776,7 +776,7 @@ Namely, $true \Until q$ is equivalent to $\Event q$.
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
 	\> \>   $(\sigma, j) \models \Event q$ \quad \myqed
 \end{tabbing}
-This relationship is the basis of the definition of $\Event p$ in (\ref{E:defEvent}) $\Event p \equiv true \Until p$
+This relationship is the basis of the definition of $\Event q$ in (\ref{E:defEvent}) $\Event q \equiv true \Until q$
 assumed in Section \ref{section-event}.
 
 \subsubsection*{The \textit{always} operator $\Always$}
@@ -819,7 +819,7 @@ For example, suppose $p$ and $q$ evolve in the computation as follows.\\[\lllgap
 The bottom two rows show the evaluation of the expressions $\Always p$ and $\Always q$
 assuming that $p$ remains true indefinitely and $q$ continues to switch between true and false indefinitely.
 
-$\Always p$ is a universal operator, while $\Event p$ is an existential operator.
+Note that $\Always p$ is a universal operator, while $\Event p$ is an existential operator.
 In the same way that $(\all x\dr R\rb P)$ is equivalent to $\neg (\ext x\dr R\rb \neg P)$ through the generalized De Morgan theorem, $\Always p$ is equivalent to $\neg\Event\neg p$.
 
 \emph{Proof}:
@@ -844,7 +844,7 @@ The above equational proof illustrates a common advantage of $\mathcal{E}$ over 
 The same equivalence is proved in \cite{Ben} but only by resorting to proof by mutual implication using proof by contradiction within each case.
 Gries and Schneider \cite{LADM} point out that many equivalence proofs are shorter in $\mathcal{E}$, in which equality is central, than in traditional systems, in which implication is central.
 
-The above demonstration that $(\sigma, j) \models \Always p \equivs (\sigma, j) \models \neg \Event \neg q$ depends on the
+The above demonstration that $(\sigma, j) \models \Always p \equivs (\sigma, j) \models \neg \Event \neg p$ depends on the
 rule, ``$p$ does not hold in a state iff $\neg p$ holds in that state'', written formally as
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -940,6 +940,7 @@ The semantics of the binary infix operator $\Wait$ in terms of $\Until$ and $\Al
 \end{tabbing}
 The \textit{wait} operator $\Wait$ is weaker than the \textit{until} operator $\Until$, because $p\Wait q$ does not require $q$ to ever be true,
 while $p\Until q$ does.
+Furthermore, theorem (\ref{E:untilImplWait}) shows that $p \Until q \impl p \Wait q$.
 
 For example, suppose $p$ and $q$ evolve in the computation as follows.\\[\lllgap]
 \begin{tabular}{c|cccccccccccc}
@@ -1034,7 +1035,7 @@ In contrast, $\Event$ and $\Always$ describe sequences of states arbitrarily far
 Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
 From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.
 
-Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
+Linearity follows from self-dual.
 \begin{equation}\label{E:linearity}
 \textbf{Linearity:}\quad \Next p \equiv \neg\Next\neg p
 \end{equation}
@@ -1048,7 +1049,8 @@ Linearity follows from self-dual and distributivity of $\Next$ over $\impl$.
   \> which is (\ref{E:selfDual}) Self-dual. \quad \myqed
 \end{tabbing}
 
-Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$.
+Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$, using
+distributivity of $\Next$ over $\impl$.
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
@@ -2579,6 +2581,8 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
   \> \>   $\Next (p \land q)$\quad \myqed
 \end{tabbing}
+The frame law of theorem (\ref{E:framelawEvent}) is equivalent to theorem (\ref{E:alwaysAndEvent})
+as the following proof shows.
 \begin{equation}\label{E:framelawEvent}
 \textbf{Frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \land q))
 \end{equation}
@@ -5235,7 +5239,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \emph{Proof of Lemma}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p => q) \land p \Wait r$\\[\lgap]
+  \> \>   $\Always (p \impl q) \land p \Wait r$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:andWaitDist}) Distributivity of $\land$ over $\Wait$}\\[\lgap]
   \> \>   $((p \impl q) \land p) \Wait ((p \impl q) \land r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
