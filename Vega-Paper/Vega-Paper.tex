@@ -1001,6 +1001,56 @@ To avoid adding another operator to our system, we use the following four theore
 (\ref{E:DualWait2}) Dual of $\Wait$
 when working with duality of the binary temporal operators $\Until$ and $\Wait$.
 
+We did not use duality in any of the proofs in this paper, with one exception which will be covered later,
+preferring instead to find proofs using the axioms and prior theorems within the expanding LTL model.
+Nevertheless, for illustrative purposes we show proofs using duality for one theorem from each operator section of
+the paper.
+
+Next $\Next$ theorem using metatheorem duality.
+
+Proof of (\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$:$\quad \Next (p \land q) \equiv \Next p \land \Next q$
+using duality.
+
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$ is a theorem}\\[\lgap]
+  \> \>   $\Next (p \lor q) \equiv \Next p \lor \Next q$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Next (p \land q) \equiv \Next p \land \Next q$ \quad \myqed
+\end{tabbing}
+
+This two-step equational proof of (\ref{E:distNextAnd}) can be compared with the seven-step equational proof
+ in the next section clearly showing the power of using this metatheorem.
+ 
+ Until $\Until$ theorem using metatheorem duality.
+ 
+ $\Until$ theorems produce $\Wait$ theorems and vis-versa when using duality. We chose as an example
+ (\ref{E:untilFalse}) Axiom, Right zero of $\Until$:$\quad p \Until false \equiv false$ which, by duality can be used
+ to prove (\ref{E:leftZeroWait}) Left zero of $\Wait$: $\quad true \Wait q \equiv true$.
+ 
+ \emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFalse}) Axiom, Right zero of $\Until$ with $p:=q$ is a theorem}\\[\lgap]
+  \> \>   $q \Until false \equiv false$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $true \Wait (q \land true) \equiv true$\\[\lgap]
+\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+\> \> $true \Wait q \equiv true$ \quad \myqed
+\end{tabbing}
+
+This proof is no shorter than the proof without duality, in this case, but it does show the
+deep connections between these properties of $\Until$ and $\Wait$.
+
+Eventually $\Event$ theorem using metatheorem duality.
+
+Always $\Always$ theorem using metatheorem duality.
+
+Wait $\Wait$ theorem using metatheorem duality.
+
 \section{The Equational Temporal System}
 
 This section presents an axiomatic deductive system of temporal logic and proves its theorems with the equational
