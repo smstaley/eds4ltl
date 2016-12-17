@@ -1006,9 +1006,12 @@ preferring instead to find proofs using the axioms and prior theorems within the
 Nevertheless, for illustrative purposes we show proofs using duality for one theorem from each operator section of
 the paper.
 
+\subsubsection*{Next $\Next$ theorem using metatheorem duality}\label{section-duality-next}
+
 Next $\Next$ theorem using metatheorem duality.
 
-Proof of (\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$:$\quad \Next (p \land q) \equiv \Next p \land \Next q$
+The first example is a proof of (\ref{E:distNextAnd})
+Distributivity of $\Next$ over $\land$:$\quad \Next (p \land q) \equiv \Next p \land \Next q$
 using duality.
 
 \emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
@@ -1024,7 +1027,8 @@ using duality.
 This two-step equational proof of (\ref{E:distNextAnd}) can be compared with the seven-step equational proof
  in the next section clearly showing the power of using this metatheorem.
  
- Until $\Until$ theorem using metatheorem duality.
+ 
+ \subsubsection*{Until $\Until$ theorem using metatheorem duality}\label{section-duality-until}
  
  $\Until$ theorems produce $\Wait$ theorems and vis-versa when using duality. We chose as an example
  (\ref{E:untilFalse}) Axiom, Right zero of $\Until$:$\quad p \Until false \equiv false$ which, by duality can be used
@@ -1045,10 +1049,41 @@ This two-step equational proof of (\ref{E:distNextAnd}) can be compared with the
 This proof is no shorter than the proof without duality, in this case, but it does show the
 deep connections between these properties of $\Until$ and $\Wait$.
 
-Eventually $\Event$ theorem using metatheorem duality.
+\subsubsection*{Eventually $\Event$ theorem using metatheorem duality}\label{section-duality-eventually}
 
-Always $\Always$ theorem using metatheorem duality.
+For this example we prove (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law: $\quad \Always p \equiv p \Wait false$
+from (\ref{E:defEvent}) Definition of $\Event$: $\quad \Event q \equiv true \Until q$.
 
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ with $p:=q$ is a theorem}\\[\lgap]
+  \> \>   $\Event p \equiv true \Until p$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Always p \equiv p \Wait (false \land p)$\\[\lgap]
+\> $=$ \> \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$} \\[\lgap]
+\> \> $\Always p \equiv p \Wait false $ \quad \myqed
+\end{tabbing}
+
+\subsubsection*{Always $\Always$ theorem using metatheorem duality}\label{section-duality-always}
+
+Now we return to the earlier comment about the only theorem in this paper which does use
+duality as it only justification. This theorem uses an Always $\Always$ theorem (\ref{E:BenAriequiv2})
+to prove a new Eventually $\Event$ theorem (\ref{E:BenAriequiv3}) which does not appear in the LTL literature.
+The theorem we prove is: $\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q$
+
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:BenAriequiv2}) is a theorem}\\[\lgap]
+  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q$ \quad \myqed
+\end{tabbing}
+
+\subsubsection*{Wait $\Wait$ theorem using metatheorem duality}\label{section-duality-wait}
 Wait $\Wait$ theorem using metatheorem duality.
 
 \section{The Equational Temporal System}
@@ -3948,6 +3983,21 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysEquiv}) Logical equivalence law of $\Always$}\\[\lgap]
   \>\>	$\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$ \quad \myqed
 \end{tabbing}
+
+\begin{equation}\label{E:BenAriequiv3}
+\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q
+\end{equation}
+
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:BenAriequiv2}) is a theorem}\\[\lgap]
+  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q$ \quad \myqed
+\end{tabbing}
+
 % sms end
 
 The metatheorems and absorption laws imply the following intuitive theorem.
