@@ -1008,8 +1008,6 @@ the paper.
 
 \subsubsection*{Next $\Next$ theorem using metatheorem duality}\label{section-duality-next}
 
-Next $\Next$ theorem using metatheorem duality.
-
 The first example is a proof of (\ref{E:distNextAnd})
 Distributivity of $\Next$ over $\land$:$\quad \Next (p \land q) \equiv \Next p \land \Next q$
 using duality.
@@ -1084,7 +1082,21 @@ The theorem we prove is: $\Event ((p \land \Event q) \lor (\Event p \land q)) \e
 \end{tabbing}
 
 \subsubsection*{Wait $\Wait$ theorem using metatheorem duality}\label{section-duality-wait}
-Wait $\Wait$ theorem using metatheorem duality.
+
+The final example of using duality generates a new $\Until$ theorem from the $\Wait$ theorem
+(\ref{E:waitOrdering}) Ordering: $\quad \neg p \Wait q \lor \neg q \Wait p$ using (2.3a) Metatheorem Duality.
+
+\emph{Proof}: The proof uses (2.3a) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:waitOrdering}) Ordering is a theorem}\\[\lgap]
+  \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3a) Metatheorem Duality, $P \equiv \neg P_D$}\\[\lgap]
+    \> \>   $\neg (q \Until (\neg p \land q) \land p \Until (\neg q \land p))$ \\[\lgap]
+    \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+  \> \>   $\neg (q \Until (\neg p \land q)) \lor \neg (p \Until (\neg q \land p))$\quad \myqed
+\end{tabbing}
 
 \section{The Equational Temporal System}
 
