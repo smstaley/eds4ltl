@@ -1165,6 +1165,9 @@ distributivity of $\Next$ over $\impl$.
 	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
 	\> \>   $\Next p \lor \Next q$ \quad \myqed
 \end{tabbing}
+
+Theorem (\ref{E:distNextAnd}) follows from (\ref{E:distNextOr}) by  duality,
+but the following proof uses (\ref{E:distNextOr}) without invoking duality.
 \begin{equation}\label{E:distNextAnd}
 \textbf{Distributivity of $\Next$ over $\land$:}\quad \Next (p \land q) \equiv \Next p \land \Next q
 \end{equation}
@@ -1234,6 +1237,9 @@ and, by induction, hold at all states.
 	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$ with $p := \Next p$}\\[\lgap]
 	\> \>   $true$ \quad \myqed
 \end{tabbing}
+
+Theorem (\ref{E:nextFalse}) follows from (\ref{E:nextTruth}) by  duality,
+but an alternate proof is possible that uses (\ref{E:linearity}) Linearity instead of duality.
 \begin{equation}\label{E:nextFalse}
 \textbf{Falsehood of $\Next$:}\quad \Next false \equiv false
 \end{equation}
@@ -1540,17 +1546,17 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until (p \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=p\Until q$} \\[\lgap]
-\> \> $p \Until q$\\
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$} \\[\lgap]
+\> \> $(p\lor p) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $p \Until q$ \\
 \end{tabbing}
 The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Until (p \Until q)$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$} \\[\lgap]
-\> \> $(p\lor p) \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
-\> \> $p \Until q$ \quad \myqed
+\> \> $p \Until q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=p\Until q$} \\[\lgap]
+\> \> $p \Until (p \Until q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilIdemR}
 \textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
@@ -1934,7 +1940,7 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
 Exercise for the student.\\
 }
 
-The following theorem expresses $\Event p$ in terms of $\Always p$ and corresponds to the defining equation (\ref{E:defAlways}).
+The following theorem expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \neg\Always\neg p
 \end{equation}
@@ -2052,6 +2058,7 @@ Exercise for the student.\\
 While the expansions of $\Until$ and $\Event$ have two disjuncts,
 the expansion of $\Always$ has two conjuncts.
 As usual, the first describes the current state and the second contains the operation in the next state.
+Theorem (\ref{E:expansionAlways}) is the dual of (\ref{E:expansionEvent}) which is also used in this proof.
 \begin{equation}\label{E:expansionAlways}
 \textbf{Expansion of $\Always$:}\quad \Always p \equiv p \land \Next\Always p
 \end{equation}
@@ -2103,8 +2110,10 @@ Exercise for the student.\\
 }
 % sms end
 
-The absorption of $\land$ into $\Always$ corresponds to (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
-while the absorption of $\Always$ into $\lor$ corresponds to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
+Theorem (\ref{E:absAndIntoAlways}) absorption of $\land$ into $\Always$,
+is the dual of (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
+while (\ref{E:absAlwaysIntoOr}) absorption of $\Always$ into $\lor$ is the dual of
+to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
 Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
 disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existential.
 When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
@@ -2191,8 +2200,9 @@ Their proofs are straightforward applications of the previous absorption theorem
 Exercise for the student.\\
 }
 
-The absorption of $\Always$ corresponds to (\ref{E:IdemEvent}) the absorption of $\Event$,
-and the exchange of $\Next$ and $\Always$ corresponds to (\ref{E:dNextEvent}) the exchange of $\Next$ and $\Event$.
+Theorem (\ref{E:IdemAlways}) absorption of $\Always$ is the dual of (\ref{E:IdemEvent}) the absorption of $\Event$,
+and (\ref{E:dNextAlways}) the exchange of $\Next$ and $\Always$ is the dual of
+(\ref{E:dNextEvent}) the exchange of $\Next$ and $\Event$.
 \begin{equation}\label{E:IdemAlways}
 \textbf{Absorption of $\Always$:}\quad \Always\Always p \equiv \Always p
 \end{equation}
@@ -3996,6 +4006,11 @@ Now, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
   \>\>	$\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always (\Always p \lor \Always q \lor (p \land q))$ \quad \myqed
 \end{tabbing}
 
+The following theorem (\ref{E:BenAriequiv3}) is the dual of the previous theorem (\ref{E:BenAriequiv2}).
+Theorem (\ref{E:BenAriequiv3}) is the
+only theorem in the paper that uses (2.3b) Metatheorem Duality as its only justification. The proof of theorem
+(\ref{E:BenAriequiv2}) is the longest and most complex proof in the paper, but this can then be used to prove
+theorem (\ref{E:BenAriequiv3}) in two steps.
 \begin{equation}\label{E:BenAriequiv3}
 \Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q
 \end{equation}
@@ -4324,7 +4339,7 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) corresponds to e
 \> \> $true$ \quad \myqed
 \end{tabbing}
 
-Left zero of \textit{wait} corresponds to (\ref{E:untilFalse}) Right zero of \textit{until}.
+Theorem (\ref{E:leftZeroWait}) Left zero of $\Wait$ is the dual of (\ref{E:untilFalse}) Right zero of $\Until$.
 \begin{equation}\label{E:leftZeroWait}
 \textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
 \end{equation}
@@ -5082,7 +5097,7 @@ The proof in the second direction follows.
 \label{true-false-wait-until}}
 \end{figure}
 
-The following theorem corresponds to the definition of the \textit{eventually} operator (\ref{E:defEvent}).
+The following theorem (\ref{E:alwaysAsWait}) is the dual of the definition of the $\Event$ operator (\ref{E:defEvent}).
 Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
 \begin{equation}\label{E:alwaysAsWait}
 \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
