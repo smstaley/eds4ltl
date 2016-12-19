@@ -2112,11 +2112,11 @@ Theorem (\ref{E:expansionAlways}) is the dual of (\ref{E:expansionEvent}) which 
   \> $=$  \>  \Hint{(\ref{E:expansionEvent}) Expansion of $\Event$ with $p := \neg p$}\\[\lgap]
   \> \>   $\neg(\neg p\lor\Next\Event\neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
-  \> \>   $\neg\neg p\land\neg\Next\Event\neg p)$\\[\lgap]
+  \> \>   $\neg\neg p\land\neg\Next\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p \equiv p$}\\[\lgap]
-  \> \>   $p\land\neg\Next\Event\neg p)$\\[\lgap]
+  \> \>   $p\land\neg\Next\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self dual}\\[\lgap]
-  \> \>   $p\land\Next\neg\Event\neg p)$\\[\lgap]
+  \> \>   $p\land\Next\neg\Event\neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $p \land \Next\Always p$ \quad \myqed
 \end{tabbing}
@@ -2153,7 +2153,7 @@ Exercise for the student.\\
 Theorem (\ref{E:absAndIntoAlways}) absorption of $\land$ into $\Always$,
 is the dual of (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
 while (\ref{E:absAlwaysIntoOr}) absorption of $\Always$ into $\lor$ is the dual of
-to (\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
+(\ref{E:absEventIntoAnd}) the absorption of $\Event$ into $\land$.
 Conjunction $\land$ and the \textit{always} operator $\Always$ are both universal, while
 disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existential.
 When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
@@ -2680,23 +2680,44 @@ Exercise for the student.\\
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
 
-\emph{Proof}: (Alexandra Angelo)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event (p \impl q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Event(\neg p \lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
-  \> \>   $\Event\neg p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\neg \Always p \lor \Event q$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:exAlwaysNot}) Distributivity of $\neg$ over $\Always$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $\Always \neg p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\neg\Event p \lor \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Event p \impl \Event q$ \quad \myqed
+  \> \>   $(\Event p \impl \Event q) \impl \Event (p \impl q)$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $(\Event p \impl \Event q) \impl (\Always p \impl \Event q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $(\Event p \impl \Event q) \land \Always p \impl \Event q$
 \end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $(\Event p \impl \Event q) \land \Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysE}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $(\Event p \impl \Event q) \land \Event p$\\[\lgap]
+   \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+  \> \>   $ \Event q$ \quad \myqed
+\end{tabbing}
+
+% old proof
+%\emph{Proof}: (Alexandra Angelo)
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%\> \>   $\Event (p \impl q)$\\[\lgap]
+%\> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+%\> \>   $\Event(\neg p \lor q)$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
+%\> \>   $\Event\neg p \lor \Event q$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+%\> \>   $\neg \Always p \lor \Event q$\\[\lgap]
+%\> $\foll$  \>  \Hint{(\ref{E:exAlwaysNot}) Distributivity of $\neg$ over $\Always$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+%\> \>   $\Always \neg p \lor \Event q$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+%\> \>   $\neg\Event p \lor \Event q$\\[\lgap]
+%\> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+%\> \>   $\Event p \impl \Event q$ \quad \myqed
+%\end{tabbing}
+% end old proof
 
 %
 % sms - Frame Laws Here (except for Wait Laws).
@@ -2900,7 +2921,7 @@ Proof of the first conjunct follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Next q \impl (\Next p \impl \Next q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always p \impl (\Next q \impl \Next p \impl \Next q)$\\[\lgap]
+  \> \>   $\Always p \impl (\Next q \impl (\Next p \impl \Next q))$\\[\lgap]
    \> $=$  \>  \Hint{(\ref{E:distNextImp}) Axiom, Distributivity of $\Next$ over $\impl$}\\[\lgap]
   \> \>   $\Always p \impl (\Next q \impl \Next (p \impl q))$\\[\lgap]
   \> which is (\ref{E:implframelawnext}) Implicative frame law of $\Next$. \quad \myqed
