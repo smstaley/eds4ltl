@@ -1488,14 +1488,25 @@ appear in the temporal logic literature.
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q \lor q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q)) \lor q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
-  \> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \Until q$ \quad \myqed
+  \> \>   $p \Until q \lor q \equiv p \Until q$\\[\lgap]
+ \> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
+  \> \>   $q \impl p \Until q$\\[\lgap]
+  \> which is (\ref{E:untilInsertion}). \quad \myqed
 \end{tabbing}
+% old proof
+%\emph{Proof}:
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+% \> \>   $p \Until q \lor q$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+%\> \>   $q \lor (p \land \Next(p \Until q)) \lor q$\\[\lgap]
+%\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
+%\> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+%\> \>   $p \Until q$ \quad \myqed
+%\end{tabbing}
+% end of old proof
+
 \begin{equation}\label{E:untilAndQ}
 \textbf{Absorption:}\quad p \Until q \land q \equiv q
 \end{equation}
@@ -1503,12 +1514,22 @@ appear in the temporal logic literature.
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until q \land q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $(q \lor (p \land \Next(p \Until q))) \land q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
-  \> \>   $q$ \quad \myqed
+  \> \>   $p \Until q \land q \equiv q$\\[\lgap]
+\> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
+  \> \>   $q \impl p \Until q$\\[\lgap]
+  \> which is (\ref{E:untilInsertion}). \quad \myqed
 \end{tabbing}
+% old proof
+%\emph{Proof}:
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+% \> \>   $p \Until q \land q$\\[\lgap]
+%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+%\> \>   $(q \lor (p \land \Next(p \Until q))) \land q$\\[\lgap]
+%\> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
+%\> \>   $q$ \quad \myqed
+%\end{tabbing}
+%end old proof
 \begin{equation}\label{E:untilOrAnd}
 \textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
