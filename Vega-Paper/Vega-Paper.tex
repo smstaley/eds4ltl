@@ -1513,14 +1513,33 @@ appear in the temporal logic literature.
 \textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
 
-\emph{Proof}: (Ravi Mohan)
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
-  \> \>   $p \Until q \impl p \lor q$\\[\lgap]
-  \> which is (\ref{E:untilImpOr}). \quad \myqed
+  \> $=$  \>  \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$}\\[\lgap]
+  \> \>   $(p \land q) \impl p \Until q$
 \end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \land q $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $q$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
+  \> \>   $p \Until q$ \quad \myqed
+\end{tabbing}
+% Ravi's old proof is not correct
+%
+%\emph{Proof}: (Ravi Mohan)
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
+%\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
+% \> \>   $p \Until q \impl p \lor q$\\[\lgap]
+ %\> which is (\ref{E:untilImpOr}). \quad \myqed
+%\end{tabbing}
+% End of Ravi's old proof
 \begin{equation}\label{E:untilAndOr}
 \textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
 \end{equation}
