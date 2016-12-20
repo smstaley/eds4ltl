@@ -3565,10 +3565,11 @@ the following is a theorem.}\\[\lgap]
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$
-the following is a theorem.
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+   \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$
+the following is a theorem.}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
