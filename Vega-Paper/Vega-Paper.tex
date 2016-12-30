@@ -2919,7 +2919,7 @@ Proof of the second conjunct follows.
 \hspace{\mymathindent} \= $= \;$ \= $= \;$ \= \kill
   \> \>   $\Always p \land \Next q \impl (\Next q \impl \Next p)$\\[\lgap]
   \> $=$  \>  \Hintfirst{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$,}\\[\lgap]
-  \> \>   \>  \Hintlast{and (3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   \Hintlast{and (3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
   \> \>   $\Always p  \land \Next q \impl \Next p$
 \end{tabbing}
 And now,
@@ -3138,7 +3138,7 @@ Exercise for the student.\\
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
     \> \>   $ (p \impl q) \land (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
     \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-    \> \>       \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> \>       \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
      \> \>   $ (p \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $ (p \impl \Next r) \land (\Next r \impl \Next s)$\\[\lgap]
@@ -3213,7 +3213,7 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity,}\\[\lgap]
-  \> \>       \>  \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>       \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
@@ -3520,8 +3520,7 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$
-the following is a theorem.}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
@@ -3539,8 +3538,7 @@ the following is a theorem.}\\[\lgap]
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
    \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$
-the following is a theorem.}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
@@ -3565,18 +3563,13 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Event(p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$,}\\[\lgap]
+  \>      \>  \Hintlast{$\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$}\\[\lgap]
   \> \>   $\Always(\Event p \land \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always\Event p \land \Always\Event q$
+  \> \>   $\Always\Event p \land \Always\Event q$ \quad \myqed
 \end{tabbing}
 
-\emph{Proof of Lemma}:
-By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event(p \land q) \impl \Always(\Event p \land \Event q)$ \quad \myqed
-\end{tabbing}
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
@@ -3587,15 +3580,9 @@ By (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distEventAnd}) Distrib
   \> \>   $\Event\Always p \lor \Event\Always q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event(\Always p \lor \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
-  \> \>   $\Event\Always (p \lor q)$
-\end{tabbing}
-
-\emph{Proof of Lemma}:
-By (\ref{E:metaEvent}) Metatheorem $\Event$ and (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$ \quad \myqed
+  \> $\impl$  \>  \Hintfirst{(\ref{E:metaEvent}) Metatheorem $\Event$ and (\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$,}\\[\lgap]
+  \>          \>  \Hintlast{$\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
+  \> \>   $\Event\Always (p \lor q)$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
@@ -3621,7 +3608,8 @@ The proof in the second direction is by (4.7.1) Truth implication.
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$ and}\\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$
 \end{tabbing}
 Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
