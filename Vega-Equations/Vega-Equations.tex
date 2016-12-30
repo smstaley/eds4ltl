@@ -213,8 +213,8 @@ $\equiv$ \quad (associative) & Lowest precedence\\
 (3.63)\>\textbf{Distributivity of $\impl$ over $\equiv$ :}\quad $p\impl (q\equiv r)\equivs (p\impl q)\equivs (p\impl r)$\\[\lgap]
 (3.63.1)\>\textbf{Distributivity of $\impl$ over $\land$ :}\quad $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$\\[\lgap]
 (3.63.2)\>\textbf{Distributivity of $\impl$ over $\lor$ :}\quad $p\impl q\lor r\equivs (p\impl q)\lor (p\impl r)$\\[\lgap]
-(3.63.3)\>\textbf{Distributivity of $\land$ over $\impl$ :}\quad $(p\land q)\impl r \equiv (p\impl r) \lor (q\impl r)$\\[\lgap]
-(3.63.4)\>\textbf{Distributivity of $\lor$ over $\impl$ :}\quad $(p\lor q)\impl r \equiv (p\impl r) \land (q\impl r)$\\[\lgap]
+(3.63.3)\>\textbf{Distributivity of $\land$ over $\impl$ :}\quad $p\land q\impl r \equiv (p\impl r) \lor (q\impl r)$\\[\lgap]
+(3.63.4)\>\textbf{Distributivity of $\lor$ over $\impl$ :}\quad $p\lor q\impl r \equiv (p\impl r) \land (q\impl r)$\\[\lgap]
 (3.64)\>$p\impl (q\impl r) \equivs (p\impl q)\impl (p\impl r)$\\[\lgap]
 (3.65)\>\textbf{Shunting:}\quad $p\land q\impl r\equivs p\impl (q\impl r)$\\[\lgap]
 (3.66)\>$p\land (p\impl q) \equivs p\land q$\\[\lgap]
@@ -236,7 +236,7 @@ $\equiv$ \quad (associative) & Lowest precedence\\
       \> (e)\> $p\land q \impl p\land (q \lor r)$\\[\lgap]
 (3.76.1)\>$p\land q \impl p\lor r$\quad \quad \quad (Weakening/strengthening)\\[\lgap]
 (3.76.2)\>$(p\impl q) \impl ((q\impl r)\impl (p\impl r))$\\[\lgap]
-(3.76.3)\>$(p\lor q) \land (\neg q \lor r)\impl (p\lor r)$\\[\lgap]
+(3.76.3)\>$(p\lor q) \land (q \impl r)\impl p\lor r$\\[\lgap]
 (3.77)\>\textbf{Modus ponens:}\quad $p\land (p\impl q)\impl q$\\[\lgap]
 (3.77.1)\>\textbf{Modus tollens:}\quad $(p\impl q)\land \neg q \impl \neg p$\\[\lgap]
 (3.77.2)\>$((p \impl q) \impl (r \impl s)) \land (s \impl t) \impl ((p \impl q) \impl (r \impl t))$\\[\lgap]
@@ -740,7 +740,7 @@ p \Until q \impl p \lor q
 \end{equation}
 \opt{inventory}{M207(FI1), M264(T7), M264(Rule $\Always$G), S63(3.18a), K28(T10), E8, B238(C13.21), B244, B266(T14.6)\\}
 
-\newpage
+\spacer
 
 \begin{equation}\label{E:dNextAlways}
 \textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
@@ -908,21 +908,18 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \begin{equation}\label{E:disjframelawnext}
 \textbf{$\lor$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \lor q))
 \end{equation}
-\opt{inventory}{\\}
 
 \spacer
 
 \begin{equation}\label{E:disjframelawEvent}
 \textbf{$\lor$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \lor q))
 \end{equation}
-\opt{inventory}{\\}
 
 \spacer
 
 \begin{equation}\label{E:disjframelawAlways}
 \textbf{$\lor$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \lor q))
 \end{equation}
-\opt{inventory}{\\}
 
 \spacer
 
@@ -1231,7 +1228,6 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \begin{equation}\label{E:PrProofRule}
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
-\newpage
 
 \subsection*{Wait $\quad\Wait$}
 

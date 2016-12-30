@@ -3085,7 +3085,7 @@ Exercise for the student.\\
   \> \>   $\neg\Always (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Event\neg (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]  
-  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$, and (3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Event(p \land \neg q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event((p \land \neg q) \lor q) \lor \neg\Event p$\\[\lgap]
@@ -3096,8 +3096,7 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$}\\[\lgap]
   \> \>   $\Event q \lor true$\\[\lgap]
   \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-  \> \>   $true$\\[\lgap]
-  \> which is (3.4). \quad \myqed
+  \> \>   $true$ \quad \myqed
 \end{tabbing}
 }
 \opt{student}{
@@ -3126,20 +3125,20 @@ Exercise for the student.\\
 \opt{student}{
 Exercise for the student.\\
 }
-% begin sms
 \begin{equation}\label{E:NextConRule}
 \textbf{Consequence rule of $\Next$:}\quad \Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s)) \impl (p \impl \Next s)
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\hspace{\mymathindent} \= $= \;$ \= $= \;$ \= \kill
   \> \>   $\Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s))$\\[\lgap]
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land \Always (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
     \> \>   $ (p \impl q) \land (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
-    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+    \> \>       \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
      \> \>   $ (p \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $ (p \impl \Next r) \land (\Next r \impl \Next s)$\\[\lgap]
@@ -3209,12 +3208,12 @@ Exercise for the student.\\
 
 \emph{Proof}:
 \begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\hspace{\mymathindent} \= $= \;$ \= $= \;$ \= \kill
   \> \>   $\Always ((p \impl \Always q) \land (q \impl \Always r))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \>     \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity,}\\[\lgap]
+  \> \>       \>  \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
@@ -3228,14 +3227,13 @@ Exercise for the student.\\
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ( p \impl (q \land \Next p))$\\[\lgap]
   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
-   \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
-   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land \Always (p \impl \Next p)$\\[\lgap]
-   \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
-   \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
-    \> $\impl$ \> \Hintfirst{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
-     \> \>  \Hintlast{and (3.36) Symmetry of $\land$, $p\land q \equiv q\land p$}\\[\lgap]
-     \> \>   $(p \impl \Always p) \land (\Always p \impl \Always q) $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $(p \impl \Always p) \land (\Always p \impl \Always q) $\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
 \end{tabbing}
@@ -3267,33 +3265,21 @@ And now,
  \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event\Event t) \land (\Event r \impl \Event\Event t)$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$ twice}\\[\lgap]
  \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event t) \land (\Event r \impl \Event t)$\\[\lgap]
- \> $=$ \> \Hint{(3.59) Implication $p\impl q\equiv \neg p\lor q$ twice} \\[\lgap]
- \> \>   $(\Event q \lor \Event r) \land (\neg\Event q \lor \Event t) \land (\neg\Event r \lor \Event t)$\\[\lgap]
- \> $\impl$  \>  \Hint{Lemma: $(p \lor q) \land (\neg q \lor r)\impl (p\lor r)$ and (4.3) Monotonicity of $\land$ twice}\\[\lgap]
- \> \>   $\Event t$ \\[\lgap]
+ \> $\impl$ \> \Hint{(3.76.3) $(p\lor q) \land (q \impl r)\impl p\lor r$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+ \> \>   $(\Event r \lor \Event t) \land (\Event r \impl \Event t)$\\[\lgap]
+ \> $\impl$ \> \Hint{(3.76.3) $(p\lor q) \land (q \impl r)\impl p\lor r$} \\[\lgap]
+ \> \>   $\Event t \lor \Event t$ \\[\lgap]
+ \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+ \> \>   $\Event t$ \quad \myqed
 \end{tabbing}
-\emph{Proof of Lemma}: $(p \lor q) \land (\neg q \lor r)\impl (p\lor r)$
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land(q\lor r) \equiv (p\land q)\lor (p\land r)$}\\[\lgap]
-  \> \>   $(p\land (\neg q\lor r))\lor (q\land (\neg q\lor r))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $p\lor (q\land (\neg q\lor r))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
-  \> \>   $p\lor (q\land r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $p\lor r$ \quad \myqed
-\end{tabbing}
-
 \begin{equation}\label{E:EventIntro}
-\textbf{$\Event$ introduction rule:}\quad \Always (( p \lor \Next q) \impl q) \impl \Event (p \impl q)
+\textbf{$\Event$ introduction rule:}\quad \Always (p \lor \Next q \impl q) \impl \Event (p \impl q)
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (( p \lor \Next q) \impl q)$\\[\lgap]
+  \> \>   $\Always (p \lor \Next q \impl q)$\\[\lgap]
    \> $=$ \> \Hint{(3.78) $(p\impl r) \land (q\impl r) \equivs (p\lor q\impl r)$} \\[\lgap]
     \> \>   $\Always (( p \impl q) \land (\Next q \impl q))$\\[\lgap]
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
@@ -3303,7 +3289,6 @@ And now,
     \> $\impl$  \>  \Hint{(\ref{E:impAlwaysE}) Strengthening of $\Always$}\\[\lgap]
     \> \>   $\Event ( p \impl q)$ \quad \myqed
 \end{tabbing}
-% end sms
 \begin{equation}\label{E:tempGenLaw}
 \textbf{Temporal generalization law:}\quad \Always (\Always p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
