@@ -3512,6 +3512,125 @@ Exercise for the student.\\
 
 \subsection{Always, continued}\label{section-always-continued}
 
+The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
+(\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
+of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
+\;$\Always\Event p$, or \;$\Event\Always p$.
+\begin{equation}\label{E:absEvent}
+\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event\Always$ implication}\\[\lgap]
+  \> \>   $\Always\Event\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
+  \> \>   $\Event\Always\Event p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:absAlways}
+\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\end{equation}
+
+\emph{Proof}:
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Always\Event\Always \neg\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\Event\Always\Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
+  \> \>   $\neg\Always\Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> \>   $\neg\neg\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Event\Always p$ \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+Exercise for the student.\\
+}
+\begin{equation}\label{E:absAlwaysEvent}
+\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event\Always\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$ with $p:=\Event p$}\\[\lgap]
+  \> \>   $\Event \Always \Event p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:absEventAlways}
+\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event \Always \Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$ with $p:=\Always p$}\\[\lgap]
+  \> \>   $\Always \Event \Always p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Event \Always p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:absNextAlwaysEvent}
+\textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Next\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p := \Always \Event p$}\\[\lgap]
+  \> \>   $\Event\Always\Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always\Event p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysNA}) Strengthening of $\Always$}\\[\lgap]
+  \> \>   $\Next\Always\Event p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:absNextEventAlways}
+\textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Next\Event\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p :=  \Event\Always p$}\\[\lgap]
+  \> \>   $\Event\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event\Always p$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Always\Event\Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p := \Event\Always p$}\\[\lgap]
+  \> \>   $\Next\Event\Always p$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:monoAlwaysEvent}
 \textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
 \end{equation}
@@ -3683,125 +3802,6 @@ Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
 Exercise for the student.\\
 }
 
-The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
-(\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
-of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
-\;$\Always\Event p$, or \;$\Event\Always p$.
-\begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventAlwaysImp}) $\Event\Always$ implication}\\[\lgap]
-  \> \>   $\Always\Event\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Always\Event p$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
-  \> \>   $\Event\Always\Event p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
-\end{equation}
-
-\emph{Proof}:
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
-  \> \>   $\Always\Event\Always \neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\neg\Event\Always\Event \neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
-  \> \>   $\neg\Always\Event \neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\neg\neg\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
-  \> \>   $\Event\Always p$ \quad \myqed
-\end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
-\begin{equation}\label{E:absAlwaysEvent}
-\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always \Event\Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$ with $p:=\Event p$}\\[\lgap]
-  \> \>   $\Event \Always \Event p$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
-  \> \>   $\Always\Event p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:absEventAlways}
-\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event \Always \Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$ with $p:=\Always p$}\\[\lgap]
-  \> \>   $\Always \Event \Always p$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
-  \> \>   $\Event \Always p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:absNextAlwaysEvent}
-\textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Next\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p := \Always \Event p$}\\[\lgap]
-  \> \>   $\Event\Always\Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
-  \> \>   $\Always\Event p$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always\Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysNA}) Strengthening of $\Always$}\\[\lgap]
-  \> \>   $\Next\Always\Event p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:absNextEventAlways}
-\textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Next\Event\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ with $p :=  \Event\Always p$}\\[\lgap]
-  \> \>   $\Event\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event\Always p$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
-  \> \>   $\Always\Event\Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p := \Event\Always p$}\\[\lgap]
-  \> \>   $\Next\Event\Always p$ \quad \myqed
-\end{tabbing}
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Always\Event q \lor \Event\Always\neg p
 \end{equation}

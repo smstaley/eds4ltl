@@ -1068,8 +1068,6 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \end{equation}
 \opt{inventory}{K31(T36)\\}
 
-% sms end
-
 \subsection*{Proof metatheorems}
 
 \begin{equation}\label{E:metatheorem}
@@ -1078,14 +1076,13 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \opt{inventory}{M222(Rule GEN), M223(Rule SPEC), S61(3.11 Generalization), K59(L2.6.1), B263\\}
 
 \firstspacer
-% sms begin
+
 \begin{equation}\label{E:metaNext}
 \textbf{Metatheorem $\Next$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Next P\impl\Next Q \text{ is a theorem.}
 \end{equation}
 \opt{inventory}{B264\\}
 
 \spacer
-% sms end
 
 \begin{equation}\label{E:metaEvent}
 \textbf{Metatheorem $\Event$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Event P\impl\Event Q \text{ is a theorem.}
@@ -1101,13 +1098,54 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 
 \subsection*{Always, continued}
 
-% sms begin
+\begin{equation}\label{E:absEvent}
+\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+\opt{inventory}{M208(FA1), S63(3.18d), K32(T37), E8, B244, B268(T14.11b)\\}
+
+\firstspacer
+
+\begin{equation}\label{E:absAlways}
+\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
+\end{equation}
+\opt{inventory}{M208(FA2), S63(3.18c), K33(T38), E8, B244, B268(T14.11a)\\}
+
+\spacer
+
+\begin{equation}\label{E:absAlwaysEvent}
+\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+
+\begin{equation}\label{E:absEventAlways}
+\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+
+\begin{equation}\label{E:absNextAlwaysEvent}
+\textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+
+\begin{equation}\label{E:absNextEventAlways}
+\textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
+\end{equation}
+\opt{inventory}{E8\\}
+
+\spacer
+
 \begin{equation}\label{E:monoAlwaysEvent}
 \textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
 \end{equation}
 \opt{inventory}{E9\\}
 
-\firstspacer
+\spacer
 
 \begin{equation}\label{E:monoEventAlways}
 \textbf{Monotonicity of $\Event\Always$:}\quad \Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)
@@ -1115,7 +1153,6 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \opt{inventory}{E9\\}
 
 \spacer
-% sms end
 
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
@@ -1145,50 +1182,6 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 
 \spacer
 
-\begin{equation}\label{E:absEvent}
-\textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
-\end{equation}
-\opt{inventory}{M208(FA1), S63(3.18d), K32(T37), E8, B244, B268(T14.11b)\\}
-
-\spacer
-
-\begin{equation}\label{E:absAlways}
-\textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
-\end{equation}
-\opt{inventory}{M208(FA2), S63(3.18c), K33(T38), E8, B244, B268(T14.11a)\\}
-
-\spacer
-% sms begin
-\begin{equation}\label{E:absAlwaysEvent}
-\textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
-\end{equation}
-\opt{inventory}{E8\\}
-
-\spacer
-
-\begin{equation}\label{E:absEventAlways}
-\textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
-\end{equation}
-\opt{inventory}{E8\\}
-
-\spacer
-% sms end
-
-% sms begin
-\begin{equation}\label{E:absNextAlwaysEvent}
-\textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
-\end{equation}
-\opt{inventory}{E8\\}
-
-\spacer
-
-\begin{equation}\label{E:absNextEventAlways}
-\textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
-\end{equation}
-\opt{inventory}{E8\\}
-
-\spacer
-
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Always\Event q \lor \Event\Always\neg p
 \end{equation}
@@ -1209,7 +1202,6 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \opt{inventory}{dual of B272(Exercise 14.7)\\}
 
 \spacer
-% sms end
 
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
