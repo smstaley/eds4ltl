@@ -3233,7 +3233,7 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
-  \> \>   $(p \impl \Always p) \land (\Always p \impl \Always q) $\\[\lgap]
+  \> \>   $(\Always p \impl \Always q) \land (p \impl \Always p) $\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
 \end{tabbing}
@@ -3729,20 +3729,12 @@ The proof in the second direction is by (4.7.1) Truth implication.
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$ and}\\[\lgap]
   \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$
-\end{tabbing}
-Now, by (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ with the above theorem}\\[\lgap]
   \> \>   $\Always (\Always \Event(p\lor q) \land \Event \Always\neg p) \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Always\Event \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:eventAlwaysImp}) $\Event \Always$ implication and (3.76.2) $(p\impl q) \impl ((q\impl r)\impl (p\impl r))$}\\[\lgap]
-  \> \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \land \Event\Always \Always\neg p \impl \Always\Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$ and (\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \impl (\Event\Always \neg p \impl \Always\Event q)$\\[\lgap]
@@ -3759,19 +3751,18 @@ The proof is by (4.7.1) Truth implication.
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
-  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$} \\[\lgap]
-  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$
-\end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
+  \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metaEvent}) Metatheorem $\Event$ with the above theorem}\\[\lgap]
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event q$ \quad \myqed
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$ and (3.36) Symmetry of $\land$}\\[\lgap]
+  \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event (\neg p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ and}\\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event \neg p \land \Event q$\\[\lgap]
+  \> $\impl$  \> \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$ and} \\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
