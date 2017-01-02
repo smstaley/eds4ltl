@@ -3828,10 +3828,154 @@ The proof in the second direction follows.
  \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
   \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
 \end{tabbing}
-% sms begin
 \begin{equation}\label{E:BenAriequiv2}
 \Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q
 \end{equation}
+
+==============================
+
+Warford edit of (\ref{E:BenAriequiv2})
+
+\emph{Proof}: The proof is by (4.7) Mutual implication and is based on the following lemmas, where $R$ is defined as the expression
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $R: (p \lor \Always q) \land (\Always p \lor q)$
+\end{tabbing}
+With this definition, the theorem to be proved is
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $\Always R \equiv \Always p \lor \Always q$
+\end{tabbing}
+
+Lemma A: $R \equiv \Always p \lor \Always q \lor (p \land q)$
+
+\emph{Proof of Lemma A}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $R$\\[\lgap]
+  \> $=$ \> \Hint{Definition of $R$} \\[\lgap]
+  \> \>   $(p \lor \Always q) \land (\Always p \lor q)$\\[\lgap]
+  \> $=$ \> \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$} \\[\lgap]
+  \> \>   $(p \land \Always p) \lor (p \land q) \lor (\Always p \land \Always q) \lor (q \land \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$, twice}\\[\lgap]
+  \> \>   $\Always p \lor (p \land q) \lor (\Always p \land \Always q) \lor \Always q $\\[\lgap]
+  \> $=$ \> \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$} \\[\lgap]
+  \> \>   $\Always p \lor \Always q \lor (p \land q)$ \quad \myqed
+\end{tabbing}
+
+Lemma B: $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q)$
+
+\emph{Proof of Lemma B}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+  \> \>   $R \land \Next \Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $=$ \> \Hint{(3.36) Symmetry of $\land$, $p\land q \equiv q\land p$} \\[\lgap]
+  \> \>   $ \Next \Always R \land R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+   \> $=$  \>  \Hint{Lemma A: $ R \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
+   \> \>   $ \Next \Always R \land (\Always p \lor \Always q \lor ( p \land q)) \land \neg \Always p \land \neg \Always q$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
+   \> \>   $ \Next \Always R \land ( \neg \Always p \land \neg \Always q \land (p \land q))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$ and (3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$, twice}\\[\lgap]
+   \> \>   $ \Next \Always R \land (p \land q) \land ( \neg p \lor  \neg\Next \Always p) \land ( \neg q \lor \neg\Next \Always q)$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:selfDual}) Self dual, twice}\\[\lgap]
+   \> \>   $ \Next \Always R \land (p \land q) \land ( \neg p \lor \Next \neg \Always p) \land ( \neg q \lor \Next \neg \Always q)$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
+   \> \>   $ \Next \Always R \land p \land  \Next \neg \Always p \land q \land \Next \neg \Always q$\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
+     \> \>   $ \Next \Always R  \land  \Next \neg \Always p \land \Next \neg \Always q$\\[\lgap]
+      \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
+       \> \>   $ \Next (\Always R  \land \neg \Always p \land \neg \Always q)$ \quad \myqed
+\end{tabbing}
+
+Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Always R \land \neg \Always p \land \neg \Always q)$
+
+\emph{Proof of Lemma C}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $true$\\[\lgap]
+ \> $=$  \>  \Hint{Lemma B: $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q )$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
+   \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q  \impl \Next (\Always R \land \neg \Always p \land \neg \Always q ))$\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+ \> \>   $\Always R \land \neg \Always p \land \neg \Always q  \impl \Always (\Always R \land \neg \Always p \land \neg \Always q )$ \quad \myqed
+\end{tabbing}
+
+Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \Always p \land \Always q$
+
+\emph{Proof of Lemma D}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+   \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+ \>     \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma A: $ R \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q$\\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ twice} \\[\lgap]
+ \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \neg \Always p \land \neg \Always q \land ( p \land q)$\\[\lgap]
+ \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity,}\\[\lgap]
+ \>          \>  \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+ \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl p \land q$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
+  \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q  \impl p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
+  \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q ) \impl  \Always ( p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$ \quad \myqed
+\end{tabbing}
+
+Lemma E: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$
+
+\emph{Proof of Lemma E}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Always R \land \neg \Always p \land \neg \Always q)$}\\[\lgap]
+  \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \Always p \land \Always q$}\\[\lgap]
+  \> \>   $\Always p \land \Always q$ \quad \myqed
+\end{tabbing}
+
+The proof of (\ref{E:BenAriequiv2}) in the first direction is by (4.9) Proof by contradiction.
+To prove
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $\Always R \impl \Always p \lor \Always q$
+\end{tabbing}
+by contradiction, prove that
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> $\neg (\Always R \impl \Always p \lor \Always q ) \impl false$
+\end{tabbing}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg (\Always R \impl \Always p \lor \Always q )$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+ \> \>   $\neg(\neg \Always R \lor \Always p \lor \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
+   \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $(\Always R \land \neg \Always p \land \neg \Always q ) \land (\Always R \land \neg \Always p \land \neg \Always q )$\\[\lgap]
+   \> $\impl$  \>  \Hintfirst{Lemma E: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$}\\[\lgap]
+ \>     \>  \Hintmid{and (4.3) Monotonicity of $\land$}\\[\lgap]
+ \>     \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \land \Always p \land \Always q$\\[\lgap]
+    \> $=$  \>  \Hint{(3.42) Contradiction, $p\land\neg p \equivs false$, twice}\\[\lgap]
+  \> \>   $\Always R \land false \land false $\\[\lgap]
+   \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
+  \> \>   $false$ \quad \myqed
+\end{tabbing}
+
+
+==============================
+
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction is by (4.9) Proof by contradiction. Let $r \equiv (p \lor \Always q) \land (\Always p \lor q)$.
