@@ -2418,6 +2418,40 @@ Exercise for the student.\\
   \> which is (\ref{E:impAlwaysNA}) Strengthening of $\Always$. \quad \myqed
 \end{tabbing}
 
+% begin sms
+The next theorem (\ref{E:metaDeduction}) is a proof metatheorem
+based on the temporal deduction theorem (2.1.6) of Kröger and Merz \cite{Kroger}.
+To prove $\Always P \impl Q$, assume $P$ and prove $Q$. You cannot use textual substitution in $P$.
+\begin{equation}\label{E:metaDeduction}
+\textbf{Metatheorem temporal deduction:}\quad \text{If } P \text{ is a theorem,}
+\text{ and } P\impl Q \text{ is a theorem then } \Always P\impl Q \text{ is a theorem.}
+\end{equation}
+
+\opt{doc}{
+\emph{Proof}: The proof is by (4.4) Deduction.
+Suppose $P$ and $P\impl Q$ are theorems.
+Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$,
+and $P \impl Q$ is equivalent to $true$.
+Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always P$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
+\> \> $P$\\[\lgap]
+ \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+ \> \> $ P \land true$\\[\lgap]
+  \> $=$  \>  \Hint{$P \impl Q$ is a theorem.}\\[\lgap]
+ \> \> $ P \land (P \impl Q)$\\[\lgap]
+\> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+\> \>   $Q$ \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+\emph{Proof}:\\
+Exercise for the student.\\
+}
+% end sms
+
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then, the consequent of (\ref{E:exAlwaysNot}) is true, but the antecedent is false.
