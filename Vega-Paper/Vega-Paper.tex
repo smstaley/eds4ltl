@@ -1900,12 +1900,6 @@ and is apparently unique to this system.
 \textbf{Axiom, $\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 
-\firstspacer
-
-\begin{equation}\label{E:andUntilDist}
-\textbf{Axiom, Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
-\end{equation}
-
 The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
 \begin{equation}\label{E:absUntilAlways}
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
@@ -1927,25 +1921,6 @@ The proof in the second direction follows.
 \> \> $\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $p \Until \Always p$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:axiomUntilImpl}
-\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Always p \land true\Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
-  \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
-  \> \>   $p \Until (p\land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $p \Until p\land p\Until q$\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
@@ -2450,6 +2425,49 @@ Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
 \emph{Proof}:\\
 Exercise for the student.\\
 }
+
+\begin{equation}\label{E:andUntilDist}
+\textbf{Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
+\end{equation}
+
+\emph{Proof}: The proof is by (\ref{E:metaDeduction}) temporal deduction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land q \Until r \impl (p \land q) \Until (p \land r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \impl (q \Until r \impl (p \land q) \Until (p \land r))$
+\end{tabbing}
+And now, assume $p \equiv true$ and prove $q \Until r \impl (p \land q) \Until (p \land r)$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $q \Until r \impl (p \land q) \Until (p \land r)$\\[\lgap]
+  \> $=$  \>  \Hint{Assumed $p \equiv true$}\\[\lgap]
+  \> \>   $q \Until r \impl (true \land q) \Until (true \land r)$\\[\lgap]
+ \> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+  \> \>   $q \Until r \impl q \Until r$\\[\lgap]
+    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:axiomUntilImpl}
+\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Always p \land true\Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
+  \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p \Until (p\land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $p \Until p\land p\Until q$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $p\Until q$ \quad \myqed
+\end{tabbing}
+
 % end sms
 
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.

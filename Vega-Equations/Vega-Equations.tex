@@ -623,20 +623,8 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:andUntilDist}
-\textbf{Axiom, Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:axAbsorpUntil}
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:axiomUntilImpl}
-\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
 
 \spacer
@@ -802,6 +790,18 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \text{ and } P\impl Q \text{ is a theorem, then } \Always P\impl Q \text{ is a theorem.}
 \end{equation}
 \opt{inventory}{K24(T2.1.6)\\}
+
+\spacer
+
+\begin{equation}\label{E:andUntilDist}
+\textbf{Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:axiomUntilImpl}
+\textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
+\end{equation}
 
 \spacer
 
