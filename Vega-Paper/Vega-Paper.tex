@@ -1888,64 +1888,13 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \end{equation}
 
 The following induction axiom is included in other temporal logic systems.
-The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
-and is apparently unique to this system.
+%The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
+%and is apparently unique to this system.
 \begin{equation}\label{E:induction}
 \textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 
-\firstspacer
-
-\begin{equation}\label{E:axiomAlwaysUntilImpl}
-\textbf{Axiom, $\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
-\end{equation}
-
-The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
-\begin{equation}\label{E:absUntilAlways}
-\textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7) Mutual implication.
-The proof in the first direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Until \Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication, with $q:=p$} \\[\lgap]
-\> \> $\Always (p \Until p)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
-\> \> $\Always p$
-\end{tabbing}
-The proof in the second direction follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always p$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
-\> \> $p \Until \Always p$ \quad \myqed
-\end{tabbing}
-
-The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
-Suppose, for example, that $p$ continually oscillates between true and false over time.
-Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
-\begin{equation}\label{E:eventAlwaysImp}
-\textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
-\end{equation}
-
-\emph{Proof}:
-\opt{doc}{
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true\Until \Always p$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
-  \> \>   $\Always (true\Until p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Always\Event p$ \quad \myqed
-\end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
+%\firstspacer
 
 The following theorem expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:eventAsAlways}
@@ -2467,7 +2416,66 @@ And now, assume $p \equiv true$ and prove $q \Until r \impl (p \land q) \Until (
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
+% end sms
+% begin sms
+\begin{equation}\label{E:rightMonoUntil}
+\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
+\end{equation}
 
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q) \impl (r \Until p \impl r \Until q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \land r \Until p \impl r \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land r \Until p \impl r \Until q$}\\[\lgap]
+  \> \>   $true$
+\end{tabbing}
+
+\emph{Proof of Lemma}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q) \land r \Until p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
+  \> \>   $((p \impl q) \land r) \Until ((p \impl q) \land p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
+  \> \>   $((p \impl q) \land r) \Until (p \land q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $((p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $((p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $r \Until q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:leftMonoUntil}
+\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q) \impl (p \Until r \impl q \Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \land p \Until r \impl q \Until r$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land p \Until r \impl q \Until r$}\\[\lgap]
+  \> \>   $true$
+\end{tabbing}
+
+\emph{Proof of Lemma}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q) \land p \Until r$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
+  \> \>   $((p \impl q) \land p) \Until ((p \impl q) \land r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
+  \> \>   $(p \land q) \Until ((p \impl q) \land r)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
+  \> \>   $p \Until ((p \impl q) \land r) \land q \Until ((p \impl q) \land r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $p \Until ((p \impl q) \land r) \land q \Until (p \impl q) \land q \Until r)$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $q \Until r$ \quad \myqed
+\end{tabbing}
 % end sms
 
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
@@ -3074,28 +3082,6 @@ And now,
   \> \>   $\Event (p \Until q) $\quad \myqed
 \end{tabbing}
 
-\begin{equation}\label{E:untilframelawAlways}
-\textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
-\end{equation}
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \impl (\Always q \impl \Always (p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always p \land \Always q \impl \Always (p \Until q))$
-\end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Always q $\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
-  \> \>   $\Always p \land p \Until \Always q $\\[\lgap]
-   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Until\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
-   \> \>   $\Always p \land \Always (p \Until  q) $\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Always (p \Until q) $\quad \myqed
-\end{tabbing}
-
 The monotonicity theorems (\ref{E:alwaysImpNexts}), (\ref{E:alwaysImpEvents}), and (\ref{E:distAlwaysImp}) have $\Always (p \impl q)$
 as the antecedent.
 Theorem (\ref{E:distAlwaysImp}) can be considered distributivity of $\Always$ over $\impl$ as well.
@@ -3558,7 +3544,151 @@ Exercise for the student.\\
 }
 
 \subsection{Always, continued}\label{section-always-continued}
+% begin sms
+\begin{equation}\label{E:axiomAlwaysUntilImpl}
+\textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
+\end{equation}
+% need proof here.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule
+  with $p,q := p \Until \Always q, p \Until q$ is a theorem}\\[\lgap]
+  \> \>   $\Always (p \Until \Always q \impl (p \Until q \land \Next (p \Until \Always q))) \impl
+  (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
+   \> $=$  \>  \Hintfirst{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+   \> \>   \Hintlast{with $p,q,r := p \Until \Always q, p \Until q, \Next (p \Until \Always q)$}\\[\lgap]
+   \> \>   $\Always ((p \Until \Always q \impl p \Until q) \land (p \Until \Always q \impl \Next (p \Until \Always q))) \impl
+   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \Until \Always q \impl p \Until q) \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
+   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$ is a theorem}\\[\lgap]
+  \> \>   $true \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
+   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
+   \> $\impl$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ is a theorem}\\[\lgap]
+  \> \>   $true \land true \impl (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
+    \> $=$  \>  \Hintfirst{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+      \>  \>  \Hintlast{and (3.73) Left identity of $\impl$,  $true\impl p \equiv p$}\\[\lgap]
+  \> \>   $p \Until \Always q \impl \Always (p \Until q)$ \\[\lgap]
+\end{tabbing}
+% need lemmas here
+Lemma A: $\Always (p \Until \Always q \impl p \Until q)$
 
+\emph{Proof of Lemma A}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ with $p:=q$ is a theorem} \\[\lgap]
+  \> \>   $\Always q \impl q$\\[\lgap]
+   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
+    \> \>   $\Always (\Always q \impl q)$\\[\lgap]
+     \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r ;= \Always q, q, p$}\\[\lgap]
+   \> \>   $p \Until \Always q \impl p \Until q$\\[\lgap]
+   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
+   \> \>   $\Always (p \Until \Always q \impl p \Until q)$\\[\lgap]
+\end{tabbing}
+Lemma B: $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$
+
+\emph{Proof of Lemma B}: First prove $p \Until \Always q \impl \Next (p \Until \Always q)$ and
+then apply (\ref{E:metatheorem}) Metatheorem to finish the proof.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $p \Until \Always q$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
+  \> \>   $\Always q \lor (p \land \Next(p \Until \Always q))$\\[\lgap]
+  \> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r) \equiv (p\lor q) \land (p\lor r)$} \\[\lgap]
+\> \> $(\Always q\lor p) \land (\Always q\lor \Next (p \Until \Always q))$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+\> \> $\Always q \lor \Next (p \Until \Always q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
+\> \> $(q \land \Next \Always q) \lor \Next (p \Until \Always q)$\\[\lgap]
+\> $=$ \> \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r) \equiv (p\lor q) \land (p\lor r)$} \\[\lgap]
+\> \> $(q \lor  \Next (p \Until \Always q)) \land (\Next \Always q \lor  \Next (p \Until \Always q))$\\[\lgap]
+\> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+\> \> $ \Next \Always q \lor  \Next (p \Until \Always q)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
+\> \> $ \Next \Always q \lor  \Next p \Until \Next \Always q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrQ}) Absorption with $p,q := \Next p, \Next \Always q$} \\[\lgap]
+\> \> $ \Next p \Until \Next \Always q$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
+\> \> $ \Next (p \Until \Always q)$\\[\lgap]
+\end{tabbing}
+This proves $p \Until \Always q \impl \Next (p \Until \Always q)$ is a theorem. And
+therefore, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ \quad \myqed
+\end{tabbing}
+The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
+\begin{equation}\label{E:absUntilAlways}
+\textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until \Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication, with $q:=p$} \\[\lgap]
+\> \> $\Always (p \Until p)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
+\> \> $\Always p$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always p$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
+\> \> $p \Until \Always p$ \quad \myqed
+\end{tabbing}
+
+The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
+Suppose, for example, that $p$ continually oscillates between true and false over time.
+Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\end{equation}
+
+\emph{Proof}:
+\opt{doc}{
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $true\Until \Always p$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
+  \> \>   $\Always (true\Until p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Always\Event p$ \quad \myqed
+\end{tabbing}
+}
+\opt{student}{
+Exercise for the student.\\
+}
+\begin{equation}\label{E:untilframelawAlways}
+\textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
+\end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Always q \impl \Always (p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Always q \impl \Always (p \Until q))$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Always q $\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
+  \> \>   $\Always p \land p \Until \Always q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
+   \> \>   $\Always p \land \Always (p \Until  q) $\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Always (p \Until q) $\quad \myqed
+\end{tabbing}
+% end sms
 The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
 (\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
 of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
@@ -5383,35 +5513,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $\Event q\land \Always p\impl p \Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:rightMonoUntil}
-\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \impl q) \impl (r \Until p \impl r \Until q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
-  \> \>   $\Always (p \impl q) \land r \Until p \impl r \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land r \Until p \impl r \Until q$}\\[\lgap]
-  \> \>   $true$
-\end{tabbing}
-
-\emph{Proof of Lemma}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \impl q) \land r \Until p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
-  \> \>   $((p \impl q) \land r) \Until ((p \impl q) \land p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
-  \> \>   $((p \impl q) \land r) \Until (p \land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $((p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $((p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $r \Until q$ \quad \myqed
-\end{tabbing}
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
@@ -5440,21 +5541,6 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> \>   $((p \land q) \Wait (p \impl q) \land p \Wait r \land q \Wait r$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $q \Wait r$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:leftMonoUntil}
-\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until r \impl q \Until r$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
-  \> \>   $p \Wait r \land \Event r\impl q \Wait r \land \Event r$\\[\lgap]
-  \> $\foll$  \>  \Hint{(4.3) Monotonicity of $\land$, $(p\impl q)\impl (p\land r \impl q\land r)$}\\[\lgap]
-  \> \>   $p \Wait r \impl q \Wait r$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$}\\[\lgap]
-  \> \>   $\Always (p \impl q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:rightMonoWait}
 \textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)

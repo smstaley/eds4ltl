@@ -617,25 +617,6 @@ p \Until q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:axiomAlwaysUntilImpl}
-\textbf{Axiom, $\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:axAbsorpUntil}
-\textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
-\end{equation}
-
-\spacer
-
-\begin{equation}\label{E:eventAlwaysImp}
-\textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
-\end{equation}
-\opt{inventory}{S63(3.16e), K28(T9), E7, B243, B267(T14.8)\\}
-
-\spacer
-
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \neg\Always\neg p
 \end{equation}
@@ -803,6 +784,19 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
 
+\spacer
+
+\begin{equation}\label{E:rightMonoUntil}
+\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
+\end{equation}
+\opt{inventory}{E9\\}
+
+\spacer
+
+\begin{equation}\label{E:leftMonoUntil}
+\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
+\end{equation}
+\opt{inventory}{E9\\}
 \spacer
 
 \begin{equation}\label{E:exAlwaysNot}
@@ -979,12 +973,6 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \spacer
 
-\begin{equation}\label{E:untilframelawAlways}
-\textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:alwaysImpNexts}
 \textbf{Monotonicity of $\Next$:}\quad \Always (p \impl q) \impl (\Next p \impl \Next q)
 \end{equation}
@@ -1106,12 +1094,37 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 
 \subsection*{Always, continued}
 
+\begin{equation}\label{E:axiomAlwaysUntilImpl}
+\textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
+\end{equation}
+
+\firstspacer
+
+\begin{equation}\label{E:axAbsorpUntil}
+\textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:eventAlwaysImp}
+\textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
+\end{equation}
+\opt{inventory}{S63(3.16e), K28(T9), E7, B243, B267(T14.8)\\}
+
+\spacer
+
+\begin{equation}\label{E:untilframelawAlways}
+\textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
 \opt{inventory}{M208(FA1), S63(3.18d), K32(T37), E8, B244, B268(T14.11b)\\}
 
-\firstspacer
+\spacer
 
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
@@ -1671,24 +1684,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
-\begin{equation}\label{E:rightMonoUntil}
-\textbf{Right monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (r \Until p \impl r \Until q)
-\end{equation}
-\opt{inventory}{E9\\}
-
-\spacer
-
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
 \opt{inventory}{S66(3.35a)\\}
 
-\spacer
-
-\begin{equation}\label{E:leftMonoUntil}
-\textbf{Left monotonicity of $\Until$:}\quad \Always (p \impl q) \impl (p \Until r \impl q \Until r)
-\end{equation}
-\opt{inventory}{E9\\}
 
 \spacer
 
