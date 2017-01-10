@@ -3046,42 +3046,6 @@ Proof of the second conjunct follows.
    \> which is (3.76b) Strengthening, $p\land q \impl p$. \quad \myqed
 \end{tabbing}
 
-\begin{equation}\label{E:untilframelawnext}
-\textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
-\end{equation}
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $\Always p \impl (\Next q \impl \Next (p \Until q))$\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
-	\> \>   $\Always p \impl \Next (q \impl p \Until q)$\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:untilInsertion}) $\Until$ insertion}\\[\lgap]
-	\> \>   $\Always p \impl \Next true$\\[\lgap]
-	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
-	\> \>   $\Always p \impl true$\\[\lgap]
-	\> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$ \quad \myqed
-\end{tabbing}
-
-\begin{equation}\label{E:untilframelawEvent}
-\textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
-\end{equation}
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \impl (\Event q \impl \Event (p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always p \land \Event q \impl \Event (p \Until q)$
-\end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event q $\\[\lgap]
-   \> $\impl$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication } \\[\lgap]
-   \> \>   $p \Until q $\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Until q$ }\\[\lgap]
-  \> \>   $\Event (p \Until q) $\quad \myqed
-\end{tabbing}
-
 The monotonicity theorems (\ref{E:alwaysImpNexts}), (\ref{E:alwaysImpEvents}), and (\ref{E:distAlwaysImp}) have $\Always (p \impl q)$
 as the antecedent.
 Theorem (\ref{E:distAlwaysImp}) can be considered distributivity of $\Always$ over $\impl$ as well.
@@ -3548,8 +3512,8 @@ Exercise for the student.\\
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
-% need proof here.
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
+
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
@@ -3564,16 +3528,17 @@ Exercise for the student.\\
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always (p \Until \Always q \impl p \Until q) \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
    (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$ is a theorem}\\[\lgap]
+  \> $=$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$ is a theorem}\\[\lgap]
   \> \>   $true \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
    (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-   \> $\impl$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ is a theorem}\\[\lgap]
+   \> $=$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ is a theorem}\\[\lgap]
   \> \>   $true \land true \impl (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
     \> $=$  \>  \Hintfirst{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
       \>  \>  \Hintlast{and (3.73) Left identity of $\impl$,  $true\impl p \equiv p$}\\[\lgap]
   \> \>   $p \Until \Always q \impl \Always (p \Until q)$ \\[\lgap]
 \end{tabbing}
 % need lemmas here
+
 Lemma A: $\Always (p \Until \Always q \impl p \Until q)$
 
 \emph{Proof of Lemma A}: The proof is by (4.7.1) Truth implication.
@@ -3589,9 +3554,12 @@ Lemma A: $\Always (p \Until \Always q \impl p \Until q)$
    \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
    \> \>   $\Always (p \Until \Always q \impl p \Until q)$\\[\lgap]
 \end{tabbing}
+
 Lemma B: $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$
 
-\emph{Proof of Lemma B}: First prove $p \Until \Always q \impl \Next (p \Until \Always q)$ and
+\emph{Proof of Lemma B}:
+
+First prove $p \Until \Always q \impl \Next (p \Until \Always q)$ and
 then apply (\ref{E:metatheorem}) Metatheorem to finish the proof.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3667,9 +3635,48 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
 \opt{student}{
 Exercise for the student.\\
 }
+% insert frame laws here
+\begin{equation}\label{E:untilframelawnext}
+\textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>   $\Always p \impl (\Next q \impl \Next (p \Until q))$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
+	\> \>   $\Always p \impl \Next (q \impl p \Until q)$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:untilInsertion}) $\Until$ insertion}\\[\lgap]
+	\> \>   $\Always p \impl \Next true$\\[\lgap]
+	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
+	\> \>   $\Always p \impl true$\\[\lgap]
+	\> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$ \quad \myqed
+\end{tabbing}
+
+\begin{equation}\label{E:untilframelawEvent}
+\textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl (\Event q \impl \Event (p \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \land \Event q \impl \Event (p \Until q)$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \Event q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomUntilImpl}) $\Until$ implication } \\[\lgap]
+   \> \>   $p \Until q $\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Until q$ }\\[\lgap]
+  \> \>   $\Event (p \Until q) $\quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:untilframelawAlways}
 \textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
