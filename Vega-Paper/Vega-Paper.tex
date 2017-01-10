@@ -2299,11 +2299,7 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
-  \> \>   $p \land \Next\Always p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
-  \> \>   $p \land \Always\Next p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$ with $p := \Next p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:expansionAlways2}) Expansion of $\Always$}\\[\lgap]
   \> \>   $p \land \Next p \land \Next\Always\Next p$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Next p$ \quad \myqed
@@ -2820,8 +2816,10 @@ And now,
   \> \>   $\Always (p \land q) \impl \Always (p \land q)$\\[\lgap]
    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
 \end{tabbing}
-Theorems (\ref{E:disjframelawnext}) to (\ref{E:untilframelawAlways}) extend the frame laws
-to all binary propositional and temporal operators.
+Theorems (\ref{E:disjframelawnext}) to (\ref{E:equivframelawAlways}) extend the frame laws
+to all binary propositional operators. That this can be extended to the binary temporal operators
+$\Until$ and $\Wait$ is shown in theorems (\ref{E:untilframelawnext}) - (\ref{E:untilframelawAlways})
+for $\Until$ and theorems (\ref{E:waitframelawnext}) - (\ref{E:waitframelawAlways}) for $\Wait$.
 \begin{equation}\label{E:disjframelawnext}
 \textbf{$\lor$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \lor q))
 \end{equation}
@@ -3652,7 +3650,6 @@ Exercise for the student.\\
 	\> \>   $\Always p \impl true$\\[\lgap]
 	\> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:untilframelawEvent}
 \textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
 \end{equation}
@@ -3872,7 +3869,6 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always\Event p \land \Always\Event q$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
@@ -3976,7 +3972,6 @@ The proof is by (4.7.1) Truth implication.
 \opt{student}{
 Exercise for the student.\\
 }
-
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Always\Event q \lor \Event\Always\neg p
 \end{equation}
@@ -5041,7 +5036,9 @@ The next three theorems
 (\ref{E:waitframelawEvent}),
 and
 (\ref{E:waitframelawAlways})
-complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:untilframelawAlways})
+complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:equivframelawAlways})
+for binary propositional operators,
+and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}) - (\ref{E:untilframelawAlways}).
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
@@ -5058,7 +5055,6 @@ complete the set of frame laws which included the theorems from (\ref{E:framelaw
 	\> $=$  \>  \Hint{(3.72) Right zero of $\impl$, $p\impl true \equivs true$ with $p := \Always p$}\\[\lgap]
 	\> \>   $true$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:waitframelawEvent}
 \textbf{$\Wait$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Wait q))
 \end{equation}
@@ -5080,7 +5076,6 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Wait q$ }\\[\lgap]
   \> \>   $\Event (p \Wait q) $\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:waitframelawAlways}
 \textbf{$\Wait$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Wait q))
 \end{equation}
