@@ -2370,7 +2370,6 @@ Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
 \emph{Proof}:\\
 Exercise for the student.\\
 }
-
 \begin{equation}\label{E:andUntilDist}
 \textbf{Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
 \end{equation}
@@ -2392,26 +2391,43 @@ And now, assume $p \equiv true$ and prove $q \Until r \impl (p \land q) \Until (
   \> \>   $q \Until r \impl q \Until r$\\[\lgap]
     \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:axiomUntilImpl}
 \textbf{$\Until$ implication:}\quad \Always p \land \Event q \impl p \Until q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: The proof is by (\ref{E:metaDeduction}) temporal deduction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Always p \land true\Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
-  \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
-  \> \>   $p \Until (p\land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $p \Until p\land p\Until q$\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $p\Until q$ \quad \myqed
+  \> \>   $\Always p \land \Event q \impl p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always p \impl (\Event q  \impl p \Until q)$
 \end{tabbing}
+And now, assume $p \equiv true$ and prove $\Event q  \impl p \Until q$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event q  \impl p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{Assumed $p \equiv true$}\\[\lgap]
+  \> \>   $\Event q  \impl true \Until q$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> \>   $\Event q  \impl  \Event q$\\[\lgap]
+    \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
+\end{tabbing}
+% old proof
+%\emph{Proof}:
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+ % \> \>   $\Always p \land \Event q$\\[\lgap]
+ % \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+ % \> \>   $\Always p \land true\Until q$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
+ % \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
+ % \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+%  \> \>   $p \Until (p\land q)$\\[\lgap]
+ % \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
+%  \> \>   $p \Until p\land p\Until q$\\[\lgap]
+%  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+%  \> \>   $p\Until q$ \quad \myqed
+%\end{tabbing}
 % end sms
 % begin sms
 \begin{equation}\label{E:rightMonoUntil}
@@ -2567,7 +2583,56 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \land \neg\Always p \equivs false$\\[\lgap]
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
+% begin sms
+\begin{equation}\label{E:AEexcludedMid}
+\textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Event \Always\neg p
+\end{equation}
 
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event p \lor \Event \Always\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
+  \> \>   $\Always \Event p \lor \neg \Always\Event p$\\[\lgap]
+  \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Always \Event p$. \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:EAexcludedMid}
+\textbf{$\Event \Always $ excluded middle:}\quad \Event \Always p \lor \Always \Event\neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event \Always p \lor \Always \Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$}\\[\lgap]
+  \> \>   $\Event \Always p \lor \neg \Event \Always p$\\[\lgap]
+  \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Event \Always p$. \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:AEcontradiction}
+\textbf{$\Always \Event$ contradiction:}\quad \Always \Event p \land \Event \Always\neg p \equivs false
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event p \land \Event \Always\neg p \equivs false$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
+  \> \>   $\Always \Event p \land \neg \Always \Event p \equivs false$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always\Event p$. \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:EAcontradiction}
+\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land  \Always \Event\neg p \equivs false
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event \Always p \land  \Always \Event\neg p \equivs false$\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$}\\[\lgap]
+  \> \>   $\Event \Always p \land \neg \Event \Always p \equivs false$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event\Always p$. \quad \myqed
+\end{tabbing}
+% end sms
 Theorem (\ref{E:distAlwaysAnd}) shows that $\Always$, a universal operator, distributes over conjunction.
 Because disjunction is existential, Theorem (\ref{E:distAlwaysOr}) shows that $\Always$ distributes over it in only one
 direction.
