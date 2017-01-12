@@ -2559,6 +2559,22 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \lor \neg\Always p$\\[\lgap]
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
+% begin sms
+\begin{equation}\label{E:excludedMidc}
+\textbf{Temporal excluded middle:}\quad \Event p \lor \Event\neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event p \lor \Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $\Event p \lor \neg\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Always p \impl \Event p$\\[\lgap]
+  \> which is (\ref{E:impAlwaysE}) Strengthening of $\Always$. \quad \myqed
+\end{tabbing}
+%end sms
 \begin{equation}\label{E:contradiction}
 \textbf{Temporal contradiction:}\quad \Event p \land \Always\neg p \equivs false
 \end{equation}
@@ -2583,6 +2599,23 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \land \neg\Always p \equivs false$\\[\lgap]
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
+% begin sms
+\begin{equation}\label{E:contradictionc}
+\textbf{Temporal contradiction:}\quad \Always p \land \Always \neg p \equivs false
+\end{equation}
+
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:excludedMidc}) is a theorem}\\[\lgap]
+  \> \>   $\Event p \lor \Event\neg p$\\[\lgap]
+   \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
+   \> \>   $\Event p \lor \Event\neg p \equiv true$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Always p \land \Always \neg p \equiv false$ \quad \myqed
+\end{tabbing}
+% end sms
 % begin sms
 \begin{equation}\label{E:AEexcludedMid}
 \textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Event \Always\neg p
@@ -4284,7 +4317,6 @@ theorem (\ref{E:BenAriequiv3}) in two steps.
     \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
     \> \>   $\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q$ \quad \myqed
 \end{tabbing}
-
 % sms end
 
 The metatheorems and absorption laws imply the following intuitive theorem.
@@ -4462,7 +4494,7 @@ p\Until q\impl p\Wait q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p\Until q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilFromWait})} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
 \> \> $p \Wait q\land \Event q$\\[\lgap]
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
@@ -4557,7 +4589,7 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \> \> $\Next \Always p\lor \Next(p\Until q)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$ and (\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$} \\[\lgap]
 \> \> $\Always \Next p\lor \Next p\Until \Next q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) with $p,q := \Next p, \Next q$} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ with $p,q := \Next p, \Next q$} \\[\lgap]
 \> \> $\Next p \Wait \Next q$ \quad \myqed
 \end{tabbing}
 
