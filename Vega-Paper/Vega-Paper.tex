@@ -3731,6 +3731,37 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
 \opt{student}{
 Exercise for the student.\\
 }
+% begin sms
+\begin{equation}\label{E:AEexcludedMid2}
+\textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Always \Event\neg p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always \Event p \lor \Always \Event\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$}\\[\lgap]
+  \> \>   $\Always \Event p \lor \neg \Event\Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Event \Always p \impl \Always \Event p$\\[\lgap]
+  \> which is (\ref{E:eventAlwaysImp}) $\Event \Always$ implication. \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:EAcontradiction2}
+\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land \Event \Always \neg p \equivs false
+\end{equation}
+
+\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:AEexcludedMid2}) is a theorem}\\[\lgap]
+  \> \>   $\Always \Event p \lor \Always \Event\neg p$\\[\lgap]
+   \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
+   \> \>   $\Always \Event p \lor \Always \Event\neg p \equiv true$\\[\lgap]
+    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
+    \> \>   $\Event \Always p \land \Event \Always \neg p \equivs false$ \quad \myqed
+\end{tabbing}
+% end sms
 % insert frame laws here
 \begin{equation}\label{E:untilframelawnext}
 \textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
@@ -3985,6 +4016,9 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \opt{student}{
 Exercise for the student.\\
 }
+% begin sms
+Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) are duals of each other.
+% end sms
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -3994,7 +4028,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Event p \lor \Always\Event q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ with $p,q := \Event p, \Event q$}\\[\lgap]
   \> \>   $\Always(\Event p \lor \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Always\Event(p \lor q)$
