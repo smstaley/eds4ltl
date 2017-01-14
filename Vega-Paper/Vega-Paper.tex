@@ -2004,7 +2004,7 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of 
   \> \>   $\Always\neg true \equiv \neg true$\\[\lgap]
   \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$}\\[\lgap]
   \> \>   $\neg\Always\neg\ true \equiv true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventAsAlways}) $\Event p \equiv \neg\Always\neg p$}\\[\lgap]
   \> \>   $\Event true \equiv true$\\[\lgap]
   \> which is (\ref{E:eventTrue}) Truth of $\Event$. \quad \myqed
 \end{tabbing}
@@ -5375,7 +5375,7 @@ The proof in the first direction follows.
   \> \>   $(p \Until q\lor \Always p)\Wait q$\\[\lgap]
   \> $\foll$  \>  \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$}\\[\lgap]
   \> \>   $(p \Until q)\Wait q \lor \Always p\Wait q$\\[\lgap]
-  \> $\foll$  \>  \Hint{(\ref{E:untilImplWait}) and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:untilImplWait}) $p \Until q \impl p \Wait q$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $(p \Until q)\Until q \lor \Always p\Wait q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilIdemR}) Right absorption of $\Until$}\\[\lgap]
   \> \>   $p \Until q \lor \Always p\Wait q$\\[\lgap]
@@ -5390,7 +5390,7 @@ The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $(p \Wait q) \Wait q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitToOr})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitToOr}) $p \Wait q \impl p \lor q$}\\[\lgap]
   \> \>   $p \Wait q \lor q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:waitOrQ}) Absorption}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
@@ -5450,7 +5450,7 @@ Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ 
 \> \> $\neg(\neg p \Wait false)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law with $p := \neg p$} \\[\lgap]
 \> \> $\neg\Always\neg p$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:eventAsAlways})}\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:eventAsAlways}) $\Event p \equiv \neg\Always\neg p$}\\[\lgap]
 \> \> $\Event p$ \quad \myqed
 \end{tabbing}
 
@@ -5683,7 +5683,7 @@ p \Wait q \land \Always\neg q \impl \Always p
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $r \Wait p \impl r \Wait q$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
   \> \>   $\Always r \lor r \Until p \impl \Always r \lor r \Until q$\\[\lgap]
   \> $\foll$  \>  \Hint{(4.2) Monotonicity of $\lor$, $(p\impl q)\impl (p\lor r \impl q\lor r)$}\\[\lgap]
   \> \>   $r \Until p \impl r \Until q$\\[\lgap]
@@ -6000,7 +6000,7 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl 
   \> \>   $\Always ((p \lor q) \land (\neg q \lor r))$\\[\lgap]
   \> $\impl$  \>  \Hint{Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$}\\[\lgap]
   \> \>   $\Always (p \lor r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:orToWait})}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$}\\[\lgap]
   \> \>   $p\Wait r$
 \end{tabbing}
 
@@ -6034,27 +6034,54 @@ for LTL. The system takes the temporal operators $\Always$ and $\Next$ as basic 
 for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$. The $\Until$ operator
 and  $\Wait$ operator are introduced with four defining axioms in section 3.1 as an extension to LTL.\\
 
-The axiomatization of LTL in Kröger and Merz consists of 8 Axioms and 3 inference rules. The following is
-a list of the 8 axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work.\\
-
-(taut) All tautologically valid formulas. Also assumed in this work.\\
-
-(ltl1) $\Next \neg p \equiv \neg \Next p$ This is an axiom (\ref{E:selfDual}) Self-dual.\\
-
-(ltl2, ltl2') $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$ 
-This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
-
-(ltl3, ltl3') $\Always p \equiv p \land \Next\Always p$ This is a theorem
+The axiomatization of LTL in Kröger and Merz consists of 8 Axioms and 3 inference rules. The
+8 axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work
+are shown in Figure \ref{kroger-axioms}.\\
+% add table here sms
+\begin{figure}[t]
+\centering
+\renewcommand\arraystretch{1.2}
+\begin{tabular}{ l l }
+  \toprule
+  (taut) All tautologically valid formulas.
+  &
+  Also assumed in this work. \\
+  \midrule
+  (ltl1) $\Next \neg p \equiv \neg \Next p$
+  &
+  This is an axiom (\ref{E:selfDual}) Self-dual.\\
+  \midrule
+  (ltl2, ltl2') $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$
+  &
+  This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
+   \midrule
+  (ltl3, ltl3') $\Always p \equiv p \land \Next\Always p$
+  &
+  This is a theorem
  (\ref{E:expansionAlways}) Expansion of $\Always$.\\
-  
-(Tb13) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
-
-(unt2) $p \Until q \impl \Event q$ This is a theorem (\ref{E:eventuality}) Eventuality.\\
-
-(Tb14) $p \Wait q \equiv q \lor (p \land \Next (p \Wait q))$ This is an axiom (\ref{E:expansionWait}) Expansion of $\Wait$.\\
-
-(unl2) $\Always p \impl p \Wait q$ This is a theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
-
+   \midrule
+  (Tb13) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$
+  &
+  This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
+   \midrule
+  (unt2) $p \Until q \impl \Event q$
+  &
+  This is a theorem (\ref{E:eventuality}) Eventuality.\\
+   \midrule
+ (Tb14) $p \Wait q \equiv q \lor (p \land \Next (p \Wait q))$
+  &
+  This is a theorem (\ref{E:expansionWait}) Expansion of $\Wait$.\\
+  \midrule
+  (unl2) $\Always p \impl p \Wait q$
+  &
+  This is a theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
+  \bottomrule
+\end{tabular}
+\renewcommand\arraystretch{1}
+\caption{The eight axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work.
+\label{kroger-axioms}}
+\end{figure}
+% end of table sms
 The three stated rules of inference in the Kröger and Merz deductive system are: (mp) Modus ponens,
 (nex) next introduction and (ind) Induction.
 These inference rules exist in this work in the form of  
