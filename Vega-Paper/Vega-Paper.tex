@@ -3311,6 +3311,56 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
 \end{tabbing}
+% begin sms
+\begin{equation}\label{E:UntilCatRule}
+\textbf{Catenation rule of $\Until$:}\quad \Always ((p \impl q \Until r) \land (r \impl q \Until s)) \impl (p \impl q \Until s)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl q \Until r) \land (r \impl q \Until s)) \impl (p \impl q \Until s)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl q \Until r) \land (r \impl q \Until s)) \land p \impl q \Until s$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl q \Until r) \land (r \impl q \Until s)) \land p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
+     \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+      \> \>   $(p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
+      \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+       \> \>   $q \Until r \land \Always (r \impl q \Until s)$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p, q, r := r, q \Until s, q$ }\\[\lgap]
+    \> \>   $q \Until (q \Until s)$\\[\lgap]  
+    \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$}\\[\lgap]
+      \> \>   $q \Until s$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:untilstrength}
+\textbf{$\Until$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Until q \impl r \Until s)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \impl (p \Until q \impl r \Until s)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \land p \Until q \impl r \Until s$
+\end{tabbing}
+And now,
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \impl r) \land (q \impl s)) \land p \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+   \> \>   $\Always (p \impl r) \land \Always (q \impl s) \land p \Until q$\\[\lgap]
+   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> \>   $\Always (p \impl r) \land p \Until s$\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$}\\[\lgap]
+      \> \>   $r \Until s$ \quad \myqed
+\end{tabbing}
+% end sms
 \begin{equation}\label{E:CompInductRule}
 \textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
 \end{equation}
@@ -5690,11 +5740,11 @@ p \Wait q \land \Always\neg q \impl \Always p
   \> $\foll$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$}\\[\lgap]
   \> \>   $\Always (p \impl q)$ \quad \myqed
 \end{tabbing}
-
 % sms begin
 \begin{equation}\label{E:waitstrength}
 \textbf{$\Wait$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Wait q \impl r \Wait s)
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5713,10 +5763,10 @@ And now,
     \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$}\\[\lgap]
       \> \>   $r \Wait s$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:waitCatRule}
 \textbf{$\Wait$ catenation rule:}\quad \Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \impl (p \impl q \Wait s)
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill

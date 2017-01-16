@@ -1054,6 +1054,20 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \spacer
 
+\begin{equation}\label{E:UntilCatRule}
+\textbf{Catenation rule of $\Until$:}\quad \Always ((p \impl q \Until r) \land (r \impl q \Until s)) \impl (p \impl q \Until s)
+\end{equation}
+\opt{inventory}{inspired by M266(Rule$\Wait$T), S66(3.40)\\}
+
+\spacer
+
+\begin{equation}\label{E:untilstrength}
+\textbf{$\Until$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Until q \impl r \Until s)
+\end{equation}
+\opt{inventory}{inspired by M266(Rule$\Wait$M), S66(3.39)\\}
+
+\spacer
+
 \begin{equation}\label{E:CompInductRule}
 \textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
 \end{equation}
