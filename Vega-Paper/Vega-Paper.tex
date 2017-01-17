@@ -2329,6 +2329,7 @@ Exercise for the student.\\
 \begin{equation}\label{E:impAlwaysAN}
 \textbf{$\Next$ generalization:}\quad \Always p \impl \Always\Next p
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2713,7 +2714,6 @@ Exercise for the student.\\
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
   \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=\Always p \lor \Always q$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:distNextEquiv2}
 \textbf{Logical equivalence law of $\Next$:}\quad \Always (p \equiv q) \impl (\Next p \equiv \Next q)
 \end{equation}
@@ -2940,7 +2940,6 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
   \> \>   $\Next (p \lor q)$\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:disjframelawEvent}
 \textbf{$\lor$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \lor q))
 \end{equation}
@@ -2963,7 +2962,6 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event (p \lor q)$\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:disjframelawAlways}
 \textbf{$\lor$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \lor q))
 \end{equation}
@@ -2984,7 +2982,6 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$}\\[\lgap]
   \> \>   $\Always (p \lor q)$\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:implframelawnext}
 \textbf{$\impl$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \impl q))
 \end{equation}
@@ -3001,7 +2998,6 @@ And now,
   \> \>   $\Always p \land \Next q  \land \Next p \impl \Next q$\\[\lgap]
    \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Next q ,\Always p \land \Next p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:implframelawEvent}
 \textbf{$\impl$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \impl q))
 \end{equation}
@@ -3018,7 +3014,6 @@ And now,
   \> \>   $\Always p \land \Event q  \land \Always p \impl \Event q$\\[\lgap]
    \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Event q ,\Always p \land \Always p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:implframelawAlways}
 \textbf{$\impl$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \impl q))
 \end{equation}
@@ -3037,7 +3032,6 @@ And now,
   \> \>   $\Always p \land \Always (p \impl q) \impl \Always (p \impl q)$\\[\lgap]
    \> which is (3.76b) Strengthening, $p\land q \impl p$ with $p, q :=\Always (p \impl q) ,\Always p$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:equivframelawnext}
 \textbf{$\equiv$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \equiv q))
 \end{equation}
@@ -3082,7 +3076,6 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $\Next p$\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:equivframelawEvent}
 \textbf{$\equiv$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \equiv q))
 \end{equation}
@@ -3103,7 +3096,6 @@ And now,
    \> \>   $\Always p  \land \Event q  \impl \Event (p \land q)$\\[\lgap]
    \> which is (\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$. \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:equivframelawAlways}
 \textbf{$\equiv$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \equiv q))
 \end{equation}
@@ -3214,7 +3206,6 @@ Exercise for the student.\\
   \> \>   $\Always p \impl \Always q$ \quad \myqed
 \end{tabbing}
 }
-
 \opt{student}{
 Exercise for the student.\\
 }
@@ -3380,7 +3371,6 @@ And now,
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:EventConfRule}
 \textbf{$\Event$ Confluence:}\quad \Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \impl (p \impl \Event t)
 \end{equation}
