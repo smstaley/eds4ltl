@@ -5213,6 +5213,7 @@ and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}) - (\ref{E:
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5229,6 +5230,7 @@ and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}) - (\ref{E:
 \begin{equation}\label{E:waitframelawEvent}
 \textbf{$\Wait$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Wait q))
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5250,6 +5252,7 @@ And now,
 \begin{equation}\label{E:waitframelawAlways}
 \textbf{$\Wait$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Wait q))
 \end{equation}
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5271,6 +5274,7 @@ And now,
 \begin{equation}\label{E:waitInduct1}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl (p \Wait q))
 \end{equation}
+
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5287,6 +5291,7 @@ And now,
 \begin{equation}\label{E:waitInduct2}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl (q \land \Next p)) \impl  (p \impl (p \Wait q))
 \end{equation}
+
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
