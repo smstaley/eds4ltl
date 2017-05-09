@@ -117,12 +117,9 @@
 \begin{abstract}
 Equational deductive systems, developed by Dijkstra and Scholten and extended by Gries and Schneider, are based on only four inference rules -- Substitution, Leibniz, Equinimity, and Transitivity.
 Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system.
-Proofs in equational deductive systems are simpler for humans to write and analyze compared to proofs in Hilbert-style systems.
-This paper extends the equational deductive system of Gries and Schneider to linear temporal logic, using only the same four inference rules.
-It brings the advantages of equational deductive systems to linear temporal logic.
-The system includes all known linear temporal logic theorems plus many new and interesting ones.
+This paper extends the equational deductive system of Gries and Schneider to linear temporal logic (LTL), using only the same four inference rules.
+The paper surveys the LTL literature and includes all the LTL theorems from the survey plus many new and interesting ones.
 Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with equational logic.
-The paper can serve as an introduction to linear temporal logic.
 \end{abstract}
 
 \thispagestyle{plain}
@@ -152,7 +149,7 @@ The tradeoff is more subjective in logic systems, as there is apparently no metr
 
 This paper presents a logic system that places the boundary between inference rules and axioms to minimize the number of inference rules.
 We maintain that the primary advantage of such a system is a human one.
-That is, proofs in such systems are easier to understand and to design than in other systems.
+That is, manual proofs in such systems are easier to understand and to design than in other systems.
 
 \begin{figure}[t]
 \centering
@@ -258,7 +255,7 @@ Section 4 summarizes previous linear temporal logic axiomatization systems and c
 
 \section{Background}
 
-The first section below summarizes the equational system $\mathcal{E}$ from LADM.
+The first section below summarizes the equational system $\mathcal{E}$ from LADM \cite{LADM}.
 The summary is minimal, and assumes the reader is familiar with the propositional and predicate calculus.
 The second section introduces temporal logic and assumes no prior familiarity with it.
 The paper can serve as an introduction to linear temporal logic.
@@ -387,7 +384,8 @@ For example, here is a one-step proof of (\ref{E:linearity}) $\Next p \equiv \ne
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \kill
   \> \>   $\Next p \equiv \neg\Next\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Next\neg p, \Next p$} \\[\lgap]
+  \> $=$  \>  \Hintfirst{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \Next\neg p, \Next p$,} \\[\lgap]
+  \> \>   \Hintlast{$\neg \Next\neg p \equiv \Next p \equiv \Next\neg p \equiv \neg \Next p$}\\[\lgap]
   \> \>   $\neg\Next p \equiv \Next\neg p$ \\[\lgap]
   \> which is (\ref{E:selfDual}), Self-dual. \quad \myqed
 \end{tabbing}
@@ -960,7 +958,7 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 \subsubsection*{Duality}\label{section-duality}
 
-LADM defines the dual $P_D$ of a boolean expression $P$ to be the expression constructed from $P$ by interchanging occurrences of
+LADM \cite{LADM} defines the dual $P_D$ of a boolean expression $P$ to be the expression constructed from $P$ by interchanging occurrences of
 \begin{align*}
 true       &\textrm{ and } false\textrm{,}\\
 \land      &\textrm{ and } \lor\textrm{,}\\
@@ -969,7 +967,7 @@ true       &\textrm{ and } false\textrm{,}\\
 \foll      &\textrm{ and } \nimpl\textrm{.}
 \end{align*}
 With this definition of $P_D$, $P$ is valid iff $\neg P_D$ is valid, and $P\equiv Q$ is valid iff $P_D\equiv Q_D$ is valid.
-This observation is stated in the following metatheorem from LADM. \cite{LADM}
+This observation is stated in the following metatheorem from LADM.
 \begin{tabbing}
 \hspace{\mymathindent} \= (2.3)\; \= \myqedtab \= \kill
   \> (2.3) \> \textbf{Metatheorem Duality}\\
@@ -1095,7 +1093,7 @@ when working with duality of the binary temporal operators $\Until$ and $\Wait$.
 \section{The Equational Temporal System}
 
 This section presents an axiomatic deductive system of temporal logic and proves its theorems with the equational
-logic $\mathcal{E}$ of Gries and Schneider \cite{LADM} (LADM).
+logic $\mathcal{E}$ of Gries and Schneider's \textit{A Logical Approach to Discrete Math} (LADM). \cite{LADM}
 Theorems cited in a proof hint take two forms.
 A numbered reference enclosed in parentheses \textit{without} a period is a reference to an axiom or a previously-proved
 theorem in this paper.
@@ -1211,7 +1209,7 @@ Now, $true$ holds in the next state, and $false$ does not hold in the next state
 Theorems (\ref{E:nextTruth}) and (\ref{E:nextFalse}) are unique to this system.
 In the equational logic of LADM, $true$ is theorem (3.4) and is equivalent to all other theorems.
 Theorem (\ref{E:nextTruth}) shows that all propositional logic theorems hold at the next state
-and, by induction, hold at all states.
+and, by induction, hold in all states.
 \begin{equation}\label{E:nextTruth}
 \textbf{Truth of $\Next$:}\quad \Next true \equiv true
 \end{equation}
@@ -1231,7 +1229,7 @@ and, by induction, hold at all states.
 \end{tabbing}
 
 Theorem (\ref{E:nextFalse}) follows from (\ref{E:nextTruth}) by (2.3b) Metatheorem Duality,
-but the following proof is uses (\ref{E:linearity}) Linearity instead of duality.
+but the following proof uses (\ref{E:linearity}) Linearity instead of duality.
 \begin{equation}\label{E:nextFalse}
 \textbf{Falsehood of $\Next$:}\quad \Next false \equiv false
 \end{equation}
@@ -1258,37 +1256,31 @@ Exercise for the student.\\
 \subsection{Until}\label{section-until}
 
 This system defines the \textit{until} operator $\Until$ with the following nine axioms.
-The distributivity of \textit{next} over \textit{until} (\ref{E:distNextUntil}) implies the distributivity of \textit{next} over \textit{wait} as Section \ref{section-wait} shows.
-Thus \textit{next} distributes over all binary operators, both propositional and temporal.
+The first axiom, distributivity of $\Next$ over $\Until$, implies the distributivity of $\Next$ over $\Wait$ as Section \ref{section-wait} shows.
+Thus, the \textit{next} operator distributes over all binary operators, both propositional and temporal.
+\begin{equation}\label{E:distNextUntil}
+\textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
+\end{equation}
 
-The \textit{until} operator is unlike any propositional binary operator.
+The second axiom, expansion of $\Until$, makes the \textit{until} operator different from most propositional binary operators.
 Its right operand has an existential characteristic and its left operand has a universal characteristic.
-Expansion (\ref{E:expansionUntil}) states that
+Expansion  states that
 $p\Until q$ is true iff $q$ is true in the current state, or $p$ is true in the current state and $p\Until q$ is
 true in the next state.
 Thus, $q$ relates to the definition through disjunction, which is existential,
 while $p$ relates through conjunction, which is universal.
 Consequently, the \textit{until} operator is neither symmetric (\textit{i.e.} commutative) nor associative.
-\begin{equation}\label{E:distNextUntil}
-\textbf{Axiom, Distributivity of $\Next$ over $\Until$:}\quad \Next (p \Until q) \equiv \Next p \Until \Next q
-\end{equation}
-
-\firstspacer
-
 \begin{equation}\label{E:expansionUntil}
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
-\firstspacer
-
+The third axiom, Right zero of $\Until$, is apparently unique to this LTL deductive system.
 \begin{equation}\label{E:untilFalse}
 \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
 \end{equation}
 
-The first four axioms below describe how the \textit{until} operator distributes over conjunction and disjunction.
+The next four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
 Because $\Until$ is not symmetric, this system requires separate axioms for left and right distributivity.
-The \textit{until} operator is not fully associative.
-The last two axioms are unique to this system and describe the left and right associative properties of $\Until$.
 \begin{equation}\label{E:untilOrEquiv}
 \textbf{Axiom, Left distributivity of $\Until$ over $\lor$ :}\quad p \Until (q \lor r) \equiv p \Until q \lor p \Until r
 \end{equation}
@@ -1311,8 +1303,8 @@ The last two axioms are unique to this system and describe the left and right as
 \textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
 \end{equation}
 
-\firstspacer
-
+The \textit{until} operator is not fully associative.
+The last two axioms are unique to this system and describe the left and right associative properties of $\Until$.
 \begin{equation}\label{E:leftAssocUntil}
 \textbf{Axiom, Left associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
 \end{equation}
@@ -1322,6 +1314,8 @@ The last two axioms are unique to this system and describe the left and right as
 \begin{equation}\label{E:rightAssocUntil}
 \textbf{Axiom, Right associativity of $\Until$:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
 \end{equation}
+
+Theorem (\ref{E:rightUntilImplDist}) is unique to this deductive system and shows how $\Until$ distributes over $\impl$.
 \begin{equation}\label{E:rightUntilImplDist}
 \textbf{Right distributivity of $\Until$ over $\impl$:}\quad (p \impl q) \Until r\impl (p \Until r \impl q \Until r)
 \end{equation}
