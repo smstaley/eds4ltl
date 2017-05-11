@@ -3212,8 +3212,10 @@ Exercise for the student.\\
   \> \>   $\Always ((p \impl \Always q) \land (q \impl \Always r))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity,}\\[\lgap]
-  \> \>       \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $(p \impl \Always q) \land (\Always q \impl q) \land (q \impl \Always r)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>       \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
@@ -3235,15 +3237,18 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ((p \impl q \Until r) \land (r \impl q \Until s)) \land p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-   \> \>   $\Always (p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
-     \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
-      \> \>   $(p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
-      \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-       \> \>   $q \Until r \land \Always (r \impl q \Until s)$\\[\lgap]
-   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p, q, r := r, q \Until s, q$ }\\[\lgap]
-    \> \>   $q \Until (q \Until s)$\\[\lgap]  
-    \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$}\\[\lgap]
-      \> \>   $q \Until s$ \quad \myqed
+  \> \>   $\Always (p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
+  \> \>   $(p \impl q \Until r) \land \Always (r \impl q \Until s) \land p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $q \Until r \land \Always (r \impl q \Until s)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p, q, r := r, q \Until s, q$ }\\[\lgap]
+  \> \>       \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $q \Until r \land (q \Until r \impl q \Until (q \Until s))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+  \> \>   $q \Until (q \Until s)$\\[\lgap]  
+  \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$}\\[\lgap]
+  \> \>   $q \Until s$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilstrength}
 \textbf{$\Until$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Until q \impl r \Until s)
@@ -3261,13 +3266,18 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ((p \impl r) \land (q \impl s)) \land p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-   \> \>   $\Always (p \impl r) \land \Always (q \impl s) \land p \Until q$\\[\lgap]
-   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-    \> \>   $\Always (p \impl r) \land p \Until s$\\[\lgap]
-    \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$}\\[\lgap]
-      \> \>   $r \Until s$ \quad \myqed
+  \> \>   $\Always (p \impl r) \land \Always (q \impl s) \land p \Until q$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r:=q,s,p$}\\[\lgap]
+  \>      \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always (p \impl r) \land (p\Until q\impl p\Until s) \land p \Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always (p \impl r) \land p \Until s$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $q,r:=r,s$}\\[\lgap]
+  \>      \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $(p \Until s\impl r\Until s) \land p \Until s$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+  \> \>   $r \Until s$ \quad \myqed
 \end{tabbing}
-% end sms
 \begin{equation}\label{E:CompInductRule}
 \textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
 \end{equation}
