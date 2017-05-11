@@ -348,7 +348,7 @@ The general form of a proof step is
 \end{tabbing}
 where the expression enclosed in angle brackets $\Gll\;\Ggg$, called the ``hint'', is the justification for the step.
 
-An example of a proof step from the proof of theorem (\ref{E:eventAlwaysPAndAlwaysEventQ}) in Section \ref{section-always-continued} is
+An example of a proof step from the proof of theorem (\ref{E:eventAlwaysPAndAlwaysEventQ}) in Section \ref{section-always-continued-2} is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
@@ -2333,34 +2333,53 @@ Exercise for the student.\\
   \> which is (\ref{E:impAlwaysNA}) Strengthening of $\Always$. \quad \myqed
 \end{tabbing}
 
-% begin sms
-The next theorem (\ref{E:metaDeduction}) is a proof metatheorem
-based on the temporal deduction theorem (2.1.6) of Kröger and Merz \cite{Kroger}.
-To prove $\Always P \impl Q$, assume $P$ and prove $Q$. You cannot use textual substitution in $P$.
-\begin{equation}\label{E:metaDeduction}
-\textbf{Metatheorem temporal deduction:}\quad \text{If } P \text{ is a theorem,}
-\text{ and } P\impl Q \text{ is a theorem then } \Always P\impl Q \text{ is a theorem.}
-\end{equation}
+\subsection{Temporal deduction}
 
-\opt{doc}{
-\emph{Proof}: The proof is by (4.4) Deduction.
-Suppose $P$ and $P\impl Q$ are theorems.
-Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$,
-and $P \impl Q$ is equivalent to $true$.
-Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
+The following deduction proof technique is a metatheorem in LADM.
 \begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always P$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
-\> \> $P$\\[\lgap]
- \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
- \> \> $ P \land true$\\[\lgap]
-  \> $=$  \>  \Hint{$P \impl Q$ is a theorem.}\\[\lgap]
- \> \> $ P \land (P \impl Q)$\\[\lgap]
-\> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
-\> \>   $Q$ \quad \myqed
+(9.9.9)\;\=(m)\;\=\kill
+(4.4)\>\textbf{Deduction (assume conjuncts of antecedent):}\\[\lgap]
+      \>To prove $P_{1}\land P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
+      \>You cannot use textual substitution in $P_{1}$ or $P_{2}$.
 \end{tabbing}
-}
+Corresponding to the deduction metatheorem of the propositional calculus is the following temporal deduction metatheorem.
+\begin{equation}\label{E:metaDeduction}
+\textbf{Temporal deduction:}
+\end{equation}
+\begin{tabbing}
+(9.9.9)\;\=(m)\;\=\kill
+      \>To prove $\Always P_{1}\land \Always P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
+      \>You cannot use textual substitution in $P_{1}$ or $P_{2}$.
+\end{tabbing}
+
+Temporal deduction is Theorem (2.1.6) of Kröger and Merz \cite{Kroger}, who also give the proof.
+Note that if you assume $P$ in a step of an LTL proof of $Q$, you have \textit{not} proved that $P\impl Q$, but rather that $\Always P \impl Q$.
+
+%\opt{doc}{
+%\emph{Proof}: The proof is by (4.4) Deduction.
+%Suppose $P$ and $P\impl Q$ are theorems.
+%Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$,
+%and $P \impl Q$ is equivalent to $true$.
+%Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%\> \> $\Always P$\\[\lgap]
+%\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
+%\> \> $P$\\[\lgap]
+% \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+% \> \> $ P \land true$\\[\lgap]
+%  \> $=$  \>  \Hint{$P \impl Q$ is a theorem.}\\[\lgap]
+% \> \> $ P \land (P \impl Q)$\\[\lgap]
+%\> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
+%\> \>   $Q$ \quad \myqed
+%\end{tabbing}
+%}
+
+\subsection{Always, continued}\label{section-always-continued-1}
+
+The following two theorems, (\ref{E:andUntilDist}) and (\ref{E:axiomUntilImpl}), are unique to this system.
+However, they are required for the proof of later theorems that are included in other systems.
+In particular, the proofs of (\ref{E:rightMonoUntil}) and (\ref{E:leftMonoUntil}) depend on (\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$.
 \opt{student}{
 \emph{Proof}:\\
 Exercise for the student.\\
@@ -2369,18 +2388,18 @@ Exercise for the student.\\
 \textbf{Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
 \end{equation}
 
-\emph{Proof}: The proof is by (\ref{E:metaDeduction}) temporal deduction.
+\emph{Proof}: The proof is by (\ref{E:metaDeduction}) Temporal deduction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land q \Until r \impl (p \land q) \Until (p \land r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always p \impl (q \Until r \impl (p \land q) \Until (p \land r))$
 \end{tabbing}
-And now, assume $p \equiv true$ and prove $q \Until r \impl (p \land q) \Until (p \land r)$
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $q \Until r \impl (p \land q) \Until (p \land r)$\\[\lgap]
-  \> $=$  \>  \Hint{Assumed $p \equiv true$}\\[\lgap]
+  \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
   \> \>   $q \Until r \impl (true \land q) \Until (true \land r)$\\[\lgap]
  \> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
   \> \>   $q \Until r \impl q \Until r$\\[\lgap]
@@ -2397,11 +2416,11 @@ And now, assume $p \equiv true$ and prove $q \Until r \impl (p \land q) \Until (
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always p \impl (\Event q  \impl p \Until q)$
 \end{tabbing}
-And now, assume $p \equiv true$ and prove $\Event q  \impl p \Until q$
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event q  \impl p \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{Assumed $p \equiv true$}\\[\lgap]
+  \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
   \> \>   $\Event q  \impl true \Until q$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event q  \impl  \Event q$\\[\lgap]
@@ -2434,12 +2453,9 @@ And now, assume $p \equiv true$ and prove $\Event q  \impl p \Until q$
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (r \Until p \impl r \Until q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
-  \> \>   $\Always (p \impl q) \land r \Until p \impl r \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land r \Until p \impl r \Until q$}\\[\lgap]
-  \> \>   $true$
+  \> \>   $\Always (p \impl q) \land r \Until p \impl r \Until q$
 \end{tabbing}
-
-\emph{Proof of Lemma}:
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \land r \Until p$\\[\lgap]
@@ -2463,12 +2479,9 @@ And now, assume $p \equiv true$ and prove $\Event q  \impl p \Until q$
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (p \Until r \impl q \Until r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q \impl r \equivs p \impl (q \impl r)$}\\[\lgap]
-  \> \>   $\Always (p \impl q) \land p \Until r \impl q \Until r$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma: $\Always (p \impl q) \land p \Until r \impl q \Until r$}\\[\lgap]
-  \> \>   $true$
+  \> \>   $\Always (p \impl q) \land p \Until r \impl q \Until r$
 \end{tabbing}
-
-\emph{Proof of Lemma}:
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \land p \Until r$\\[\lgap]
@@ -2599,16 +2612,17 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
 \textbf{Temporal contradiction:}\quad \Always p \land \Always \neg p \equivs false
 \end{equation}
 
-\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:excludedMidc}) is a theorem}\\[\lgap]
-  \> \>   $\Event p \lor \Event\neg p$\\[\lgap]
-   \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
-   \> \>   $\Event p \lor \Event\neg p \equiv true$\\[\lgap]
-    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
-    \> \>   $\Always p \land \Always \neg p \equiv false$ \quad \myqed
+  \> \>   $\Always p \land \Always \neg p \equivs false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv false$}\\[\lgap]
+  \> \>   $\neg(\Always p \land \Always \neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\neg\Always p \lor \neg\Always \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:eventAsAlways})}\\[\lgap]
+  \> \>   $\Event\neg p \lor \Event p$\\[\lgap]
+  \> which is (\ref{E:excludedMidc}) Temporal excluded middle. \quad \myqed
 \end{tabbing}
 % end sms
 % begin sms
@@ -2701,8 +2715,8 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $(\Always p \lor \Always q) \land \Always(p \lor q) \equiv \Always p \lor \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
-  \> \>   $(\Always (p \lor q) \land \Always p) \lor (\Always (p \lor q) \land \Always q) \equiv \Always p \lor \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $(\Always p \land \Always (p \lor q)) \lor (\Always q \land \Always (p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$, twice}\\[\lgap]
   \> \>   $\Always(p \land (p \lor q)) \lor \Always(q \land (p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$, twice}\\[\lgap]
   \> \>   $\Always p \lor \Always q \equiv \Always p \lor \Always q$\\[\lgap]
@@ -2725,55 +2739,16 @@ Exercise for the student.\\
 \textbf{Logical equivalence law of $\Event$:}\quad \Always (p \equiv q) \impl (\Event p \equiv \Event q)
 \end{equation}
 
-\emph{Proof}: 
+\emph{Proof}: The proof is by (\ref{E:metaDeduction}) Temporal deduction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) \impl (\Event p \equiv \Event q) $\\[\lgap]
-  \> $=$  \>  \Hint{(3.80) Mutual implication, $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
-  \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)\land (\Event q \impl \Event p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
-  \> \>   $(\Always (p \equiv q) \impl (\Event p \impl \Event q)) \land (\Always (p \equiv q) \impl (\Event q \impl \Event p))$
+  \> \>   $\Event p \equiv \Event q$\\[\lgap]
+  \> $=$  \>  \Hint{Assume antecedent $p\equiv q$, twice}\\[\lgap]
+  \> \>   $\Event (p \land (p\equiv q)) \equiv \Event (q \land (p\equiv q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$, twice}\\[\lgap]
+  \> \>   $\Event (p \land q) \equiv \Event (p \land q)$\\[\lgap]
+  \> which is (3.5) Reflexivity of $\equiv$, $p\equiv p$ with $p:=p \land q$. \quad \myqed
   \end{tabbing}
-Proof of the first conjunct follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) \impl (\Event p \impl \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always (p \equiv q) \land \Event p \impl \Event q$
-\end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) \land \Event p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event ((p \equiv q) \land p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
-  \> \>   $\Event (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ }\\[\lgap]
-  \> \>   $\Event p \land \Event q $\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event q$\quad \myqed
-\end{tabbing}
-Proof of the second conjunct follows.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) \impl (\Event q \impl \Event p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always (p \equiv q) \land \Event q \impl \Event p$
-\end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \equiv q) \land \Event q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$}\\[\lgap]
-  \> \>   $\Event ((p \equiv q) \land q)$\\[\lgap]
-   \> $=$  \>  \Hint{(3.50) $p\land (q\equiv p)\equivs p\land q$}\\[\lgap]
-  \> \>   $\Event (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ }\\[\lgap]
-  \> \>   $\Event p \land \Event q $\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Event p$\quad \myqed
-\end{tabbing}
 \begin{equation}\label{E:distAlwaysEquiv}
 \textbf{Logical equivalence law of $\Always$:}\quad \Always (p \equiv q) \impl (\Always p \equiv \Always q)
 \end{equation}
@@ -3637,7 +3612,7 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 Exercise for the student.\\
 }
 
-\subsection{Always, continued}\label{section-always-continued}
+\subsection{Always, continued}\label{section-always-continued-2}
 % begin sms
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
