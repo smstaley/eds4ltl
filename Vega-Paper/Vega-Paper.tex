@@ -3082,7 +3082,7 @@ Exercise for the student.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (\Event p \impl \Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$ three times}\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$, thrice}\\[\lgap]
   \> \>   $\neg\Always (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Event\neg (\neg p \lor q) \lor \neg\Event p \lor \Event q$\\[\lgap]  
@@ -3320,9 +3320,9 @@ And now,
  \> \>   $\Event (q \lor r) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t)$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
  \> \>   $(\Event q \lor \Event r) \land \Always (q \impl \Event t) \land \Always (r \impl \Event t)$\\[\lgap]
- \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$ twice}\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
  \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event\Event t) \land (\Event r \impl \Event\Event t)$\\[\lgap]
- \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$ twice}\\[\lgap]
+ \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$, twice}\\[\lgap]
  \> \>   $(\Event q \lor \Event r) \land (\Event q \impl \Event t) \land (\Event r \impl \Event t)$\\[\lgap]
  \> $\impl$ \> \Hint{(3.76.3) $(p\lor q) \land (q \impl r)\impl p\lor r$ and (4.3) Monotonicity of $\land$} \\[\lgap]
  \> \>   $(\Event r \lor \Event t) \land (\Event r \impl \Event t)$\\[\lgap]
@@ -3331,6 +3331,8 @@ And now,
  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
  \> \>   $\Event t$ \quad \myqed
 \end{tabbing}
+
+(See note in equation document for following theorem.)
 \begin{equation}\label{E:EventIntro}
 \textbf{$\Event$ introduction rule:}\quad \Always (p \lor \Next q \impl q) \impl \Event (p \impl q)
 \end{equation}
@@ -3449,7 +3451,7 @@ And now,
   \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
   \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
   \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
-  \put(116,40) {(\ref{E:alwaysImpNexts})}
+  \put(110,40) {(\ref{E:alwaysImpNexts})}
   \put(174,56) {(\ref{E:distAlwaysImp})}
   \put(208,40) {(\ref{E:alwaysImpEvents})}
   \put(272,40) {(\ref{E:eventPImplEventQ})}
@@ -3473,11 +3475,11 @@ Likewise, the edges labeled by (\ref{E:alwaysImpEvents}) and (\ref{E:eventPImplE
 
 \subsection{Proof metatheorems}
 
-In the equational system $\mathcal{E}$, Gries and Schneider \cite{LADM} prove the metatheorem (9.16), which states that
-$P$ is a theorem iff $(\all x\drrb P)$ is a theorem.
+In the equational system $\mathcal{E}$, Gries and Schneider (LADM) prove the metatheorem (9.16), which states that
+$P$ is a theorem iff $(\all x\drrb P)$ is a theorem. \cite{LADM}
 Theorems in $\mathcal{E}$ are thus said to be ``implicitly universally quantified.''
 A similar concept applies to temporal logic theorems in $\mathcal{E}$ except that the implicit application is in the temporal dimension.
-The following metatheorem shows that theorems ``implicitly always hold''.
+The following metatheorem shows that theorems ``implicitly always hold.''
 Case 1 in the proof below is known as the temporal generalization rule \cite{Schn}, and Case 2 is known as the specialization rule \cite{Manna}.
 \begin{equation}\label{E:metatheorem}
 \textbf{Metatheorem:}\quad P \text{ is a theorem iff } \Always P \text{ is a theorem.}
@@ -3575,54 +3577,50 @@ Exercise for the student.\\
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: Theorem (\ref{E:CompInductRule}) Computational induction rule with $p,q := p \Until \Always q, p \Until q$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule
-  with $p,q := p \Until \Always q, p \Until q$ is a theorem}\\[\lgap]
-  \> \>   $\Always (p \Until \Always q \impl (p \Until q \land \Next (p \Until \Always q))) \impl
-  (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-   \> $=$  \>  \Hintfirst{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
-   \> \>   \Hintlast{with $p,q,r := p \Until \Always q, p \Until q, \Next (p \Until \Always q)$}\\[\lgap]
-   \> \>   $\Always ((p \Until \Always q \impl p \Until q) \land (p \Until \Always q \impl \Next (p \Until \Always q))) \impl
-   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always (p \Until \Always q \impl p \Until q) \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
-   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$ is a theorem}\\[\lgap]
-  \> \>   $true \land \Always (p \Until \Always q \impl \Next (p \Until \Always q)) \impl
-   (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-   \> $=$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ is a theorem}\\[\lgap]
-  \> \>   $true \land true \impl (p \Until \Always q \impl \Always (p \Until q))$\\[\lgap]
-    \> $=$  \>  \Hintfirst{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
-      \>  \>  \Hintlast{and (3.73) Left identity of $\impl$,  $true\impl p \equiv p$}\\[\lgap]
-  \> \>   $p \Until \Always q \impl \Always (p \Until q)$ \\[\lgap]
+\> \> $\Always (p \Until \Always q \impl (p \Until q \land \Next (p \Until \Always q))) \impl (p \Until \Always q \impl \Always (p \Until q))$
 \end{tabbing}
-% need lemmas here
+Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
 
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \Until \Always q \impl (p \Until q \land \Next (p \Until \Always q)))$\\[\lgap]
+   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+   \> \>   $\Always ((p \Until \Always q \impl p \Until q) \land (p \Until \Always q \impl \Next (p \Until \Always q)))$\\[\lgap]
+   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \Until \Always q \impl p \Until q) \land \Always (p \Until \Always q \impl \Next (p \Until \Always q))$\\[\lgap]
+  \> $=$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$}\\[\lgap]
+  \> \>   $true \land \Always (p \Until \Always q \impl \Next (p \Until \Always q))$\\[\lgap]
+   \> $=$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$}\\[\lgap]
+  \> \>   $true \land true$\\[\lgap]
+    \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $true$ \quad \myqed
+\end{tabbing}
 Lemma A: $\Always (p \Until \Always q \impl p \Until q)$
 
-\emph{Proof of Lemma A}: The proof is by (4.7.1) Truth implication.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ with $p:=q$ is a theorem} \\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ with $p:=q$} \\[\lgap]
   \> \>   $\Always q \impl q$\\[\lgap]
    \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
     \> \>   $\Always (\Always q \impl q)$\\[\lgap]
      \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r ;= \Always q, q, p$}\\[\lgap]
    \> \>   $p \Until \Always q \impl p \Until q$\\[\lgap]
    \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
-   \> \>   $\Always (p \Until \Always q \impl p \Until q)$\\[\lgap]
+   \> \>   $\Always (p \Until \Always q \impl p \Until q)$ \quad \myqed
 \end{tabbing}
-
 Lemma B: $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$
 
-\emph{Proof of Lemma B}:
-
-First prove $p \Until \Always q \impl \Next (p \Until \Always q)$ and
-then apply (\ref{E:metatheorem}) Metatheorem to finish the proof.
+\emph{Proof}: By (\ref{E:metatheorem}) Metatheorem, Lemma B is valid iff
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until \Always q \impl \Next (p \Until \Always q)$
+\end{tabbing}
+is valid.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until \Always q$\\[\lgap]
@@ -3643,14 +3641,9 @@ then apply (\ref{E:metatheorem}) Metatheorem to finish the proof.
 \> $=$ \> \Hint{(\ref{E:untilOrQ}) Absorption with $p,q := \Next p, \Next \Always q$} \\[\lgap]
 \> \> $ \Next p \Until \Next \Always q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
-\> \> $ \Next (p \Until \Always q)$\\[\lgap]
+\> \> $ \Next (p \Until \Always q)$ \quad \myqed
 \end{tabbing}
-This proves $p \Until \Always q \impl \Next (p \Until \Always q)$ is a theorem. And
-therefore, by (\ref{E:metatheorem}) Metatheorem, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$ \quad \myqed
-\end{tabbing}
+
 The following theorem shows how the binary operator \textit{until} absorbs into the unary operator \textit{always}.
 \begin{equation}\label{E:absUntilAlways}
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
@@ -4019,11 +4012,11 @@ The proof in the second direction is by (4.7.1) Truth implication.
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \impl (\neg\Always\Event p \impl \Always\Event q)$\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
-  \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$
+  \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$ \quad \myqed
 \end{tabbing}
+Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 
-\emph{Proof of Lemma}:
-The proof is by (4.7.1) Truth implication.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
@@ -4121,10 +4114,9 @@ With this definition, the theorem to be proved is
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> $\Always R \equiv \Always p \lor \Always q$
 \end{tabbing}
-
 Lemma A: $R \equiv \Always p \lor \Always q \lor (p \land q)$
 
-\emph{Proof of Lemma A}:
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $R$\\[\lgap]
@@ -4137,10 +4129,9 @@ Lemma A: $R \equiv \Always p \lor \Always q \lor (p \land q)$
   \> $=$ \> \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$} \\[\lgap]
   \> \>   $\Always p \lor \Always q \lor (p \land q)$ \quad \myqed
 \end{tabbing}
-
 Lemma B: $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q)$
 
-\emph{Proof of Lemma B}:
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
@@ -4163,10 +4154,9 @@ Lemma B: $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Alwa
       \> $=$  \>  \Hint{(\ref{E:distNextAnd}) Distributivity of $\Next$ over $\land$}\\[\lgap]
        \> \>   $ \Next (\Always R  \land \neg \Always p \land \neg \Always q)$ \quad \myqed
 \end{tabbing}
-
 Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Always R \land \neg \Always p \land \neg \Always q)$
 
-\emph{Proof of Lemma C}: The proof is by (4.7.1) Truth implication.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \>   $true$\\[\lgap]
@@ -4177,10 +4167,9 @@ Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Al
  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
  \> \>   $\Always R \land \neg \Always p \land \neg \Always q  \impl \Always (\Always R \land \neg \Always p \land \neg \Always q )$ \quad \myqed
 \end{tabbing}
-
 Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \Always p \land \Always q$
 
-\emph{Proof of Lemma D}: The proof is by (4.7.1) Truth implication.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
@@ -4191,7 +4180,7 @@ Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \A
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl R \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A: $ R \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q$\\[\lgap]
-   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ twice} \\[\lgap]
+   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \neg \Always p \land \neg \Always q \land ( p \land q)$\\[\lgap]
  \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity,}\\[\lgap]
  \>          \>  \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
@@ -4203,10 +4192,9 @@ Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \A
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q ) \impl \Always p \land \Always q$ \quad \myqed
 \end{tabbing}
-
 Lemma E: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$
 
-\emph{Proof of Lemma E}:
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
@@ -4215,10 +4203,9 @@ Lemma E: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always p \l
   \> $\impl$  \>  \Hint{Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \Always p \land \Always q$}\\[\lgap]
   \> \>   $\Always p \land \Always q$ \quad \myqed
 \end{tabbing}
-
 Lemma F: $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$
 
-\emph{Proof of Lemma F}:
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \lor \Always q$\\[\lgap]
@@ -4229,10 +4216,9 @@ Lemma F: $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$
   \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$}\\[\lgap]
   \> \>   $\Next (\Always p \lor \Always q)$ \quad \myqed
 \end{tabbing}
-
 Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$
 
-\emph{Proof of Lemma G}: The proof is by (4.7.1) Truth implication.
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
