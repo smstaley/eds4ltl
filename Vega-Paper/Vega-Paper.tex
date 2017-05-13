@@ -3711,16 +3711,19 @@ Exercise for the student.\\
 \textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land \Event \Always \neg p \equivs false
 \end{equation}
 
-\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:AEexcludedMid2}) is a theorem}\\[\lgap]
-  \> \>   $\Always \Event p \lor \Always \Event\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
-  \> \>   $\Always \Event p \lor \Always \Event\neg p \equiv true$\\[\lgap]
-  \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
-    \> \>   $\Event \Always p \land \Event \Always \neg p \equivs false$ \quad \myqed
+  \> \>   $\Event \Always p \land \Event \Always \neg p \equivs false$\\[\lgap]
+  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv false$}\\[\lgap]
+  \> \>   $\neg(\Event \Always p \land \Event \Always \neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
+  \> \>   $\neg\Event\Always p \lor \neg\Event \Always \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$ and (\ref{E:dualAlwaysEvent}) Dual of $\Always\Event$}\\[\lgap]
+  \> \>   $\Always\Event \neg p \lor \Always\Event \neg\neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $\Always\Event \neg p \lor \Always\Event p$\\[\lgap]
+  \> which is (\ref{E:AEexcludedMid2}) $\Always \Event $ excluded middle. \quad \myqed
 \end{tabbing}
 % end sms
 % insert frame laws here
