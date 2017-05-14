@@ -3725,8 +3725,6 @@ Exercise for the student.\\
   \> \>   $\Always\Event \neg p \lor \Always\Event p$\\[\lgap]
   \> which is (\ref{E:AEexcludedMid2}) $\Always \Event $ excluded middle. \quad \myqed
 \end{tabbing}
-% end sms
-% insert frame laws here
 \begin{equation}\label{E:untilframelawnext}
 \textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
 \end{equation}
@@ -3778,14 +3776,14 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Always q $\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
-  \> \>   $\Always p \land p \Until \Always q $\\[\lgap]
-   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
-   \> \>   $\Always p \land \Always (p \Until  q) $\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $\Always (p \Until q) $\quad \myqed
+  \> \>   $\Always q $\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
+  \> \>   $p \Until \Always q $\\[\lgap]
+   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
+   \> \>   $\Always (p \Until  q) $\quad \myqed
 \end{tabbing}
-% end sms
+
 The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
 (\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
 of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
@@ -3822,11 +3820,11 @@ The proof in the second direction follows.
   \> \>   $\Always\Event\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Always\Event\Always \neg\neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always\Event$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\neg\Event\Always\Event \neg p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
   \> \>   $\neg\Always\Event \neg p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$}\\[\lgap]
   \> \>   $\neg\neg\Event\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event\Always p$ \quad \myqed
@@ -4014,7 +4012,7 @@ The proof in the second direction is by (4.7.1) Truth implication.
   \> \>   $\Always \Event(p\lor q) \land \Event\Always \neg p \impl \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \impl (\Event\Always \neg p \impl \Always\Event q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always\Event$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \impl (\neg\Always\Event p \impl \Always\Event q)$\\[\lgap]
 	\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \impl \Always\Event p \lor \Always\Event q$ \quad \myqed
@@ -4025,7 +4023,7 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\neg p, p\lor q$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$ with $p,q:=\neg p, p\lor q$}\\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land q)$\\[\lgap]
@@ -4049,15 +4047,15 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always (p\land q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Event\Always (\neg\neg p\land \neg\neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg (p \lor q) \equiv \neg p \land \neg q$}\\[\lgap]
   \> \>   $\Event\Always \neg(\neg p\lor \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$ and (\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always\Event$}\\[\lgap]
   \> \>   $\neg\Always\Event (\neg p\lor \neg q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysEventOr}) Distributivity of $\Always\Event$ over $\lor$}\\[\lgap]
   \> \>   $\neg(\Always\Event \neg p\lor \Always\Event \neg q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$ and (\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event\Always$}\\[\lgap]
   \> \>   $\neg(\neg \Event\Always p\lor  \neg \Event\Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\neg (\Event\Always p\land \Event\Always q)$\\[\lgap]
@@ -4068,8 +4066,10 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 \opt{student}{
 Exercise for the student.\\
 }
+
+The following theorem is Exercise 14.6 in \cite{Ben}.
 \begin{equation}\label{E:BenAriequiv1}
-\Always (\Always\Event p \impl \Event q) \equiv \Always\Event q \lor \Event\Always\neg p
+\Always (\Always\Event p \impl \Event q) \equiv \Event\Always\neg p \lor \Always\Event q
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7) Mutual implication.
@@ -4084,9 +4084,7 @@ The proof in the first direction follows.
  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
  \> \>   $\neg\Always\Event p \lor \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
-  \> \>   $\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
- \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
-  \> \>   $ \Always\Event q \lor \Event\Always\neg p $
+  \> \>   $\Event\Always\neg p \lor \Always\Event q$
 \end{tabbing}
 The proof in the second direction follows.
 \begin{tabbing}
@@ -4099,9 +4097,7 @@ The proof in the second direction follows.
    \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
  \> \>   $\Always\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
-  \> \>   $\Event\Always\neg p \lor \Always\Event q$\\[\lgap]
- \> $=$  \>  \Hint{(3.24) Symmetry of $\lor$, $p\lor q \equiv q\lor p$}\\[\lgap]
-  \> \>   $ \Always\Event q \lor \Event\Always\neg p $ \quad \myqed
+  \> \>   $\Event\Always\neg p \lor \Always\Event q$ \quad \myqed
 \end{tabbing}
 
 The following theorem is Exercise 14.7 in \cite{Ben}.
@@ -4265,7 +4261,7 @@ by contradiction, prove that
   \> $=$  \>  \Hint{(3.42) Contradiction, $p\land\neg p \equivs false$, twice}\\[\lgap]
   \> \>   $\Always R \land false \land false $\\[\lgap]
   \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
-  \> \>   $false$ \quad \myqed
+  \> \>   $false$
 \end{tabbing}
 
 The proof of (\ref{E:BenAriequiv2}) in the second direction
