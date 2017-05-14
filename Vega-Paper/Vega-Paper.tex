@@ -4286,26 +4286,6 @@ is by (4.7.1) Truth implication.
   \> \>   $\Always p \lor \Always q \impl \Always R$ \quad \myqed
 \end{tabbing}
 
-The following theorem (\ref{E:BenAriequiv3}) is the dual of the previous theorem (\ref{E:BenAriequiv2}).
-Theorem (\ref{E:BenAriequiv3}) is the
-only theorem in the paper that uses (2.3b) Metatheorem Duality as its only justification. The proof of theorem
-(\ref{E:BenAriequiv2}) is the longest and most complex proof in the paper, but this can then be used to prove
-theorem (\ref{E:BenAriequiv3}) in two steps.
-\begin{equation}\label{E:BenAriequiv3}
-\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q
-\end{equation}
-
-\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:BenAriequiv2}) is a theorem}\\[\lgap]
-  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
-    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
-    \> \>   $\Event ((p \land \Event q) \lor (\Event p \land q)) \equiv \Event p \land \Event q$ \quad \myqed
-\end{tabbing}
-% sms end
-
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
