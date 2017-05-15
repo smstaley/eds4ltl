@@ -4067,7 +4067,7 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 Exercise for the student.\\
 }
 
-The following theorem is Exercise 14.6 in \cite{Ben}.
+The following theorem is Exercise 14.6 in Ben-Ari. \cite{Ben}
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Event\Always\neg p \lor \Always\Event q
 \end{equation}
@@ -4100,7 +4100,7 @@ The proof in the second direction follows.
   \> \>   $\Event\Always\neg p \lor \Always\Event q$ \quad \myqed
 \end{tabbing}
 
-The following theorem is Exercise 14.7 in \cite{Ben}.
+The following theorem is Exercise 14.7 in Ben-Ari. \cite{Ben}
 \begin{equation}\label{E:BenAriequiv2}
 \Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q
 \end{equation}
@@ -4292,20 +4292,19 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
 
-\emph{Proof}: By (\ref{E:alwaysAndEvent}) and (\ref{E:metaAlways}) Metatheorem $\Always$, the following is a theorem.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $true$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$ and (\ref{E:metaAlways}) Metatheorem $\Always$}\\[\lgap]
 \> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
 \> \>   $\Always \Always p \land \Always\Event q \impl \Always\Event (p \land q)$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
 \> \>   $\Always p \land \Always\Event q \impl \Always\Event (p \land q)$\\[\lgap]
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-\> \>   $\Always p \impl (\Always\Event q \impl \Always\Event (p \land q))$
-\end{tabbing}
-Now, by (\ref{E:metaEvent}) Metatheorem $\Event$, the following is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $\Always p \impl (\Always\Event q \impl \Always\Event (p \land q))$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:metaEvent}) Metatheorem $\Event$ with the above theorem}\\[\lgap]
 \> \>   $\Event\Always p \impl \Event(\Always\Event q \impl \Always\Event (p \land q))$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
 \> \>   $\Event\Always p \impl (\Always\Always\Event q \impl \Event\Always\Event (p \land q))$\\[\lgap]
@@ -4346,7 +4345,6 @@ And now,
       \> $=$  \>  \Hint{(\ref{E:dNextEvent}) Exchange of $\Next$ and $\Event$ and (\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
       \> \>   $ \Next\Always\Event r$  \quad \myqed
 \end{tabbing}
-% sms end
 \begin{equation}\label{E:PrProofRule}
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
@@ -4370,15 +4368,13 @@ $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
 Equations (\ref{E:defWait}) and (\ref{E:notWait}) are the only defining axioms for the \textit{wait} operator.
-(Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless''.)
+(Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless.'')
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
 \end{equation}
 \begin{equation}\label{E:notWait}
 \textbf{Axiom, Distributivity of $\neg$ over $\Wait$:}\quad \neg (p \Wait q) \equiv \neg q \Until (\neg p \land \neg q)
 \end{equation}
-
-
 
 The defining equation gives $\Wait$ in terms of $\Until$. The following theorem gives $\Until$ in terms of $\Wait$.
 \begin{equation}\label{E:untilFromWait}
@@ -4428,7 +4424,8 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 Exercise for the student.\\
 }
 
-(\ref{E:notUntil}) proves Distributivity of $\neg$ over $\Until$ using (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
+
+The proof of (\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$ uses (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
 That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}), it is apparently impossible to prove (\ref{E:notWait}).
 \begin{equation}\label{E:notUntil}
@@ -4451,8 +4448,7 @@ That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}
 \> \> $\neg (p \Until q)$ \quad \myqed
 \end{tabbing}
 
-(\ref{E:untilImplWait}) shows that $p\Until q$ is stronger than $p\Wait q$.
-Therefore, by contrapositive, $\neg (p \Wait q)$ is stronger than $\neg (p \Until q)$.
+Theorem (\ref{E:untilImplWait}) shows that $p\Until q$ is stronger than $p\Wait q$.
 \begin{equation}\label{E:untilImplWait}
 p\Until q\impl p\Wait q
 \end{equation}
@@ -4480,8 +4476,7 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> \>   $\Always p \land (\Always q \lor q\Until r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
   \> \>   $(\Always p \land \Always q) \lor (\Always p\land q\Until r)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ and (4.2) Monotonicity of $\lor$,}\\[\lgap]
-  \> \>  \Hintlast{$(p\impl q) \impl (p\lor r \impl q\lor r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $(\Always p \land \Always q) \lor (p\land q)\Until (p\land r)$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$} \\[\lgap]
   \> \>   $\Always (p \land q) \lor (p\land q)\Until (p\land r)$\\[\lgap]
@@ -4489,10 +4484,10 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> \>   $(p \land q) \Wait (p \land r)$ \quad \myqed
 \end{tabbing}
 
-Theorem (\ref{E:EventWaitequiv}) $\Wait\Event$ Equivalence comes from Manna and Pnueli \cite{Manna}
+Theorem (\ref{E:EventWaitequiv}) $\Wait\Event$ equivalence comes from Manna and Pnueli \cite{Manna}
 where it is used as the normal form for simple obligation formulas.
 \begin{equation}\label{E:EventWaitequiv}
-\textbf{$\Wait\Event$ Equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
+\textbf{$\Wait\Event$ equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
 \end{equation}
 
 \emph{Proof}:
@@ -4505,13 +4500,13 @@ where it is used as the normal form for simple obligation formulas.
 \> \> $\Always p \lor \Event q$ \quad \myqed
 \end{tabbing}
 
-Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ Implication.
-Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
+Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication.
+Theorem (\ref{E:alwaysImpWait}) Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
 for the \textit{until} operator.
 The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
 the \textit{eventually} operator, which is existential, is in the consequent of the implication in Eventuality.
 \begin{equation}\label{E:alwaysWaitImpl}
-\textbf{$\Wait\Always$ Implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
+\textbf{$\Wait\Always$ implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
 \end{equation}
 
 \emph{Proof}:
@@ -4692,7 +4687,7 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 \> \>$\neg(\neg r \Until (\neg r\land(\neg p\lor \neg q)))$\\[\lgap]
 \> $=$ \> \Hint{(3.47a) De Morgan, $\neg (p\land q)\equiv \neg p\lor \neg q$} \\[\lgap]
 \> \>$\neg(\neg r \Until (\neg r\land\neg (p\land q)))$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$ with $p,q:=p\land q,r$} \\[\lgap]
 \> \>$\neg\neg((p\land q)\Wait r)$\\[\lgap]
 \> $=$ \> \Hint{(3.12) Double negation, $\neg\neg p\equiv p$} \\[\lgap]
 \> \>$(p\land q)\Wait r$ \quad \myqed
@@ -4871,9 +4866,9 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> \> $(\neg p\lor q)\Until p$\\[\lgap]
 \> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Right distributivity of $\Until$ over $\lor$} \\[\lgap]
 \> \> $\neg p \Until p\lor q\Until p$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:ruleUntil}) Rule of $\Until$} \\[\lgap]
-\> \> $\Event p\lor q\Until p$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \> $\neg p \Until p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:ruleUntil}) Rule of $\Until$} \\[\lgap]
 \> \> $\Event p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:conRuleWait}
