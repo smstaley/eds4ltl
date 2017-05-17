@@ -5713,36 +5713,6 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
   \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:mix2untilImpAbsR}
-\textbf{Mixed $\Until\Wait$ Absorption:}\quad (p \Until q) \Wait r \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}), $\Always (p\Until q\impl p\lor q)$ is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{$\Always (p\Until q\impl p\lor q)$ is a theorem} \\[\lgap]
-  \> \>   $\Always (p\Until q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q,r := p\Until q, p\lor q, r$}\\[\lgap]
-  \> \>   $(p \Until q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-
-\begin{equation}\label{E:mix3untilImpAbsR}
-\textbf{Mixed $\Wait\Until$ Absorption:}\quad (p \Wait q) \Until r \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}: 
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p\Wait q)\Until r$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:mixuntilImpAbsR}) Mixed $\Wait\Until$ Absorption }\\[\lgap]
-  \> \>   $(p \lor q) \Until r$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilImplWait}) $p\Until q\impl p\Wait q$, with $p,q := (p\lor q), r$}\\[\lgap]
-  \> \>   $(p \lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-% sms end
-
 \begin{equation}\label{E:leftAssocWait}
 \textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
@@ -5766,74 +5736,6 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}), $\Always (p\Until
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \>   $(p\lor q) \Wait r$ \quad \myqed
 \end{tabbing}
-
-% sms begin
-\begin{equation}\label{E:mix4untilImpAbsR}
-\textbf{Mixed $\Wait\Until$ Absorption:}\quad p \Wait (q \Until r) \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $p \Wait (q \Until r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $\Always p \lor p\Until ( q \Until r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \>   $\Always p\lor (p\lor q) \Until r$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Always p \impl \Always (p \lor q)$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-\> \>   $\Always (p \lor q) \lor (p\lor q) \Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $(p\lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-
-\emph{Proof of Lemma}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metatheorem}) Metatheorem and (3.76a) $p\impl p\lor q$, $\Always (p\impl p\lor q)$ is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{$\Always (p\impl p\lor q)$ is a theorem} \\[\lgap]
-  \> \>   $\Always (p\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $q :=  p\lor q$}\\[\lgap]
-  \> \>   $\Always p \impl \Always (p \lor q)$ \quad \myqed
-\end{tabbing}
-% sms end
-
-% sms begin
-\begin{equation}\label{E:mix5untilImpAbsR}
-\textbf{Mixed $\Until\Wait$ Absorption:}\quad p \Until (q \Wait r) \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $p \Until (q \Wait r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $p\Until (\Always q \lor q\Until r)$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-\> \>   $p\Until \Always q \lor p\Until (q\Until r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \>   $p\Until \Always q \lor (p\lor q)\Until r$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) Axiom, $\Until\Always$ implication and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \>   $\Always (p\Until q) \lor (p\lor q)\Until r$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Always (p \Until q) \impl \Always (p \lor q)$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-\> \>   $\Always (p \lor q) \lor (p\lor q) \Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $(p\lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-
-\emph{Proof of Lemma}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl p \lor q$, $\Always (p \Until q \impl p \lor q)$ is a theorem.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{$\Always (p \Until q \impl p \lor q)$ is a theorem} \\[\lgap]
-  \> \>   $\Always (p \Until q \impl p \lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ with $p, q :=  p\Until q, p\lor q$}\\[\lgap]
-  \> \>   $\Always (p \Until q) \impl \Always (p \lor q)$ \quad \myqed
-\end{tabbing}
-% sms end
-
-
 \begin{equation}\label{E:rightAssocWait}
 \textbf{Right associativity of $\Wait$:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
@@ -5858,42 +5760,6 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl 
 \> \>   $p \Wait (q \land r)$ \quad \myqed
 \end{tabbing}
 
-% sms begin
-\begin{equation}\label{E:mix6untilImpAbsR}
-\textbf{Mixed $\Until\Wait$ Absorption:}\quad p \Until (q \land r) \impl (p \Until q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $(p \Until q) \Wait r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $\Always (p \Until q) \lor (p \Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \>   $(p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$ } \\[\lgap]
-\> \>   $p \Until (q \land r)$ \quad \myqed
-\end{tabbing}
-
-\begin{equation}\label{E:mix7untilImpAbsR}
-\textbf{Mixed $\Wait\Until$ Absorption:}\quad p \Until (q \land r) \impl (p \Wait q) \Until r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $(p \Wait q) \Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $(\Always p \lor p \Until q) \Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:untilOrImp}) Axiom, Right distributivity of $\Until$ over $\lor$ } \\[\lgap]
-\> \>   $\Always p \Until r \lor (p \Until q) \Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \>   $(p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$ } \\[\lgap]
-\> \>   $p \Until (q \land r)$ \quad \myqed
-\end{tabbing}
-% sms end
-
 \begin{figure}[t]
 \centering
   \begin{picture}(126,128)
@@ -5913,7 +5779,6 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl 
 \caption{A Hasse diagram showing some implication relations of linear temporal logic.
 \label{hasse2}}
 \end{figure}
-
 
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
