@@ -5159,7 +5159,7 @@ And now,
    \> \>   $\Always (p \Wait  q) $\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitInduct1}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl (p \Wait q))
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -5176,7 +5176,7 @@ And now,
   \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitInduct2}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl (q \land \Next p)) \impl  (p \impl (p \Wait q))
+\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -5184,17 +5184,17 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)$\\[\lgap]
+  \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-   \> \>   $\Always ( p \impl (q \land \Next p)) \land p  \impl \Always q$\\[\lgap]
+   \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \land p  \impl  p \Wait \Always q$\\[\lgap]
+  \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl  p \Wait \Always q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
+  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
     \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>   $\Always ( p \impl (q \land \Next p)) \land p \impl p \Wait \ q$ \\[\lgap]
+  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl p \Wait \ q$ \\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-   \> \>   $\Always ( p \impl (q \land \Next p)) \impl (p \impl  (p \Wait \ q))$ \quad \myqed
+   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
 \end{tabbing}
 % sms end
 
@@ -5687,38 +5687,32 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Until q, p\lor q$}\\[\lgap]
   \> \>   $(p \Until q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:waitImpAbsR}
 \textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\impl p\lor q)$ is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{$\Always (p\Wait q\impl p\lor q)$ is a theorem} \\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q,r := p\Wait q, p\lor q, r$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
-
-% sms begin
 \begin{equation}\label{E:mixuntilImpAbsR}
 \textbf{Mixed $\Wait\Until$ Absorption:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
-By (\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr}), $\Always (p\Wait q\impl p\lor q)$ is a theorem.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{$\Always (p\Wait q\impl p\lor q)$ is a theorem} \\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q,r := p\Wait q, p\lor q, r$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
   \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
 \end{tabbing}
-
 \begin{equation}\label{E:mix2untilImpAbsR}
 \textbf{Mixed $\Until\Wait$ Absorption:}\quad (p \Until q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
@@ -5899,6 +5893,27 @@ By (\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr}) $p \Until q \impl 
 \> \>   $p \Until (q \land r)$ \quad \myqed
 \end{tabbing}
 % sms end
+
+\begin{figure}[t]
+\centering
+  \begin{picture}(126,128)
+  \thicklines
+  \put(109,76) {\circle*{4}} \put(109,76) {\line(1,-1){62}}
+  \put(171,14) {\circle*{4}} \put(171,14) {\line(1,1){62}} \put(171,76) {\circle*{4}} \put(171,14) {\line(0,1){62}}
+  \put(233,76) {\circle*{4}} \put(233,76) {\line(1,-1){62}} \put(295,14) {\circle*{4}}
+  \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
+  \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
+  \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
+  \put(110,40) {(\ref{E:alwaysImpNexts})}
+  \put(174,56) {(\ref{E:distAlwaysImp})}
+  \put(208,40) {(\ref{E:alwaysImpEvents})}
+  \put(272,40) {(\ref{E:eventPImplEventQ})}
+  \put(266,94) {(\ref{E:eventImpAlways})}
+  \end{picture}
+\caption{A Hasse diagram showing some implication relations of linear temporal logic.
+\label{hasse2}}
+\end{figure}
+
 
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
