@@ -2496,7 +2496,6 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $q \Until r$ \quad \myqed
 \end{tabbing}
-% end sms
 
 Theorem (\ref{E:exAlwaysNot}) states that if it is always the case that $p$ is false then it is not the case that $p$ is always true, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
@@ -3667,6 +3666,30 @@ The proof in the second direction follows.
 \> \> $\Always p$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $p \Until \Always p$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:untilAndImplUntilUntil}
+\textbf{Name?:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
+\end{equation}
+
+\emph{Proof}: Theorem (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \land r, q\Until r,p$ is
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always (q \land r \impl q\Until r) \impl (p\Until (q\land r)\impl p\Until (q\Until r))$
+\end{tabbing}
+Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
+By (\ref{E:metatheorem}) Metatheorem, the antecedent is valid iff
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $q \land r \impl q\Until r$
+\end{tabbing}
+is valid.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $q \land r$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $r$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
+  \> \>   $q\Until r$ \quad \myqed
 \end{tabbing}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
@@ -5678,73 +5701,53 @@ And now,
 \textbf{Left $\Until\Wait$ implication:}\quad (p\Until q)\Wait r\impl (p\Wait q)\Wait r
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p \Until q, p\Wait q$ is
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always (p \Until q \impl p\Wait q) \impl ((p \Until q) \Wait r \impl (p \Wait q) \Wait r)$
-\end{tabbing}
-Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (p \Until q \impl p\Wait q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
+  \> \>   $(p\Until q)\Wait r\impl (p\Wait q)\Wait r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:RightWaitUntilImpl}
 \textbf{Right $\Wait\Until$ implication:}\quad p\Wait (q\Until r)\impl p\Wait (q\Wait r)
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q \Until r, q\Wait r,p$ is
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always (q \Until r \impl q\Wait r) \impl (p\Wait (q\Until r)\impl p\Wait (q\Wait r))$
-\end{tabbing}
-Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (q \Until r \impl q\Wait r)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
+  \> \>   $p\Wait (q\Until r)\impl p\Wait (q\Wait r)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:RightUntilUntilImpl}
 \textbf{Right $\Until\Until$ implication:}\quad p\Until (q\Until r)\impl p\Until (q\Wait r)
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$ is
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always (q \Until r \impl q\Wait r) \impl (p\Until (q\Until r)\impl p\Until (q\Wait r))$
-\end{tabbing}
-Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (q \Until r \impl q\Wait r)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
+  \> \>   $p\Until (q\Until r)\impl p\Until (q\Wait r)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:LeftUntilUntilImpl}
 \textbf{Left $\Until\Until$ implication:}\quad (p\Until q)\Until r\impl (p\Wait q)\Until r
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \Until q, p\Wait q$ is
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always (p \Until q \impl p\Wait q) \impl ((p \Until q) \Until r \impl (p \Wait q) \Until r)$
-\end{tabbing}
-Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (p \Until q \impl p\Wait q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
+  \> \>   $(p\Until q)\Until r\impl (p\Wait q)\Until r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilImpAbsR}
 \textbf{Absorption:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
@@ -5769,7 +5772,7 @@ Because the consequent is the theorem to be proved, it suffices to prove the tru
   \> \>   $true$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q,r := p\Wait q, p\lor q, r$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:mixuntilImpAbsR}

@@ -1148,6 +1148,12 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 
 \spacer
 
+\begin{equation}\label{E:untilAndImplUntilUntil}
+\textbf{Name?:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
@@ -1323,14 +1329,13 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \opt{inventory}{M199, M206(FSW1), E9\\}
 
 \spacer
-% sms  begin
+
 \begin{equation}\label{E:EmersonEquiv}
 p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 \end{equation}
 \opt{inventory}{E9\\}
 
 \spacer
-% sms end
 
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
@@ -1340,7 +1345,7 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 \spacer
 
 \begin{equation}\label{E:untilImplWait}
-p\Until q\impl p\Wait q
+\textbf{$\Until$ implication:}\quad p\Until q\impl p\Wait q
 \end{equation}
 \opt{inventory}{M207\\}
 
