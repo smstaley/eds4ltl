@@ -1451,6 +1451,19 @@ Exercise for the student.\\
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:andImplUntil}
+p \land q \impl p \Until q
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \land q$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+\> \> $q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ insertion} \\[\lgap]
+\> \> $p\Until q$ \quad \myqed
+\end{tabbing}
 
 This system has the following five absorption properties that do not seem to
 appear in the temporal logic literature.
@@ -3671,25 +3684,14 @@ The proof in the second direction follows.
 \textbf{Name?:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \land r, q\Until r,p$ is
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\Always (q \land r \impl q\Until r) \impl (p\Until (q\land r)\impl p\Until (q\Until r))$
-\end{tabbing}
-Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
-By (\ref{E:metatheorem}) Metatheorem, the antecedent is valid iff
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $q \land r \impl q\Until r$
-\end{tabbing}
-is valid.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $q \land r$\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $r$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
-  \> \>   $q\Until r$ \quad \myqed
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
+  \> \>   $\Always (q \land r \impl q\Until r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
+  \> \>   $p\Until (q \land r)\impl p\Until (q\Until r)$ \quad \myqed
 \end{tabbing}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
