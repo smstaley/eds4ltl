@@ -3690,7 +3690,7 @@ The proof in the second direction follows.
   \> \>   $true$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
   \> \>   $\Always (q \land r \impl q\Until r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \land r, q\Until r,p$}\\[\lgap]
   \> \>   $p\Until (q \land r)\impl p\Until (q\Until r)$ \quad \myqed
 \end{tabbing}
 
@@ -5839,14 +5839,27 @@ And now,
 
 \begin{figure}[t]
 \centering
-  \begin{picture}(126,128)
+  \begin{picture}(440,256)
   \thicklines
-  \put(109,76) {\circle*{4}} \put(109,76) {\line(1,-1){62}}
-  \put(171,14) {\circle*{4}} \put(171,14) {\line(1,1){62}} \put(171,76) {\circle*{4}} \put(171,14) {\line(0,1){62}}
-  \put(233,76) {\circle*{4}} \put(233,76) {\line(1,-1){62}} \put(295,14) {\circle*{4}}
+  %top
+  \put(212,256){\circle*{4}} \put(212,256){\line(-2,-1){124}} \put(212,256){\line(2,-1){124}}
+  
+  %middle
+  \put(62,204){\circle*{4}} \put(62,204){\line(-1,-1){62}} \put(62,204){\line(1,-1){62}}
+  \put(0,142){\circle*{4}} \put(0,142) {\line(1,-1){62}}
+  \put(124,142){\circle*{4}} \put(124,142) {\line(-1,-1){62}}
+  
+  \put(362,204){\circle*{4}} \put(362,204){\line(-1,-1){62}} \put(362,204){\line(1,-1){62}}
+  \put(300,142){\circle*{4}} \put(300,142){\line(1,-1){62}}
+  \put(424,142){\circle*{4}} \put(424,142){\line(-1,-1){62}}
+  
+  \put(124,76){\circle*{4}} \put(171,14){\line(0,1){62}}
+  \put(233,76){\circle*{4}} \put(233,76){\line(1,-1){62}} \put(295,14){\circle*{4}}
+  
   \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
   \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
   \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
+  
   \put(110,40) {(\ref{E:alwaysImpNexts})}
   \put(174,56) {(\ref{E:distAlwaysImp})}
   \put(208,40) {(\ref{E:alwaysImpEvents})}
@@ -5891,10 +5904,16 @@ And now,
   \> $\impl$  \>  \Hint{Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$}\\[\lgap]
   \> \>   $\Always (p \lor r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$}\\[\lgap]
-  \> \>   $p\Wait r$
+  \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
+Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$
 
-\emph{Proof of Lemma}:
+\emph{Proof}: By (\ref{E:metaAlways}) Metatheorem $\Always$, if
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $(p\lor q)\land (\neg q\lor r) \impl p\lor r$
+\end{tabbing}
+is valid, then the Lemma is valid.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
@@ -5905,10 +5924,8 @@ And now,
   \> $=$  \>  \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
   \> \>   $p\lor (q\land r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $p\lor r$
+  \> \>   $p\lor r$ \quad \myqed
 \end{tabbing}
-The above proof shows that $(p\lor q)\land (\neg q\lor r) \impl p\lor r$ is a theorem.
-Therefore, by (\ref{E:metaAlways}) Metatheorem $\Always$, $\Always ((p\lor q)\land (\neg q\lor r)) \impl \Always (p\lor r)$ is a theorem. \quad \myqed
 
 \section{Comparison with previous work}\label{comparison-previous-work}
 
