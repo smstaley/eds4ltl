@@ -5839,32 +5839,54 @@ And now,
 
 \begin{figure}[t]
 \centering
-  \begin{picture}(440,256)
+  \begin{picture}(440,264)
   \thicklines
   %top
+  \put(88,256){\circle*{4}} \put(88,256){\line(0,-1){62}}
   \put(212,256){\circle*{4}} \put(212,256){\line(-2,-1){124}} \put(212,256){\line(2,-1){124}}
   
   %middle
-  \put(62,204){\circle*{4}} \put(62,204){\line(-1,-1){62}} \put(62,204){\line(1,-1){62}}
-  \put(0,142){\circle*{4}} \put(0,142) {\line(1,-1){62}}
-  \put(124,142){\circle*{4}} \put(124,142) {\line(-1,-1){62}}
+  \put(88,194){\circle*{4}} \put(88,194){\line(-1,-1){62}} \put(88,194){\line(1,-1){62}}
+  \put(26,132){\circle*{4}} \put(26,132) {\line(1,-1){62}}
+  \put(150,132){\circle*{4}} \put(150,132) {\line(-1,-1){62}}
   
-  \put(362,204){\circle*{4}} \put(362,204){\line(-1,-1){62}} \put(362,204){\line(1,-1){62}}
-  \put(300,142){\circle*{4}} \put(300,142){\line(1,-1){62}}
-  \put(424,142){\circle*{4}} \put(424,142){\line(-1,-1){62}}
+  \put(336,194){\circle*{4}} \put(336,194){\line(-1,-1){62}} \put(336,194){\line(1,-1){62}}
+  \put(274,132){\circle*{4}} \put(274,132){\line(1,-1){62}}
+  \put(398,132){\circle*{4}} \put(398,132){\line(-1,-1){62}}
   
-  \put(124,76){\circle*{4}} \put(171,14){\line(0,1){62}}
-  \put(233,76){\circle*{4}} \put(233,76){\line(1,-1){62}} \put(295,14){\circle*{4}}
+  %bottom
+  \put(88,70){\circle*{4}} \put(88,70){\line(1,-1){62}} \put(88,70){\line(3,-1){186}}
+  \put(336,70){\circle*{4}} \put(336,70){\line(-3,-1){186}} \put(336,70){\line(-1,-1){62}}
+  \put(274,8){\circle*{4}}
+  \put(150,8){\circle*{4}}
+
+  \put(58,264){$p\Wait (q \lor r)$}
+  \put(188,264){$(p \lor q)\Wait r$}
+  \put(100,190){$p\Wait (q\Wait r)$}
+  \put(262,190){$(p\Wait q)\Wait r$}
+  \put(38,128){$p\Until (q\Wait r)$}
+  \put(146,120){$p\Wait (q\Until r)$}
+  \put(216,120){$(p\Wait q)\Until r$}
+  \put(330,128){$(p\Until q)\Wait r$}
+  \put(100,72){$p\Until (q\Until r)$}
+  \put(268,72){$(p\Until q)\Until r$}
+  \put(120,-6){$p\Until (q \land r)$}
+  \put(250,-6){$(p \land q) \Until r$}
   
-  \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
-  \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
-  \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
-  
-  \put(110,40) {(\ref{E:alwaysImpNexts})}
-  \put(174,56) {(\ref{E:distAlwaysImp})}
-  \put(208,40) {(\ref{E:alwaysImpEvents})}
-  \put(272,40) {(\ref{E:eventPImplEventQ})}
-  \put(266,94) {(\ref{E:eventImpAlways})}
+  \put(126,232){(\ref{E:leftAssocWait})}
+  \put(274,232){(\ref{E:waitImpAbsR})}
+  \put(28,168){(\ref{E:untilImplWait})}
+  \put(128,168){(\ref{E:RightWaitUntilImpl})}
+  \put(280,168){(\ref{E:untilImplWait})}
+  \put(380,168){(\ref{E:LeftUntilWaitImpl})}
+  \put(22,98){(\ref{E:RightUntilUntilImpl})}
+  \put(128,98){(\ref{E:untilImplWait})}
+  \put(272,98){(\ref{E:LeftUntilUntilImpl})}
+  \put(376,98){(\ref{E:untilImplWait})}
+  \put(168,48){(\ref{ })}
+  \put(240,48){(\ref{E:rightAssocUntil})}
+  \put(92,28){(\ref{E:untilAndImplUntilUntil})}
+  \put(308,28){(\ref{ })}
   \end{picture}
 \caption{A Hasse diagram showing some implication relations of linear temporal logic.
 \label{hasse2}}
