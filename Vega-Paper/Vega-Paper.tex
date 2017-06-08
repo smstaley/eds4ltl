@@ -709,18 +709,18 @@ This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in
 $true$ is the right zero of the \textit{until} operator.
 
 The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\[\lllgap]
-\begin{tabular}{c|cccccccc}
-  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
+\begin{tabular}{c|cccccccccccc}
+  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$ & \dots \\
   \hline
-  $p$                       & F     & T     & F     & T     & F     &  \dots\\
-  $q$                       & F     & F     & T     & F     & T     &  \dots\\
-  $r$                       & F     & F     & F     & F     & T     &  \dots\\
-  $p\Until q$               & F     & T     & T     & T     & T     &  \dots\\
-  $q\Until r$               & F     & F     & F     & F     & T     &  \dots\\
-  $p\Until (q\Until r)$     & F     & F     & F     & T     & T     &  \dots\\
-  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     &  \dots
+  $p$                       & F     & T     & F     & T     & F     & T     & T     & T     & F     &  \dots\\
+  $q$                       & F     & F     & T     & F     & T     & T     & F     & F     & F     &  \dots\\
+  $r$                       & F     & F     & F     & F     & T     & T     & T     & F     & T     &  \dots\\
+  $p\Until q$               & F     & T     & T     & T     & T     & T     & F     & F     & F     &  \dots\\
+  $q\Until r$               & F     & F     & F     & F     & T     & T     & T     & F     & T     &  \dots\\
+  $p\Until (q\Until r)$     & F     & F     & F     & T     & T     & T     & T     & T     & T     &  \dots\\
+  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     & T     & T     & F     & T     &  \dots
 \end{tabular}\\[\lllgap]
-States $s_1$ and $s_2$ in the last two rows of the above table are counterexamples, because the two expressions differ in these states.
+States $s_1$ and $s_2$ in the last two rows of the above table show that $(p\Until q)\Until r$ does not imply $p\Until (q\Until r)$, and state $s_7$ shows that $p\Until (q\Until r)$ does not imply $(p\Until q)\Until r$.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 

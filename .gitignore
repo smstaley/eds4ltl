@@ -11,3 +11,5 @@
 .DS_Store
 /Until/dist/
 /Until/build/
+/UntilCounterExample/build/
+/UntilCounterExample/dist/
