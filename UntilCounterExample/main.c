@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: warford
  *
@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
                until(q, r, q_until_r);
                until(p, q_until_r, p_until_quntilr);
                until(p_until_q, r, puntilq_until_r);
-               if (p_until_quntilr[m] == 1 && puntilq_until_r[m] == 0) {
+               if (p_until_quntilr[m] == 0 && puntilq_until_r[m] == 1) {
                   printf("                  p: ");
                   printStates(p);
                   printf("                  q: ");

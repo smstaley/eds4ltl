@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: warford
  *
@@ -13,7 +13,7 @@
  * Duplicates example in EDS4LTL paper.
  */
 
-const int numStates = 9;
+const int numStates = 8;
 
 int p[numStates];
 int q[numStates];
@@ -53,16 +53,16 @@ void until(int *first, int *second, int *result) {
 }
 
 int main(int argc, char** argv) {
-   p[0] = 0; p[1] = 1; p[2] = 0; p[3] = 1; p[4] = 0; p[5] = 1; p[6] = 1; p[7] = 1; p[8] = 0;
-   q[0] = 0; q[1] = 0; q[2] = 1; q[3] = 0; q[4] = 1; q[5] = 1; q[6] = 0; q[7] = 0; q[8] = 0;
-   r[0] = 0; r[1] = 0; r[2] = 0; r[3] = 0; r[4] = 1; r[5] = 1; r[6] = 1; r[7] = 0; r[8] = 1;
-   printf("                  p: "); printStates(p);
-   printf("                  q: "); printStates(q);
-   printf("                  r: "); printStates(r);
+   p[0] = 0; p[1] = 0; p[2] = 1; p[3] = 1; p[4] = 1; p[5] = 1; p[6] = 0; p[7] = 0;
+   q[0] = 0; q[1] = 1; q[2] = 0; q[3] = 1; q[4] = 0; q[5] = 0; q[6] = 0; q[7] = 0;
+   r[0] = 0; r[1] = 0; r[2] = 0; r[3] = 1; r[4] = 1; r[5] = 0; r[6] = 1; r[7] = 0;
    until (p, q, p_until_q);
    until (q, r, q_until_r);
    until (p, q_until_r, p_until_quntilr);
    until (p_until_q, r, puntilq_until_r);
+   printf("                  p: "); printStates(p);
+   printf("                  q: "); printStates(q);
+   printf("                  r: "); printStates(r);
    printf("          p Until q: "); printStates(p_until_q);
    printf("          q Until r: "); printStates(q_until_r);
    printf("p Until (q Until r): "); printStates(p_until_quntilr);

@@ -709,18 +709,18 @@ This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in
 $true$ is the right zero of the \textit{until} operator.
 
 The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\[\lllgap]
-\begin{tabular}{c|cccccccccccc}
-  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & $s_8$ & \dots \\
+\begin{tabular}{c|ccccccccccc}
+  $\sigma$                  & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & $s_5$ & $s_6$ & $s_7$ & \dots \\
   \hline
-  $p$                       & F     & T     & F     & T     & F     & T     & T     & T     & F     &  \dots\\
-  $q$                       & F     & F     & T     & F     & T     & T     & F     & F     & F     &  \dots\\
-  $r$                       & F     & F     & F     & F     & T     & T     & T     & F     & T     &  \dots\\
-  $p\Until q$               & F     & T     & T     & T     & T     & T     & F     & F     & F     &  \dots\\
-  $q\Until r$               & F     & F     & F     & F     & T     & T     & T     & F     & T     &  \dots\\
-  $p\Until (q\Until r)$     & F     & F     & F     & T     & T     & T     & T     & T     & T     &  \dots\\
-  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     & T     & T     & F     & T     &  \dots
+  $p$                       & F     & F     & T     & T     & T     & T     & F     & F     &  \dots\\
+  $q$                       & F     & T     & F     & T     & F     & F     & F     & F     &  \dots\\
+  $r$                       & F     & F     & F     & T     & T     & F     & T     & F     &  \dots\\
+  $p\Until q$               & F     & T     & T     & T     & F     & F     & F     & F     &  \dots\\
+  $q\Until r$               & F     & F     & F     & T     & T     & F     & T     & F     &  \dots\\
+  $p\Until (q\Until r)$     & F     & F     & T     & T     & T     & T     & T     & F     &  \dots\\
+  $(p\Until q)\Until r$     & F     & T     & T     & T     & T     & F     & T     & F     &  \dots
 \end{tabular}\\[\lllgap]
-States $s_1$ and $s_2$ in the last two rows of the above table show that $(p\Until q)\Until r$ does not imply $p\Until (q\Until r)$, and state $s_7$ shows that $p\Until (q\Until r)$ does not imply $(p\Until q)\Until r$.
+State $s_1$ in the last two rows of the above table shows that $(p\Until q)\Until r$ does not imply $p\Until (q\Until r)$, and state $s_6$ shows that $p\Until (q\Until r)$ does not imply $(p\Until q)\Until r$.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
@@ -882,52 +882,52 @@ The corresponding rules for the binary operators are
 %	\> \>   $(\sigma, j) \models p\Until q$\\[\lgap]
 %\end{tabbing}
 
-One defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
-$p\Until \Always q\impl \Always (p\Until q)$.
-
-\emph{Proof}:
-Expanding $p\Until \Always q$,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $(\sigma,j) \models p\Until \Always q$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
-	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models \Always q \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
-	\> \>   $(\ext k \dr k\ge j \rb (\all m \dr m\ge k \rb (\sigma, m) \models q) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$
-\end{tabbing}
-
-\begin{figure}[t]
-\centering
-\begin{picture}(360,110)
-\thicklines
-\put(0,90)  {\vector(1,0){360}}
-\put(20,90) {\circle*{8}} \put(180,90) {\circle*{8}}
-\put(18,76)  {$j$} \put(178,76)  {$k$}
-\put(168,64) {$k\ge j$}
-\put(180,42) {\vector(1,0){180}}
-\put(180,42) {\circle*{8}}
-\put(240,48) {$(\sigma,m)\models q$}
-\put(250,32) {$m\ge k$}
-\put(20,10)  {\line(1,0){156}}
-\put(20,10)  {\circle*{8}} \put(180,10) {\circle{8}}
-\put(80,18) {$(\sigma,i)\models p$}
-\put(80,0) {$j\le i < k$}
-\end{picture}
-\caption{The temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
-\label{temporal-segments-until-always}}
-\end{figure}
-
-Figure \ref{temporal-segments-until-always} illustrates the temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
-To prove that $p\Until \Always q\impl \Always (p\Until q)$ it suffices to show that $p\Until q$ holds for all time greater than or equal to $j$,
-given that $p$ and $q$ hold as above.
-
-Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
-$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.
-
-Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $m>k$.\\
-$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and $true$ is the right zero of $\Until$.
-
-From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$. \quad \myqed
+%One defining axiom for the \textit{always} operator that does not seem to appear in the temporal logic literature is
+%$p\Until \Always q\impl \Always (p\Until q)$.
+%
+%\emph{Proof}:
+%Expanding $p\Until \Always q$,
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%	\> \>   $(\sigma,j) \models p\Until \Always q$\\[\lgap]
+%	\> $=$  \>  \Hint{Semantics of $\Until$}\\[\lgap]
+%	\> \>   $(\ext k \dr k\ge j \rb (\sigma,k) \models \Always q \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$\\[\lgap]
+%	\> $=$  \>  \Hint{Semantics of $\Always$}\\[\lgap]
+%	\> \>   $(\ext k \dr k\ge j \rb (\all m \dr m\ge k \rb (\sigma, m) \models q) \land (\all i \dr j\le i < k \rb (\sigma, i) \models p))$
+%\end{tabbing}
+%
+%\begin{figure}[t]
+%\centering
+%\begin{picture}(360,110)
+%\thicklines
+%\put(0,90)  {\vector(1,0){360}}
+%\put(20,90) {\circle*{8}} \put(180,90) {\circle*{8}}
+%\put(18,76)  {$j$} \put(178,76)  {$k$}
+%\put(168,64) {$k\ge j$}
+%\put(180,42) {\vector(1,0){180}}
+%\put(180,42) {\circle*{8}}
+%\put(240,48) {$(\sigma,m)\models q$}
+%\put(250,32) {$m\ge k$}
+%\put(20,10)  {\line(1,0){156}}
+%\put(20,10)  {\circle*{8}} \put(180,10) {\circle{8}}
+%\put(80,18) {$(\sigma,i)\models p$}
+%\put(80,0) {$j\le i < k$}
+%\end{picture}
+%\caption{The temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
+%\label{temporal-segments-until-always}}
+%\end{figure}
+%
+%Figure \ref{temporal-segments-until-always} illustrates the temporal segments for which $p$ and $q$ hold for $p\Until \Always q$.
+%To prove that $p\Until \Always q\impl \Always (p\Until q)$ it suffices to show that $p\Until q$ holds for all time greater than or equal to $j$,
+%given that $p$ and $q$ hold as above.
+%
+%Case 1. $\quad p\Until q$ holds at $(\sigma,i)$ for $j\le i \le k$.\\
+%$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.
+%
+%Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $m>k$.\\
+%$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and $true$ is the right zero of $\Until$.
+%
+%From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$. \quad \myqed
 
 \subsubsection*{The \textit{wait} operator $\Wait$}
 
@@ -3693,6 +3693,19 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \land r, q\Until r,p$}\\[\lgap]
   \> \>   $p\Until (q \land r)\impl p\Until (q\Until r)$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:andUntilImplUntilUntil}
+\textbf{Name?:}\quad (p \land q) \Until r \impl (p\Until q)\Until r)
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
+  \> \>   $\Always (p \land q \impl p\Until q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \land q, p\Until q$}\\[\lgap]
+  \> \>   $(p \land q) \Until r \impl (p\Until q)\Until r)$ \quad \myqed
+\end{tabbing}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
@@ -5860,7 +5873,7 @@ And now,
   \put(274,8){\circle*{4}}
   \put(150,8){\circle*{4}}
 
-  \put(58,264){$p\Wait (q \lor r)$}
+  \put(54,264){$p\Wait (q \lor r)$}
   \put(188,264){$(p \lor q)\Wait r$}
   \put(100,190){$p\Wait (q\Wait r)$}
   \put(262,190){$(p\Wait q)\Wait r$}
@@ -5871,22 +5884,23 @@ And now,
   \put(100,72){$p\Until (q\Until r)$}
   \put(268,72){$(p\Until q)\Until r$}
   \put(120,-6){$p\Until (q \land r)$}
-  \put(250,-6){$(p \land q) \Until r$}
+  \put(250,-6){$(p \land q)\Until r$}
   
+  \put(64,232){(\ref{ })}
   \put(126,232){(\ref{E:leftAssocWait})}
   \put(274,232){(\ref{E:waitImpAbsR})}
-  \put(28,168){(\ref{E:untilImplWait})}
-  \put(128,168){(\ref{E:RightWaitUntilImpl})}
-  \put(280,168){(\ref{E:untilImplWait})}
-  \put(380,168){(\ref{E:LeftUntilWaitImpl})}
-  \put(22,98){(\ref{E:RightUntilUntilImpl})}
-  \put(128,98){(\ref{E:untilImplWait})}
-  \put(272,98){(\ref{E:LeftUntilUntilImpl})}
-  \put(376,98){(\ref{E:untilImplWait})}
+  \put(22,160){(\ref{E:untilImplWait})}
+  \put(128,160){(\ref{E:RightWaitUntilImpl})}
+  \put(272,160){(\ref{E:untilImplWait})}
+  \put(376,160){(\ref{E:LeftUntilWaitImpl})}
+  \put(26,94){(\ref{E:RightUntilUntilImpl})}
+  \put(126,94){(\ref{E:untilImplWait})}
+  \put(274,94){(\ref{E:LeftUntilUntilImpl})}
+  \put(372,94){(\ref{E:untilImplWait})}
   \put(168,48){(\ref{ })}
   \put(240,48){(\ref{E:rightAssocUntil})}
   \put(92,28){(\ref{E:untilAndImplUntilUntil})}
-  \put(308,28){(\ref{ })}
+  \put(308,28){(\ref{E:andUntilImplUntilUntil})}
   \end{picture}
 \caption{A Hasse diagram showing some implication relations of linear temporal logic.
 \label{hasse2}}
