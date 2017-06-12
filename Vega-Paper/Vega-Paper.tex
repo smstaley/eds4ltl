@@ -5870,7 +5870,6 @@ And now,
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \>   $p \Wait (q \land r)$ \quad \myqed
 \end{tabbing}
-
 \begin{figure}[t]
 \centering
   \begin{picture}(440,264)
@@ -5907,7 +5906,7 @@ And now,
   \put(120,-6){$p\Until (q \land r)$}
   \put(250,-6){$(p \land q)\Until r$}
   
-  \put(64,232){(\ref{ })}
+  \put(58,232){(\ref{E:waitQwaitRImpWaitQorR})}
   \put(126,232){(\ref{E:leftAssocWait})}
   \put(274,232){(\ref{E:waitImpAbsR})}
   \put(22,160){(\ref{E:untilImplWait})}
@@ -5926,7 +5925,19 @@ And now,
 \caption{A Hasse diagram showing some implication relations of linear temporal logic.
 \label{hasse2}}
 \end{figure}
+\begin{equation}\label{E:waitQwaitRImpWaitQorR}
+\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
+\end{equation}
 
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
+  \> \>   $\Always (q\Wait r\impl q\lor r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q\Wait r, q\lor r,p$}\\[\lgap]
+  \> \>   $p \Wait (q \Wait r) \impl p \Wait (q \lor r)$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:waitOrdering}
 \textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
