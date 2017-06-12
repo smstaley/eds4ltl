@@ -720,7 +720,7 @@ The \textit{until} operator $\Until$ is not associative as shown by the followin
   $p\Until (q\Until r)$     & F     & F     & T     & T     & T     & T     & T     & F     &  \dots\\
   $(p\Until q)\Until r$     & F     & T     & T     & T     & T     & F     & T     & F     &  \dots
 \end{tabular}\\[\lllgap]
-State $s_1$ in the last two rows of the above table shows that $(p\Until q)\Until r$ does not imply $p\Until (q\Until r)$, and state $s_6$ shows that $p\Until (q\Until r)$ does not imply $(p\Until q)\Until r$.
+State $s_1$ in the last two rows of the above table shows that $(p\Until q)\Until r$ does not imply $p\Until (q\Until r)$, and state $s_5$ shows that $p\Until (q\Until r)$ does not imply $(p\Until q)\Until r$.
 
 \subsubsection*{The \textit{eventually} operator $\Event$}
 
@@ -3262,7 +3262,7 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$}\\[\lgap]
   \> \>   $q \Until s$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:untilstrength}
+\begin{equation}\label{E:untilStrength}
 \textbf{$\Until$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Until q \impl r \Until s)
 \end{equation}
 
@@ -3681,7 +3681,7 @@ The proof in the second direction follows.
 \> \> $p \Until \Always p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilAndImplUntilUntil}
-\textbf{Name?:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
+\textbf{Right strengthening of $\Until$:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -3694,7 +3694,7 @@ The proof in the second direction follows.
   \> \>   $p\Until (q \land r)\impl p\Until (q\Until r)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:andUntilImplUntilUntil}
-\textbf{Name?:}\quad (p \land q) \Until r \impl (p\Until q)\Until r)
+\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl (p\Until q)\Until r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -3704,7 +3704,28 @@ The proof in the second direction follows.
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
   \> \>   $\Always (p \land q \impl p\Until q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \land q, p\Until q$}\\[\lgap]
-  \> \>   $(p \land q) \Until r \impl (p\Until q)\Until r)$ \quad \myqed
+  \> \>   $(p \land q) \Until r \impl (p\Until q)\Until r$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:leftStrengthUntil}
+\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl p\Until (q\Until r)
+\end{equation}
+
+\emph{Proof}: Theorem (\ref{E:untilStrength}) $\Until$ strengthening rule with $p,q,r,s := p \land q, r, p, q\Until r$ is
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $\Always ((p \land q \impl p) \land (r \impl q \Until r)) \impl (p \land q) \Until r \impl p\Until (q\Until r)$
+\end{tabbing}
+Because the consequent is the theorem to be proved, it suffices to prove the truth of the antecedent.
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ((p \land q \impl p) \land (r \impl q \Until r))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (\ref{E:untilInsertion}) $\Until$ insertion}\\[\lgap]
+  \> \>   $\Always (true \land true$)\\[\lgap]
+  \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
+  \> \>   $\Always true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
+  \> \>   $true$ \quad \myqed
 \end{tabbing}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
@@ -5897,7 +5918,7 @@ And now,
   \put(126,94){(\ref{E:untilImplWait})}
   \put(274,94){(\ref{E:LeftUntilUntilImpl})}
   \put(372,94){(\ref{E:untilImplWait})}
-  \put(168,48){(\ref{ })}
+  \put(168,48){(\ref{E:untilStrength})}
   \put(240,48){(\ref{E:rightAssocUntil})}
   \put(92,28){(\ref{E:untilAndImplUntilUntil})}
   \put(308,28){(\ref{E:andUntilImplUntilUntil})}

@@ -1155,13 +1155,19 @@ A counterexample to the rule in the text is $p = (T F T)$ and $q = (T F F)$.\\}
 \spacer
 
 \begin{equation}\label{E:untilAndImplUntilUntil}
-\textbf{Name?:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
+\textbf{Right strengthening of $\Until$:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
 \end{equation}
 
 \spacer
 
 \begin{equation}\label{E:andUntilImplUntilUntil}
-\textbf{Name?:}\quad (p \land q) \Until r \impl (p\Until q)\Until r)
+\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl (p\Until q)\Until r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilStrength}
+\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl p\Until (q\Until r)
 \end{equation}
 
 \spacer
