@@ -1303,16 +1303,16 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \textbf{Axiom, Right distributivity of $\Until$ over $\land$ :}\quad (p \land q) \Until r \equiv p \Until r \land q \Until r
 \end{equation}
 
-The \textit{until} operator is not fully associative.
-The last two axioms are unique to this system and describe the left and right associative properties of $\Until$.
+The \textit{until} operator is not associative.
+The eighth and ninth axioms are unique to this system and describe the left ordering property under disjuction, and the right ordering property under conjunction, of $\Until$.
 \begin{equation}\label{E:leftAssocUntil}
-\textbf{Axiom, Left associativity of $\Until$:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
+\textbf{Axiom, Right $\Until \lor$ ordering:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
 \end{equation}
 
 \firstspacer
 
 \begin{equation}\label{E:rightAssocUntil}
-\textbf{Axiom, Right associativity of $\Until$:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
+\textbf{Axiom, Right $\land \Until$ ordering:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
 \end{equation}
 
 Theorem (\ref{E:rightUntilImplDist}) is unique to this deductive system and shows how $\Until$ distributes over $\impl$.
@@ -1585,7 +1585,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until (p \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering} \\[\lgap]
 \> \> $(p\lor p) \Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
 \> \> $p \Until q$ \\
@@ -1615,7 +1615,7 @@ The proof in the second direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $(p \Until q) \Until q$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$} \\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right $\land \Until$ ordering} \\[\lgap]
 \> \> $p \Until (q \land q)$\\[\lgap]
 \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
 \> \> $p \Until q$ \quad \myqed
@@ -1658,7 +1658,7 @@ The proof in the first direction follows.
 \> \> $p \Until \Event q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \>\> $p \Until (true \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$ with $q,r := true,q$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $q,r := true,q$} \\[\lgap]
 \> \> $(p \lor true) \Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
 \> \> $true \Until q$\\[\lgap]
@@ -2553,10 +2553,10 @@ Exercise for the student.\\
 Exercise for the student.\\
 }
 
-Theorems (\ref{E:excludedMid}) and (\ref{E:excludedMidb}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
-Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
+Theorems (\ref{E:excludedMid}), (\ref{E:excludedMidb}), and (\ref{E:excludedMidc}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
+Theorems (\ref{E:contradiction}), (\ref{E:contradictionb}), and (\ref{E:contradictionc}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
 \begin{equation}\label{E:excludedMid}
-\textbf{Temporal excluded middle:}\quad \Event p \lor \Always\neg p
+\textbf{$\Event$ excluded middle:}\quad \Event p \lor \Always\neg p
 \end{equation}
 
 \emph{Proof}:
@@ -2568,7 +2568,7 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:excludedMidb}
-\textbf{Temporal excluded middle:}\quad \Always p \lor \Event\neg p
+\textbf{$\Always$ excluded middle:}\quad \Always p \lor \Event\neg p
 \end{equation}
 
 \emph{Proof}: (Ray McIntyre)
@@ -2579,7 +2579,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \lor \neg\Always p$\\[\lgap]
   \> which is (3.28) Excluded middle, $p\lor\neg p$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
-% begin sms
 \begin{equation}\label{E:excludedMidc}
 \textbf{Temporal excluded middle:}\quad \Event p \lor \Event\neg p
 \end{equation}
@@ -2594,9 +2593,8 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \impl \Event p$\\[\lgap]
   \> which is (\ref{E:impAlwaysE}) Strengthening of $\Always$. \quad \myqed
 \end{tabbing}
-%end sms
 \begin{equation}\label{E:contradiction}
-\textbf{Temporal contradiction:}\quad \Event p \land \Always\neg p \equivs false
+\textbf{$\Event$ contradiction:}\quad \Event p \land \Always\neg p \equivs false
 \end{equation}
 
 \emph{Proof}: (Ray McIntyre)
@@ -2608,7 +2606,7 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event p$. \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:contradictionb}
-\textbf{Temporal contradiction:}\quad \Always p \land \Event\neg p \equivs false
+\textbf{$\Always$ contradiction:}\quad \Always p \land \Event\neg p \equivs false
 \end{equation}
 
 \emph{Proof}: (Ray McIntyre)
@@ -2619,7 +2617,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Always p \land \neg\Always p \equivs false$\\[\lgap]
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
-% begin sms
 \begin{equation}\label{E:contradictionc}
 \textbf{Temporal contradiction:}\quad \Always p \land \Always \neg p \equivs false
 \end{equation}
@@ -2636,8 +2633,6 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Event\neg p \lor \Event p$\\[\lgap]
   \> which is (\ref{E:excludedMidc}) Temporal excluded middle. \quad \myqed
 \end{tabbing}
-% end sms
-% begin sms
 \begin{equation}\label{E:AEexcludedMid}
 \textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Event \Always\neg p
 \end{equation}
@@ -2686,7 +2681,7 @@ Theorems (\ref{E:contradiction}) and (\ref{E:contradictionb}) are the linear tem
   \> \>   $\Event \Always p \land \neg \Event \Always p \equivs false$\\[\lgap]
   \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event\Always p$. \quad \myqed
 \end{tabbing}
-% end sms
+
 Theorem (\ref{E:distAlwaysAnd}) shows that $\Always$, a universal operator, distributes over conjunction.
 Because disjunction is existential, Theorem (\ref{E:distAlwaysOr}) shows that $\Always$ distributes over it in only one
 direction.
@@ -3681,7 +3676,7 @@ The proof in the second direction follows.
 \> \> $p \Until \Always p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilAndImplUntilUntil}
-\textbf{Right strengthening of $\Until$:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
+\textbf{Right $\land\Until$ strengthening:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -3694,7 +3689,7 @@ The proof in the second direction follows.
   \> \>   $p\Until (q \land r)\impl p\Until (q\Until r)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:andUntilImplUntilUntil}
-\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl (p\Until q)\Until r
+\textbf{Left $\land\Until$ strengthening:}\quad (p \land q) \Until r \impl (p\Until q)\Until r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -3707,7 +3702,7 @@ The proof in the second direction follows.
   \> \>   $(p \land q) \Until r \impl (p\Until q)\Until r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:leftStrengthUntil}
-\textbf{Left strengthening of $\Until$:}\quad (p \land q) \Until r \impl p\Until (q\Until r)
+\textbf{Left $\land\Until$ ordering:}\quad (p \land q) \Until r \impl p\Until (q\Until r)
 \end{equation}
 
 \emph{Proof}: Theorem (\ref{E:untilStrength}) $\Until$ strengthening rule with $p,q,r,s := p \land q, r, p, q\Until r$ is
@@ -4473,7 +4468,7 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
   \> \>   $p \Wait q \land (\Always \neg q \lor (p \Wait q \land \Event q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
   \> \>   $p \Wait q \land ((\Always \neg q \lor p \Wait q) \land (\Always \neg q \lor \Event q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:excludedMid}) Temporal excluded middle and (3.39) Identity of $\land$, $p\land true\equiv p$ }\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:excludedMid}) $\Event$ excluded middle and (3.39) Identity of $\land$, $p\land true\equiv p$ }\\[\lgap]
   \> \>   $p \Wait q \land (\Always \neg q \lor p \Wait q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
@@ -5786,7 +5781,7 @@ And now,
   \> \>   $(p\Until q)\Until r\impl (p\Wait q)\Until r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilImpAbsR}
-\textbf{Absorption:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
+\textbf{Left $\Until\lor$ strengthening:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -5799,7 +5794,7 @@ And now,
   \> \>   $(p \Until q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitImpAbsR}
-\textbf{Absorption:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
+\textbf{Left $\Wait\lor$ strengthening:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -5811,21 +5806,21 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
   \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:mixuntilImpAbsR}
-\textbf{Mixed $\Wait\Until$ Absorption:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
-  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
-  \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
-\end{tabbing}
+%\begin{equation}\label{E:mixuntilImpAbsR}
+%\textbf{Left $\Wait\lor$ mixed strengthening:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
+%\end{equation}
+%
+%\emph{Proof}: The proof is by (4.7.1) Truth implication.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $true$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
+%  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
+%  \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
+%\end{tabbing}
 \begin{equation}\label{E:leftAssocWait}
-\textbf{Left associativity of $\Wait$:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
+\textbf{Right $\Wait\lor$ ordering:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
 \end{equation}
 
 \emph{Proof}:
@@ -5838,7 +5833,7 @@ And now,
 \> \>   $\Always p\lor p\Until \Always q\lor p\Until (q \Until r)$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
 \> \>   $\Always p\lor \Always (p\Until q)\lor p\Until (q \Until r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil}) Left associativity of $\Until$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \>   $\Always p\lor \Always (p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
 \> \>   $\Always (p\lor p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
@@ -5848,7 +5843,7 @@ And now,
 \> \>   $(p\lor q) \Wait r$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:rightAssocWait}
-\textbf{Right associativity of $\Wait$:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\textbf{Right $\land\Wait$ ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 
 \emph{Proof}:
@@ -5865,7 +5860,7 @@ And now,
 \> \>   $\Always p\lor \Always p\Until r \lor \Always(p\Until q)\lor (p\Until q)\Until r$\\[\lgap]
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \>   $\Always p\lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right associativity of $\Until$ and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right $\land \Until$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \>   $\Always p\lor p\Until (q\land r)$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \>   $p \Wait (q \land r)$ \quad \myqed
@@ -5917,7 +5912,7 @@ And now,
   \put(126,94){(\ref{E:untilImplWait})}
   \put(274,94){(\ref{E:LeftUntilUntilImpl})}
   \put(372,94){(\ref{E:untilImplWait})}
-  \put(168,48){(\ref{E:untilStrength})}
+  \put(168,48){(\ref{E:leftStrengthUntil})}
   \put(240,48){(\ref{E:rightAssocUntil})}
   \put(92,28){(\ref{E:untilAndImplUntilUntil})}
   \put(308,28){(\ref{E:andUntilImplUntilUntil})}
@@ -5926,7 +5921,7 @@ And now,
 \label{hasse2}}
 \end{figure}
 \begin{equation}\label{E:waitQwaitRImpWaitQorR}
-\textbf{Absorption:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
+\textbf{Right $\Wait\lor$ strengthening:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
