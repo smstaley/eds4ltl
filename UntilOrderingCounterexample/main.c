@@ -2,27 +2,27 @@
  * File:   main.c
  * Author: warford
  *
- * Created on June 14, 2017, 7:50 PM
+ * Created on July 5, 2017, 7:50 PM
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
- * Program to generate Wait Ordering counterexample
+ * Program to generate Until Ordering counterexample
  */
 
-const int numStates = 4;
+const int numStates = 7;
 
 int p[numStates];
 int q[numStates];
 int r[numStates];
 
-int p_wait_q[numStates];
+int p_until_q[numStates];
 int not_q[numStates];
-int not_q_wait_r[numStates];
-int p_wait_q_and_not_q_wait_r[numStates];
-int p_wait_r[numStates];
+int not_q_until_r[numStates];
+int p_until_q_and_not_q_until_r[numStates];
+int p_until_r[numStates];
 
 int temp1[numStates]; // global for efficiency
 int temp2[numStates];
@@ -126,28 +126,28 @@ int main(int argc, char** argv) {
         for (int j = 0; j < numStates2; j++) {
             for (int k = 0; k < numStates2; k++) {
                 for (int m = 0; m < numStates; m++) {
-                    myWait(p, q, p_wait_q);
+                    until(p, q, p_until_q);
                     not(q, not_q);
-                    myWait(not_q, r, not_q_wait_r);
-                    and(p_wait_q, not_q_wait_r, p_wait_q_and_not_q_wait_r);
-                    myWait(p, r, p_wait_r);
-                    if (p_wait_q_and_not_q_wait_r[m] == 1 && p_wait_r[m] == 0) {
-                        printf("                        p: ");
+                    until(not_q, r, not_q_until_r);
+                    and(p_until_q, not_q_until_r, p_until_q_and_not_q_until_r);
+                    until(p, r, p_until_r);
+                    if (p_until_q_and_not_q_until_r[m] == 1 && p_until_r[m] == 0) {
+                        printf("                          p: ");
                         printStates(p);
-                        printf("                        q: ");
+                        printf("                          q: ");
                         printStates(q);
-                        printf("                        r: ");
+                        printf("                          r: ");
                         printStates(r);
-                        printf("                 p Wait q: ");
-                        printStates(p_wait_q);
-                        printf("                    Not q: ");
+                        printf("                  p Until q: ");
+                        printStates(p_until_q);
+                        printf("                      Not q: ");
                         printStates(not_q);
-                        printf("             Not q Wait r: ");
-                        printStates(not_q_wait_r);
-                        printf("p Wait q And Not q Wait r: ");
-                        printStates(p_wait_q_and_not_q_wait_r);
-                        printf("                 p Wait r: ");
-                        printStates(p_wait_r);
+                        printf("              Not q Until r: ");
+                        printStates(not_q_until_r);
+                        printf("p Until q And Not q Until r: ");
+                        printStates(p_until_q_and_not_q_until_r);
+                        printf("                   p Until r: ");
+                        printStates(p_until_r);
                         printf("\n");
                     }
                 }
