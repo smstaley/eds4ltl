@@ -401,6 +401,12 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
+\begin{equation}\label{E:UntilOrdering}
+\textbf{Axiom, $\Until$ ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:leftAssocUntil}
 \textbf{Axiom, Right $\Until \lor$ ordering:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
 \end{equation}
@@ -1866,8 +1872,8 @@ p \Wait q \land \Always\neg q \impl \Always p
 \spacer
 
 \begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
+\textbf{$\Wait$ ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
-\opt{inventory}{M266(T35), (A closer look here is needed.), S66(3.34b)\\}
+\opt{inventory}{M266(T35), S66(3.34b)\\}
 
 \end{document}

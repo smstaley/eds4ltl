@@ -1304,13 +1304,16 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \end{equation}
 
 The \textit{until} operator is not associative.
-The eighth and ninth axioms are unique to this system and describe the left ordering property under disjuction, and the right ordering property under conjunction, of $\Until$.
-\begin{equation}\label{E:leftAssocUntil}
-\textbf{Axiom, Right $\Until \lor$ ordering:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
+The last three axioms are unique to this system and describe the ordering property, the left ordering property under disjuction, and the right ordering property under conjunction, of $\Until$.
+\begin{equation}\label{E:UntilOrdering}
+\textbf{Axiom, $\Until$ ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
 \end{equation}
 
 \firstspacer
 
+\begin{equation}\label{E:leftAssocUntil}
+\textbf{Axiom, Right $\Until \lor$ ordering:}\quad p \Until (q \Until r) \impl (p\lor q) \Until r
+\end{equation}
 \begin{equation}\label{E:rightAssocUntil}
 \textbf{Axiom, Right $\land \Until$ ordering:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
 \end{equation}
@@ -5951,7 +5954,7 @@ And now,
   \> \>   $true$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitOrderingTwo}
-\textbf{Ordering:}\quad \Always (p \Wait q \land \neg q \Wait r) \impl p \Wait r
+\textbf{$\Wait$ ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
 
 \emph{Proof}:
