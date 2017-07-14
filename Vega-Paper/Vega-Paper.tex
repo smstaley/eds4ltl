@@ -5957,40 +5957,61 @@ And now,
 \textbf{$\Wait$ ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
 
+\emph{Proof}: The proof is based on the following lemmas.\\[\llgap]
+Lemma A: $p \Until q \land \Always \neg q \equiv false$
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always (p \Wait q \land \neg q \Wait r)$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always (p \Wait q) \land \Always(\neg q \Wait r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ with (\ref{E:waitToOr}) and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
-  \> \>   $\Always (p \lor q) \land \Always(\neg q \lor r)$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always ((p \lor q) \land (\neg q \lor r))$\\[\lgap]
-  \> $\impl$  \>  \Hint{Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$}\\[\lgap]
-  \> \>   $\Always (p \lor r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$}\\[\lgap]
+  \> \>   $p \Until q \land \Always \neg q$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
+  \> \>   $p \Wait q \land \Event q \land \Always \neg q$\\[\lgap]  
+  \> $=$ \> \Hint{(\ref{E:contradiction}) $\Event$ contradiction} \\[\lgap]
+  \> \>   $p \Wait q \land false$\\[\lgap]  
+  \> \>   $ false$ \quad \myqed
+\end{tabbing}
+Lemma B: $\Always p \land \neg\Always q \impl p\Wait r$
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \land \neg\Always q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
+  \> \>   $\Always p$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity} \\[\lgap]
   \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
-Lemma: $\Always ((p \lor q) \land (\neg q \lor r))\impl \Always(p\lor r)$
+Lemma C: $\Always p \land \neg q\Until r \impl p \Wait r$
 
-\emph{Proof}: By (\ref{E:metaAlways}) Metatheorem $\Always$, if
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $(p\lor q)\land (\neg q\lor r) \impl p\lor r$
+  \> \>   $\Always p \land \neg q\Until r$\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
+  \> \>   $\Always p$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:alwaysImpWait}) Perpetuity} \\[\lgap]
+  \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
-is valid, then the Lemma is valid.
+And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $(p\lor q)\land (\neg q\lor r)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land(q\lor r) \equiv (p\land q)\lor (p\land r)$}\\[\lgap]
-  \> \>   $(p\land (\neg q\lor r))\lor (q\land (\neg q\lor r))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $p\lor (q\land (\neg q\lor r))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
-  \> \>   $p\lor (q\land r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-  \> \>   $p\lor r$ \quad \myqed
+  \> \>   $p \Wait q \land \neg q \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+ \> \>   $(\Always p\lor p\Until q) \;\land\; (\Always \neg q \lor \neg q \Until r)$\\[\lgap]
+\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+  \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \Always \neg q) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
+   \> $=$  \>  \Hint{Lemma A}\\[\lgap]
+  \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; false \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+  \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma B, Lemma C, and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:UntilOrdering}) $\Until$ ordering and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; p\Until r$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; p\Wait r$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+  \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
 
 \section{Comparison with previous work}\label{comparison-previous-work}
