@@ -1423,6 +1423,19 @@ to the propositional expression on the right hand side.
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:pAndNotPUntilQ}
+p\land \neg p \Until q \impl p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $true$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:UntilOrdering}) $\Until$ ordering with $q,r:=p,q$} \\[\lgap]
+\> \> $p\Until p \land \neg p\Until q \impl p\Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$} \\[\lgap]
+\> \> $p \land \neg p\Until q \impl p\Until q$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
