@@ -207,7 +207,7 @@ There is no need to number the lines in a proof in $\mathcal{E}$ because referen
 Instead, each line depends only on the immediately preceding line by invoking a previously-proved theorem or an axiom.
 
 There is an analogy between the proof style of $\mathcal{H}$ systems versus the proof style of $\mathcal{E}$ and the unstructured goto style of programming versus structured programming.
-In the same way that the goto statement produces spaghetti code that is more difficult to understand than structured code, proofs in $\mathcal{H}$ systems are more difficult to understand than proofs in $\mathcal{E}$.
+In the same way that the goto statement can produce spaghetti code that is more difficult to understand than structured code, proofs in $\mathcal{H}$ systems are more difficult to understand than proofs in $\mathcal{E}$.
 It is perhaps not coincidental that Dijkstra, who ignited the goto controversy with his famous CACM letter \cite{Dijkstra:1968:LEG:362929.362947}, was the prime developer of $\mathcal{E}$.
 
 We agree with Gries and Schneider \cite{LADM} that, ``We need a style of logic that can be used as a tool in every-day work.
@@ -217,7 +217,7 @@ That is, the motivation behind this work is based on teaching and human understa
 
 In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they first develop $\mathcal{E}$ for propositional and predicate calculus, and then extend it to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
 Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}$ to these additional knowledge domains.
-The treatment is in marked contrast to the traditional one exemplified by the classic text by Rosen \cite{Rosen}.
+The treatment is in marked contrast to the traditional one exemplified by the classic undergraduate text by Rosen \cite{Rosen}.
 
 \subsubsection*{Linear temporal logic systems}
 
@@ -234,7 +234,7 @@ Our institution has used LADM at the introductory undergraduate level since its 
 A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain.
 Schneider \cite{Schn} includes a discussion of $\mathcal{E}$.
 Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example (page 74).
-Likewise, Baier and Katoen \cite{Baier} have a single equational proof of a linear temporal logic theorem (page 246) in their chapter on linear temporal logic.
+Likewise, Baier and Katoen \cite{Baier} have a single equational proof of a linear temporal logic theorem in their chapter on linear temporal logic.
 
 To solve the above problem, this paper presents a comprehensive equational deductive system suitable for introducing those versed in $\mathcal{E}$ to linear temporal logic.
 In the same way that LADM brings the advantages of $\mathcal{E}$ to set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
@@ -581,7 +581,7 @@ Each state corresponds to a discrete point in time that represents one point in 
 possibly having several threads running concurrently but whose instruction executions have been serialized.
 As one instruction in the program executes, the state changes, and hence the truth value of an expression may change as well.
 
-A model $\sigma$ is an infinite sequence of the form
+A model $\sigma$ is an infinite anchored sequence \cite{Schn} of the form
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> $\sigma: s_0, s_1, s_2, \dots$
@@ -1305,8 +1305,8 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 
 The \textit{until} operator is not associative.
 The last three axioms are unique to this system and describe the ordering property, the left ordering property under disjuction, and the right ordering property under conjunction, of $\Until$.
-\begin{equation}\label{E:UntilOrdering}
-\textbf{Axiom, $\Until$ ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
+\begin{equation}\label{E:untilImplicationOrdering}
+\textbf{Axiom, $\Until$ implication ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
 \end{equation}
 
 \firstspacer
@@ -1431,7 +1431,7 @@ p\land \neg p \Until q \impl q
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $true$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:UntilOrdering}) $\Until$ ordering with $p,q,r:= false,p,q$} \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering with $p,q,r:= false,p,q$} \\[\lgap]
 \> \> $false\Until p \land \neg p\Until q \impl false\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
 \> \> $p \land \neg p\Until q \impl q$ \quad \myqed
@@ -5949,8 +5949,25 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q\Wait r, q\lor r,p$}\\[\lgap]
   \> \>   $p \Wait (q \Wait r) \impl p \Wait (q \lor r)$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:untilOrdering}
+\textbf{$\Until$ ordering:}\quad \neg p \Until q \lor \neg q \Until p \equiv \Event(p\lor q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg p \Until q \lor \neg q \Until p$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:conRuleUntil}) Conjunction rule of $\Until$, twice}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Until q \lor (\neg q \land \neg p)\Until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+  \> \>   $(\neg p\land \neg q) \Until (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg(p\lor q)\equivs \neg p\land\neg q$}\\[\lgap]
+  \> \>   $\neg (p\lor q)\Until (p\lor q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:ruleUntil}) Rule of $\Until$ with $q := p\lor q$}\\[\lgap]
+  \> \>   $p\lor q$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:waitOrdering}
-\textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
+\textbf{$\Wait$ ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
 
 \emph{Proof}:
@@ -5961,13 +5978,13 @@ And now,
   \> \>   $(\neg p\land \neg q) \Wait q \lor (\neg q \land \neg p)\Wait p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:waitOrDist}) Left distributivity of $\Wait$ over $\lor$}\\[\lgap]
   \> \>   $(\neg p\land \neg q) \Wait (p\lor q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.47a) De Morgan, $\neg(p\land q)\equivs \neg p\lor\neg q$}\\[\lgap]
+  \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg(p\lor q)\equivs \neg p\land\neg q$}\\[\lgap]
   \> \>   $\neg (p\lor q)\Wait (p\lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:waitOrderingTwo}
-\textbf{$\Wait$ ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
+\begin{equation}\label{E:waitImplicationOrdering}
+\textbf{$\Wait$ implication ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
 
 \emph{Proof}: The proof is based on the following lemmas.\\[\llgap]
@@ -6009,27 +6026,42 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Wait q \land \neg q \Wait r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
- \> \>   $(\Always p\lor p\Until q) \;\land\; (\Always \neg q \lor \neg q \Until r)$\\[\lgap]
-\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+  \> \>   $(\Always p\lor p\Until q) \;\land\; (\Always \neg q \lor \neg q \Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
   \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \Always \neg q) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
-   \> $=$  \>  \Hint{Lemma A}\\[\lgap]
+  \> $=$  \>  \Hint{Lemma A}\\[\lgap]
   \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; false \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
   \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
   \> $\impl$  \>  \Hint{Lemma B, Lemma C, and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:UntilOrdering}) $\Until$ ordering and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; p\Until r$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilImplWait}) $\Until$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; p\Wait r$\\[\lgap]
-\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
   \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
 
+The ten axioms that define the behavior of the \textit{until} operator are (\ref{E:distNextUntil}), (\ref{E:expansionUntil}), (\ref{E:untilFalse}), (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), (\ref{E:untilAndEquiv}), (\ref{E:untilImplicationOrdering}), (\ref{E:leftAssocUntil}), and (\ref{E:rightAssocUntil}).
+The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
+Of these ten theorems, nine are identical, with the substitution of $\Wait$ for $\Until$, to the corresponding axioms that define the \textit{until} operator.
+In addition, (\ref{E:notWait}), the axiom that describes the distributivity of $\neg$ over $\Wait$, is identical to (\ref{E:notUntil}) with the substitution of $\Wait$ for $\Until$.
+The one theorem that distinguishes $\Wait$ from the defining axioms of $\Until$ is
+\begin{equation}
+(\ref{E:untilFalse})\quad \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false \nonumber
+\end{equation}
+for the \textit{until} operator versus
+\begin{equation}
+(\ref{E:alwaysAsWait})\quad \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false \nonumber
+\end{equation}
+for the \textit{wait} operator.
+
+
 \section{Comparison with previous work}\label{comparison-previous-work}
 
-As a check on comprehensiveness, we inventoried all the linear temporal logic theorems in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
+As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
 This section compares the axiomatization systems of those sources with this work. In each of the following sections we translate
 the axioms and inference rules from the reference's notation to the notation we use in this paper to facilitate comparison.
 At the same time we keep the numbering system of each reference in place.

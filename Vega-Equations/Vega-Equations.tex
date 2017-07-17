@@ -401,8 +401,8 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
-\begin{equation}\label{E:UntilOrdering}
-\textbf{Axiom, $\Until$ ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
+\begin{equation}\label{E:untilImplicationOrdering}
+\textbf{Axiom, $\Until$ implication ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
 \end{equation}
 
 \spacer
@@ -1870,15 +1870,21 @@ p \Wait q \land \Always\neg q \impl \Always p
 
 \spacer
 
+\begin{equation}\label{E:untilOrdering}
+\textbf{$\Until$ ordering:}\quad \neg p \Until q \lor \neg q \Until p \equiv \Event(p\lor q)
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:waitOrdering}
-\textbf{Ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
+\textbf{$\Wait$ ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
 \opt{inventory}{M266(T38), S66(3.34a)\\}
 
 \spacer
 
-\begin{equation}\label{E:waitOrderingTwo}
-\textbf{$\Wait$ ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
+\begin{equation}\label{E:waitImplicationOrdering}
+\textbf{$\Wait$ implication ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
 \opt{inventory}{M266(T35), S66(3.34b)\\}
 
