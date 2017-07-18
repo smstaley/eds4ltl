@@ -1427,7 +1427,7 @@ to the propositional expression on the right hand side.
 \neg p \Until (q \Until r) \land p\Until r \impl q\Until r
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \> $true$\\[\lgap]
@@ -1445,7 +1445,7 @@ to the propositional expression on the right hand side.
 p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \> $true$\\[\lgap]
@@ -1476,7 +1476,7 @@ p \Until q \land \neg q \Until p \impl p
 p\land \neg p \Until q \impl q
 \end{equation}
 
-\emph{Proof}:
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $true$\\[\lgap]
@@ -6013,7 +6013,7 @@ And now,
   \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg(p\lor q)\equivs \neg p\land\neg q$}\\[\lgap]
   \> \>   $\neg (p\lor q)\Until (p\lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:ruleUntil}) Rule of $\Until$ with $q := p\lor q$}\\[\lgap]
-  \> \>   $p\lor q$ \quad \myqed
+  \> \>   $\Event (p\lor q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:waitOrdering}
 \textbf{$\Wait$ ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
