@@ -6047,7 +6047,7 @@ And now,
 The ten axioms that define the behavior of the \textit{until} operator are (\ref{E:distNextUntil}), (\ref{E:expansionUntil}), (\ref{E:untilFalse}), (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), (\ref{E:untilAndEquiv}), (\ref{E:untilImplicationOrdering}), (\ref{E:leftAssocUntil}), and (\ref{E:rightAssocUntil}).
 The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
 Of these ten theorems, nine are identical, with the substitution of $\Wait$ for $\Until$, to the corresponding axioms that define the \textit{until} operator.
-In addition, (\ref{E:notWait}), the axiom that describes the distributivity of $\neg$ over $\Wait$, is identical to (\ref{E:notUntil}) with the substitution of $\Wait$ for $\Until$.
+In addition, (\ref{E:notWait}), the axiom that describes the distributivity of $\neg$ over $\Wait$, is identical to (\ref{E:notUntil}) with the interchange of $\Wait$ and $\Until$.
 The one theorem that distinguishes $\Wait$ from the defining axioms of $\Until$ is
 \begin{equation}
 (\ref{E:untilFalse})\quad \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false \nonumber
@@ -6058,20 +6058,14 @@ for the \textit{until} operator versus
 \end{equation}
 for the \textit{wait} operator.
 
-
 \section{Comparison with previous work}\label{comparison-previous-work}
 
 As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
-This section compares the axiomatization systems of those sources with this work. In each of the following sections we translate
-the axioms and inference rules from the reference's notation to the notation we use in this paper to facilitate comparison.
-At the same time we keep the numbering system of each reference in place.
+This section compares the axiomatization systems of those sources with this work.
 
-\subsection{Kröger and Merz}
-
-Section 2.3 in Kröger and Merz \cite{Kroger} defines the axioms and inference rules of a deductive system
-for LTL. The system takes the temporal operators $\Always$ and $\Next$ as basic and gives axioms
-for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$. The $\Until$ operator
-and  $\Wait$ operator are introduced with four defining axioms in section 3.1 as an extension to LTL.\\
+Section 2.3 in Kröger and Merz \cite{Kroger} defines the axioms and inference rules of a deductive system for LTL.
+The system takes the temporal operators $\Always$ and $\Next$ as basic and gives axioms for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$.
+The $\Until$ operator and $\Wait$ operator are introduced with four defining axioms in section 3.1 as an extension to LTL.\\
 
 The axiomatization of LTL in Kröger and Merz consists of 8 Axioms and 3 inference rules. The
 8 axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work
@@ -6139,9 +6133,6 @@ Summarize Kroger discussion in this section.\\
 We have shown above that this work has all the axioms, 
 theorems and inference rules to have the same deductive power as the Kröger and Merz system.\\
 
-
-\subsection{Manna and Pnueli}
-
 Sections 3.5-3.7 in Manna and Pnueli \cite{Manna} defines a proof system used in their textbook for reasoning about LTL.
 They develop an H-style system using the inference rule Modus Ponens as the primary reasoning method.
 Manna and Pnueli start with $\Next$ and $\Wait$ as the basic temporal operators. The rest of the temporal operators
@@ -6193,8 +6184,6 @@ Summarize Manna and Pnueli discussion in this section.\\
 We have shown above that this work has all the axioms, 
 theorems and inference rules to have the same deductive power as the Manna and Pnueli system.\\
 
-
-\subsection{Schneider}
 
 Not surprisingly EDS4LTL is closest in form and spirit to the temporal logic system described in Schneider \cite{Schn}.
 Both systems start with the validities of propositional logic and use an equational deductive system developed in
@@ -6248,8 +6237,6 @@ We have shown above that this work has all the axioms,
 theorems and inference rules to have the same deductive power as the Schneider system.\\
 
 
-\subsection{Emerson}
-
 Section 6.3 in Emerson \cite{Emer} is a treatment of deductive systems for temporal logic. As an example
 of a deductive system, an axiomatization of CTL (Computational Tree Logic) is presented. Since CTL extends
 LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, we can
@@ -6292,7 +6279,6 @@ Summarize Emerson's discussion in this section.\\
 Taking a subset of the CTL deductive system of Emerson needed for LTL, we show that this work has all the axioms, 
 theorems and inference rules to have the same deductive power as that system, which is claimed to be both sound and complete.\\
 
-\subsection{Ben-Ari}
 
 Chapter 14 in Ben-Ari \cite{Ben} defines the axioms and inference rules of a deductive system
 for LTL. The system takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and gives axioms
@@ -6338,7 +6324,6 @@ Summarize Ben-Ari discussion in this section.\\
 We have shown above that this work has all the axioms, 
 theorems and inference rules to have the same deductive power as the Ben-Ari system.\\
 
-\subsection{New theorems}
 
 This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
 Two are the axioms
