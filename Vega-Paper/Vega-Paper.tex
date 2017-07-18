@@ -6112,75 +6112,17 @@ for the \textit{wait} operator.
 As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
 This section compares the axiomatization systems of those sources with this work.
 
-Section 2.3 in Kröger and Merz \cite{Kroger} defines the axioms and inference rules of a deductive system for LTL.
-The system takes the temporal operators $\Always$ and $\Next$ as basic and gives axioms for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$.
-The $\Until$ operator and $\Wait$ operator are introduced with four defining axioms in section 3.1 as an extension to LTL.\\
+Kröger and Merz \cite{Kroger} first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
+They define $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
+The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:CompInductRule}) Computational induction rule.
+The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, and (\ref{E:expansionAlways}) Expansion of $\Always$.
 
-The axiomatization of LTL in Kröger and Merz consists of 8 Axioms and 3 inference rules. The
-8 axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work
-are shown in Figure \ref{kroger-axioms}.\\
-% add table here sms
-\begin{figure}[t]
-\centering
-\renewcommand\arraystretch{1.2}
-\begin{tabular}{ l l }
-  \toprule
-  (taut) All tautologically valid formulas.
-  &
-  Also assumed in this work. \\
-  \midrule
-  (ltl1) $\Next \neg p \equiv \neg \Next p$
-  &
-  This is an axiom (\ref{E:selfDual}) Self-dual.\\
-  \midrule
-  (ltl2, ltl2') $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$
-  &
-  This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
-   \midrule
-  (ltl3, ltl3') $\Always p \equiv p \land \Next\Always p$
-  &
-  This is a theorem
- (\ref{E:expansionAlways}) Expansion of $\Always$.\\
-   \midrule
-  (Tb13) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$
-  &
-  This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
-   \midrule
-  (unt2) $p \Until q \impl \Event q$
-  &
-  This is a theorem (\ref{E:eventuality}) Eventuality.\\
-   \midrule
- (Tb14) $p \Wait q \equiv q \lor (p \land \Next (p \Wait q))$
-  &
-  This is a theorem (\ref{E:expansionWait}) Expansion of $\Wait$.\\
-  \midrule
-  (unl2) $\Always p \impl p \Wait q$
-  &
-  This is a theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
-  \bottomrule
-\end{tabular}
-\renewcommand\arraystretch{1}
-\caption{The eight axioms of the Kröger and Merz LTL proof system with the corresponding equivalent theorems of this work.
-\label{kroger-axioms}}
-\end{figure}
-% end of table sms
-The three stated rules of inference in the Kröger and Merz deductive system are: (mp) Modus ponens,
-(nex) next introduction and (ind) Induction.
-These inference rules exist in this work in the form of  
-theorem (3.77) Modus ponens,  theorem (\ref{E:impAlwaysN}) Strengthening of $\Always$
-and theorem (\ref{E:CompInductRule}) Computational induction rule.\\
+The \textit{until} operator (denoted \textbf{unt}) and the \textit{wait} operator (denoted \textbf{unl}) are introduced as an extension to the propositional linear temporal logic.
+The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
-Contrast Kroger system with ours.\\
 
-The above shows that all the deductive power of the Kröger and Merz axiomatization is covered
-in this equational deductive system. All the axioms of Kröger and Merz are either axioms
-in this work, or are theorems derivable in this work. In section 2.3 Kröger and Merz also
-sketches soundness and completeness results for the axiomatization presented.\\
 
-Summarize Kroger discussion in this section.\\
 
-We have shown above that this work has all the axioms, 
-theorems and inference rules to have the same deductive power as the Kröger and Merz system.\\
 
 Sections 3.5-3.7 in Manna and Pnueli \cite{Manna} defines a proof system used in their textbook for reasoning about LTL.
 They develop an H-style system using the inference rule Modus Ponens as the primary reasoning method.
