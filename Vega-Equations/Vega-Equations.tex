@@ -449,6 +449,24 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \spacer
 
+\begin{equation}\label{E:notPUntilQUntilR}
+\neg p \Until (q \Until r) \land p\Until r \impl q\Until r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:PUntilNotQUntilR}
+p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:pUntilQAndNotQUntilP}
+p \Until q \land \neg q \Until p \impl p
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:pAndNotPUntilQ}
 p\land \neg p \Until q \impl q
 \end{equation}

@@ -1423,6 +1423,55 @@ to the propositional expression on the right hand side.
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:notPUntilQUntilR}
+\neg p \Until (q \Until r) \land p\Until r \impl q\Until r
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \> $true$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $p:=\neg p$} \\[\lgap]
+  \> \> $\neg p\Until(q\Until r) \impl (\neg p\lor q)\Until r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \> $\neg p\Until(q\Until r) \impl (p \impl q)\Until r$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$}\\[\lgap]
+  \>          \>  \Hintlast{and (3.82a) Transitivity $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \> $\neg p\Until(q\Until r) \impl (p \Until r \impl q \Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \> $\neg p \Until (q \Until r) \land p\Until r \impl q\Until r$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:PUntilNotQUntilR}
+p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \> $true$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $q:=\neg q$} \\[\lgap]
+  \> \> $p\Until(\neg q\Until r) \impl (p\lor \neg q)\Until r$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \> $p\Until(\neg q\Until r) \impl (q \impl p)\Until r$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$}\\[\lgap]
+  \>          \>  \Hintlast{and (3.82a) Transitivity $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \> $p\Until(\neg q\Until r) \impl (q \Until r \impl p \Until r)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+  \> \> $p \Until (\neg q \Until r) \land q\Until r \impl p\Until r$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:pUntilQAndNotQUntilP}
+p \Until q \land \neg q \Until p \impl p
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \> $p \Until q \land \neg q \Until p$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering with $r:=p$} \\[\lgap]
+  \> \> $p\Until p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
+  \> \> $p$ \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:pAndNotPUntilQ}
 p\land \neg p \Until q \impl q
 \end{equation}
