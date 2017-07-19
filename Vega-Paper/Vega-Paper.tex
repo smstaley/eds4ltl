@@ -6112,68 +6112,31 @@ for the \textit{wait} operator.
 As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
 This section compares the axiomatization systems of those sources with this work.
 
-Kröger and Merz \cite{Kroger} first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
+Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
+They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
+
+Kröger and Merz first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
 They define $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
 The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:CompInductRule}) Computational induction rule.
 The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, and (\ref{E:expansionAlways}) Expansion of $\Always$.
-
-The \textit{until} operator (denoted \textbf{unt}) and the \textit{wait} operator (denoted \textbf{unl}) are introduced as an extension to the propositional linear temporal logic.
+They introduce the \textit{until} operator and the \textit{wait} operator as an extension to the propositional linear temporal logic.
 The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
+Manna and Pnueli \cite{Manna} use the $\rightarrow$ symbol for implication, so that $p\impl q$ is written as $p\rightarrow q$.
+They introduce the symbol $\impl$ to stand for always implies, so that $\Always(p\impl q)$ is written as $p\impl q$.
+Similarly, $p\equiv q$ is written as $p\leftrightarrow q$, and $\Always(p\equiv q)$ is written as $p\Leftrightarrow q$.
+
+Manna and Pnueli define a proof system that combines the future operators $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ with a set of corresponding past operators.
+For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait false$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
+
+The four basic inference rules in the Manna and Pnueli deductive system are generalization and specialization, corresponding to (\ref{E:metatheorem}) Metatheorem, instantiation, corresponding to inference rule Substitution (Section 2.1), and modus ponens, corresponding to (3.77).
+The derived rules include particularization, corresponding to (\ref{E:impAlways}) Strengthening of $\Always$, entailment modus ponens, corresponding to $\Always(p\impl q)\land\Always p \impl \Always q$, and entailment transitivity, corresponding to $\Always(p\impl q)\land \Always(q\impl r) \impl \Always(p\impl r)$.
+The last two expressions are easy to prove from (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
+
+Their eight future axioms correspond to (\ref{E:impAlways}) Strengthening of $\Always$, (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:impAlwaysAN}) $\Next$ generalization, (\ref{E:induction}) Induction, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
 
 
-
-Sections 3.5-3.7 in Manna and Pnueli \cite{Manna} defines a proof system used in their textbook for reasoning about LTL.
-They develop an H-style system using the inference rule Modus Ponens as the primary reasoning method.
-Manna and Pnueli start with $\Next$ and $\Wait$ as the basic temporal operators. The rest of the temporal operators
-are defined as follows by Manna and Pnueli and references to their equivalents in this work shown:\\
-
-$\Always p \equiv p \Wait false$   This is theorem (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law.\\
-
-$\Event p \equiv \neg \Always \neg p$   This is theorem (\ref{E:eventAsAlways}) $\Event p \equiv \neg \Always \neg p$. \\
-
-$p \Until q \equiv p \Wait q \land \Event q$   This is theorem (\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$.\\
-
-The axiomatization of LTL in Manna and Pnueli consists of 8 Axioms and 4 inference rules. The following is
-a list of the 8 axioms of the Manna and Pnueli LTL proof system with the corresponding theorems of this work.\\
-
-(FX0) $\Always p \impl p$ This is a theorem (\ref{E:impAlways}) Strengthening of $\Always$.\\
-
-(FX1) $\Always (\Next \neg p \equiv \neg \Next p)$ This is a theorem that follows from (\ref{E:metatheorem}) Metatheorem
-and axiom (\ref{E:selfDual}) Self-dual.\\
-
-(FX2) $\Always (\Next (p \impl q)  \equiv ( \Next p \impl \Next q))$ This is a theorem that follows
-from (\ref{E:metatheorem}) Metatheorem and axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
-
-(FX3) $\Always (\Always (p \impl q)  \impl ( \Always p \impl \Always q))$ This is a theorem that follows
-from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.\\
-
-(FX4) $\Always p \impl \Always \Next p$ This is a theorem (\ref{E:impAlwaysAN}) $\Next$ generalization.\\
-
-(FX5) $\Always  (p \impl \Next p)  \impl  \Always (p \impl \Always p)$ This is a theorem that follows
-from (\ref{E:metaAlways}) Metatheorem $\Always$ and axiom (\ref{E:induction}) Induction.\\
-
-(FX6) $\Always (p \Wait q \equiv q \lor (p \land \Next (p \Wait q)))$ This is a theorem that follows
-from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:expansionWait}) Expansion of $\Wait$.\\
-
-(FX7) $\Always (\Always p \impl p \Wait q)$ This is a theorem that follows
-from (\ref{E:metatheorem}) Metatheorem and theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
-
-
-The four stated rules of inference in the Manna and Pnueli deductive system are: Rule GEN (Generalization),
-Rule SPEC (specialization), Rule INST (instantiation) and Rule MP (modus ponens).
-These inference rules exist in this work in the form of (\ref{E:metatheorem}) Metatheorem for GEN and SPEC, textual 
-substitution for INST and theorem (3.77) Modus ponens for MP.\\
-
-Contrast Manna and Pnueli system with ours.\\
-
-The above shows that all the deductive power of the Manna and Pnueli axiomatization is covered in this equational deductive system. All the axioms of Manna and Pnueli are either axioms in this work, or are theorems derivable in this work.\\
-
-Summarize Manna and Pnueli discussion in this section.\\
-
-We have shown above that this work has all the axioms, 
-theorems and inference rules to have the same deductive power as the Manna and Pnueli system.\\
 
 
 Not surprisingly EDS4LTL is closest in form and spirit to the temporal logic system described in Schneider \cite{Schn}.
