@@ -223,20 +223,19 @@ The treatment is in marked contrast to the traditional one exemplified by the cl
 
 Linear temporal logic describes how the truth values of propositions change over time.
 It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
-All treatments of linear temporal logic use $\mathcal{H}$ systems instead of $\mathcal{E}$.
-Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kröger and Merz \cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
-
+Most treatments of linear temporal logic use $\mathcal{H}$ systems instead of $\mathcal{E}$.
+Typical are Ben-Ari \cite{Ben2}, Emerson \cite{Emer}, Kröger and Merz \cite{Kroger}, and Manna and Pnueli \cite{Manna}.
 Each of these authors describes the semantics of the above temporal operators and provides an axiomatization for linear temporal logic.
 One characteristic of these $\mathcal{H}$ systems is the introduction of temporal inference rules along with temporal axioms from which temporal theorems are proved.
 Section \ref{comparison-previous-work} summarizes these systems and compares them with this work.
 
 Our institution has used LADM at the introductory undergraduate level since its publication, and the equational proof style has consequently permeated the computer science curriculum.
-A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic, because $\mathcal{E}$ has not yet been extended to this knowledge domain.
-Schneider \cite{Schn} includes a discussion of $\mathcal{E}$.
-Although he presents a temporal logic equational proof justification, the only appearance of an equational proof of a temporal logic theorem is a single example (page 74).
+A problem arises, however, when those who are schooled in $\mathcal{E}$ study concurrency and need the correctness proof tools of linear temporal logic.
+Schneider \cite{Schn} appears to be the only treatment of linear temporal logic that uses $\mathcal{E}$.
+Although this graduate-level text presents an equational deductive system, the only appearance of an equational proof of a temporal logic theorem is a single example.
 Likewise, Baier and Katoen \cite{Baier} have a single equational proof of a linear temporal logic theorem in their chapter on linear temporal logic.
 
-To solve the above problem, this paper presents a comprehensive equational deductive system suitable for introducing those versed in $\mathcal{E}$ to linear temporal logic.
+To solve the problem of teaching linear temporal logic at the undergraduate level, this paper presents a comprehensive linear temporal logic system suitable for those versed in the equational deductive system of LADM.
 In the same way that LADM brings the advantages of $\mathcal{E}$ to set theory and other mathematical domains, this paper brings the advantages of $\mathcal{E}$ to linear temporal logic.
 
 This axiomatization follows the spirit of $\mathcal{E}$ in its design to minimize the number of inference rules.
@@ -244,7 +243,7 @@ A unique characteristic of this system is the complete absence of any temporal i
 It extends the propositional calculus of LADM using only the same four inference rules of $\mathcal{E}$ along with additional temporal axioms.
 In our judgment, the absence of temporal inference rules brings the same clarity to linear temporal logic that $\mathcal{E}$ brings to the propositional calculus.
 
-The paper also adds to the linear temporal logic literature by proving many interesting and previously unpublished theorems.
+The paper also adds to the linear temporal logic literature by proving many previously unpublished theorems.
 It is comprehensive, as we have tried to include all known linear temporal theorems described in the literature.
 Although space limitations preclude giving a proof of every theorem in this paper, we have proved every theorem with $\mathcal{E}$.
 
