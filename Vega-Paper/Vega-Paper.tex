@@ -4185,6 +4185,41 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 Exercise for the student.\\
 }
 
+The following theorem is Problem 4.2 in Manna and Pnueli. \cite{Manna}
+\begin{equation}\label{E:eventualLatching}
+\textbf{Eventual latching:}\quad \Event\Always(p\impl \Always q) \equiv \Event\Always\neg p \lor \Event\Always q
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always(p\impl \Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (\ref{E:monoAlwaysEvent}) Monotonicity of $\Always\Event$}\\[\lgap]
+  \> \>   $\Event(\Always\Event p\impl \Always\Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Event(\Always\Event p\impl \Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $\Always\Always\Event p\impl \Event\Event\Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$ and (\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Always\Event p\impl \Event\Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\neg\Always\Event p\lor \Event\Always q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
+  \> \>   $\Event\Always\neg p\lor \Event\Always q$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Event\Always(p\impl \Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
+  \> \>   $\Event\Always(\neg p\lor \Always q)$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:distEventAlwaysOr}) Distributivity of $\Event\Always$ over $\lor$}\\[\lgap]
+  \> \>   $\Event\Always\neg p\lor \Event\Always\Always q$\\[\lgap]  
+  \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+  \> \>   $\Event\Always\neg p\lor \Event\Always q$ \quad \myqed
+\end{tabbing}
+
 The following theorem is Exercise 14.6 in Ben-Ari. \cite{Ben}
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Event\Always\neg p \lor \Always\Event q
