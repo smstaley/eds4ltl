@@ -115,10 +115,10 @@
 \begin{document}
 \maketitle
 \begin{abstract}
+This paper surveys the linear temporal logic (LTL) literature and presents all the LTL theorems from the survey, plus many new and interesting ones, in an equational deductive system.
 Equational deductive systems, developed by Dijkstra and Scholten and extended by Gries and Schneider, are based on only four inference rules -- Substitution, Leibniz, Equinimity, and Transitivity.
 Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system.
-This paper extends the equational deductive system of Gries and Schneider to linear temporal logic (LTL), using only the same four inference rules.
-The paper surveys the LTL literature and includes all the LTL theorems from the survey plus many new and interesting ones.
+This paper extends the equational deductive system of Gries and Schneider to LTL, using only the same four inference rules.
 Although space limitations preclude giving a proof of every theorem in this paper, every theorem has been proved with equational logic.
 \end{abstract}
 
@@ -4195,9 +4195,7 @@ The proof in the first direction follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always(p\impl \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (\ref{E:monoAlwaysEvent}) Monotonicity of $\Always\Event$}\\[\lgap]
-  \> \>   $\Event(\Always\Event p\impl \Always\Event\Always q)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Event\Always(p\impl \Always q) \impl \Event(\Always\Event p\impl \Event\Always q)$}\\[\lgap]
   \> \>   $\Event(\Always\Event p\impl \Event\Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
   \> \>   $\Always\Always\Event p\impl \Event\Event\Always q$\\[\lgap]
@@ -4218,6 +4216,31 @@ The proof in the second direction follows.
   \> \>   $\Event\Always\neg p\lor \Event\Always\Always q$\\[\lgap]  
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Event\Always\neg p\lor \Event\Always q$ \quad \myqed
+\end{tabbing}
+Lemma: $\Event\Always(p\impl \Always q) \impl \Event(\Always\Event p\impl \Event\Always q)$
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $q:=\Always q$}\\[\lgap]
+  \> \>   $\Always (p \impl \Always q) \impl (\Event p \impl \Event\Always q)$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
+  \> \>   $\Always(\Always (p \impl \Always q) \impl (\Event p \impl \Event\Always q))$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:monoAlwaysEvent}) Monotonicity of $\Always\Event$}\\[\lgap]
+  \> \>   $\Always\Event\Always (p \impl \Always q) \impl \Always\Event(\Event p \impl \Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
+  \> \>   $\Event\Always (p \impl \Always q) \impl \Always\Event(\Event p \impl \Event\Always q)$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and}\\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Event\Always (p \impl \Always q) \impl \Event(\Event p \impl \Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
+  \> \>   $\Event\Always (p \impl \Always q) \impl (\Always\Event p \impl \Event\Event\Always q)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
+  \> \>   $\Event\Always (p \impl \Always q) \impl (\Always\Event p \impl \Event\Always q)$\\[\lgap]
+      \> $\impl$  \> \Hintfirst{(\ref{E:impEvent}) Weakening of $\Event$ and} \\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $\Event\Always (p \impl \Always q) \impl \Event(\Always\Event p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
 
 The following theorem is Exercise 14.6 in Ben-Ari. \cite{Ben}
