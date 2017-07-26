@@ -15,9 +15,9 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
-%\usepackage[student]{optional}
-\usepackage[doc]{optional}
-%\usepackage[pub]{optional}
+
+%\usepackage[publication]{optional}
+\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -87,17 +87,7 @@
 \pagestyle{myheadings} 
 \markboth{\textbf{Draft} (\today)} {\textbf{Draft} (\today)}
 
-\opt{student}{
-\title{An Equational Deductive System\\for Linear Temporal Logic (Student)}
-}
-
-\opt{doc}{
-\title{An Equational Deductive System\\for Linear Temporal Logic (Complete)}
-}
-
-\opt{pub}{
-\title{An Equational Deductive System\\for Linear Temporal Logic}
-}
+\title{An Equational Deductive System\\for Linear Temporal Logic \opt{complete}{(Complete)}}
 
 \author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Pepperdine University, Summer 2009 and academic year 2009-10.}\\
    Vega affiliation
@@ -115,7 +105,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-This paper surveys the linear temporal logic (LTL) literature and presents all the LTL theorems from the survey, plus many new and interesting ones, in an equational deductive system.
+This paper surveys the linear temporal logic (LTL) literature and presents all the LTL theorems from the survey, plus many new ones, in an equational deductive system.
 Equational deductive systems, developed by Dijkstra and Scholten and extended by Gries and Schneider, are based on only four inference rules -- Substitution, Leibniz, Equinimity, and Transitivity.
 Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system.
 This paper extends the equational deductive system of Gries and Schneider to LTL, using only the same four inference rules.
@@ -1116,7 +1106,7 @@ The following two axioms define the \textit{next} operator $\Next$.
 \end{equation}
 
 Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
-In (2.3b) Metatheorem Duality with $P$ the expression $\Next\neg p$ and $Q$ the expression $\neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions, and so the application of the metatheorem is trivial.
+In (2.3b) Metatheorem Duality with $P$ the expression $\Next\neg p$ and $Q$ the expression $\neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions.
 
 Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
 From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.
@@ -1135,8 +1125,8 @@ Linearity follows from self-dual.
   \> which is (\ref{E:selfDual}) Self-dual. \quad \myqed
 \end{tabbing}
 
-Here are proofs that $\Next$ distributes over $\lor$, $\land$, and $\equiv$, using
-distributivity of $\Next$ over $\impl$.
+Here is the proof that $\Next$ distributes over $\lor$ using distributivity of $\Next$ over $\impl$.
+The following theorems show that it also distributes over $\land$ and $\equiv$.
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
@@ -1154,13 +1144,10 @@ distributivity of $\Next$ over $\impl$.
 	\> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
 	\> \>   $\Next p \lor \Next q$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:distNextAnd}) follows from (\ref{E:distNextOr}) by (2.3b) Metatheorem Duality,
-but the following proof uses (\ref{E:distNextOr}) without invoking duality.
 \begin{equation}\label{E:distNextAnd}
 \textbf{Distributivity of $\Next$ over $\land$:}\quad \Next (p \land q) \equiv \Next p \land \Next q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1180,12 +1167,12 @@ but the following proof uses (\ref{E:distNextOr}) without invoking duality.
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Next p \land \Next q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distNextEquiv}
 \textbf{Distributivity of $\Next$ over $\equiv$:}\quad \Next (p \equiv q) \equiv \Next p \equiv \Next q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next (p \equiv q)$\\[\lgap]
@@ -1198,10 +1185,6 @@ but the following proof uses (\ref{E:distNextOr}) without invoking duality.
   \> $=$  \>  \Hint{(3.80) Mutual Implication $(p\impl q) \land (q\impl p) \equivs (p\equiv q)$}\\[\lgap]
   \> \>   $\Next p \equiv \Next q$ \quad \myqed
 \end{tabbing}
-}
-
-\opt{student}{
-Exercise for the student. Hint: Start with mutual implication.\\
 }
 
 Now, $true$ holds in the next state, and $false$ does not hold in the next state.
@@ -1226,15 +1209,12 @@ and, by induction, hold in all states.
 	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$ with $p := \Next p$}\\[\lgap]
 	\> \>   $true$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:nextFalse}) follows from (\ref{E:nextTruth}) by (2.3b) Metatheorem Duality,
-but the following proof uses (\ref{E:linearity}) Linearity instead of duality.
 \begin{equation}\label{E:nextFalse}
 \textbf{Falsehood of $\Next$:}\quad \Next false \equiv false
 \end{equation}
 
+\opt{complete}{
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next false \equiv false$\\[\lgap]
@@ -1246,10 +1226,6 @@ but the following proof uses (\ref{E:linearity}) Linearity instead of duality.
   \> \>   $\Next true \equiv true$\\[\lgap]
   \> which is (\ref{E:nextTruth}) Truth of $\Next$. \quad \myqed
 \end{tabbing}
-}
-
-\opt{student}{
-Exercise for the student.\\
 }
 
 \subsection{Until}\label{section-until}
@@ -1346,6 +1322,7 @@ And now,
 Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
 axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
 Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
+Proofs of both use (\ref{E:expansionUntil}) Expansion of $\Until$.
 Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
 possibilities of constants $true$ and $false$ on either side of $\Until$.
 None of these three theorems seem to appear in the temporal logic literature.
@@ -1354,9 +1331,8 @@ operator $\Event$ in Section \ref{section-event}.
 \begin{equation}\label{E:zeroUntil}
 \textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until true$\\[\lgap]
@@ -1366,15 +1342,12 @@ operator $\Event$ in Section \ref{section-event}.
   \> \>   $true$ \quad \myqed
 \end{tabbing}
 }
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:leftIdUntil}
 \textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
 \end{equation}
 
+\opt{complete}{
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $false \Until q$\\[\lgap]
@@ -1385,9 +1358,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$}\\[\lgap]
   \> \>   $q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
 }
 
 Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
