@@ -6136,89 +6136,19 @@ for the \textit{wait} operator.
 
 \section{Comparison with previous work}\label{comparison-previous-work}
 
-As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, Schneider \cite{Schn}, Emerson \cite{Emer}, and Ben-Ari \cite{Ben}.
+As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Ben-Ari \cite{Ben}, Emerson \cite{Emer}, Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
 This section compares the axiomatization systems of those sources with this work.
 
-Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
-They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
+\subsection{Survey of LTL deductive systems}\label{section-survey}
 
-Kröger and Merz first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
-They define $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
-The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:CompInductRule}) Computational induction rule.
-The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, and (\ref{E:expansionAlways}) Expansion of $\Always$.
-They introduce the \textit{until} operator and the \textit{wait} operator as an extension to the propositional linear temporal logic.
-The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
+Ben-Ari \cite{Ben} takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and defines $\Event$ to be an abbreviation for $\neg \Always \neg$ as in (\ref{E:eventAsAlways}).
+The $\Wait$ operator is not covered in his system for LTL.
 
-Manna and Pnueli \cite{Manna} use the $\rightarrow$ symbol for implication, so that $p\impl q$ is written as $p\rightarrow q$.
-They introduce the symbol $\impl$ to stand for always implies, so that $\Always(p\impl q)$ is written as $p\impl q$.
-Similarly, $p\equiv q$ is written as $p\leftrightarrow q$, and $\Always(p\equiv q)$ is written as $p\Leftrightarrow q$.
+The two stated rules of inference in the Ben-Ari deductive system correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
+The five axioms that define $\Next$ and $\Always$ correspond to (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:expansionAlways2}) Expansion of $\Always$, (\ref{E:induction}) Induction, and (\ref{E:linearity}) Linearity.
+The two axioms that define $\Until$ correspond to (\ref{E:expansionUntil}) Expansion of $\Until$ and (\ref{E:eventuality}) Eventuality.
 
-Manna and Pnueli define a proof system that combines the future operators $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ with a set of corresponding past operators.
-For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait false$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
-
-The four basic inference rules in the Manna and Pnueli deductive system are generalization and specialization, corresponding to (\ref{E:metatheorem}) Metatheorem, instantiation, corresponding to inference rule Substitution (Section 2.1), and modus ponens, corresponding to (3.77).
-The derived rules include particularization, corresponding to (\ref{E:impAlways}) Strengthening of $\Always$, entailment modus ponens, corresponding to $\Always(p\impl q)\land\Always p \impl \Always q$, and entailment transitivity, corresponding to $\Always(p\impl q)\land \Always(q\impl r) \impl \Always(p\impl r)$.
-The last two expressions are easy to prove from (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
-
-Their eight future axioms correspond to (\ref{E:impAlways}) Strengthening of $\Always$, (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:impAlwaysAN}) $\Next$ generalization, (\ref{E:induction}) Induction, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
-
-
-
-
-
-Not surprisingly EDS4LTL is closest in form and spirit to the temporal logic system described in Schneider \cite{Schn}.
-Both systems start with the validities of propositional logic and use an equational deductive system developed in
-Gries and Schneider \cite{LADM}. This system is then extended with the addition of the temporal operators and the
-axioms defining their behavior.
-Section 3.3 in Schneider \cite{Schn} defines the axioms and inference rules of a deductive system
-for LTL.\\
-
-The axiomatization of LTL in Schneider consists of 10 Axioms and 3 inference rules. The following is
-a list of the 10 axioms of the Schneider LTL proof system with the corresponding equivalent theorems of this work.\\
-
-(S3.10a) $\Always p \impl p$ This is a theorem (\ref{E:impAlways}) Strengthening of $\Always$.\\
-
-(S3.10b) $\Always (p \impl q)  \impl ( \Always p \impl \Always q)$ This is a theorem
- (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.\\
- 
- (S3.15) $\Event p \equiv \neg \Always \neg p$   This is theorem (\ref{E:eventAsAlways}) $\Event p \equiv \neg \Always \neg p$. \\
-
-(S3.21a) $\Next \neg p \equiv \neg \Next p$ This is an axiom (\ref{E:selfDual}) Self-dual.\\
-
-(S3.21b) $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$ 
-This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
-
-(S3.21c) $\Always p \impl  \Next p$ This is a theorem (\ref{E:impAlwaysN}) Strengthening of $\Always$.\\
-
-(S3.21d) $\Always p \impl  \Next \Always p$ This is a theorem (\ref{E:impAlwaysNA}) Strengthening of $\Always$.\\
-
-(S3.21e) $\Always  (p \impl \Next p)  \impl   (p \impl \Always p)$ This is an axiom (\ref{E:induction}) Induction.\\
-
-(S3.27a) $\Always p \impl p \Wait q$ This is a theorem (\ref{E:alwaysImpWait}) Perpetuity.\\
-
-(S3.27b) $p \Wait q \equiv q \lor (p \land \Next (p \Wait q))$ This is a theorem (\ref{E:expansionWait}) Expansion of $\Wait$.\\
-
-The three stated rules of inference in the Schneider deductive system are: (S3.7) TL substitution,
-(S3.8) TL Modus ponens and (S3.11) Temporal generalization rule.
-These inference rules exist in this work in the form of textual 
-substitution for (S3.7), theorem (3.77) Modus ponens for (S3.8) and (\ref{E:metatheorem}) Metatheorem for (S3.11) .\\
-
-Contrast Schneider system with ours.\\
-
-The above shows that all the deductive power of the Schneider axiomatization is covered in this equational deductive system. All the axioms of Schneider are either axioms in this work, or are theorems derivable in this work.
-In addition, Schneider shows how an equational can be established for temporal logic making this
-system similar to the one presented here.
-An important difference is we place equal emphasis on having both the $\Until$ and $\Wait$
-operators equally represented in the deductive system, whereas Schneider mainly discusses the $\Wait$ operator.
-Of course, either operator can be defined in terms of the other with no loss of expressive power.\\
-
-Summarize Schneider discussion in this section.\\
-
-We have shown above that this work has all the axioms, 
-theorems and inference rules to have the same deductive power as the Schneider system.\\
-
-
-Section 6.3 in Emerson \cite{Emer} is a treatment of deductive systems for temporal logic. As an example
+Emerson \cite{Emer} is a treatment of deductive systems for temporal logic. As an example
 of a deductive system, an axiomatization of CTL (Computational Tree Logic) is presented. Since CTL extends
 LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, we can
 develop a set of axioms for LTL by elimination of the extra quantifiers. This takes the axiom set of Emerson from 15 to 10 axioms.
@@ -6251,59 +6181,51 @@ and the theorem $\neg \Event q \impl \neg (p \Until q)$ which is the contraposit
 The two stated rules of inference in the Emerson deductive system are: R1 (Generalization), which is (\ref{E:metatheorem}) Metatheorem,
 and R2 (Modus Ponens), which is a theorem (3.77) in this work.\\
 
-Contrast Emerson's system with ours.\\
-
-The above shows that all the deductive power of the Emerson axiomatization is covered in this equational deductive system. All the axioms of Emerson are either axioms in this work, or are theorems derivable in this work.\\
-
-Summarize Emerson's discussion in this section.\\
-
-Taking a subset of the CTL deductive system of Emerson needed for LTL, we show that this work has all the axioms, 
-theorems and inference rules to have the same deductive power as that system, which is claimed to be both sound and complete.\\
 
 
-Chapter 14 in Ben-Ari \cite{Ben} defines the axioms and inference rules of a deductive system
-for LTL. The system takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and gives axioms
-for those while taking the $\Event$ operator to be an abbreviation for $\neg \Always \neg$. The $\Wait$ operator is not covered
-in this system for LTL.\\
 
-The axiomatization of LTL in Ben-Ari consists of 8 Axioms and 2 inference rules. The following is
-a list of the 8 axioms of the Ben-Ari LTL proof system with the corresponding equivalent theorems of this work.\\
 
-(Axiom 0) All validities of propositional logic. Also assumed in this work.\\
+Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
+They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
 
-(Axiom 1) $\Always (p \impl q)  \impl ( \Always p \impl \Always q)$ This is a theorem
- (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.\\
+Kröger and Merz first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
+They define $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
+The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:CompInductRule}) Computational induction rule.
+The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, and (\ref{E:expansionAlways}) Expansion of $\Always$.
+They introduce the \textit{until} operator and the \textit{wait} operator as an extension to the propositional linear temporal logic.
+The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
-(Axiom 2) $\Next (p \impl q)  \equiv ( \Next p \impl \Next q)$ 
-This is an axiom (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$.\\
+Manna and Pnueli \cite{Manna} use the $\rightarrow$ symbol for implication, so that $p\impl q$ is written as $p\rightarrow q$.
+They introduce the symbol $\impl$ to stand for always implies, so that $\Always(p\impl q)$ is written as $p\impl q$.
+Similarly, $p\equiv q$ is written as $p\leftrightarrow q$, and $\Always(p\equiv q)$ is written as $p\Leftrightarrow q$.
 
-(Axiom 3) $\Always p \equiv p \land \Next p \land \Next\Always p$ This is a theorem
- (\ref{E:expansionAlways2}) Expansion of $\Always$.\\
- 
- (Axiom 4) $\Always  (p \impl \Next p)  \impl   (p \impl \Always p)$ This is an axiom (\ref{E:induction}) Induction.\\
- 
- (Axiom 5) $\Next p \equiv \neg\Next\neg p$ This is a theorem(\ref{E:linearity}) Linearity.\\
- 
- (Axiom 6) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
+Manna and Pnueli define a proof system that combines the future operators $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ with a set of corresponding past operators.
+For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait false$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
 
-(Axiom 7) $p \Until q \impl \Event q$ This is a theorem (\ref{E:eventuality}) Eventuality.\\
+The four basic inference rules in the Manna and Pnueli deductive system are generalization and specialization, corresponding to (\ref{E:metatheorem}) Metatheorem, instantiation, corresponding to inference rule Substitution (Section 2.1), and modus ponens, corresponding to (3.77).
+The derived rules include particularization, corresponding to (\ref{E:impAlways}) Strengthening of $\Always$, entailment modus ponens, corresponding to $\Always(p\impl q)\land\Always p \impl \Always q$, and entailment transitivity, corresponding to $\Always(p\impl q)\land \Always(q\impl r) \impl \Always(p\impl r)$.
+The last two expressions are easy to prove from (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
 
-The two stated rules of inference in the Ben-Ari deductive system are: Modus ponens and generalization.
-These inference rules exist in this work in the form of  
-theorem (3.77) Modus ponens and (\ref{E:metatheorem}) Metatheorem.\\
+Their eight future axioms correspond to (\ref{E:impAlways}) Strengthening of $\Always$, (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:impAlwaysAN}) $\Next$ generalization, (\ref{E:induction}) Induction, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
-Contrast Ben-Ari system with ours.\\
+Schneider \cite{Schn} is the only treatment of LTL that is based on the equational deductive system developed in Gries and Schneider's LADM. \cite{LADM}
+He does not consider the \textit{until} operator $\Until$ (apart from an exercise for the student) but uses the symbol $\Until$ for the \textit{wait} operator.
+The expression $p\Wait q$ is written $p\Until q$ and read ``p unless q''.
 
-The above shows that all the deductive power of the Ben-Ari axiomatization is covered in this equational deductive system. All the axioms of Ben-Ari are either axioms in this work, or are theorems derivable in this work.
-An important difference is we place equal emphasis on having both the $\Until$ and $\Wait$
-operators equally represented in the deductive system, whereas Ben-Ari mainly discusses the $\Until$ operator.
-Of course, either operator can be defined in terms of the other with no loss of expressive power. In Chapter 14 Ben-Ari also
-sketches soundness and completeness results for the axiomatization he presents.\\
+The rules of inference in Schneider's deductive system include TL substitution, corresponding to inference rule Substitution, TL Modus ponens, corresponding to (3.77) Modus ponens, and Temporal generalization rule, corresponding to the generalization part of (\ref{E:metatheorem}) Metatheorem.
+There are also a set of derived inference rules corresponding to (\ref{E:AlwaysConRule}) Consequence rule of $\Always$, (\ref{E:AlwaysCatRule}) Catenation rule of $\Always$, (\ref{E:EventConRule}) Consequence rule of $\Event$, (\ref{E:EventCatRule}) Catenation rule of $\Event$, (\ref{E:NextConRule}) Consequence rule of $\Next$, (\ref{E:induction}) Induction, and (\ref{E:CompInductRule}) Computational induction rule.
 
-Summarize Ben-Ari discussion in this section.\\
+Schneider's deductive system consists of two axioms for $\Always$ corresponding to (\ref{E:impAlways}) Strengthening of $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
+It defines $\Event$ as in theorem (\ref{E:eventAsAlways}).
+It has five axioms for $\Next$ corresponding to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:impAlwaysN}) Strengthening of $\Always$, (\ref{E:impAlwaysNA}) Strengthening of $\Always$, and (\ref{E:induction}) Induction.
+The two axioms for the \textit{wait} operator correspond to (\ref{E:alwaysImpWait}) Perpetuity and (\ref{E:expansionWait}) Expansion of $\Wait$.
 
-We have shown above that this work has all the axioms, 
-theorems and inference rules to have the same deductive power as the Ben-Ari system.\\
+\subsection{Comparison of LTL deductive systems}\label{section-comparison}
+
+
+
+
+
 
 
 This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
