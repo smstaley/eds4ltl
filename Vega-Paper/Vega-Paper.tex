@@ -3417,6 +3417,20 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event p \impl \Event q$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:alwaysPImplNextQ}
+\Always (p \impl \Next q) \impl (p \impl \Event q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl \Next q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
+  \> \>   $p \impl \Next q$\\[\lgap]
+  \> $\impl$  \>  \Hintfirst{(\ref{E:nextEvent}) Weakening of $\Event$ and}\\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $p \impl \Event q$ \quad \myqed
+\end{tabbing}
 
 \begin{figure}[t]
 \centering
