@@ -641,6 +641,9 @@ In other words,
 \end{tabbing}
 Furthermore, $\Next 10\le x< 13$ does not hold at state $s_4$ even though $10\le x< 13$ does hold in that state, because $10\le x< 13$ does not hold in state $s_5$.
 
+This definition of $\Next$ assumes an infinite sequence of states.
+Emerson \cite{Emer} shows variations of the \textit{next} operator that would apply to a finite sequence of states suitable for modeling a program that terminates. 
+
 \subsubsection*{The \textit{until} operator $\Until$}
 
 The semantics of the binary infix operator $\Until$ are
@@ -6162,7 +6165,15 @@ The two stated rules of inference in the Ben-Ari deductive system correspond to 
 The five axioms that define $\Next$ and $\Always$ correspond to (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:expansionAlways2}) Expansion of $\Always$, (\ref{E:induction}) Induction, and (\ref{E:linearity}) Linearity.
 The two axioms that define $\Until$ correspond to (\ref{E:expansionUntil}) Expansion of $\Until$ and (\ref{E:eventuality}) Eventuality.
 
-Emerson \cite{Emer} is a treatment of deductive systems for temporal logic. As an example
+Emerson \cite{Emer} uses the symbol X to denote the \textit{next} operator, F to denote \textit{eventually}, and G to denote \textit{always}.
+He also writes $\overset{\infty}{\textrm{F}}$ to denote \textit{always eventually} and $\overset{\infty}{\textrm{G}}$ to denote \textit{eventually always}.
+With these conventions $\Always p \equiv p \land \Next\Always p$ is written as G $p \equiv p \;\land$ X G $p$, and $\neg \Event\Always p \equiv \Always\Event \neg p$ is written as $\neg \overset{\infty}{\textrm{G}} p \equiv \overset{\infty}{\textrm{F}} \neg p$.
+Emerson's notation for the \textit{until} operator is $\mathbf{U}$, which is sometimes written $\mathbf{U}_\ext$ to distinguish it from the \textit{wait} operator, which is written $\mathbf{U}_\all$.
+With these conventions $p \Until q \equiv p \Wait q\land \Event q$ is written as $p \;\mathbf{U}_\ext \;q \equiv p \;\mathbf{U}_\all \;q\land \textrm{F} \;q$.
+
+xxxx
+
+is a treatment of deductive systems for temporal logic. As an example
 of a deductive system, an axiomatization of CTL (Computational Tree Logic) is presented. Since CTL extends
 LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, we can
 develop a set of axioms for LTL by elimination of the extra quantifiers. This takes the axiom set of Emerson from 15 to 10 axioms.
