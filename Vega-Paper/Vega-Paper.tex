@@ -3323,13 +3323,13 @@ And now,
   \> \>   $r \Until s$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:CompInductRule}
-\textbf{Computational induction rule:}\quad \Always ( p \impl (q \land \Next p)) \impl (p \impl \Always q)
+\textbf{Computational induction rule:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ( p \impl (q \land \Next p))$\\[\lgap]
+  \> \>   $\Always ( p \impl q \land \Next p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
   \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
@@ -6171,29 +6171,15 @@ With these conventions $\Always p \equiv p \land \Next\Always p$ is written as G
 Emerson's notation for the \textit{until} operator is $\mathbf{U}$, which is sometimes written $\mathbf{U}_\ext$ to distinguish it from the \textit{wait} operator, which is written $\mathbf{U}_\all$.
 With these conventions $p \Until q \equiv p \Wait q\land \Event q$ is written as $p \;\mathbf{U}_\ext \;q \equiv p \;\mathbf{U}_\all \;q\land \textrm{F} \;q$.
 
-xxxx
+Emerson's deductive system is for Computational Tree Logic (CTL) which is a system of branching time logic.
+In contrast to linear time logics, which model time as an anchored sequence of states, branching time logics model time as a tree structure where at each point in time the computation may split into several possible future states.
+CTL extends LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, A (for all futures) and E (for some futures).
+Consequently, Emerson's deductive system does not directly apply to LTL.
+The CTL inference rules and axioms without the additional quantifiers, however, do correspond to the LTL deductive system of our system as follows. 
 
-is a treatment of deductive systems for temporal logic. As an example
-of a deductive system, an axiomatization of CTL (Computational Tree Logic) is presented. Since CTL extends
-LTL to multiple timelines (branches) through the addition of two additional quantifiers over these branches, we can
-develop a set of axioms for LTL by elimination of the extra quantifiers. This takes the axiom set of Emerson from 15 to 10 axioms.
-Following is a list of the 10 axioms of this Emerson LTL system with the corresponding theorems of this work.\\
+As with the LTL system of Ben-Ari, the two stated rules of inference correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
 
-
-
-(Ax1) All validities of propositional logic. Also assumed in this work.\\
-
-(Ax2) $\Event q \equiv true \Until q$ This is (\ref{E:defEvent}) Definition of $\Event$.\\
-
-(Ax2b) $\Always p \equiv \neg \Event \neg p$ This is (\ref{E:defAlways}) Definition of $\Always$.\\
-
-(Ax4) $\Next (p \lor q) \equiv \Next p \lor \Next q$ This is a theorem (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$.\\
-
-(Ax5) $\Next p \equiv \neg\Next\neg p$ This is a theorem(\ref{E:linearity}) Linearity.\\
-
-(Ax6) $p \Until q \equiv q \lor (p \land \Next (p \Until q))$ This is an axiom (\ref{E:expansionUntil}) Expansion of $\Until$.\\
-
-(Ax8) $\Next true$ This is a theorem (\ref{E:nextTruth}) Truth of $\Next$.\\
+The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, 
 
 (Ax9) $\Always ( r \impl (\neg q \land \Next r)) \impl (r \impl \neg (p \Until q))$ This is a theorem that follows from (Ax9b) 
 and the theorem $\neg \Event q \impl \neg (p \Until q)$ which is the contrapositive of theorem (\ref{E:eventuality}) Eventuality.\\
@@ -6205,6 +6191,8 @@ and the theorem $\neg \Event q \impl \neg (p \Until q)$ which is the contraposit
 
 The two stated rules of inference in the Emerson deductive system are: R1 (Generalization), which is (\ref{E:metatheorem}) Metatheorem,
 and R2 (Modus Ponens), which is a theorem (3.77) in this work.\\
+
+
 
 
 
