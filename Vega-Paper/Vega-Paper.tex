@@ -2382,6 +2382,20 @@ Exercise for the student.\\
   \> \>   $\Always p \impl \Next \Always p$\\[\lgap]
   \> which is (\ref{E:impAlwaysNA}) Strengthening of $\Always$. \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:impAlwaysNotUntil}
+\Always p \impl \neg(q\Until \neg p)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always p \impl \neg(q\Until \neg p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.61) Contrapositive $p\impl q \equivs \neg q\impl \neg p$}\\[\lgap]
+  \> \>   $q\Until \neg p \impl \neg \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $q\Until \neg p \impl \Event\neg p$\\[\lgap]
+  \> which is (\ref{E:eventuality}) Eventuality with $p,q:=q,\neg p$\quad \myqed
+\end{tabbing}
 
 \subsection{Temporal deduction}
 
@@ -3340,6 +3354,20 @@ And now,
   \> \>   $(\Always p \impl \Always q) \land (p \impl \Always p) $\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:CompInductRule2Em}
+\textbf{Computational induction rule:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always ( p \impl \neg q \land \Next p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule}\\[\lgap]
+  \> \>   $p \impl \Always \neg q$\\[\lgap]
+  \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg p,r$ and} \\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> \>   $p \impl \neg(r\Until q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:EventConfRule}
 \textbf{$\Event$ Confluence:}\quad \Always ((p \impl \Event (q \lor r)) \land (q \impl \Event t) \land (r \impl \Event t)) \impl (p \impl \Event t)
@@ -6179,24 +6207,7 @@ The CTL inference rules and axioms without the additional quantifiers, however, 
 
 As with the LTL system of Ben-Ari, the two stated rules of inference correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
 
-The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, 
-
-(Ax9) $\Always ( r \impl (\neg q \land \Next r)) \impl (r \impl \neg (p \Until q))$ This is a theorem that follows from (Ax9b) 
-and the theorem $\neg \Event q \impl \neg (p \Until q)$ which is the contrapositive of theorem (\ref{E:eventuality}) Eventuality.\\
-
-(Ax9b) $\Always ( r \impl (\neg q \land \Next r)) \impl (r \impl \neg \Event q)$ This is a theorem (\ref{E:CompInductRule})
- Computational induction rule with $ p, q := r, \neg q$.\\
-
-(Ax11) $\Always (p \impl q) \impl (\Next p \impl \Next q)$ This is a theorem(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.\\
-
-The two stated rules of inference in the Emerson deductive system are: R1 (Generalization), which is (\ref{E:metatheorem}) Metatheorem,
-and R2 (Modus Ponens), which is a theorem (3.77) in this work.\\
-
-
-
-
-
-
+The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, (\ref{E:CompInductRule}) and (\ref{E:CompInductRule2Em}) Computational induction rules, and (\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.
 
 Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
 They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
