@@ -1462,7 +1462,6 @@ p \Until q \impl p \lor q
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q$\\[\lgap]
@@ -1471,10 +1470,6 @@ p \Until q \impl p \lor q
   \> $\impl$  \>  \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$ with $p,q,r := q,p,\Next(p \Until q)$}\\[\lgap]
   \> \>   $p \lor q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:untilInsertion}
 \textbf{$\Until$ Insertion:}\quad q \impl p \Until q
 \end{equation}
@@ -1732,7 +1727,6 @@ Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event true$\\[\lgap]
@@ -1741,16 +1735,11 @@ Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:eventFalse}
 \textbf{Falsehood of $\Event$:}\quad \Event false \equiv false
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event false$\\[\lgap]
@@ -1759,10 +1748,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
   \> \>   $false$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Expansion of $\Event$, like expansion of $\Until$, has two disjuncts.
 The first describes the current state and the second contains the operation in the next state.
@@ -1772,7 +1757,6 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event p$\\[\lgap]
@@ -1785,10 +1769,6 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
@@ -1852,7 +1832,6 @@ The following six theorems for $\Event$ are common to all temporal logic systems
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Event p$\\[\lgap]
@@ -1865,10 +1844,6 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:dNextEvent}
 \textbf{Exchange of $\Next$ and $\Event$:}\quad \Next\Event p \equiv \Event\Next p
 \end{equation}
@@ -1891,7 +1866,6 @@ Exercise for the student.\\
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event(p \lor q)$\\[\lgap]
@@ -1902,10 +1876,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
   \> \>   $\Event p \lor \Event q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:distEventAnd}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \impl \Event p \land \Event q
 \end{equation}
@@ -1946,7 +1916,6 @@ The following theorem expresses $\Event p$ in terms of $\Always p$ and is the du
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\neg\Always\neg p$\\[\lgap]
@@ -1955,10 +1924,6 @@ The following theorem expresses $\Event p$ in terms of $\Always p$ and is the du
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Whereas the \textit{next} operator $\Next$ is its own dual, the \textit{eventually} operator $\Event$
 and the \textit{always} operator $\Always$
@@ -2040,7 +2005,6 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of 
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always false \equiv false$\\[\lgap]
@@ -2052,10 +2016,6 @@ Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of 
   \> \>   $\Event true \equiv true$\\[\lgap]
   \> which is (\ref{E:eventTrue}) Truth of $\Event$. \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 While the expansions of $\Until$ and $\Event$ have two disjuncts,
 the expansion of $\Always$ has two conjuncts.
@@ -2088,7 +2048,6 @@ Theorem (\ref{E:expansionAlways}) is the dual of (\ref{E:expansionEvent}) which 
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \land \Next p \land \Next\Always p$\\[\lgap]
@@ -2103,10 +2062,6 @@ Theorem (\ref{E:expansionAlways}) is the dual of (\ref{E:expansionEvent}) which 
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Theorem (\ref{E:absAndIntoAlways}) absorption of $\land$ into $\Always$,
 is the dual of (\ref{E:absOrIntoEvent}) the absorption of $\lor$ into $\Event$,
@@ -2126,7 +2081,6 @@ do not seem to appear in the temporal logic literature.
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \land \Always p$\\[\lgap]
@@ -2137,16 +2091,11 @@ do not seem to appear in the temporal logic literature.
   \> $=$  \>  \Hint{(\ref{E:expansionAlways}) Expansion of $\Always$}\\[\lgap]
   \> \>   $\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:absAlwaysIntoOr}
 \textbf{Absorption of $\Always$ into $\lor$:}\quad \Always p \lor p \equiv p
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \lor p$\\[\lgap]
@@ -2155,11 +2104,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.43b) Absorption, $p\lor (p \land q) \equiv p$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
-}
-
-\opt{student}{
-Exercise for the student.\\
-}
 
 The absorption of $\Event$ into $\Always$ and of $\Always$ into $\Event$ appear to be unique to this system.
 Their proofs are straightforward applications of the previous absorption theorems.
@@ -2183,7 +2127,6 @@ Their proofs are straightforward applications of the previous absorption theorem
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \lor \Event p$\\[\lgap]
@@ -2194,10 +2137,6 @@ Their proofs are straightforward applications of the previous absorption theorem
   \> $=$  \>  \Hint{(\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Theorem (\ref{E:IdemAlways}) absorption of $\Always$ is the dual of (\ref{E:IdemEvent}) the absorption of $\Event$,
 and (\ref{E:dNextAlways}) the exchange of $\Next$ and $\Always$ is the dual of
@@ -2207,7 +2146,6 @@ and (\ref{E:dNextAlways}) the exchange of $\Next$ and $\Always$ is the dual of
 \end{equation}
 
 \emph{Proof}: (Kyle Sundman)
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Always p$\\[\lgap]
@@ -2220,16 +2158,11 @@ and (\ref{E:dNextAlways}) the exchange of $\Next$ and $\Always$ is the dual of
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:dNextAlways}
 \textbf{Exchange of $\Next$ and $\Always$:}\quad \Next\Always p \equiv \Always\Next p
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next\Always p$\\[\lgap]
@@ -2244,20 +2177,15 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
   \> \>   $\Always\Next p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Theorem (\ref{E:impNext}) is unique to this system.
 Theorem (\ref{E:pSwitches}) states that if $p$ holds and eventually $\neg p$ holds, there must eventually be a state where $p$ holds in that state and it does not hold in the next state.
-It is interesting to note that theorem (\ref{E:pSwitches}) is the contrapositive of, and therefore equivalent to, (\ref{E:induction}) Axiom, Induction.
+Theorem (\ref{E:pSwitches}) is the contrapositive of, and therefore equivalent to, (\ref{E:induction}) Axiom, Induction.
 \begin{equation}\label{E:impNext}
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
 
 \emph{Proof}: (Ravi Mohan)
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p\impl \Always p$\\[\lgap]
@@ -2270,10 +2198,6 @@ p \impl \Always p \equiv p \impl \Next\Always p
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p \impl \Next\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:pSwitches}
 p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \end{equation}
@@ -2321,7 +2245,6 @@ for $\Event$.
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
@@ -2330,16 +2253,11 @@ for $\Event$.
   \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:impAlwaysN}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next p
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
@@ -2348,16 +2266,11 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Next p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:impAlwaysNA}
 \textbf{Strengthening of $\Always$:}\quad \Always p \impl \Next\Always p
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p$\\[\lgap]
@@ -2366,10 +2279,6 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Next\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:impAlwaysAN}
 \textbf{$\Next$ generalization:}\quad \Always p \impl \Always\Next p
 \end{equation}
@@ -2444,10 +2353,6 @@ Note that if you assume $P$ in a step of an LTL proof of $Q$, you have \textit{n
 The following two theorems, (\ref{E:andUntilDist}) and (\ref{E:axiomUntilImpl}), are unique to this system.
 However, they are required for the proof of later theorems that are included in other systems.
 In particular, the proofs of (\ref{E:rightMonoUntil}) and (\ref{E:leftMonoUntil}) depend on (\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$.
-\opt{student}{
-\emph{Proof}:\\
-Exercise for the student.\\
-}
 \begin{equation}\label{E:andUntilDist}
 \textbf{Distributivity of $\land$ over $\Until$:}\quad \Always p \land q \Until r \impl (p \land q) \Until (p \land r)
 \end{equation}
@@ -2570,7 +2475,6 @@ Theorem (\ref{E:alwaysAndEvent}) shows how $\Event$ distributes over $\land$.
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\neg p$\\[\lgap]
@@ -2579,16 +2483,11 @@ Theorem (\ref{E:alwaysAndEvent}) shows how $\Event$ distributes over $\land$.
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\neg\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:alwaysAndEvent}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Always p \land \Event q \impl \Event (p \land q)
 \end{equation}
 
 \emph{Proof}: (Ravi Mohan)
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Event q$\\[\lgap]
@@ -2599,10 +2498,6 @@ Exercise for the student.\\
   \> $\impl$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $p,q:=p\land true,p\land q$}\\[\lgap]
   \> \>   $\Event (p \land q)$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 Theorems (\ref{E:excludedMid}), (\ref{E:excludedMidb}), and (\ref{E:excludedMidc}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
 Theorems (\ref{E:contradiction}), (\ref{E:contradictionb}), and (\ref{E:contradictionc}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
@@ -2743,7 +2638,6 @@ Theorems  (\ref{E:eventImpAlways}) and (\ref{E:eventPImplEventQ}) show how $\Eve
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \land q)$\\[\lgap]
@@ -2758,10 +2652,6 @@ Theorems  (\ref{E:eventImpAlways}) and (\ref{E:eventPImplEventQ}) show how $\Eve
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$, twice}\\[\lgap]
   \> \>   $\Always p \land \Always q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:distAlwaysOr}
 \textbf{Distributivity of $\Always$ over $\lor$:}\quad \Always p \lor \Always q \impl \Always (p \lor q)
 \end{equation}
@@ -2828,7 +2718,6 @@ Exercise for the student.\\
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event(p \impl q)$\\[\lgap]
@@ -2841,10 +2730,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\Always p \impl \Event q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:eventPImplEventQ}
 \textbf{Distributivity of $\Event$ over $\impl$:}\quad (\Event p \impl \Event q) \impl \Event (p \impl q)
 \end{equation}
@@ -3118,7 +3003,6 @@ operators are monotonic.
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q)$\\[\lgap]
@@ -3127,16 +3011,11 @@ operators are monotonic.
   \> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
   \> \>   $\Next p \impl \Next q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:alwaysImpEvents}
 \textbf{Monotonicity of $\Event$:}\quad \Always (p \impl q) \impl (\Event p \impl \Event q)
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q) \impl (\Event p \impl \Event q)$\\[\lgap]
@@ -3157,16 +3036,11 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:distAlwaysImp}
 \textbf{Monotonicity of $\Always$:}\quad \Always (p \impl q) \impl (\Always p \impl \Always q)
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl q)$\\[\lgap]
@@ -3179,10 +3053,6 @@ Exercise for the student.\\
   \> $=$  \>  \Hint{(3.60) Implication, $p\impl q \equivs p\land q \equivs p$}\\[\lgap]
   \> \>   $\Always p \impl \Always q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:NextConRule}
 \textbf{Consequence rule of $\Next$:}\quad \Always ( (p \impl q) \land (q \impl \Next r) \land (r \impl s)) \impl (p \impl \Next s)
 \end{equation}
@@ -3365,7 +3235,7 @@ And now,
   \> \>   $\Always ( p \impl \neg q \land \Next p)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule}\\[\lgap]
   \> \>   $p \impl \Always \neg q$\\[\lgap]
-  \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg p,r$ and} \\[\lgap]
+  \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg q,r$, (3.12) Double negation, $\neg\neg p\equiv p$, and} \\[\lgap]
   \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $p \impl \neg(r\Until q)$ \quad \myqed
 \end{tabbing}
@@ -3637,7 +3507,6 @@ Then, $\Event P\impl\Event Q$ can be proved to be a theorem by (4.7.1) Truth imp
 \textbf{Metatheorem $\Always$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Always P\impl\Always Q \text{ is a theorem.}
 \end{equation}
 
-\opt{doc}{
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
@@ -3651,11 +3520,6 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-\emph{Proof}:\\
-Exercise for the student.\\
-}
 
 \subsection{Always, continued}\label{section-always-continued-2}
 
@@ -3810,7 +3674,6 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always p$\\[\lgap]
@@ -3821,11 +3684,6 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
-% begin sms
 \begin{equation}\label{E:AEexcludedMid2}
 \textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Always \Event\neg p
 \end{equation}
@@ -3947,7 +3805,6 @@ The proof in the second direction follows.
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always\Event\Always p$\\[\lgap]
@@ -3962,10 +3819,6 @@ The proof in the second direction follows.
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event\Always p$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 \begin{equation}\label{E:absAlwaysEvent}
 \textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
@@ -4097,7 +3950,7 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
 
-\emph{Proof}:\opt{doc}{
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always p \lor \Event\Always q$\\[\lgap]
@@ -4107,13 +3960,8 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
   \>          \>  \Hintlast{$\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
   \> \>   $\Event\Always (p \lor q)$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
-% begin sms
+
 Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) are duals of each other.
-% end sms
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -4176,7 +4024,6 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always (p\land q)$\\[\lgap]
@@ -4195,10 +4042,6 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event\Always p\land \Event\Always q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
 
 The following theorem is Problem 4.2 in Manna and Pnueli. \cite{Manna}
 \begin{equation}\label{E:eventualLatching}
@@ -4591,7 +4434,6 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 \end{equation}
 
 \emph{Proof}:
-\opt{doc}{
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \land \neg q) \lor p \Until q$\\[\lgap]
@@ -4610,11 +4452,6 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
-}
-\opt{student}{
-Exercise for the student.\\
-}
-
 
 The proof of (\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$ uses (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
