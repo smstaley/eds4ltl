@@ -1901,14 +1901,14 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
-The following induction axiom is included in other temporal logic systems.
-%The $\Until\Always$ implication axiom is required to prove absorption of $\Until$ into $\Always$,
-%and is apparently unique to this system.
+The first induction axiom below is included in other temporal logic systems.
+The second, however, is unique to this system.
 \begin{equation}\label{E:induction}
-\textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
-
-%\firstspacer
+\begin{equation}\label{E:eventInduction}
+\textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
+\end{equation}
 
 The following theorem expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:eventAsAlways}
@@ -2180,7 +2180,7 @@ and (\ref{E:dNextAlways}) the exchange of $\Next$ and $\Always$ is the dual of
 
 Theorem (\ref{E:impNext}) is unique to this system.
 Theorem (\ref{E:pSwitches}) states that if $p$ holds and eventually $\neg p$ holds, there must eventually be a state where $p$ holds in that state and it does not hold in the next state.
-Theorem (\ref{E:pSwitches}) is the contrapositive of, and therefore equivalent to, (\ref{E:induction}) Axiom, Induction.
+Theorem (\ref{E:pSwitches}) is the contrapositive of, and therefore equivalent to, (\ref{E:induction}) Axiom, $\Always$ Induction.
 \begin{equation}\label{E:impNext}
 p \impl \Always p \equiv p \impl \Next\Always p
 \end{equation}
@@ -2214,7 +2214,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
   \> \>   $\Always(\neg p\lor\Next p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\Always(p\impl\Next p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
   \> \>   $p\impl\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \>   $\neg p\lor\Always p$\\[\lgap]
@@ -3206,8 +3206,26 @@ And now,
   \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
   \> \>   $r \Until s$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:CompInductRule}
-\textbf{Computational induction rule:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
+\begin{equation}\label{E:InductRuleEvent}
+\textbf{Induction rule $\Event$:}\quad \Always (p \lor\Next q \impl q) \impl (\Event p \impl q)
+\end{equation}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \lor\Next q \impl q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.4) Distributivity of $\lor$ over $\impl$, $p\lor q\impl r \equiv (p\impl r) \land (q\impl r)$}\\[\lgap]
+  \> \>   $\Always (( p \impl q) \land (\Next q \impl q))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land \Always (\Next q \impl q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventInduction}) $\Event$ Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> \>   $\Always ( p \impl q) \land (\Event q \impl q)$\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$} \\[\lgap]
+  \> \>   $(\Event p \impl \Event q) \land (\Event q \impl q) $\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> \>   $\Event p \impl q$\quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:InductRuleAlways}
+\textbf{Induction rule $\Always$:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
 \end{equation}
 
 \emph{Proof}:
@@ -3218,24 +3236,24 @@ And now,
   \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land \Always (p \impl \Next p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $(\Always p \impl \Always q) \land (p \impl \Always p) $\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:CompInductRule2Em}
-\textbf{Computational induction rule:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
+\begin{equation}\label{E:InductRuleUntil}
+\textbf{Induction rule $\Until$:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ( p \impl \neg q \land \Next p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
   \> \>   $p \impl \Always \neg q$\\[\lgap]
-  \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg q,r$, (3.12) Double negation, $\neg\neg p\equiv p$, and} \\[\lgap]
+  \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg q,r$, (3.12) Double negation $\neg\neg p\equiv p$, and} \\[\lgap]
   \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
   \> \>   $p \impl \neg(r\Until q)$ \quad \myqed
 \end{tabbing}
@@ -3529,7 +3547,7 @@ However, they play a key role here in the proofs of several later theorems that 
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
 
-\emph{Proof}: Theorem (\ref{E:CompInductRule}) Computational induction rule with $p,q := p \Until \Always q, p \Until q$ is
+\emph{Proof}: Theorem (\ref{E:InductRuleAlways}) Induction rule $\Always$ with $p,q := p \Until \Always q, p \Until q$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always (p \Until \Always q \impl (p \Until q \land \Next (p \Until \Always q))) \impl (p \Until \Always q \impl \Always (p \Until q))$
@@ -4199,7 +4217,7 @@ Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Al
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q )$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
    \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q  \impl \Next (\Always R \land \neg \Always p \land \neg \Always q ))$\\[\lgap]
- \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+ \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
  \> \>   $\Always R \land \neg \Always p \land \neg \Always q  \impl \Always (\Always R \land \neg \Always p \land \neg \Always q )$ \quad \myqed
 \end{tabbing}
 Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \Always p \land \Always q$
@@ -4313,7 +4331,7 @@ is by (4.7.1) Truth implication.
   \> \>   $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
   \> \>   $\Always (\Always p \lor \Always q \impl \Next (\Always p \lor \Always q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always (\Always p \lor \Always q)$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$}\\[\lgap]
   \>     \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
@@ -5194,7 +5212,7 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:induction}) Induction}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
     \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
     \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
@@ -5211,7 +5229,7 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:CompInductRule}) Computational induction rule}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
    \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
@@ -6027,7 +6045,7 @@ Ben-Ari \cite{Ben} takes the temporal operators $\Always$, $\Next$ and $\Until$ 
 The $\Wait$ operator is not covered in his system for LTL.
 
 The two stated rules of inference in the Ben-Ari deductive system correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
-The five axioms that define $\Next$ and $\Always$ correspond to (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:expansionAlways2}) Expansion of $\Always$, (\ref{E:induction}) Induction, and (\ref{E:linearity}) Linearity.
+The five axioms that define $\Next$ and $\Always$ correspond to (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:expansionAlways2}) Expansion of $\Always$, (\ref{E:induction}) $\Always$ Induction, and (\ref{E:linearity}) Linearity.
 The two axioms that define $\Until$ correspond to (\ref{E:expansionUntil}) Expansion of $\Until$ and (\ref{E:eventuality}) Eventuality.
 
 Emerson \cite{Emer} uses the symbol X to denote the \textit{next} operator, F to denote \textit{eventually}, and G to denote \textit{always}.
@@ -6044,14 +6062,14 @@ The CTL inference rules and axioms without the additional quantifiers, however, 
 
 As with the LTL system of Ben-Ari, the two stated rules of inference correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
 
-The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, (\ref{E:CompInductRule}) and (\ref{E:CompInductRule2Em}) Computational induction rules, and (\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.
+The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, (\ref{E:InductRuleAlways}) and (\ref{E:InductRuleUntil}) Induction rules $\Always$ and $\Until$, and (\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.
 
 Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
 They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
 
 Kröger and Merz first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
 They define $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
-The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:CompInductRule}) Computational induction rule.
+The three inference rules correspond to (3.77) Modus ponens, (\ref{E:impAlwaysN}) Strengthening of $\Always$, and (\ref{E:InductRuleAlways}) Induction rule $\Always$.
 The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, and (\ref{E:expansionAlways}) Expansion of $\Always$.
 They introduce the \textit{until} operator and the \textit{wait} operator as an extension to the propositional linear temporal logic.
 The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
@@ -6067,18 +6085,18 @@ The four basic inference rules in the Manna and Pnueli deductive system are gene
 The derived rules include particularization, corresponding to (\ref{E:impAlways}) Strengthening of $\Always$, entailment modus ponens, corresponding to $\Always(p\impl q)\land\Always p \impl \Always q$, and entailment transitivity, corresponding to $\Always(p\impl q)\land \Always(q\impl r) \impl \Always(p\impl r)$.
 The last two expressions are easy to prove from (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
 
-Their eight future axioms correspond to (\ref{E:impAlways}) Strengthening of $\Always$, (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:impAlwaysAN}) $\Next$ generalization, (\ref{E:induction}) Induction, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
+Their eight future axioms correspond to (\ref{E:impAlways}) Strengthening of $\Always$, (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, (\ref{E:impAlwaysAN}) $\Next$ generalization, (\ref{E:induction}) $\Always$ Induction, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
 Schneider \cite{Schn} is the only treatment of LTL that is based on the equational deductive system developed in Gries and Schneider's LADM. \cite{LADM}
 He does not consider the \textit{until} operator $\Until$ (apart from an exercise for the student) but uses the symbol $\Until$ for the \textit{wait} operator.
 The expression $p\Wait q$ is written $p\Until q$ and read ``p unless q''.
 
 The rules of inference in Schneider's deductive system include TL substitution, corresponding to inference rule Substitution, TL Modus ponens, corresponding to (3.77) Modus ponens, and Temporal generalization rule, corresponding to the generalization part of (\ref{E:metatheorem}) Metatheorem.
-There are also a set of derived inference rules corresponding to (\ref{E:AlwaysConRule}) Consequence rule of $\Always$, (\ref{E:AlwaysCatRule}) Catenation rule of $\Always$, (\ref{E:EventConRule}) Consequence rule of $\Event$, (\ref{E:EventCatRule}) Catenation rule of $\Event$, (\ref{E:NextConRule}) Consequence rule of $\Next$, (\ref{E:induction}) Induction, and (\ref{E:CompInductRule}) Computational induction rule.
+There are also a set of derived inference rules corresponding to (\ref{E:AlwaysConRule}) Consequence rule of $\Always$, (\ref{E:AlwaysCatRule}) Catenation rule of $\Always$, (\ref{E:EventConRule}) Consequence rule of $\Event$, (\ref{E:EventCatRule}) Catenation rule of $\Event$, (\ref{E:NextConRule}) Consequence rule of $\Next$, (\ref{E:induction}) $\Always$ Induction, and (\ref{E:InductRuleAlways}) Induction rule $\Always$.
 
 Schneider's deductive system consists of two axioms for $\Always$ corresponding to (\ref{E:impAlways}) Strengthening of $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
 It defines $\Event$ as in theorem (\ref{E:eventAsAlways}).
-It has five axioms for $\Next$ corresponding to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:impAlwaysN}) Strengthening of $\Always$, (\ref{E:impAlwaysNA}) Strengthening of $\Always$, and (\ref{E:induction}) Induction.
+It has five axioms for $\Next$ corresponding to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:impAlwaysN}) Strengthening of $\Always$, (\ref{E:impAlwaysNA}) Strengthening of $\Always$, and (\ref{E:induction}) $\Always$ Induction.
 The two axioms for the \textit{wait} operator correspond to (\ref{E:alwaysImpWait}) Perpetuity and (\ref{E:expansionWait}) Expansion of $\Wait$.
 
 \subsection{Comparison of LTL deductive systems}\label{section-comparison}

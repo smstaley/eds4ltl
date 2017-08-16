@@ -647,9 +647,15 @@ p \land q \impl p \Until q
 \firstspacer
 
 \begin{equation}\label{E:induction}
-\textbf{Axiom, Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 \opt{inventory}{M217(FX5), M264(Rule CI), S64(3.21e), B242, B263(Ax4)\\}
+
+\spacer
+
+\begin{equation}\label{E:eventInduction}
+\textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
+\end{equation}
 
 \spacer
 
@@ -1114,15 +1120,22 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 
 \spacer
 
-\begin{equation}\label{E:CompInductRule}
-\textbf{Computational induction rule:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
+\begin{equation}\label{E:InductRuleEvent}
+\textbf{Induction rule $\Event$:}\quad \Always ( p \lor\Next q \impl q) \impl (\Event p \impl q)
+\end{equation}
+\opt{inventory}{M264(Rule $\Event$I)\\}
+
+\spacer
+
+\begin{equation}\label{E:InductRuleAlways}
+\textbf{Induction rule $\Always$:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
 \end{equation}
 \opt{inventory}{M264(Rule $\Always$I), S65(3.24b), K34(ind)\\}
 
 \spacer
 
-\begin{equation}\label{E:CompInductRule2Em}
-\textbf{Computational induction rule:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
+\begin{equation}\label{E:InductRuleUntil}
+\textbf{Induction rule $\Until$:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
 \end{equation}
 \opt{inventory}{E43(Ax9)\\}
 
