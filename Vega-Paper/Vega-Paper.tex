@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -1128,8 +1128,8 @@ Linearity follows from self-dual.
   \> which is (\ref{E:selfDual}) Self-dual. \quad \myqed
 \end{tabbing}
 
-Here is the proof that $\Next$ distributes over $\lor$ using distributivity of $\Next$ over $\impl$.
-The following theorems show that it also distributes over $\land$ and $\equiv$.
+The proof that $\Next$ distributes over $\lor$ uses the distributivity of $\Next$ over $\impl$.
+The proofs that it also distributes over $\land$ and $\equiv$ are similar.
 \begin{equation}\label{E:distNextOr}
 \textbf{Distributivity of $\Next$ over $\lor$:}\quad \Next (p \lor q) \equiv \Next p \lor \Next q
 \end{equation}
@@ -1191,10 +1191,11 @@ The following theorems show that it also distributes over $\land$ and $\equiv$.
 }
 
 Now, $true$ holds in the next state, and $false$ does not hold in the next state.
-Theorems (\ref{E:nextTruth}) and (\ref{E:nextFalse}) are unique to this system.
 In the equational logic of LADM, $true$ is theorem (3.4) and is equivalent to all other theorems.
 Theorem (\ref{E:nextTruth}) shows that all propositional logic theorems hold at the next state
 and, by induction, hold in all states.
+The proof of (\ref{E:nextTruth}) uses (3.28) Excluded middle.
+The proof of (\ref{E:nextFalse}) uses (3.8) Definition of $false$.
 \begin{equation}\label{E:nextTruth}
 \textbf{Truth of $\Next$:}\quad \Next true \equiv true
 \end{equation}
@@ -1252,7 +1253,7 @@ Consequently, the \textit{until} operator is neither symmetric (\textit{i.e.} co
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
-The third axiom, Right zero of $\Until$, is apparently unique to this LTL deductive system.
+The third axiom states that $false$ is the right zero of $\Until$ and is not noted in other LTL deductive systems.
 \begin{equation}\label{E:untilFalse}
 \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
 \end{equation}
@@ -1282,7 +1283,9 @@ Because $\Until$ is not symmetric, this system requires separate axioms for left
 \end{equation}
 
 The \textit{until} operator is not associative.
-The last three axioms are unique to this system and describe the ordering property, the left ordering property under disjuction, and the right ordering property under conjunction, of $\Until$.
+The last three axioms describe the ordering property, the right ordering property under disjunction, and the right ordering property under conjunction, of $\Until$.
+These theorems do not appear in other systems.
+Other systems do, however, list their $\Wait$ versions, which in this system are (\ref{E:waitImplicationOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
 \begin{equation}\label{E:untilImplicationOrdering}
 \textbf{Axiom, $\Until$ implication ordering:}\quad p \Until q \land \neg q \Until r \impl p \Until r
 \end{equation}
@@ -1296,7 +1299,7 @@ The last three axioms are unique to this system and describe the ordering proper
 \textbf{Axiom, Right $\land \Until$ ordering:}\quad p \Until (q\land r) \impl (p \Until q) \Until r
 \end{equation}
 
-Theorem (\ref{E:rightUntilImplDist}) is unique to this deductive system and shows how $\Until$ distributes over $\impl$.
+Theorem (\ref{E:rightUntilImplDist}) shows how $\Until$ distributes over $\impl$ and is not listed in other deductive systems.
 \begin{equation}\label{E:rightUntilImplDist}
 \textbf{Right distributivity of $\Until$ over $\impl$:}\quad (p \impl q) \Until r\impl (p \Until r \impl q \Until r)
 \end{equation}
@@ -1407,8 +1410,7 @@ to the propositional expression on the right hand side.
   \> \> $\neg p\Until(q\Until r) \impl (\neg p\lor q)\Until r$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \> $\neg p\Until(q\Until r) \impl (p \impl q)\Until r$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$}\\[\lgap]
-  \>          \>  \Hintlast{and (3.82a) Transitivity $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$ and (3.82a) Transitivity}\\[\lgap]
   \> \> $\neg p\Until(q\Until r) \impl (p \Until r \impl q \Until r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \> $\neg p \Until (q \Until r) \land p\Until r \impl q\Until r$ \quad \myqed
@@ -1425,8 +1427,7 @@ p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
   \> \> $p\Until(\neg q\Until r) \impl (p\lor \neg q)\Until r$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
   \> \> $p\Until(\neg q\Until r) \impl (q \impl p)\Until r$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$}\\[\lgap]
-  \>          \>  \Hintlast{and (3.82a) Transitivity $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:rightUntilImplDist}) Right distributivity of $\Until$ over $\impl$ and (3.82a) Transitivity}\\[\lgap]
   \> \> $p\Until(\neg q\Until r) \impl (q \Until r \impl p \Until r)$\\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \> $p \Until (\neg q \Until r) \land q\Until r \impl p\Until r$ \quad \myqed
@@ -3065,12 +3066,11 @@ operators are monotonic.
   \> \>   $\Always ( p \impl q) \land \Always (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
     \> \>   $ (p \impl q) \land (q \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
-    \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-    \> \>       \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity and (4.3) Monotonicity of $\land$}\\[\lgap]
      \> \>   $ (p \impl \Next r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $ (p \impl \Next r) \land (\Next r \impl \Next s)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Next s$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:EventConRule}
@@ -3085,11 +3085,11 @@ operators are monotonic.
   \> \>   $\Always ( p \impl q) \land \Always (q \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
     \> \>   $ (p \impl q) \land (q \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
-    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity and (4.3) Monotonicity of $\land$}\\[\lgap]
      \> \>   $ (p \impl \Event r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $ (p \impl \Event r) \land (\Event r \impl \Event s)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Event s$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:AlwaysConRule}
@@ -3104,11 +3104,11 @@ operators are monotonic.
   \> \>   $\Always ( p \impl q) \land \Always (q \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$, twice}\\[\lgap]
     \> \>   $ (p \impl q) \land (q \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
-    \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ and (4.3) Monotonicity of $\land$}\\[\lgap]
+    \> $\impl$  \>  \Hint{(3.82a) Transitivity and (4.3) Monotonicity of $\land$}\\[\lgap]
      \> \>   $ (p \impl \Always r) \land \Always (r \impl s)$\\[\lgap]
      \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $ (p \impl \Always r) \land (\Always r \impl \Always s)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Always s$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:EventCatRule}
@@ -3127,7 +3127,7 @@ operators are monotonic.
   \> \>   $ (p \impl \Event q) \land (\Event q \impl \Event \Event r)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
    \> \>   $ (p \impl \Event q) \land (\Event q \impl \Event r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Event r$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:AlwaysCatRule}
@@ -3142,13 +3142,11 @@ operators are monotonic.
   \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (\Always q \impl q) \land (q \impl \Always r)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
-  \> \>       \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Always r$\quad \myqed
 \end{tabbing}
-% begin sms
 \begin{equation}\label{E:UntilCatRule}
 \textbf{Catenation rule of $\Until$:}\quad \Always ((p \impl q \Until r) \land (r \impl q \Until s)) \impl (p \impl q \Until s)
 \end{equation}
@@ -3221,7 +3219,7 @@ And now,
   \> \>   $\Always ( p \impl q) \land (\Event q \impl q)$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $(\Event p \impl \Event q) \land (\Event q \impl q) $\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event p \impl q$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:InductRuleAlways}
@@ -3240,7 +3238,7 @@ And now,
   \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
   \> \>   $(\Always p \impl \Always q) \land (p \impl \Always p) $\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $ p \impl \Always q$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:InductRuleUntil}
@@ -3254,7 +3252,7 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
   \> \>   $p \impl \Always \neg q$\\[\lgap]
   \> $\impl$ \> \Hintfirst{(\ref{E:impAlwaysNotUntil}) with $p,q:=\neg q,r$, (3.12) Double negation $\neg\neg p\equiv p$, and} \\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \>          \>  \Hintlast{(3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl \neg(r\Until q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:EventConfRule}
@@ -3346,8 +3344,7 @@ And now,
   \> \>   $\Always (p \impl \Next q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $p \impl \Next q$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:nextEvent}) Weakening of $\Event$ and}\\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl \Event q$ \quad \myqed
 \end{tabbing}
 
@@ -3922,7 +3919,7 @@ The proof in the second direction follows.
   \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
   \>     \>  \Hintlast{with $p,q := \Event p, \Event q$}\\[\lgap]
   \> \>   ($\Always (p \impl q) \impl \Always (\Event p \impl \Event q))\;\land\; (\Always (\Event p \impl \Event q) \impl (\Always\Event p \impl \Always\Event q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:monoEventAlways}
@@ -3940,7 +3937,7 @@ The proof in the second direction follows.
   \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
   \>     \>  \Hintlast{with $p,q := \Always p, \Always q$}\\[\lgap]
   \> \>   ($\Always (p \impl q) \impl \Always (\Always p \impl \Always q))\;\land\; (\Always (\Always p \impl \Always q) \impl (\Event\Always p \impl \Event\Always q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
 
@@ -4000,8 +3997,7 @@ The proof in the second direction is by (4.7.1) Truth implication.
   \> \>   $true$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$ and}\\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ with the above theorem}\\[\lgap]
   \> \>   $\Always (\Always \Event(p\lor q) \land \Event \Always\neg p) \impl \Always\Event q$\\[\lgap]
@@ -4030,11 +4026,9 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
   \> \>   $\Event(\Always \neg p \land \Event (p\lor q)) \impl \Event\Event (\neg p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$ and (3.36) Symmetry of $\land$}\\[\lgap]
   \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event (\neg p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ and}\\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distEventAnd}) Distributivity of $\Event$ over $\land$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event \neg p \land \Event q$\\[\lgap]
-  \> $\impl$  \> \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$ and} \\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:distEventAlwaysAnd}
@@ -4107,15 +4101,13 @@ Lemma: $\Event\Always(p\impl \Always q) \impl \Event(\Always\Event p\impl \Event
   \> \>   $\Always\Event\Always (p \impl \Always q) \impl \Always\Event(\Event p \impl \Event\Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl \Always\Event(\Event p \impl \Event\Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and}\\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl \Event(\Event p \impl \Event\Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventImpAlways}) Distributivity of $\Event$ over $\impl$}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl (\Always\Event p \impl \Event\Event\Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl (\Always\Event p \impl \Event\Always q)$\\[\lgap]
-      \> $\impl$  \> \Hintfirst{(\ref{E:impEvent}) Weakening of $\Event$ and} \\[\lgap]
-  \>          \>  \Hintlast{(3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+      \> $\impl$  \> \Hint{(\ref{E:impEvent}) Weakening of $\Event$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl \Event(\Always\Event p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
 
@@ -4229,14 +4221,13 @@ Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \A
    \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
- \>     \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+ \>     \>  \Hintlast{and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl R \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A: $ R \equiv \Always p \lor \Always q \lor ( p \land q)$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl (\Always p \lor \Always q \lor ( p \land q) ) \land \neg \Always p \land \neg \Always q$\\[\lgap]
    \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$, twice} \\[\lgap]
  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \neg \Always p \land \neg \Always q \land ( p \land q)$\\[\lgap]
- \> $\impl$  \>  \Hintfirst{(3.76b) Strengthening, $p\land q \impl p$, and (3.82a) Transitivity,}\\[\lgap]
- \>          \>  \Hintlast{$(p\impl q) \land (q\impl r) \impl (p\impl r)$ }\\[\lgap]
+ \> $\impl$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (3.82a) Transitivity}\\[\lgap]
  \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl p \land q$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
   \> \>   $\Always (\Always R \land \neg \Always p \land \neg \Always q  \impl p \land q)$\\[\lgap]
@@ -4333,8 +4324,7 @@ is by (4.7.1) Truth implication.
   \> \>   $\Always (\Always p \lor \Always q \impl \Next (\Always p \lor \Always q))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always (\Always p \lor \Always q)$\\[\lgap]
-  \> $\impl$  \>  \Hintfirst{Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$}\\[\lgap]
-  \>     \>  \Hintlast{and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always R$ \quad \myqed
 \end{tabbing}
 
@@ -5216,7 +5206,7 @@ And now,
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
     \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
     \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
    \> \>   $\Always (p \impl \Next p) \land p \impl  p \Wait q$\\[\lgap]
     \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
@@ -5233,16 +5223,15 @@ And now,
   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
    \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl  p \Wait \Always q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always ( p \impl q \land \Next p) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
-    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity, $(p\impl q) \land (q\impl r) \impl (p\impl r)$}\\[\lgap]
+    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always ( p \impl q \land \Next p) \land p \impl p \Wait \ q$ \\[\lgap]
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
    \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
 \end{tabbing}
-% sms end
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
 (\ref{E:untilOrP}),
@@ -6021,7 +6010,7 @@ And now,
 \end{tabbing}
 
 The ten axioms that define the behavior of the \textit{until} operator are (\ref{E:distNextUntil}), (\ref{E:expansionUntil}), (\ref{E:untilFalse}), (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), (\ref{E:untilAndEquiv}), (\ref{E:untilImplicationOrdering}), (\ref{E:leftAssocUntil}), and (\ref{E:rightAssocUntil}).
-The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
+The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitImplicationOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
 Of these ten theorems, nine are identical, with the substitution of $\Wait$ for $\Until$, to the corresponding axioms that define the \textit{until} operator.
 In addition, (\ref{E:notWait}), the axiom that describes the distributivity of $\neg$ over $\Wait$, is identical to (\ref{E:notUntil}) with the interchange of $\Wait$ and $\Until$.
 The one theorem that distinguishes $\Wait$ from the defining axioms of $\Until$ is
