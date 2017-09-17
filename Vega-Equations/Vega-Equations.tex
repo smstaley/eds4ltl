@@ -645,16 +645,22 @@ p \land q \impl p \Until q
 
 \firstspacer
 
-\begin{equation}\label{E:induction}
-\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+\begin{equation}\label{E:axiomAlwaysInduction}
+\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
 \end{equation}
-\opt{inventory}{M217(FX5), M264(Rule CI), S64(3.21e), B242, B263(Ax4)\\}
 
 \spacer
 
 \begin{equation}\label{E:eventInduction}
 \textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
 \end{equation}
+
+\spacer
+
+\begin{equation}\label{E:induction}
+\textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+\end{equation}
+\opt{inventory}{M217(FX5), M264(Rule CI), S64(3.21e), B242, B263(Ax4)\\}
 
 \spacer
 
@@ -1158,12 +1164,19 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \textbf{Temporal particularization law:}\quad \Always ( p \impl \Event q) \impl (\Event p \impl \Event q)
 \end{equation}
 \opt{inventory}{K31(T36)\\}
+
 \spacer
 
 \begin{equation}\label{E:alwaysPImplNextQ}
 \Always ( p \impl \Next q) \impl (p \impl \Event q)
 \end{equation}
 \opt{inventory}{K36(Rule som)\\}
+
+\spacer
+
+\begin{equation}\label{E:alwaysPImplNextNotP}
+\Always ( p \impl \Next \neg p) \impl (p \impl \neg\Always p)
+\end{equation}
 
 \subsection*{Proof metatheorems}
 
@@ -1654,7 +1667,6 @@ p \Wait q \impl p \lor q
 
 \spacer
 
-% sms begin
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
@@ -1673,22 +1685,26 @@ p \Wait q \impl p \lor q
 
 \spacer
 
-\begin{equation}\label{E:waitInduct1}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
+\begin{equation}\label{E:waitInduct3}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next (p\lor q)) \impl  (p \impl p \Wait q)
 \end{equation}
-\opt{inventory}{Inspired by S66(3.36)\\}
 
 \spacer
 
-\begin{equation}\label{E:waitInduct2}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
-\end{equation}
-\opt{inventory}{Inspired by S66(3.36)\\}
-
-\spacer
-
-% sms end
-
+%\begin{equation}\label{E:waitInduct1}
+%\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
+%\end{equation}
+%\opt{inventory}{Inspired by S66(3.36)\\}
+%
+%\spacer
+%
+%\begin{equation}\label{E:waitInduct2}
+%\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
+%\end{equation}
+%\opt{inventory}{Inspired by S66(3.36)\\}
+%
+%\spacer
+%
 \begin{equation}\label{E:waitOrP}
 \textbf{Absorption:}\quad p\lor p\Wait q\equiv p\lor q
 \end{equation}

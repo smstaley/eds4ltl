@@ -1902,14 +1902,29 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
-The first induction axiom below is included in other temporal logic systems.
-The second, however, is unique to this system.
-\begin{equation}\label{E:induction}
-\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+The two induction axioms are unique to this system.
+The induction theorem (\ref{E:induction}) is common to many sysems.
+\begin{equation}\label{E:axiomAlwaysInduction}
+\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
 \end{equation}
 \begin{equation}\label{E:eventInduction}
 \textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
 \end{equation}
+\begin{equation}\label{E:induction}
+\textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:axiomAlwaysInduction}) with $q := false$}\\[\lgap]
+  \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor p\Until false)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
+  \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor false)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.30) Identity of $\lor$\;\; $p\lor false\equiv p$, twice}\\[\lgap]
+  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$ \quad \myqed
+\end{tabbing}
 
 The following theorem expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:eventAsAlways}
@@ -3328,7 +3343,7 @@ And now,
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ( p \impl \Event q)$\\[\lgap]
+  \> \>   $\Always (p \impl \Event q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $q:=\Event q$}\\[\lgap]
   \> \>   $\Event p \impl \Event \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemEvent}) Absorption of $\Event$}\\[\lgap]
@@ -3346,6 +3361,19 @@ And now,
   \> \>   $p \impl \Next q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:nextEvent}) Weakening of $\Event$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl \Event q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:alwaysPImplNextNotP}
+\Always (p \impl \Next \neg p) \impl (p \impl \neg\Always p)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl \Next \neg p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysPImplNextQ}) with $q:=\neg p$}\\[\lgap]
+  \> \>   $p \impl \Event \neg p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
+  \> \>   $p \impl \neg\Always q$ \quad \myqed
 \end{tabbing}
 
 \begin{figure}[t]
@@ -5194,44 +5222,58 @@ And now,
    \> $\impl$ \> \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
    \> \>   $\Always (p \Wait  q) $\quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:waitInduct1}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
+\begin{equation}\label{E:waitInduct3}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next (p\lor q)) \impl  (p \impl p \Wait q)
 \end{equation}
 
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
-  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
-    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-    \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
-   \> \>   $\Always (p \impl \Next p) \land p \impl  p \Wait q$\\[\lgap]
-    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-  \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
+  \> \>   $\Always (p \impl \Next (p\lor q))$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:axiomAlwaysInduction}) $\Always$ Induction}\\[\lgap]
+  \> \>   $p \impl \Always p\lor p\Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
+  \> \>   $p \impl p \Wait q$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:waitInduct2}
-\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
-\end{equation}
 
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
-  \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
-   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-   \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity}\\[\lgap]
-  \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl  p \Wait \Always q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity}\\[\lgap]
-  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
-    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity}\\[\lgap]
-  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl p \Wait \ q$ \\[\lgap]
-  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
-\end{tabbing}
+%\begin{equation}\label{E:waitInduct1}
+%\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
+%\end{equation}
+%
+%\emph{Proof}: The proof is by (4.7.1) Truth implication.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $true$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
+%  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
+%    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+%    \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
+%   \> \>   $\Always (p \impl \Next p) \land p \impl  p \Wait q$\\[\lgap]
+%    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+%  \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
+%\end{tabbing}
+%\begin{equation}\label{E:waitInduct2}
+%\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
+%\end{equation}
+%
+%\emph{Proof}: The proof is by (4.7.1) Truth implication.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $true$\\[\lgap]
+%  \> $=$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
+%  \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
+%   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+%   \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity}\\[\lgap]
+%  \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl  p \Wait \Always q$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity}\\[\lgap]
+%  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
+%    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity}\\[\lgap]
+%  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl p \Wait \ q$ \\[\lgap]
+%  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
+%   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
+%\end{tabbing}
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
 (\ref{E:untilOrP}),
