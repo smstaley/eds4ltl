@@ -5235,45 +5235,38 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:waitInduct1}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
+\end{equation}
 
-%\begin{equation}\label{E:waitInduct1}
-%\textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
-%\end{equation}
-%
-%\emph{Proof}: The proof is by (4.7.1) Truth implication.
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
-%  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
-%    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-%    \> \>   $\Always (p \impl \Next p) \land p \impl  \Always p$\\[\lgap]
-%  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
-%   \> \>   $\Always (p \impl \Next p) \land p \impl  p \Wait q$\\[\lgap]
-%    \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-%  \> \>   $\Always (p \impl \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
-%\end{tabbing}
-%\begin{equation}\label{E:waitInduct2}
-%\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
-%\end{equation}
-%
-%\emph{Proof}: The proof is by (4.7.1) Truth implication.
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
-%  \> $=$  \>  \Hint{(\ref{E:InductRuleAlways}) Induction rule $\Always$}\\[\lgap]
-%  \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl \Always q)$\\[\lgap]
-%   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-%   \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl \Always q$\\[\lgap]
-%  \> $\impl$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion and (3.82a) Transitivity}\\[\lgap]
-%  \> \>   $\Always ( p \impl q \land \Next p) \land p  \impl  p \Wait \Always q$\\[\lgap]
-%  \> $\impl$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ Implication and (3.82a) Transitivity}\\[\lgap]
-%  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl \Always (p \Wait \ q)$\\[\lgap]
-%    \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.82a) Transitivity}\\[\lgap]
-%  \> \>   $\Always ( p \impl q \land \Next p) \land p \impl p \Wait \ q$ \\[\lgap]
-%  \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
-%   \> \>   $\Always ( p \impl q \land \Next p) \impl (p \impl p \Wait q)$ \quad \myqed
-%\end{tabbing}
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl \Next p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
+  \> \>   $p \impl \Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
+  \> \>   $p \impl p \Wait q$ \quad \myqed
+\end{tabbing}
+\begin{equation}\label{E:waitInduct2}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl q \land \Next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land,\;\; p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
+  \> \>   $\Always ((p \impl q) \land (p\impl\Next p))$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
+  \> \>   $\Always (p \impl q) \land \Always(p\impl\Next p)$\\[\lgap]
+  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  \> \>   $\Always(p\impl\Next p)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction}\\[\lgap]
+  \> \>   $p \impl \Always p$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
+  \> \>   $p \impl p \Wait q$ \quad \myqed
+\end{tabbing}
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
 (\ref{E:untilOrP}),
