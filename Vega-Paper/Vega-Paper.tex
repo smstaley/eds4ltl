@@ -89,13 +89,17 @@
 
 \title{An Equational Deductive System\\for Linear Temporal Logic \opt{complete}{(Complete)}}
 
-\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Pepperdine University, Summer 2009 and academic year 2009-10.}\\
-   Vega affiliation
-   \and
+\author{
    J. Stanley Warford\\
    Computer Science Department\\
    Pepperdine University\\
    Malibu, CA 90263
+   \and
+   David Vega
+   \thanks{Research supported by Tooma Undergraduate Research Fellowship Program,
+   Pepperdine University,
+   Summer 2009 and academic year 2009-10.}\\
+   Vega affiliation
    \and
    Scott M. Staley\\
    Ford Motor Company Research Labs (retired)\\
@@ -1902,10 +1906,13 @@ The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it 
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
 
-The two induction axioms are unique to this system.
+The three induction axioms are unique to this system.
 The induction theorem (\ref{E:induction}) is common to many sysems.
-\begin{equation}\label{E:axiomAlwaysInduction}
-\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
+\begin{equation}\label{E:untilInduction1}
+\textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl \Always q\lor q\Until r)
+\end{equation}
+\begin{equation}\label{E:untilInduction2}
+\textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
 \end{equation}
 \begin{equation}\label{E:eventInduction}
 \textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
@@ -1918,7 +1925,7 @@ The induction theorem (\ref{E:induction}) is common to many sysems.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:axiomAlwaysInduction}) with $q := false$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilInduction2}) with $q := false$}\\[\lgap]
   \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor p\Until false)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
   \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor false)$\\[\lgap]
@@ -3238,23 +3245,19 @@ And now,
   \> \>   $\Event p \impl q$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:InductRuleAlways}
-\textbf{Induction rule $\Always$:}\quad \Always ( p \impl q \land \Next p) \impl (p \impl \Always q)
+\textbf{Induction rule $\Always$:}\quad \Always ( p \impl \Next p \land q) \impl (p \impl \Always q)
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always ( p \impl q \land \Next p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
-  \> \>   $\Always (( p \impl q) \land (p \impl \Next p))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
-  \> \>   $\Always ( p \impl q) \land \Always (p \impl \Next p)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:induction}) $\Always$ Induction and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $\Always ( p \impl q) \land (p \impl \Always p)$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$ and (4.3) Monotonicity of $\land$} \\[\lgap]
-  \> \>   $(\Always p \impl \Always q) \land (p \impl \Always p) $\\[\lgap]
-  \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
-  \> \>   $ p \impl \Always q$\quad \myqed
+  \> \>   $true$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilInduction1}) $\Until$ Induction with $r:=false$}\\[\lgap]
+  \> \>   $\Always (p \impl (\Next p\land q)\lor false) \impl (p \impl \Always q\lor q\Until false)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
+  \> \>   $\Always (p \impl (\Next p\land q)\lor false) \impl (p \impl \Always q\lor false)$\\[\lgap]
+  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$ twice} \\[\lgap]
+  \> \>   $\Always ( p \impl \Next p \land q) \impl (p \impl \Always q)$\quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:InductRuleUntil}
 \textbf{Induction rule $\Until$:}\quad \Always ( p \impl \neg q \land \Next p) \impl (p \impl \neg(r\Until q))
@@ -5222,6 +5225,18 @@ And now,
    \> $\impl$ \> \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication and (4.3) Monotonicity of $\land$  } \\[\lgap]
    \> \>   $\Always (p \Wait  q) $\quad \myqed
 \end{tabbing}
+\begin{equation}\label{E:waitInduct4}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl q\Wait r)
+\end{equation}
+
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\Always (p \impl (\Next p\land q)\lor r) \impl (p \impl q\Wait r)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
+  \> \>   $\Always (p \impl (\Next p\land q)\lor r) \impl (p \impl \Always q\lor q\Until r)$\\[\lgap]
+\> which is (\ref{E:untilInduction1}) $\Until$ Induction. \quad \myqed
+\end{tabbing}
 \begin{equation}\label{E:waitInduct3}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next (p\lor q)) \impl  (p \impl p \Wait q)
 \end{equation}
@@ -5230,7 +5245,7 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl \Next (p\lor q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:axiomAlwaysInduction}) $\Always$ Induction}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilInduction2}) $\Always$ Induction}\\[\lgap]
   \> \>   $p \impl \Always p\lor p\Until q$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
@@ -5301,8 +5316,7 @@ respectively.
 \> \> $p\Wait q\lor q\equiv p\Wait q$\\[\lgap]
 \> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
 \> \> $q\impl p\Wait q$\\[\lgap]
-\> which is (\ref{E:waitInsertion}) $\Wait$ Insertion. \quad \myqed
-\end{tabbing}
+untilInduction2\end{tabbing}
 \begin{equation}\label{E:waitAndQ}
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q
 \end{equation}

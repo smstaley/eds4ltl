@@ -78,13 +78,19 @@
 \pagestyle{myheadings} 
 \markboth{\textbf{Draft} \today} {\textbf{Draft} \today}
 
-\title{Theorems from Vega and Warford's EDS4LTL\\(Draft)}
+\title{Theorems from EDS4LTL\\(Draft)}
 
-\author{David Vega\thanks{Research supported by Tooma Undergraduate Research Fellowship Program, Summer 2009}\\
+\author{
    J. Stanley Warford\\
    Computer Science Department\\
    Pepperdine University\\
-   Malibu, CA 90265
+   Malibu, CA 90263
+   \and
+   David Vega
+   \thanks{Research supported by Tooma Undergraduate Research Fellowship Program,
+   Pepperdine University,
+   Summer 2009 and academic year 2009-10.}\\
+   Vega affiliation
    \and
    Scott M. Staley\\
    Ford Motor Company Research Labs (retired)\\
@@ -102,9 +108,9 @@ book \textit{A Logical Approach to Discrete Math}, Springer-Verlag, 1993 (LADM).
 The numbering is consistent with that text with the chapter number followed by the equation number separated by a period.
 Additional theorems, either not included in LADM or included but not numbered, are indicated by a three-part number with two period separators.
 The second section is a collection of the axioms and theorems of linear temporal logic
-in Vega and Warford's paper \textit{An Equational Deductive System for Linear Temporal Logic}
+in Warford, Vega, and Staley's paper \textit{An Equational Deductive System for Linear Temporal Logic}
 (EDS4LTL),
-Pepperdine University Research Report, Natural Science Division, 2015.
+Pepperdine University Research Report, Natural Science Division, 2017.
 \end{abstract}
 
 \subsection*{Table of Precedences}
@@ -645,8 +651,14 @@ p \land q \impl p \Until q
 
 \firstspacer
 
-\begin{equation}\label{E:axiomAlwaysInduction}
-\textbf{Axiom, $\Always$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
+\begin{equation}\label{E:untilInduction1}
+\textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl \Always q\lor q\Until r)
+\end{equation}
+
+\spacer
+
+\begin{equation}\label{E:untilInduction2}
+\textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
 \end{equation}
 
 \spacer
@@ -1685,6 +1697,13 @@ p \Wait q \impl p \lor q
 
 \spacer
 
+\begin{equation}\label{E:waitInduct4}
+\textbf{$\Wait$ induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl q\Wait r)
+\end{equation}
+\opt{inventory}{S66(3.37)\\}
+
+\spacer
+
 \begin{equation}\label{E:waitInduct3}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next (p\lor q)) \impl  (p \impl p \Wait q)
 \end{equation}
@@ -1694,14 +1713,12 @@ p \Wait q \impl p \lor q
 \begin{equation}\label{E:waitInduct1}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
-\opt{inventory}{Inspired by S66(3.36)\\}
 
 \spacer
 
 \begin{equation}\label{E:waitInduct2}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
-\opt{inventory}{Inspired by S66(3.36)\\}
 
 \spacer
 
