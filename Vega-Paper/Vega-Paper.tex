@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-\usepackage[publication]{optional}
-%\usepackage[complete]{optional}
+%\usepackage[publication]{optional}
+\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -1575,17 +1575,19 @@ appear in the temporal logic literature.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$}\\[\lgap]
-  \> \>   $p \land q \impl p \Until q$
+  \> \>   $p \land q \impl p \Until q$\\[\lgap]
+   \> which is (\ref{E:andImplUntil}). \quad \myqed
 \end{tabbing}
-And now,
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \land q $\\[\lgap]
-  \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  \> \>   $q$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
-  \> \>   $p \Until q$ \quad \myqed
-\end{tabbing}
+%And now,
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+ % \> \>   $p \land q $\\[\lgap]
+ % \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
+  %\> \>   $q$\\[\lgap]
+  %\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
+ % \> \>   $p \Until q$ \quad \myqed
+%\end{tabbing}
+%
 % Ravi's old proof is not correct
 %
 %\emph{Proof}: (Ravi Mohan)
