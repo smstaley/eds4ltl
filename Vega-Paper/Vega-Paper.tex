@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-\usepackage[publication]{optional}
-%\usepackage[complete]{optional}
+%\usepackage[publication]{optional}
+\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -1460,7 +1460,7 @@ p\land \neg p \Until q \impl q
 \> \> $true$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering with $p,q,r:= false,p,q$} \\[\lgap]
 \> \> $false\Until p \land \neg p\Until q \impl false\Until q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
+\> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$, twice} \\[\lgap]
 \> \> $p \land \neg p\Until q \impl q$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:untilImpOr}
@@ -1499,7 +1499,7 @@ p \land q \impl p \Until q
 \> \> $p \land q$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $q$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ insertion} \\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ insertion} \\[\lgap]
 \> \> $p\Until q$ \quad \myqed
 \end{tabbing}
 
@@ -1844,11 +1844,12 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> \>   $\Event\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, with $p := \Event p$}\\[\lgap]
   \> \>   $true \Until \Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until (true \Until p)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$ with $p,q := true,p$}\\[\lgap]
-  \> \>   $true \Until p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$, with $p,q := true, p$}\\[\lgap]
+  %\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
+  %\> \>   $true \Until (true \Until p)$\\[\lgap]
+  %\> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$ with $p,q := true,p$}\\[\lgap]
+  %\> \>   $true \Until p$\\[\lgap]
+  %\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:dNextEvent}
