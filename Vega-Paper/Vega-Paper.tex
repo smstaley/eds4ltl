@@ -2099,7 +2099,7 @@ disjunction $\lor$ and the \textit{eventually} operator $\Event$ are both existe
 When the left side of the equivalence contains both existential (or both universal) operators as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAndIntoAlways}),
 the right side retains the same type of unary operator.
 When existential and universal operators are mixed on the left side,
-as in (\ref{E:absOrIntoEvent}) and (\ref{E:absAlwaysIntoOr}), the equivalence is just a statement about $p$ at the current time.
+as in (\ref{E:absEventIntoAnd}) and (\ref{E:absAlwaysIntoOr}), the equivalence is just a statement about $p$ at the current time.
 As with (\ref{E:absOrIntoEvent}) and (\ref{E:absEventIntoAnd}), the following two absorption theorems
 do not seem to appear in the temporal logic literature.
 \begin{equation}\label{E:absAndIntoAlways}
@@ -2459,9 +2459,9 @@ And now,
   \> $=$  \>  \Hint{(3.66) $p\land (p \impl q) \equivs  p \land q$}\\[\lgap]
   \> \>   $((p \impl q) \land r) \Until (p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right Distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $((p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
+  \> \>   $(p \impl q) \Until (p \land q) \land r \Until (p \land q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left Distributivity of $\Until$ over $\land$ and (4.3) Monotonicity of $\land$}\\[\lgap]
-  \> \>   $((p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
+  \> \>   $(p \impl q) \Until (p \land q) \land r \Until p \land r \Until q$\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $r \Until q$ \quad \myqed
 \end{tabbing}
