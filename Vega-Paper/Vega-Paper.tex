@@ -32,7 +32,11 @@
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Ligatures={Common}]{Times}
+%\setmainfont[Ligatures={Common}]{Times}
+% Broken in MacOS High Sierra. See https://tex.stackexchange.com/questions/395645/italic-went-rogue-in-my-document-what-happened
+\setmainfont{Times}[ItalicFont    ={* Italic},
+                    BoldFont      ={* Bold},
+                    BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
 \setmonofont[Scale=.95]{Courier}
 
@@ -120,6 +124,18 @@ Although space limitations preclude giving a proof of every theorem in this pape
 \thispagestyle{plain}
 
 \section{Introduction}
+
+Linear temporal logic (LTL) has application to proof of correctness for concurrent programs.
+Many concurrent programs, such as operating systems and embedded systems that control physical equipment, are nonterminating by design. 
+Consequently, proof techniques that depend on proving the correctness of postconditions on program termination do not apply.
+LTL, on the other hand, can be used to prove desirable program traits such as freedom from deadlock.
+
+Most treatments of LTL consist of cursory introductions in one or two chapters of graduate-level textbooks. \cite{Baier, Kroger, Manna, Schn}
+While many LTL theorems are common in the different treatments, each treatment has theorems that are unique to it.
+This survey is a comprehensive collection of all the LTL theorems that we have found in the literature, together with many new theorems, all of which are presented in an axiomatic logic system.
+It serves as an introduction to LTL and should be accessible with a prerequisite only of the standard propositional and predicate logic at the undergraduate level.
+
+\subsubsection*{Axiomatic logic systems}
 
 All axiomatic logic systems have three components -- inference rules, axioms, and theorems.
 Both inference rules and axioms are assumed.
