@@ -5239,7 +5239,7 @@ And now,
   \> \>   $\Always p \land \Always q $\\[\lgap]
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ with $p,q := \Always (p \Wait q), \Always p$} \\[\lgap]
   \> \>   $\Always q$ \\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion with $q:=\Always q$ and (4.3) Monotonicity of $\land$ } \\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:waitInsertion}) $\Wait$ Insertion with $q:=\Always q$  } \\[\lgap]
   \> \>   $p \Wait \Always q $\\[\lgap]
    \> $\impl$ \> \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication} \\[\lgap]
    \> \>   $\Always (p \Wait  q) $\quad \myqed
@@ -5264,7 +5264,7 @@ And now,
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always (p \impl \Next (p\lor q))$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:untilInduction2}) $\Always$ Induction}\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:untilInduction2}) $\Until$ Induction}\\[\lgap]
   \> \>   $p \impl \Always p\lor p\Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
