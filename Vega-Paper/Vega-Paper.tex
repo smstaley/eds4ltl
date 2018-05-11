@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -1125,12 +1125,12 @@ The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
+
+Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
+In (2.3b) Metatheorem Duality $(P \equiv Q) \equiv (P_D \equiv Q_D)$ with $P: \Next\neg p$ and $Q: \neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions.
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
-
-Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
-In (2.3b) Metatheorem Duality with $P$ the expression $\Next\neg p$ and $Q$ the expression $\neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions.
 
 Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
 From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.
