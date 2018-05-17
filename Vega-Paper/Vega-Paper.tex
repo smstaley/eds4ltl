@@ -1388,13 +1388,16 @@ operator $\Event$ in Section \ref{section-event}.
 }
 
 Theorem (\ref{E:idemUntil}) shows that the \textit{until} operator is idempotent.
-Theorem (\ref{E:untilExcludedMiddle}) is the \textit{until} version of excluded middle.
-Theorem (\ref{E:untilImpOr}) is interesting because it relates the temporal expression on the left hand side
-to the propositional expression on the right hand side.
+Its proof uses (\ref{E:expansionUntil}) Expansion of $\Until$ followed by (3.43b) Absorption.
+Theorem (\ref{E:untilExcludedMiddle}) is the \textit{until} version of excluded middle, which is proved from (\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$.
+The proof of (\ref{E:notPUntilQUntilR}) illustrates proof by Truth implication.
+The proof of (\ref{E:PUntilNotQUntilR}) is similar.
+The proofs of (\ref{E:pUntilQAndNotQUntilP}) and (\ref{E:pUntilQAndNotQUntilP}) use (\ref{E:untilImplicationOrdering}) $\Until$ implication ordering.
+The proofs of (\ref{E:untilImpOr}), (\ref{E:untilInsertion}), and (\ref{E:andImplUntil}) require only two steps.
 \begin{equation}\label{E:idemUntil}
 \textbf{Idempotency of $\Until$:}\quad p \Until p \equiv p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1404,10 +1407,11 @@ to the propositional expression on the right hand side.
   \> $=$  \>  \Hint{(3.43b) Absorption, $p \lor (p \land q) \equiv p$ with $q := \Next (p \Until p)$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilExcludedMiddle}
 \Until \textbf{excluded middle:}\quad p \Until q \lor p\Until \neg q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1419,6 +1423,7 @@ to the propositional expression on the right hand side.
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:notPUntilQUntilR}
 \neg p \Until (q \Until r) \land p\Until r \impl q\Until r
 \end{equation}
@@ -1439,7 +1444,7 @@ to the propositional expression on the right hand side.
 \begin{equation}\label{E:PUntilNotQUntilR}
 p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1453,10 +1458,11 @@ p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
   \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
   \> \> $p \Until (\neg q \Until r) \land q\Until r \impl p\Until r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:pUntilQAndNotQUntilP}
 p \Until q \land \neg q \Until p \impl p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1466,10 +1472,11 @@ p \Until q \land \neg q \Until p \impl p
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \> $p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:pAndNotPUntilQ}
 p\land \neg p \Until q \impl q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1479,10 +1486,11 @@ p\land \neg p \Until q \impl q
 \> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$, twice} \\[\lgap]
 \> \> $p \land \neg p\Until q \impl q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilImpOr}
 p \Until q \impl p \lor q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1492,10 +1500,11 @@ p \Until q \impl p \lor q
   \> $\impl$  \>  \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$ with $p,q,r := q,p,\Next(p \Until q)$}\\[\lgap]
   \> \>   $p \lor q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilInsertion}
 \textbf{$\Until$ Insertion:}\quad q \impl p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1505,10 +1514,11 @@ p \Until q \impl p \lor q
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:andImplUntil}
 p \land q \impl p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1518,13 +1528,15 @@ p \land q \impl p \Until q
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ insertion} \\[\lgap]
 \> \> $p\Until q$ \quad \myqed
 \end{tabbing}
+}
 
 This system has the following five absorption properties that do not seem to
 appear in the temporal logic literature.
+Most can be proved in one step.
 \begin{equation}\label{E:untilOrP}
 \textbf{Absorption:}\quad p \lor p \Until q \equiv p \lor q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1534,10 +1546,11 @@ appear in the temporal logic literature.
   \> $=$  \>  \Hint{(3.43b) Absorption $p \lor (p \land q) \equiv p$}\\[\lgap]
   \> \>   $p \lor q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilOrQ}
 \textbf{Absorption:}\quad p \Until q \lor q \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1546,23 +1559,11 @@ appear in the temporal logic literature.
   \> \>   $q \impl p \Until q$\\[\lgap]
   \> which is (\ref{E:untilInsertion}). \quad \myqed
 \end{tabbing}
-% old proof
-%\emph{Proof}:
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-% \> \>   $p \Until q \lor q$\\[\lgap]
-%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-%\> \>   $q \lor (p \land \Next(p \Until q)) \lor q$\\[\lgap]
-%\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$}\\[\lgap]
-%\> \>   $q \lor (p \land \Next(p \Until q))$\\[\lgap]
-%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-%\> \>   $p \Until q$ \quad \myqed
-%\end{tabbing}
-% end of old proof
+}
 \begin{equation}\label{E:untilAndQ}
 \textbf{Absorption:}\quad p \Until q \land q \equiv q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1571,21 +1572,11 @@ appear in the temporal logic literature.
   \> \>   $q \impl p \Until q$\\[\lgap]
   \> which is (\ref{E:untilInsertion}). \quad \myqed
 \end{tabbing}
-% old proof
-%\emph{Proof}:
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-% \> \>   $p \Until q \land q$\\[\lgap]
-%\> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-%\> \>   $(q \lor (p \land \Next(p \Until q))) \land q$\\[\lgap]
-%\> $=$  \>  \Hint{(3.43a) Absorption $p \land (p \lor q) \equiv p$}\\[\lgap]
-%\> \>   $q$ \quad \myqed
-%\end{tabbing}
-%end old proof
+}
 \begin{equation}\label{E:untilOrAnd}
 \textbf{Absorption:}\quad p \Until q \lor (p \land q) \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1594,31 +1585,11 @@ appear in the temporal logic literature.
   \> \>   $p \land q \impl p \Until q$\\[\lgap]
    \> which is (\ref{E:andImplUntil}). \quad \myqed
 \end{tabbing}
-%And now,
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
- % \> \>   $p \land q $\\[\lgap]
- % \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
-  %\> \>   $q$\\[\lgap]
-  %\> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion} \\[\lgap]
- % \> \>   $p \Until q$ \quad \myqed
-%\end{tabbing}
-%
-% Ravi's old proof is not correct
-%
-%\emph{Proof}: (Ravi Mohan)
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $p \Until q \lor (p \land q) \equiv p \Until q$\\[\lgap]
-%\> $=$ \> \Hint{(3.57) Definition of implication, $p\impl q\equivs p\lor q \equivs q$} \\[\lgap]
-% \> \>   $p \Until q \impl p \lor q$\\[\lgap]
- %\> which is (\ref{E:untilImpOr}). \quad \myqed
-%\end{tabbing}
-% End of Ravi's old proof
+}
 \begin{equation}\label{E:untilAndOr}
 \textbf{Absorption:}\quad p \Until q \land (p \lor q) \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1627,10 +1598,12 @@ appear in the temporal logic literature.
   \> \>   $p \Until q \impl p \lor q$\\[\lgap]
   \> which is (\ref{E:untilImpOr}). \quad \myqed
 \end{tabbing}
+}
 
 All systems have the following two absorption theorems.
 Manna and Pnueli \cite{Manna} refer to these as idempotence properties.
 This paper follows Schneider \cite{Schn}, which refers to them as absorption properties.
+The proof of (\ref{E:untilIdemR}) is similar to that of (\ref{E:untilIdem}).
 \begin{equation}\label{E:untilIdem}
 \textbf{Left absorption of $\Until$:}\quad p \Until (p \Until q) \equiv p \Until q
 \end{equation}
@@ -1655,7 +1628,7 @@ The proof in the second direction follows.
 \begin{equation}\label{E:untilIdemR}
 \textbf{Right absorption of $\Until$:}\quad (p \Until q) \Until q \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -1675,6 +1648,7 @@ The proof in the second direction follows.
 \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
+}
 
 \subsection{Eventually}\label{section-event}
 
