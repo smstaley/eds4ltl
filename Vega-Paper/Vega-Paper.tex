@@ -1658,11 +1658,18 @@ Equation (\ref{E:defEvent}) is its only defining axiom.
 \textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
 \end{equation}
 
-The following theorem shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
+Theorem (\ref{E:absEventIntoUntil}) shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
+Its proof uses (\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$.
+Theorem (\ref{E:absUntilIntoEvent}) shows also that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
+It is proved by mutual implication.
+Theorem (\ref{E:eventuality}) shows that $p\Until q$ guarantees that $q$ will eventually be $true$.
+Its proof uses (\ref{E:absEventIntoUntil}).
+Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\Event$, are unique to this system.
+Their proofs are simple.
 \begin{equation}\label{E:absEventIntoUntil}
 \textbf{Absorption of $\Event$ into $\Until$:}\quad p \Until q\land \Event q \equiv p\Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1674,12 +1681,11 @@ The following theorem shows how the unary operator \textit{eventually} absorbs i
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
-
-It is also the case that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
+}
 \begin{equation}\label{E:absUntilIntoEvent}
 \textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until \Event q \equiv \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -1693,7 +1699,6 @@ The proof in the first direction follows.
 \> \> $true \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$
-
 \end{tabbing}
 The proof in the second direction follows.
 \begin{tabbing}
@@ -1702,12 +1707,11 @@ The proof in the second direction follows.
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion with $q := \Event q$} \\[\lgap]
 \> \> $p \Until \Event q$ \quad \myqed
 \end{tabbing}
-
-$p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
+}
 \begin{equation}\label{E:eventuality}
 \textbf{Eventuality:}\quad p \Until q \impl \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1717,12 +1721,11 @@ $p\Until q$ guarantees that $q$ will eventually be $true$ as follows.
   \> $\impl$  \>  \Hint{(3.76b) Strengthening the antecedent, $p\land q \impl p$}\\[\lgap]
   \> \>   $\Event q$ \quad \myqed
 \end{tabbing}
-
-Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\Event$, are unique to this system.
+}
 \begin{equation}\label{E:eventTrue}
 \textbf{Truth of $\Event$:}\quad \Event true \equiv true
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1732,10 +1735,11 @@ Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:eventFalse}
 \textbf{Falsehood of $\Event$:}\quad \Event false \equiv false
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1745,14 +1749,16 @@ Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
   \> \>   $false$ \quad \myqed
 \end{tabbing}
+}
 
 Expansion of $\Event$, like expansion of $\Until$, has two disjuncts.
 The first describes the current state and the second contains the operation in the next state.
+The expansion of $\Event$ follows directly from the expansion of $\Until$.
 The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow directly from expansion of $\Event$.
 \begin{equation}\label{E:expansionEvent}
 \textbf{Expansion of $\Event$:}\quad \Event p \equiv p \lor \Next\Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1766,10 +1772,11 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:impEvent}
 \textbf{Weakening of $\Event$:}\quad p \impl \Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1779,10 +1786,11 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
   \> $\foll$  \>  \Hint{(3.76a) Weakening the consequent, $p \impl p\lor q$}\\[\lgap]
   \> \>   $p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:nextEvent}
 \textbf{Weakening of $\Event$:}\quad \Next p \impl \Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1796,12 +1804,14 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
   \> $\foll$  \>  \Hint{(3.76a) Weakening the consequent, $p \impl p\lor q$}\\[\lgap]
   \> \>   $\Next p$ \quad \myqed
 \end{tabbing}
+}
 
-The following two absorption theorems do not seem to appear in the temporal logic literature.
+The two absorption theorems (\ref{E:absOrIntoEvent}) and (\ref{E:absEventIntoAnd}) do not seem to appear in the temporal logic literature.
+The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:distEventOr}), and (\ref{E:distEventAnd}) are common to all temporal logic systems.
 \begin{equation}\label{E:absOrIntoEvent}
 \textbf{Absorption of $\lor$ into $\Event$:}\quad p \lor \Event p \equiv \Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1810,10 +1820,11 @@ The following two absorption theorems do not seem to appear in the temporal logi
   \> \>   $p\impl \Event p$\\[\lgap]
   \> which is (\ref{E:impEvent}) Weakening of $\Event$. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absEventIntoAnd}
 \textbf{Absorption of $\Event$ into $\land$:}\quad \Event p \land p \equiv p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1822,12 +1833,11 @@ The following two absorption theorems do not seem to appear in the temporal logi
   \> \>   $p\impl \Event p$\\[\lgap]
   \> which is (\ref{E:impEvent}) Weakening of $\Event$. \quad \myqed
 \end{tabbing}
-
-The following six theorems for $\Event$ are common to all temporal logic systems.
+}
 \begin{equation}\label{E:IdemEvent}
 \textbf{Absorption of $\Event$:}\quad \Event\Event p \equiv \Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1835,17 +1845,13 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, with $p := \Event p$}\\[\lgap]
   \> \>   $true \Until \Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$, with $p,q := true, p$}\\[\lgap]
-  %\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  %\> \>   $true \Until (true \Until p)$\\[\lgap]
-  %\> $=$  \>  \Hint{(\ref{E:untilIdem}) Left absorption of $\Until$ with $p,q := true,p$}\\[\lgap]
-  %\> \>   $true \Until p$\\[\lgap]
-  %\> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:dNextEvent}
 \textbf{Exchange of $\Next$ and $\Event$:}\quad \Next\Event p \equiv \Event\Next p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1859,10 +1865,11 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event\Next p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distEventOr}
 \textbf{Distributivity of $\Event$ over $\lor$:}\quad \Event(p \lor q) \equiv \Event p \lor \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1874,10 +1881,11 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
   \> \>   $\Event p \lor \Event q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distEventAnd}
 \textbf{Distributivity of $\Event$ over $\land$:}\quad \Event(p \land q) \impl \Event p \land \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1889,6 +1897,7 @@ The following six theorems for $\Event$ are common to all temporal logic systems
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
   \> \>   $\Event p \land \Event q$ \quad \myqed
 \end{tabbing}
+}
 
 \subsection{Always}\label{section-always}
 
