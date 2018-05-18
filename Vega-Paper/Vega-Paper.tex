@@ -984,9 +984,10 @@ This observation is stated in the following metatheorem from LADM.
 \begin{tabbing}
 \hspace{\mymathindent} \= (2.3)\; \= \myqedtab \= \kill
   \> (2.3) \> \textbf{Metatheorem Duality}\\
-  \>       \> (a) $P \equiv \neg P_D$\\
-  \>       \> (b) $(P \equiv Q) \equiv (P_D \equiv Q_D)$
+  \>       \> (a) valid($P$) $\equiv$ valid($\neg P_D$)\\
+  \>       \> (b) valid($P \equiv Q$) $\equiv$ valid($P_D \equiv Q_D$)
 \end{tabbing}
+where valid($R$) is a predicate that returns true iff $R$ is a valid expression.
 
 Linear temporal logic extends the definition of $P_D$ for the temporal operators to include interchanging occurrences of
 \begin{align*}
@@ -1904,12 +1905,10 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 This system defines the \textit{always} operator $\Always$ in terms of the \textit{eventually} operator $\Event$.
 $\Always p$ is true when $p$ is true in the current state and in all future states.
 The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it is not the case that $\neg p$ is eventually true.
+The three induction axioms are unique to this system.
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
-
-The three induction axioms are unique to this system.
-The induction theorem (\ref{E:induction}) is common to many sysems.
 \begin{equation}\label{E:untilInduction1}
 \textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl \Always q\lor q\Until r)
 \end{equation}
@@ -1919,10 +1918,14 @@ The induction theorem (\ref{E:induction}) is common to many sysems.
 \begin{equation}\label{E:eventInduction}
 \textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
 \end{equation}
+
+The induction theorem (\ref{E:induction}) is common to many systems.
+It follows from (\ref{E:untilInduction2}) with $q:=false$.
+Theorem (\ref{E:eventAsAlways}) expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:induction}
 \textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1934,12 +1937,11 @@ The induction theorem (\ref{E:induction}) is common to many sysems.
   \> $=$  \>  \Hint{(3.30) Identity of $\lor$\;\; $p\lor false\equiv p$, twice}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$ \quad \myqed
 \end{tabbing}
-
-The following theorem expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
+}
 \begin{equation}\label{E:eventAsAlways}
 \Event p \equiv \neg\Always\neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1949,16 +1951,19 @@ The following theorem expresses $\Event p$ in terms of $\Always p$ and is the du
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$, twice}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
+}
 
 Whereas the \textit{next} operator $\Next$ is its own dual, the \textit{eventually} operator $\Event$
 and the \textit{always} operator $\Always$
 are mutually dual, as are $\Event \Always$ and $\Always\Event$.
-With $P$ defined as the expression $\neg\Always p$ and $Q$ defined as the expression $\Event\neg p$, the dual expression $P_D$ is $\neg\Event p$ and the dual expression $Q_D$ is $\Always\neg p$.
-Then theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\ref{E:dualEvent}) is the expression $P_D\equiv Q_D$ in (2.3b) Metatheorem Duality.
+Each of the following four theorems can be proved directly without invoking (2.3) Metatheorem Duality.
+However, with $P$ defined as the expression $\neg\Always p$ and $Q$ defined as the expression $\Event\neg p$, the dual expression $P_D$ is $\neg\Event p$ and the dual expression $Q_D$ is $\Always\neg p$.
+Because theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\ref{E:dualEvent}) is the expression $P_D\equiv Q_D$, the validity of (\ref{E:dualEvent}) can be asserted by invoking (2.3b) Metatheorem Duality with theorem (\ref{E:dualAlways}).
+Similarly, the validity of (\ref{E:dualAlwaysEvent}) can be asserted by invoking duality with theorem (\ref{E:dualEventAlways}).
 \begin{equation}\label{E:dualAlways}
 \textbf{Dual of $\Always$:}\quad \neg\Always p \equiv \Event\neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1967,10 +1972,11 @@ Then theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\re
   \> \>   $\Always p \equiv \neg\Event\neg p$\\[\lgap]
   \> which is (\ref{E:defAlways}) Definition of $\Always$. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:dualEvent}
 \textbf{Dual of $\Event$:}\quad \neg\Event p \equiv \Always\neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1980,10 +1986,11 @@ Then theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\re
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\neg\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:dualEventAlways}
 \textbf{Dual of $\Event \Always$:}\quad \neg \Event\Always p \equiv \Always\Event \neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -1993,10 +2000,11 @@ Then theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\re
   \> $=$ \> \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
   \> \>   $\Always\Event \neg p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:dualAlwaysEvent}
 \textbf{Dual of $\Always \Event$:}\quad \neg \Always\Event p \equiv \Event \Always\neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -2006,6 +2014,7 @@ Then theorem (\ref{E:dualAlways}) is the expression $P\equiv Q$ and theorem (\re
   \> $=$ \> \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
   \> \>   $\Event\Always \neg p$ \quad \myqed
 \end{tabbing}
+}
 
 Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of $\Always$, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
