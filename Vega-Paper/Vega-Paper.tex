@@ -984,28 +984,24 @@ This observation is stated in the following metatheorem from LADM.
 \begin{tabbing}
 \hspace{\mymathindent} \= (2.3)\; \= \myqedtab \= \kill
   \> (2.3) \> \textbf{Metatheorem Duality}\\
-  \>       \> (a) valid($P$) $\equiv$ valid($\neg P_D$)\\
-  \>       \> (b) valid($P \equiv Q$) $\equiv$ valid($P_D \equiv Q_D$)
+  \>       \> (a) \verb|valid(|$P$\verb|) |$\equiv$\verb| valid(|$\neg P_D$\verb|)|\\
+  \>       \> (b) \verb|valid(|$P \equiv Q$\verb|) |$\equiv$\verb| valid(|$P_D \equiv Q_D$\verb|)|
 \end{tabbing}
-where valid($R$) is a predicate that returns true iff $R$ is a valid expression.
+where \verb|valid(|$R$\verb|)| is a predicate that returns true iff $R$ is a valid expression.
 
 Linear temporal logic extends the definition of $P_D$ for the temporal operators to include interchanging occurrences of
 \begin{align*}
-\Next      &\textrm{ and } \Next\textrm{ (self dual),}\\
-\Always    &\textrm{ and } \Event\textrm{,}\\
-p \Until q &\textrm{ and } q \Wait (p \land q)\textrm{, and}\\
-p \Wait q  &\textrm{ and } q \Until (p \land q)\textrm{.}
+\Next      &\textrm{ and } \Next\textrm{ (self dual), and}\\
+\Always    &\textrm{ and } \Event\textrm{.}
 \end{align*}
-Section 3 describes a few applications of (2.3) Metatheorem Duality.
-
+It is not the case that $\Wait$ is the dual of $\Until$.
 Ben-Ari \cite{Ben} defines the \textit{release} operator $\mathcal{R}$ as
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> $p\;\mathcal{R}\; q\equivs \neg(\neg p \Until \neg q)$
 \end{tabbing}
 to be the dual of the binary operator $\Until$.
-To avoid adding another operator to our system, we use the last two interchanges above
-when working with duality of the binary temporal operators $\Until$ and $\Wait$.
+We avoid adding another operator to our system by restricting the LTL binary operators to the more common $\Until$ and $\Wait$.
 
 %We did not use duality in any of the proofs in this paper, with one exception which will be covered later,
 %preferring instead to find proofs using the axioms and prior theorems within the expanding LTL model.
