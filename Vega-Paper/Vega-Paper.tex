@@ -3534,6 +3534,7 @@ And now,
 \caption{Seven Hasse diagrams showing some implication relations of linear temporal logic.
 \label{hasse}}
 \end{figure}
+
 Because the implication relation is reflexive, antisymmetric, and transitive, it defines a partially ordered set on linear temporal logic expressions.
 Figure \ref{hasse} is a collection of seven Hasse diagrams showing some implication relations.
 Each number in parentheses is a linear temporal logic theorem.
@@ -3585,10 +3586,12 @@ $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \> $=$ \> \Hint{$\Always P$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+
+Proofs of the following three metatheorems are similar.
 \begin{equation}\label{E:metaNext}
 \textbf{Metatheorem $\Next$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Next P\impl\Next Q \text{ is a theorem.}
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
@@ -3602,10 +3605,11 @@ Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth impli
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:metaEvent}
 \textbf{Metatheorem $\Event$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Event P\impl\Event Q \text{ is a theorem.}
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
@@ -3619,10 +3623,11 @@ Then, $\Event P\impl\Event Q$ can be proved to be a theorem by (4.7.1) Truth imp
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:metaAlways}
 \textbf{Metatheorem $\Always$:}\quad \text{If } P\impl Q \text{ is a theorem then } \Always P\impl\Always Q \text{ is a theorem.}
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
@@ -3636,15 +3641,19 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 
 \subsection{Always, continued}\label{section-always-continued-2}
 
 Theorems (\ref{E:axiomAlwaysUntilImpl}) and (\ref{E:absUntilAlways}) do not seem to appear in the LTL literature.
 However, they play a key role here in the proofs of several later theorems that do exist in the literature.
+The proof of (\ref{E:axiomAlwaysUntilImpl}) uses metatheorem (\ref{E:metatheorem}).
+The strengthening and ordering theorems are also unique to this system.
+We give the proof of (\ref{E:axiomAlwaysUntilImpl}) to show the use of metatheorem (\ref{E:metatheorem}).
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: Theorem (\ref{E:InductRuleAlways}) Induction rule $\Always$ with $p,q := p \Until \Always q, p \Until q$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3711,12 +3720,11 @@ is valid.
 \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
 \> \> $ \Next (p \Until \Always q)$ \quad \myqed
 \end{tabbing}
-
-The following theorem shows how the \textit{until} binary operator absorbs into the \textit{always} unary operator.
+}
 \begin{equation}\label{E:absUntilAlways}
 \textbf{Absorption of $\Until$ into $\Always$:}\quad p \Until \Always p \equiv \Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -3734,6 +3742,7 @@ The proof in the second direction follows.
 \> $\impl$ \> \Hint{(\ref{E:untilInsertion}) $\Until$ Insertion, with $q:=\Always p$} \\[\lgap]
 \> \> $p \Until \Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilAndImplUntilUntil}
 \textbf{Right $\land\Until$ strengthening:}\quad p\Until(q \land r) \impl p\Until(q\Until r)
 \end{equation}
