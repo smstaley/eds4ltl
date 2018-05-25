@@ -636,7 +636,11 @@ The constant $false$ is an expression that evaluates to F in every state.\\[\lll
   \hline
   $true$        & T     & T     & T     & T     & T     & \dots\\
   $false$       & F     & F     & F     & F     & F     & \dots
-\end{tabular}
+\end{tabular}\\[\lllgap]
+
+The propositional logic system of LADM \cite{LADM} describes a case analysis metatheorem as follows:
+If $E[z:=true]$ and $E[z:=false]$ are theorems, then so is $E[z:=p]$.
+This metatheorem does \textit{not} hold in LTL because the two cases, $z:=true$ and $z:=false$, only account for two out of an infinite number of possible sequences of T's and F's in $\sigma$.
 
 \subsubsection*{The \textit{next} operator $\Next$}
 
@@ -4562,7 +4566,7 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \begin{equation}\label{E:untilFromWait}
 \textbf{$\Until$ in terms of $\Wait$:}\quad p \Until q \equiv p \Wait q\land \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4577,10 +4581,11 @@ The defining equation gives $\Wait$ in terms of $\Until$. The following theorem 
 \> \> $\Always p\land \Event q\impl p\Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:EmersonEquiv}
 p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4600,6 +4605,7 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 
 The proof of (\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$ uses (\ref{E:notWait}) Axiom, Distributivity of $\neg$ over $\Wait$.
 Apparently, the reverse is not possible.
@@ -4607,7 +4613,7 @@ That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}
 \begin{equation}\label{E:notUntil}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg (p \Until q) \equiv \neg q \Wait (\neg p \land \neg q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Michael Ortiz)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4623,12 +4629,16 @@ That is, if (\ref{E:notUntil}) is taken as the axiom instead of (\ref{E:notWait}
 \> $=$  \>  \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$}\\[\lgap]
 \> \> $\neg (p \Until q)$ \quad \myqed
 \end{tabbing}
+}
 
 Theorem (\ref{E:untilImplWait}) $\Until$ implication shows that $p\Until q$ is stronger than $p\Wait q$.
+Theorem (\ref{E:andWaitDist}) Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$.
+Theorem (\ref{E:EventWaitequiv}) $\Wait\Event$ equivalence comes from Manna and Pnueli \cite{Manna}
+where it is used as the normal form for simple obligation formulas.
 \begin{equation}\label{E:untilImplWait}
 \textbf{$\Until$ implication:}\quad p\Until q\impl p\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4638,12 +4648,11 @@ Theorem (\ref{E:untilImplWait}) $\Until$ implication shows that $p\Until q$ is s
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
-
-Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$.
+}
 \begin{equation}\label{E:andWaitDist}
 \textbf{Distributivity of $\land$ over $\Wait$:}\quad \Always p \land q \Wait r \impl (p \land q) \Wait (p \land r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4659,13 +4668,11 @@ Distributivity of $\land$ over $\Wait$ corresponds to, and is derived from, (\re
   \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
   \> \>   $(p \land q) \Wait (p \land r)$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:EventWaitequiv}) $\Wait\Event$ equivalence comes from Manna and Pnueli \cite{Manna}
-where it is used as the normal form for simple obligation formulas.
+}
 \begin{equation}\label{E:EventWaitequiv}
 \textbf{$\Wait\Event$ equivalence:}\quad p\Wait\Event q \equiv \Always p \lor \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4675,6 +4682,7 @@ where it is used as the normal form for simple obligation formulas.
 \> $=$ \> \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$} \\[\lgap]
 \> \> $\Always p \lor \Event q$ \quad \myqed
 \end{tabbing}
+}
 
 Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication.
 Theorem (\ref{E:alwaysImpWait}) Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
@@ -4684,7 +4692,7 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \begin{equation}\label{E:alwaysWaitImpl}
 \textbf{$\Wait\Always$ implication:}\quad p\Wait\Always q \impl\Always (p \Wait q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4700,10 +4708,11 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ with $q := \Always q$} \\[\lgap]
 \> \> $p \Wait \Always q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:alwaysImpWait}
 \textbf{Perpetuity:}\quad \Always p \impl p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4713,10 +4722,11 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitNextDist}
 \textbf{Distributivity of $\Next$ over $\Wait$:}\quad \Next (p \Wait q) \equiv \Next p \Wait \Next q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4730,12 +4740,15 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ with $p,q := \Next p, \Next q$} \\[\lgap]
 \> \> $\Next p \Wait \Next q$ \quad \myqed
 \end{tabbing}
+}
 
 Expansion of the \textit{wait} operator (\ref{E:expansionWait}) corresponds to expansion of the \textit{until} operator (\ref{E:expansionUntil}).
+Excluded middle for the \textit{wait} operator (\ref{E:waitExcludedMiddle}) corresponds to excluded middle for the \textit{until} operator (\ref{E:untilExcludedMiddle}).
+Left zero of the \textit{wait} operator (\ref{E:leftZeroWait}) corresponds to right zero of the \textit{until} operator (\ref{E:untilFalse}).
 \begin{equation}\label{E:expansionWait}
 \textbf{Expansion of $\Wait$:}\quad p \Wait q \equiv q \lor (p \land \Next (p \Wait q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4753,10 +4766,11 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) corresponds to e
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitExcludedMiddle}
 \Wait \textbf{excluded middle:}\quad p \Wait q \lor p\Wait \neg q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4768,12 +4782,11 @@ Expansion of the \textit{wait} operator (\ref{E:expansionWait}) corresponds to e
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:leftZeroWait}) Left zero of $\Wait$ is the dual of (\ref{E:untilFalse}) Right zero of $\Until$.
+}
 \begin{equation}\label{E:leftZeroWait}
 \textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4785,6 +4798,7 @@ Theorem (\ref{E:leftZeroWait}) Left zero of $\Wait$ is the dual of (\ref{E:until
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true \equiv true$}\\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 
 The next four distributive theorems for the \textit{wait} operator correspond to, and are proved from,
 the distributive axioms for the \textit{until} operator
@@ -4794,7 +4808,7 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 \begin{equation}\label{E:waitOrDist}
 \textbf{Left distributivity of $\Wait$ over $\lor$:}\quad p \Wait (q \lor r) \equiv p \Wait q \lor p \Wait r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4808,10 +4822,11 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait (q \lor r)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightWaitOrDist}
 \textbf{Right distributivity of $\Wait$ over $\lor$:}\quad p \Wait r \lor q \Wait r \impl (p \lor q) \Wait r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4826,10 +4841,11 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $(p \lor q) \Wait r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:leftWaitAndDist}
 \textbf{Left distributivity of $\Wait$ over $\land$:}\quad p \Wait (q \land r) \impl p \Wait q \land p \Wait r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4843,6 +4859,7 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
 \> \> $p \Wait q \land p \Wait r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightWaitAndDist}
 \textbf{Right distributivity of $\Wait$ over $\land$:}\quad (p \land q) \Wait r\equiv p \Wait r \land q \Wait r
 \end{equation}
@@ -4919,10 +4936,14 @@ Before we formulated the equational 8-step proof of (\ref{E:rightWaitAndDist}), 
 %  \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p\lor p \equiv p$} \\[\lgap]
 %  \> \>   $(p \land q) \Wait r$ \quad \myqed
 %\end{tabbing}
+
+Theorem (\ref{E:rightWaitImplDist}) for $\Wait$ is identical to (\ref{E:rightUntilImplDist}) for $\Until$.
+Both $\Wait$ and $\Until$ obey the disjunction and conjunction rules---(\ref{E:disRuleWait}), (\ref{E:disRuleUntil}), (\ref{E:conRuleWait}), and (\ref{E:conRuleUntil})---which give rise, in turn, to expanded distributivity theorems of $\neg$ over $\Wait$ and $\Until$, (\ref{E:notWait2}) to (\ref{E:DualWait2}).
+The conjunction and disjunction rules are unique to this system.
 \begin{equation}\label{E:rightWaitImplDist}
 \textbf{Right distributivity of $\Wait$ over $\impl$:}\quad (p \impl q) \Wait r\impl (p \Wait r \impl q \Wait r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4943,12 +4964,11 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $q\Wait r$ \quad \myqed
 \end{tabbing}
-
-Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, which give rise, in turn, to expanded distributivity theorems of $\neg$ over $\Wait$ and $\Until$.
+}
 \begin{equation}\label{E:disRuleWait}
 \textbf{Disjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\lor q)\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4964,10 +4984,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
 \> \> $(p\lor q) \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:disRuleUntil}
 \textbf{Disjunction rule of $\Until$:}\quad p\Until q\equiv (p\lor q)\Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4983,10 +5004,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.43a) Absorption, $p\land (p\lor q) \equiv p$} \\[\lgap]
 \> \> $(p\lor q) \Until q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:ruleWait}
 \textbf{Rule of $\Wait$:}\quad \neg q \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4998,10 +5020,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{\ref{E:leftZeroWait}) Left zero of $\Wait$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:ruleUntil}
 \textbf{Rule of $\Until$:}\quad \neg q \Until q\equivs \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5013,10 +5036,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:pImplQWaitP}
 (p\impl q)\Wait p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5030,10 +5054,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.29) Zero of $\lor$} \\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:eventPImplPImplUntilp}
 \Event p\impl(p\impl q)\Until p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5047,10 +5072,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:ruleUntil}) Rule of $\Until$} \\[\lgap]
 \> \> $\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:conRuleWait}
 \textbf{Conjunction rule of $\Wait$:}\quad p\Wait q\equiv (p\land \neg q)\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5062,10 +5088,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
 \> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:conRuleUntil}
 \textbf{Conjunction rule of $\Until$:}\quad p\Until q\equiv (p\land \neg q)\Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5077,10 +5104,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:notWait2}
 \textbf{Distributivity of $\neg$ over $\Wait$:}\quad \neg(p\Wait q)\equiv (p\land \neg q)\Until(\neg p\land \neg q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5094,10 +5122,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ with $p,q:=\neg q,p$} \\[\lgap]
 \> \> $(p \land \neg q) \Until (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:notUntil2}
 \textbf{Distributivity of $\neg$ over $\Until$:}\quad \neg(p\Until q)\equiv (p\land \neg q)\Wait(\neg p\land \neg q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5111,10 +5140,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$ with $p,q:=\neg q,p$} \\[\lgap]
 \> \> $(p \land \neg q) \Wait (\neg p \land \neg q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:DualUntil1}
 \textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv q \Wait (p \land q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5122,10 +5152,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $q \Wait (p \land q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:DualUntil2}
 \textbf{Dual of $\Until$:}\quad \neg (\neg p \Until \neg q) \equiv ( \neg p \land q) \Wait (p \land q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5133,10 +5164,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:notUntil2}) Distributivity of $\neg$ over $\Until$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $( \neg p \land q) \Wait (p \land q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:DualWait1}
 \textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv q \Until (p \land q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5144,10 +5176,11 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $q \Until (p \land q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:DualWait2}
 \textbf{Dual of $\Wait$:}\quad \neg (\neg p \Wait \neg q) \equiv (\neg p \land q) \Until (p \land q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5155,14 +5188,18 @@ Both $\Wait$ and $\Until$ obey the following disjunction and conjunction rules, 
 \> $=$ \> \Hint{(\ref{E:notWait2}) Distributivity of $\neg$ over $\Wait$, with $p,q := \neg p, \neg q$} \\[\lgap]
 \> \> $(\neg p \land q) \Until (p \land q)$ \quad \myqed
 \end{tabbing}
+}
 
-Like the \textit{until} operator, the \textit{wait} operator is idempotent.
-$true$ is the right zero of both \textit{until} and \textit{wait}.
-$false$ is the left identity of both \textit{until} and \textit{wait}.
+Theorem (\ref{E:idempWait}) shows that the \textit{wait} operator, like the \textit{until} operator, is idempotent.
+Theorem (\ref{E:rightZeroWait}) shows that $true$ is the right zero of \textit{wait}, as it is for \textit{until}.
+Theorem (\ref{E:leftIdentWait}) shows that $false$ is the left identity of \textit{wait}, as it is for \textit{until}.
+Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator and shows that $p \Wait q$ is stronger than $p \lor q$.
+Theorem (\ref{E:orToWait}) shows that $\Always(p \lor q)$ is stronger than $p \Wait q$.
+Theorem (\ref{E:waitInsertion}), insertion for the \textit{wait} operator, corresponds to (\ref{E:untilInsertion}), insertion for the \textit{until} operator.
 \begin{equation}\label{E:idempWait}
 \textbf{Idempotency of $\Wait$:}\quad p \Wait p \equiv p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5174,10 +5211,11 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> $=$ \> \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\Always$ into $\lor$}\\[\lgap]
 \> \> $p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightZeroWait}
 \textbf{Right zero of $\Wait$:}\quad p \Wait true \equiv true
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5189,10 +5227,11 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
 \> \> $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:leftIdentWait}
 \textbf{Left identity of $\Wait$:}\quad false \Wait q \equiv q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5206,13 +5245,11 @@ $false$ is the left identity of both \textit{until} and \textit{wait}.
 \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 	\> \> $q$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator and shows that $p \Wait q$ is stronger than $p \lor q$.
-Theorem (\ref{E:orToWait}) shows that $\Always(p \lor q)$ is stronger than $p \Wait q$.
+}
 \begin{equation}\label{E:waitToOr}
 p \Wait q \impl p \lor q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5222,10 +5259,11 @@ p \Wait q \impl p \lor q
 \> $\impl$ \> \Hint{(3.76d) $p\lor (q\land r) \impl p\lor q$} \\[\lgap]
 \> \> $p \lor q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:orToWait}
 \Always (p\lor q) \impl p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5235,10 +5273,11 @@ p \Wait q \impl p \lor q
 \> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:notqimpliespToWait}
 \Always (\neg q \impl p) \impl p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5248,13 +5287,11 @@ p \Wait q \impl p \lor q
 \> $\impl$ \> \Hint{(\ref{E:orToWait}) $\Always (p\lor q) \impl p \Wait q$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
-
-Theorem (\ref{E:waitInsertion}), insertion for the \textit{wait} operator, corresponds to
-(\ref{E:untilInsertion}), insertion for the \textit{until} operator.
+}
 \begin{equation}\label{E:waitInsertion}
 \textbf{$\Wait$ insertion:}\quad q \impl p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5264,8 +5301,8 @@ Theorem (\ref{E:waitInsertion}), insertion for the \textit{wait} operator, corre
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $q$ \quad \myqed
 \end{tabbing}
+}
 
-% sms begin
 The next three theorems 
 (\ref{E:waitframelawnext}),
 (\ref{E:waitframelawEvent}),
@@ -5273,11 +5310,11 @@ and
 (\ref{E:waitframelawAlways})
 complete the set of frame laws which included the theorems from (\ref{E:framelawnext}) to (\ref{E:equivframelawAlways})
 for binary propositional operators,
-and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}) - (\ref{E:untilframelawAlways}).
+and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}), (\ref{E:untilframelawEvent}), and (\ref{E:untilframelawAlways}).
 \begin{equation}\label{E:waitframelawnext}
 \textbf{$\Wait$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Wait q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5290,10 +5327,11 @@ and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}) - (\ref{E:
 	\> \>   $\Always p \impl true$\\[\lgap]
     \> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitframelawEvent}
 \textbf{$\Wait$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Wait q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5312,10 +5350,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Wait q$ }\\[\lgap]
   \> \>   $\Event (p \Wait q) $\quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitframelawAlways}
 \textbf{$\Wait$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Wait q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5334,10 +5373,13 @@ And now,
    \> $\impl$ \> \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication} \\[\lgap]
    \> \>   $\Always (p \Wait  q) $\quad \myqed
 \end{tabbing}
+}
+
+Here are four induction theorems for $\Wait$, the last two of which are unique to this system.
 \begin{equation}\label{E:waitInduct4}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl (\Next p\land q)\lor r) \impl (p \impl q\Wait r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5346,10 +5388,11 @@ And now,
   \> \>   $\Always (p \impl (\Next p\land q)\lor r) \impl (p \impl \Always q\lor q\Until r)$\\[\lgap]
 \> which is (\ref{E:untilInduction1}) $\Until$ Induction. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitInduct3}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next (p\lor q)) \impl  (p \impl p \Wait q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5359,10 +5402,11 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:defWait}) Definition of $\Wait$}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitInduct1}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5372,10 +5416,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitInduct2}
 \textbf{$\Wait$ induction:}\quad \Always (p \impl q \land \Next p) \impl  (p \impl p \Wait q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5391,6 +5436,7 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:alwaysImpWait}) Perpetuity and (3.82a) Transitivity}\\[\lgap]
   \> \>   $p \impl p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 
 The next five absorption theorems correspond to the five absorption theorems for \textit{until},
 (\ref{E:untilOrP}),
@@ -5400,10 +5446,11 @@ The next five absorption theorems correspond to the five absorption theorems for
 and
 (\ref{E:untilOrAnd})
 respectively.
+All are unique to this system.
 \begin{equation}\label{E:waitOrP}
 \textbf{Absorption:}\quad p\lor p\Wait q\equiv p\lor q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5415,10 +5462,11 @@ respectively.
 \> $=$ \> \Hint{(\ref{E:untilOrP}) Absorption} \\[\lgap]
 \> \> $p\lor q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitOrQ}
 \textbf{Absorption:}\quad p\Wait q\lor q\equiv p\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5427,10 +5475,11 @@ respectively.
 \> \> $q\impl p\Wait q$\\[\lgap]
 \> which is (\ref{E:waitInsertion}) $\Wait$ Insertion. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitAndQ}
 \textbf{Absorption:}\quad p\Wait q\land q\equiv q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5439,6 +5488,7 @@ respectively.
 \> \> $q\impl p\Wait q$\\[\lgap]
 \> which is (\ref{E:waitInsertion}) $\Wait$ Insertion. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitAndOr}
 \textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
 \end{equation}
