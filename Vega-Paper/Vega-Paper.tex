@@ -3647,9 +3647,10 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 
 Theorems (\ref{E:axiomAlwaysUntilImpl}) and (\ref{E:absUntilAlways}) do not seem to appear in the LTL literature.
 However, they play a key role here in the proofs of several later theorems that do exist in the literature.
-The proof of (\ref{E:axiomAlwaysUntilImpl}) uses metatheorem (\ref{E:metatheorem}).
+The proof of (\ref{E:axiomAlwaysUntilImpl}) is based on (\ref{E:InductRuleAlways}) Induction rule $\Always$ with $p,q := p \Until \Always q, p \Until q$.
+It establishes the truth of the antecedent with the help of two lemmas, each of which is proved with metatheorem (\ref{E:metatheorem}).
 The strengthening and ordering theorems are also unique to this system.
-We give the proof of (\ref{E:axiomAlwaysUntilImpl}) to show the use of metatheorem (\ref{E:metatheorem}).
+The short proof of (\ref{E:untilAndImplUntilUntil}) illustrates the use of methatheorem (\ref{E:metatheorem}).
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
@@ -3759,7 +3760,7 @@ The proof in the second direction follows.
 \begin{equation}\label{E:andUntilImplUntilUntil}
 \textbf{Left $\land\Until$ strengthening:}\quad (p \land q) \Until r \impl (p\Until q)\Until r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3769,10 +3770,11 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \land q, p\Until q$}\\[\lgap]
   \> \>   $(p \land q) \Until r \impl (p\Until q)\Until r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:leftStrengthUntil}
 \textbf{Left $\land\Until$ ordering:}\quad (p \land q) \Until r \impl p\Until (q\Until r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: Theorem (\ref{E:untilStrength}) $\Until$ strengthening rule with $p,q,r,s := p \land q, r, p, q\Until r$ is
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3790,14 +3792,18 @@ Because the consequent is the theorem to be proved, it suffices to prove the tru
   \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
+}
 
 The $\Event\Always$ implication theorem states that $\Event\Always p$ ensures that $p$ will always eventually hold, but not the converse.
 Suppose, for example, that $p$ continually oscillates between true and false over time.
 Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is false.
+Its proof uses (\ref{E:axiomAlwaysUntilImpl}).
+Theorem (\ref{E:AEexcludedMid2}) is a second version of (\ref{E:AEexcludedMid}) $\Always\Event$ excluded middle, and is perhaps less intuitive.
+Its proof uses (\ref{E:eventAlwaysImp}).
 \begin{equation}\label{E:eventAlwaysImp}
 \textbf{$\Event \Always$ implication:}\quad \Event\Always p \impl \Always\Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3809,10 +3815,11 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:AEexcludedMid2}
 \textbf{$\Always \Event $ excluded middle:}\quad \Always \Event p \lor \Always \Event\neg p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3823,10 +3830,11 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
   \> \>   $\Event \Always p \impl \Always \Event p$\\[\lgap]
   \> which is (\ref{E:eventAlwaysImp}) $\Event \Always$ implication. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:EAcontradiction2}
 \textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land \Event \Always \neg p \equivs false
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3841,10 +3849,11 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
   \> \>   $\Always\Event \neg p \lor \Always\Event p$\\[\lgap]
   \> which is (\ref{E:AEexcludedMid2}) $\Always \Event $ excluded middle. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilframelawnext}
 \textbf{$\Until$ frame law of $\Next$:}\quad \Always p \impl (\Next q \impl \Next (p \Until q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3857,10 +3866,11 @@ Then, the consequent of (\ref{E:eventAlwaysImp}) is true, but the antecedent is 
 	\> \>   $\Always p \impl true$\\[\lgap]
 	\> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilframelawEvent}
 \textbf{$\Until$ frame law of $\Event$:}\quad \Always p \impl (\Event q \impl \Event (p \Until q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3877,10 +3887,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$, $p \impl \Event p$ with $p := p \Until q$ }\\[\lgap]
   \> \>   $\Event (p \Until q) $\quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilframelawAlways}
 \textbf{$\Until$ frame law of $\Always$:}\quad \Always p \impl (\Always q \impl \Always (p \Until q))
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3899,15 +3910,18 @@ And now,
    \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication} \\[\lgap]
    \> \>   $\Always (p \Until  q) $\quad \myqed
 \end{tabbing}
+}
 
 The absorption theorems, (\ref{E:absEvent}) and (\ref{E:absAlways}), together with absorption theorems
 (\ref{E:IdemEvent}) and (\ref{E:IdemAlways}), allow any arbitrary string of $\Event$ and $\Always$ operators
 of any arbitrary length to be collapsed into one of four expressions: \;$\Event p$, \;$\Always p$,
 \;$\Always\Event p$, or \;$\Event\Always p$.
+These theorems are common to all systems.
+The remaining absorption theorems (\ref{E:absAlwaysEvent}) to (\ref{E:absNextEventAlways}) are simple extensions mentioned in a single source in our survey.
 \begin{equation}\label{E:absEvent}
 \textbf{Absorption of $\Event$ into $\Always\Event$:}\quad \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -3925,10 +3939,11 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:impEvent}) Weakening of $\Event$}\\[\lgap]
   \> \>   $\Event\Always\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absAlways}
 \textbf{Absorption of $\Always$ into $\Event\Always$:}\quad \Always\Event\Always p \equiv \Event\Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3944,10 +3959,11 @@ The proof in the second direction follows.
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event\Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absAlwaysEvent}
 \textbf{Absorption of $ \Always\Event$:}\quad \Always \Event\Always\Event p \equiv \Always\Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3957,10 +3973,11 @@ The proof in the second direction follows.
   \> $=$ \> \Hint{(\ref{E:absEvent}) Absorption of $\Event$ into $\Always\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absEventAlways}
 \textbf{Absorption of $\Event \Always$:}\quad \Event \Always \Event\Always p \equiv \Event\Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3970,10 +3987,11 @@ The proof in the second direction follows.
   \> $=$ \> \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
   \> \>   $\Event \Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absNextAlwaysEvent}
 \textbf{Absorption of $\Next$ into $\Always\Event$:}\quad \Next\Always\Event p \equiv \Always\Event p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -3991,10 +4009,11 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysNA}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $\Next\Always\Event p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absNextEventAlways}
 \textbf{Absorption of $\Next$ into $\Event\Always$:}\quad \Next\Event\Always p \equiv \Event\Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -4014,10 +4033,14 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(\ref{E:impAlwaysN}) Strengthening of $\Always$, with $p := \Event\Always p$}\\[\lgap]
   \> \>   $\Next\Event\Always p$ \quad \myqed
 \end{tabbing}
+}
+
+The proof of monotonicity theorem (\ref{E:monoAlwaysEvent}) uses (\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$.
+The proof of monotonicity theorem (\ref{E:monoEventAlways}) does the same with (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
 \begin{equation}\label{E:monoAlwaysEvent}
 \textbf{Monotonicity of $\Always\Event$:}\quad \Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4032,10 +4055,11 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Always\Event p \impl \Always\Event q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:monoEventAlways}
 \textbf{Monotonicity of $\Event\Always$:}\quad \Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4050,6 +4074,7 @@ The proof in the second direction follows.
   \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl (\Event\Always p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
+}
 
 The next group of four distributivity theorems show how $\Always\Event$ and $\Event\Always$
 distribute over conjunction and disjunction.
@@ -4057,10 +4082,11 @@ Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over
 Similarly, Theorem (\ref{E:distEventAlwaysOr}) shows that $\Event\Always$ distributes over disjunction only in one direction.
 However, Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) show that $\Always\Event$ distributes over
 disjunction and $\Event\Always$ distributes over conjunction in both directions.
+The proof of (\ref{E:distEventAlwaysOr}) illustrates the use of (\ref{E:metaEvent}) Metatheorem $\Event$.
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4071,6 +4097,7 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
   \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always\Event p \land \Always\Event q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
@@ -4085,12 +4112,10 @@ disjunction and $\Event\Always$ distributes over conjunction in both directions.
   \>          \>  \Hintlast{$\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
   \> \>   $\Event\Always (p \lor q)$ \quad \myqed
 \end{tabbing}
-
-Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) are duals of each other.
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -4141,10 +4166,11 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
   \> $\impl$  \> \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event(\Event (p\lor q) \land \Always \neg p) \impl \Event q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distEventAlwaysAnd}
 \textbf{Distributivity of $\Event\Always$ over $\land$:}\quad \Event\Always(p \land q) \equiv \Event\Always p \land \Event\Always q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4164,12 +4190,14 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
   \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
   \> \>   $\Event\Always p\land \Event\Always q$ \quad \myqed
 \end{tabbing}
+}
 
-The following theorem is Problem 4.2 in Manna and Pnueli. \cite{Manna}
+Theorem (\ref{E:eventualLatching}) is Problem 4.2 in Manna and Pnueli. \cite{Manna}
+Theorems (\ref{E:BenAriequiv1}) and (\ref{E:BenAriequiv2}) are Exercise 14.6 and 14.7 respectively in Ben-Ari. \cite{Ben}
 \begin{equation}\label{E:eventualLatching}
 \textbf{Eventual latching:}\quad \Event\Always(p\impl \Always q) \equiv \Event\Always\neg p \lor \Event\Always q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -4220,12 +4248,11 @@ Lemma: $\Event\Always(p\impl \Always q) \impl \Event(\Always\Event p\impl \Event
       \> $\impl$  \> \Hint{(\ref{E:impEvent}) Weakening of $\Event$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Event\Always (p \impl \Always q) \impl \Event(\Always\Event p \impl \Event\Always q)$ \quad \myqed
 \end{tabbing}
-
-The following theorem is Exercise 14.6 in Ben-Ari. \cite{Ben}
+}
 \begin{equation}\label{E:BenAriequiv1}
 \Always (\Always\Event p \impl \Event q) \equiv \Event\Always\neg p \lor \Always\Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -4253,12 +4280,11 @@ The proof in the second direction follows.
   \> $=$  \>  \Hint{(\ref{E:absAlways}) Absorption of $\Always$ into $\Event\Always$}\\[\lgap]
   \> \>   $\Event\Always\neg p \lor \Always\Event q$ \quad \myqed
 \end{tabbing}
-
-The following theorem is Exercise 14.7 in Ben-Ari. \cite{Ben}
+}
 \begin{equation}\label{E:BenAriequiv2}
 \Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication and is based on the following lemmas, where $R$ is defined as the expression
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4437,13 +4463,14 @@ is by (4.7.1) Truth implication.
   \> $\impl$  \>  \Hint{Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$ and (3.82a) Transitivity}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Always R$ \quad \myqed
 \end{tabbing}
+}
 
 The metatheorems and absorption laws imply the following intuitive theorem.
 If $p$ will eventually be always true, and it is always the case that $q$ will be eventually true, then it is always the case that $p\land q$ will eventually be true.
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4465,10 +4492,11 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
 \> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
 \end{tabbing}
-% sms begin
+}
 \begin{equation}\label{E:kroger49}
  \Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \impl (\Always p \impl \Next \Always \Event r)
 \end{equation}
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4497,10 +4525,11 @@ And now,
       \> $=$  \>  \Hint{(\ref{E:dNextEvent}) Exchange of $\Next$ and $\Event$ and (\ref{E:dNextAlways}) Exchange of $\Next$ and $\Always$}\\[\lgap]
       \> \>   $ \Next\Always\Event r$  \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:PrProofRule}
 \textbf{Progress proof rule:}\quad \Event\Always p \land \Always(\Always p \impl \Event q) \impl \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4512,6 +4541,7 @@ And now,
 \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
 \> \>   $\Event q$ \quad \myqed
 \end{tabbing}
+}
 
 \subsection{Wait}\label{section-wait}
 
@@ -4519,8 +4549,8 @@ $p\Until q$ requires $p$ to be true until $q$, which is guaranteed to eventually
 $p\Wait q$ has no such guarantee.
 That is, if $q$ is eventually true then $p$ is true until that time.
 But, if $q$ is not eventually true then $p$ must be true always.
+Accordingly, Kröger and Merz \cite{Kroger} refer to $\Wait$ as the \textit{weak} version of $\Until$.
 Equations (\ref{E:defWait}) and (\ref{E:notWait}) are the only defining axioms for the \textit{wait} operator.
-(Note that Schneider \cite{Schn} uses the symbol $\Until$ for the \textit{wait} operator and calls it ``unless.'')
 \begin{equation}\label{E:defWait}
 \textbf{Definition of $\Wait$:}\quad p \Wait q \equiv \Always p \lor p \Until q 
 \end{equation}
