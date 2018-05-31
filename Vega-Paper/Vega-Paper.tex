@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-\usepackage[publication]{optional}
-%\usepackage[complete]{optional}
+%\usepackage[publication]{optional}
+\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -6323,7 +6323,7 @@ The CTL inference rules and axioms without the additional quantifiers, however, 
 As with the LTL system of Ben-Ari, the two stated rules of inference correspond to (3.77) Modus ponens and the generalization part of (\ref{E:metatheorem}) Metatheorem.
 The nine axioms correspond to (\ref{E:defEvent}) Definition of $\Event$, (\ref{E:defAlways}) Definition of $\Always$, (\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$, (\ref{E:linearity}) Linearity, (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:nextTruth}) Truth of $\Next$, (\ref{E:InductRuleAlways}) and (\ref{E:InductRuleUntil}) Induction rules $\Always$ and $\Until$, and (\ref{E:alwaysImpNexts}) Monotonicity of $\Next$.
 
-Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the the \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
+Kröger and Merz \cite{Kroger} use the symbol \textbf{unt} (an abbreviation for until) to denote the  \textit{until} operator $\Until$ and the symbol \textbf{unl} (an abbreviation for unless) to denote the \textit{wait} operator $\Wait$.
 They call these \textit{non-strict} operators in contrast to variations of the operators termed \textit{strict} operators.
 
 Kröger and Merz first define a \textit{propositional linear temporal logic} consisting of only the unary temporal operators $\Next$ and $\Always$.
@@ -6333,9 +6333,9 @@ The three axioms correspond to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp
 They introduce the \textit{until} operator and the \textit{wait} operator as an extension to the propositional linear temporal logic.
 The four axioms for the extension correspond to (\ref{E:expansionUntil}) Expansion of $\Until$, (\ref{E:eventuality}) Eventuality, (\ref{E:expansionWait}) Expansion of $\Wait$, and (\ref{E:alwaysImpWait}) Perpetuity.
 
-Manna and Pnueli \cite{Manna} use the $\rightarrow$ symbol for implication, so that $p\impl q$ is written as $p\rightarrow q$.
-They introduce the symbol $\impl$ to stand for always implies, so that $\Always(p\impl q)$ is written as $p\impl q$.
-Similarly, $p\equiv q$ is written as $p\leftrightarrow q$, and $\Always(p\equiv q)$ is written as $p\Leftrightarrow q$.
+Manna and Pnueli \cite{Manna} use the $\rightarrow$ symbol for implication, so that $p\impl q$ of our system is written as $p\rightarrow q$ in theirs.
+They introduce the symbol $\impl$ to stand for always implies, so that $\Always(p\rightarrow q)$ is written as $p\impl q$ in their system.
+Similarly, $p\equiv q$ of our system is written as $p\leftrightarrow q$, in theirs and $\Always(p\leftrightarrow q)$ is written as $p\Leftrightarrow q$.
 
 Manna and Pnueli define a proof system that combines the future operators $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ with a set of corresponding past operators.
 For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait false$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
