@@ -561,6 +561,12 @@ p \land q \impl p \Until q
 
 \spacer
 
+\begin{equation}\label{E:absUntilIntoEvent2}
+\textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until q \lor \Event q \equiv \Event q
+\end{equation}
+
+\spacer
+
 \begin{equation}\label{E:absUntilIntoEvent}
 \textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until \Event q \equiv \Event q
 \end{equation}
@@ -1929,6 +1935,12 @@ p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}
 \opt{inventory}{M266(T36), S66(3.32c)\\}
 
+\spacer
+
+\begin{equation}\label{E:waitQwaitRImpWaitQorR}
+\textbf{Right $\Wait\lor$ strengthening:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
+\end{equation}
+
 %\spacer
 %
 %\begin{equation}\label{E:mixuntilImpAbsR}
@@ -1948,12 +1960,6 @@ p \Wait q \land \Always\neg q \impl \Always p
 \textbf{Right $\land\Wait$ ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
 \end{equation}
 \opt{inventory}{S66(3.34c)\\}
-
-\spacer
-
-\begin{equation}\label{E:waitQwaitRImpWaitQorR}
-\textbf{Right $\Wait\lor$ strengthening:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
-\end{equation}
 
 \spacer
 

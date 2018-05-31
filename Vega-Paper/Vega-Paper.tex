@@ -1662,8 +1662,8 @@ Equation (\ref{E:defEvent}) is its only defining axiom.
 
 Theorem (\ref{E:absEventIntoUntil}) shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
 Its proof uses (\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$.
-Theorem (\ref{E:absUntilIntoEvent}) shows also that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
-It is proved by mutual implication.
+Theorems (\ref{E:absUntilIntoEvent2}) and (\ref{E:absUntilIntoEvent}) show also that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
+They are proved by mutual implication.
 Theorem (\ref{E:eventuality}) shows that $p\Until q$ guarantees that $q$ will eventually be $true$.
 Its proof uses (\ref{E:absEventIntoUntil}).
 Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\Event$, are unique to this system.
@@ -1682,6 +1682,32 @@ Their proofs are simple.
   \> \>   $(p\land true) \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
   \> \>   $p\Until q$ \quad \myqed
+\end{tabbing}
+}
+\begin{equation}\label{E:absUntilIntoEvent2}
+\textbf{Absorption of $\Until$ into $\Event$:}\quad p \Until q \lor \Event q \equiv \Event q
+\end{equation}
+\opt{complete}{
+\emph{Proof}: The proof is by (4.7) Mutual implication.
+The proof in the first direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Until \Event q \lor \Event q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
+\>\> $p \Until q \lor true \Until q$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:untilOrImp})  Right distributivity of $\Until$ over $\lor$} \\[\lgap]
+\> \> $(p \lor true) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
+\> \> $true \Until q$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
+\> \> $\Event q$
+\end{tabbing}
+The proof in the second direction follows.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $ \Event q$\\[\lgap]
+\> $\impl$  \>  \Hint{(3.76a) Weakening the consequent, $p \impl p\lor q$}\\[\lgap]
+\> \> $p \Until q \lor \Event q$ \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:absUntilIntoEvent}
@@ -5492,7 +5518,7 @@ All are unique to this system.
 \begin{equation}\label{E:waitAndOr}
 \textbf{Absorption:}\quad p\Wait q\land (p\lor q) \equiv p\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: (Ravi Mohan)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5501,10 +5527,11 @@ All are unique to this system.
 \> \> $p\Wait q\impl p\lor q$\\[\lgap]
 \> which is (\ref{E:waitToOr}). \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitOrAnd}
 \textbf{Absorption:}\quad p\Wait q\lor (p\land q) \equiv p\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5516,13 +5543,41 @@ All are unique to this system.
 \> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion of $\Wait$} \\[\lgap]
 \> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
+}
 
-The left and right absorption theorems for $\Wait$ correspond to, and are proved from, the left and right absorption theorems
-for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
+\begin{figure}[t]
+\centering
+\renewcommand\arraystretch{1.2}
+\begin{tabular}{ l l }
+  \toprule
+  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
+  &
+  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
+  \midrule
+  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
+  &
+  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
+  \midrule
+  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
+  &
+  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
+  \midrule
+  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
+  &
+  (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law:\; $p \Wait false\equiv \Always p$ \\
+  \bottomrule
+\end{tabular}
+\renewcommand\arraystretch{1}
+\caption{The eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+\label{true-false-wait-until}}
+\end{figure}
+The left and right absorption theorems for $\Wait$, (\ref{E:waitAbsL}) and (\ref{E:waitAbsR}), correspond to, and are proved from, the left and right absorption theorems for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
+Theorem (\ref{E:alwaysAsWait}) corresponds to the definition of the $\Event$ operator (\ref{E:defEvent}).
+Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5538,10 +5593,11 @@ for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitAbsR}
 \textbf{Right absorption of $\Wait$:}\quad (p \Wait q) \Wait q \equiv p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7) Mutual implication.
 The proof in the first direction follows.
 \begin{tabbing}
@@ -5571,40 +5627,11 @@ The proof in the second direction follows.
   \> $=$  \>  \Hint{(\ref{E:waitOrQ}) Absorption}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
 \end{tabbing}
-
-\begin{figure}[t]
-\centering
-\renewcommand\arraystretch{1.2}
-\begin{tabular}{ l l }
-  \toprule
-  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
-  &
-  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
-  \midrule
-  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
-  &
-  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
-  \midrule
-  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
-  &
-  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
-  \midrule
-  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
-  &
-  (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law:\; $p \Wait false\equiv \Always p$ \\
-  \bottomrule
-\end{tabular}
-\renewcommand\arraystretch{1}
-\caption{The eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
-\label{true-false-wait-until}}
-\end{figure}
-
-The following theorem (\ref{E:alwaysAsWait}) is the dual of the definition of the $\Event$ operator (\ref{E:defEvent}).
-Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+}
 \begin{equation}\label{E:alwaysAsWait}
 \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5616,10 +5643,11 @@ Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ 
 \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:eventAsWait}
 \textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5629,12 +5657,18 @@ Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ 
 \> $=$  \>  \Hint{(\ref{E:eventAsAlways}) $\Event p \equiv \neg\Always\neg p$}\\[\lgap]
 \> \> $\Event p$ \quad \myqed
 \end{tabbing}
+}
 
-The following theorem for the \textit{wait} operator corresponds to (\ref{E:axiomUntilImpl}) $\Until$ implication.
+Theorem (\ref{E:waitEntailment}) for $\Wait$ corresponds to (\ref{E:axiomUntilImpl}) $\Until$ implication.
+It is also known as an entailment law for the \textit{wait} operator. \cite{Schn}
+The following four absorption theorems combine an \textit{until} operation with a \textit{wait} operation.
+Theorem (\ref{E:absorpEventWait}) corresponds to (\ref{E:absUntilAlways}) Absorption of $\Until$ into $\Always$.
+Theorem (\ref{E:absWaitAlways}) corresponds to (\ref{E:absUntilIntoEvent2}) Absorption of $\Until$ into $\Event$.
+Theorem (\ref{E:absAlwaysWait}) corresponds to (\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$. 
 \begin{equation}\label{E:waitEntailment}
 \textbf{$\Wait$ implication:}\quad p \Wait q \impl \Always p\lor \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5644,12 +5678,11 @@ The following theorem for the \textit{wait} operator corresponds to (\ref{E:axio
 \> $\impl$ \> \Hint{(\ref{E:eventuality}) Eventuality and (4.2) Monotonicity of $\lor$} \\[\lgap]
 \> \> $\Always p\lor \Event q$ \quad \myqed
 \end{tabbing}
-
-Each of the following four absorption theorems combine an \textit{until} operation with a \textit{wait} operation.
+}
 \begin{equation}\label{E:leftWaitAbsUtil}
 \textbf{Absorption:}\quad p \Wait (p \Until q) \equiv p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5661,10 +5694,11 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightWaitAbsUtil}
 \textbf{Absorption:}\quad (p \Until q) \Wait q \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5676,10 +5710,11 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \> $=$ \> \Hint{(\ref{E:absAlwaysIntoOr}) Absorption of $\Always$ into $\lor$ with $p := p\Until q$} \\[\lgap]
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:leftUntilAbsWait}
 \textbf{Absorption:}\quad p \Until (p \Wait q) \equiv p \Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5695,10 +5730,11 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p \Wait q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightUntilAbsWait}
 \textbf{Absorption:}\quad (p \Wait q) \Until q \equiv p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5710,12 +5746,11 @@ Each of the following four absorption theorems combine an \textit{until} operati
 \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
 \> \> $p \Until q$ \quad \myqed
 \end{tabbing}
-
-The following theorem corresponds to (\ref{E:absUntilAlways}) Absorption of $\Until$ into $\Always$.
+}
 \begin{equation}\label{E:absorpEventWait}
 \textbf{Absorption of $\Wait$ into $\Event$:}\quad \Event q \Wait q \equiv \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5727,10 +5762,11 @@ The following theorem corresponds to (\ref{E:absUntilAlways}) Absorption of $\Un
 \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
 \> \> $\Event q$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:absWaitAlways}
 \textbf{Absorption of $\Wait$ into $\Always$:}\quad \Always p\land p\Wait q\equiv \Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5740,11 +5776,11 @@ The following theorem corresponds to (\ref{E:absUntilAlways}) Absorption of $\Un
 \> $=$ \> \Hint{(3.43a) Absorption $p\land (p\lor q) \equiv p$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
 \end{tabbing}
-The following theorem corresponds to (\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$. 
+}
 \begin{equation}\label{E:absAlwaysWait}
 \textbf{Absorption of $\Always$ into $\Wait$:}\quad \Always p\lor p\Wait q\equiv p\Wait q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5756,14 +5792,17 @@ The following theorem corresponds to (\ref{E:absEventIntoUntil}) Absorption of $
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
 \> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
+}
 
 The next two pair of theorems correspond.
 The \textit{wait} versions are in the temporal logic literature.
-The \textit{until} versions are apparently unique to this system.
+The \textit{until} versions are unique to this system.
+The monotonicity theorems and the strengthening and catenation rules are common.
+The implication rules (\ref{E:LeftUntilWaitImpl}) to (\ref{E:LeftUntilUntilImpl}) are unique to this system.
 \begin{equation}\label{E:waitEntailAlways}
 p \Wait q \land \Always\neg q \impl \Always p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5777,10 +5816,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilEntailAlways}
 \Always p\impl p \Until q \lor \Always\neg q 
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5794,10 +5834,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitEntailEvent}
 \neg\Always p\land p \Wait q \impl \Event q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5808,10 +5849,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $p\Wait q \impl \Always p\lor \Event q$\\[\lgap]
 \> which is (\ref{E:waitEntailment}) $\Wait$ implication. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:untilEntailEvent}
 \Event q\impl \neg\Always p\lor p \Until q
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5822,10 +5864,11 @@ p \Wait q \land \Always\neg q \impl \Always p
 \> \> $\Event q\land \Always p\impl p \Until q$\\[\lgap]
 \> which is (\ref{E:axiomUntilImpl}) $\Until$ implication. \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:leftMonoWait}
 \textbf{Left monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (p \Wait r \impl q \Wait r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5848,10 +5891,11 @@ And now,
   \> $\impl$ \> \Hint{(3.76b) Strengthening, $p\land q \impl p$} \\[\lgap]
   \> \>   $q \Wait r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:rightMonoWait}
 \textbf{Right monotonicity of $\Wait$:}\quad \Always (p \impl q) \impl (r \Wait p \impl r \Wait q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5863,11 +5907,11 @@ And now,
   \> $\foll$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$}\\[\lgap]
   \> \>   $\Always (p \impl q)$ \quad \myqed
 \end{tabbing}
-% sms begin
+}
 \begin{equation}\label{E:waitstrength}
 \textbf{$\Wait$ strengthening rule:}\quad \Always ((p \impl r) \land (q \impl s)) \impl (p \Wait q \impl r \Wait s)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5890,10 +5934,11 @@ And now,
    \> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
    \> \>   $r \Wait s$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitCatRule}
 \textbf{$\Wait$ catenation rule:}\quad \Always ((p \impl q \Wait r) \land (r \impl q \Wait s)) \impl (p \impl q \Wait s)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5918,10 +5963,11 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:waitAbsL}) Left absorption of $\Wait$}\\[\lgap]
   \> \>   $q \Wait s$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:LeftUntilWaitImpl}
 \textbf{Left $\Until\Wait$ implication:}\quad (p\Until q)\Wait r\impl (p\Wait q)\Wait r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5931,10 +5977,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
   \> \>   $(p\Until q)\Wait r\impl (p\Wait q)\Wait r$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:RightWaitUntilImpl}
 \textbf{Right $\Wait\Until$ implication:}\quad p\Wait (q\Until r)\impl p\Wait (q\Wait r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5944,10 +5991,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
   \> \>   $p\Wait (q\Until r)\impl p\Wait (q\Wait r)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:RightUntilUntilImpl}
 \textbf{Right $\Until\Until$ implication:}\quad p\Until (q\Until r)\impl p\Until (q\Wait r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5957,10 +6005,11 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
   \> \>   $p\Until (q\Until r)\impl p\Until (q\Wait r)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:LeftUntilUntilImpl}
 \textbf{Left $\Until\Until$ implication:}\quad (p\Until q)\Until r\impl (p\Wait q)\Until r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -5970,91 +6019,8 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
   \> \>   $(p\Until q)\Until r\impl (p\Wait q)\Until r$ \quad \myqed
 \end{tabbing}
-\begin{equation}\label{E:untilImpAbsR}
-\textbf{Left $\Until\lor$ strengthening:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
-\end{equation}
+}
 
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr})} \\[\lgap]
-  \> \>   $\Always (p\Until q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Until q, p\lor q$}\\[\lgap]
-  \> \>   $(p \Until q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:waitImpAbsR}
-\textbf{Left $\Wait\lor$ strengthening:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}: The proof is by (4.7.1) Truth implication.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
-  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
-  \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-%\begin{equation}\label{E:mixuntilImpAbsR}
-%\textbf{Left $\Wait\lor$ mixed strengthening:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
-%\end{equation}
-%
-%\emph{Proof}: The proof is by (4.7.1) Truth implication.
-%\begin{tabbing}
-%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
-%  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
-%  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
-%  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
-%  \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
-%\end{tabbing}
-\begin{equation}\label{E:leftAssocWait}
-\textbf{Right $\Wait\lor$ ordering:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $p \Wait (q \Wait r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
-\> \>   $\Always p\lor p\Until (\Always q\lor q \Until r)$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-\> \>   $\Always p\lor p\Until \Always q\lor p\Until (q \Until r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
-\> \>   $\Always p\lor \Always (p\Until q)\lor p\Until (q \Until r)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \>   $\Always p\lor \Always (p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
-\> \>   $\Always (p\lor p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:untilOrP}) Absorption} \\[\lgap]
-\> \>   $\Always (p\lor q)\lor (p\lor q) \Until r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $(p\lor q) \Wait r$ \quad \myqed
-\end{tabbing}
-\begin{equation}\label{E:rightAssocWait}
-\textbf{Right $\land\Wait$ ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
-\end{equation}
-
-\emph{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $(p \Wait q) \Wait r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $(\Always p \lor p\Until q) \Wait r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$} \\[\lgap]
-\> \>   $(\Always p\Wait r) \lor (p\Until q) \Wait r$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
-\> \>   $\Always\Always p\lor \Always p\Until r \lor \Always(p\Until q)\lor (p\Until q)\Until r$\\[\lgap]
-\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
-\> \>   $\Always p\lor \Always p\Until r \lor \Always(p\Until q)\lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
-\> \>   $\Always p\lor (p\Until q)\Until r$\\[\lgap]
-\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right $\land \Until$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
-\> \>   $\Always p\lor p\Until (q\land r)$\\[\lgap]
-\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \>   $p \Wait (q \land r)$ \quad \myqed
-\end{tabbing}
 \begin{figure}[t]
 \centering
   \begin{picture}(440,264)
@@ -6110,10 +6076,54 @@ And now,
 \caption{A Hasse diagram showing some implication relations of linear temporal logic.
 \label{hasse2}}
 \end{figure}
+Of the three strengthening rules, only (\ref{E:waitImpAbsR}) appears in the LTL literature.
+All of the following ordering rules are in the literature except for (\ref{E:untilOrdering}) $\Until$ ordering.
+Figure \ref{hasse2} is a Hasse diagram showing some implication relations of these theorems.
+\begin{equation}\label{E:untilImpAbsR}
+\textbf{Left $\Until\lor$ strengthening:}\quad (p \Until q) \Until r \impl (p \lor q) \Until r
+\end{equation}
+\opt{complete}{
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr})} \\[\lgap]
+  \> \>   $\Always (p\Until q\impl p\lor q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Until q, p\lor q$}\\[\lgap]
+  \> \>   $(p \Until q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
+\end{tabbing}
+}
+\begin{equation}\label{E:waitImpAbsR}
+\textbf{Left $\Wait\lor$ strengthening:}\quad (p \Wait q) \Wait r \impl (p \lor q) \Wait r
+\end{equation}
+\opt{complete}{
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $true$\\[\lgap]
+  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
+  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
+  \> \>   $(p \Wait q) \Wait r \impl (p \lor q) \Wait r$ \quad \myqed
+\end{tabbing}
+}
+%\begin{equation}\label{E:mixuntilImpAbsR}
+%\textbf{Left $\Wait\lor$ mixed strengthening:}\quad (p \Wait q) \Until r \impl (p \lor q) \Until r
+%\end{equation}
+%
+%\emph{Proof}: The proof is by (4.7.1) Truth implication.
+%\begin{tabbing}
+%\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+%  \> \>   $true$\\[\lgap]
+%  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
+%  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
+%  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
+%  \> \>   $(p \Wait q) \Until r \impl (p \lor q) \Until r$ \quad \myqed
+%\end{tabbing}
 \begin{equation}\label{E:waitQwaitRImpWaitQorR}
 \textbf{Right $\Wait\lor$ strengthening:}\quad p \Wait (q \Wait r) \impl p \Wait (q \lor r)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -6123,10 +6133,59 @@ And now,
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q\Wait r, q\lor r,p$}\\[\lgap]
   \> \>   $p \Wait (q \Wait r) \impl p \Wait (q \lor r)$ \quad \myqed
 \end{tabbing}
+}
+\begin{equation}\label{E:leftAssocWait}
+\textbf{Right $\Wait\lor$ ordering:}\quad p \Wait (q \Wait r) \impl (p \lor q) \Wait r
+\end{equation}
+\opt{complete}{
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $p \Wait (q \Wait r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+\> \>   $\Always p\lor p\Until (\Always q\lor q \Until r)$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
+\> \>   $\Always p\lor p\Until \Always q\lor p\Until (q \Until r)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
+\> \>   $\Always p\lor \Always (p\Until q)\lor p\Until (q \Until r)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \>   $\Always p\lor \Always (p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:distAlwaysOr}) Distributivity of $\Always$ over $\lor$ and (4.2) Monotonicity of $\lor$}\\[\lgap]
+\> \>   $\Always (p\lor p\Until q)\lor (p\lor q) \Until r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:untilOrP}) Absorption} \\[\lgap]
+\> \>   $\Always (p\lor q)\lor (p\lor q) \Until r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \>   $(p\lor q) \Wait r$ \quad \myqed
+\end{tabbing}
+}
+\begin{equation}\label{E:rightAssocWait}
+\textbf{Right $\land\Wait$ ordering:}\quad p \Wait (q \land r) \impl (p \Wait q) \Wait r
+\end{equation}
+\opt{complete}{
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \>   $(p \Wait q) \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \>   $(\Always p \lor p\Until q) \Wait r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$} \\[\lgap]
+\> \>   $(\Always p\Wait r) \lor (p\Until q) \Wait r$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$, twice} \\[\lgap]
+\> \>   $\Always\Always p\lor \Always p\Until r \lor \Always(p\Until q)\lor (p\Until q)\Until r$\\[\lgap]
+\> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
+\> \>   $\Always p\lor \Always p\Until r \lor \Always(p\Until q)\lor (p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$} \\[\lgap]
+\> \>   $\Always p\lor (p\Until q)\Until r$\\[\lgap]
+\> $\foll$ \> \Hint{(\ref{E:rightAssocUntil}) Right $\land \Until$ ordering and (4.2) Monotonicity of $\lor$} \\[\lgap]
+\> \>   $\Always p\lor p\Until (q\land r)$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \>   $p \Wait (q \land r)$ \quad \myqed
+\end{tabbing}
+}
 \begin{equation}\label{E:untilOrdering}
 \textbf{$\Until$ ordering:}\quad \neg p \Until q \lor \neg q \Until p \equiv \Event(p\lor q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -6140,10 +6199,11 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:ruleUntil}) Rule of $\Until$ with $q := p\lor q$}\\[\lgap]
   \> \>   $\Event (p\lor q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitOrdering}
 \textbf{$\Wait$ ordering:}\quad \neg p \Wait q \lor \neg q \Wait p
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -6157,10 +6217,11 @@ And now,
   \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
   \> \>   $true$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:waitImplicationOrdering}
 \textbf{$\Wait$ implication ordering:}\quad p \Wait q \land \neg q \Wait r \impl p \Wait r
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}: The proof is based on the following lemmas.\\[\llgap]
 Lemma A: $p \Until q \land \Always \neg q \equiv false$
 
@@ -6217,6 +6278,7 @@ And now,
   \> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
   \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
+}
 
 The ten axioms that define the behavior of the \textit{until} operator are (\ref{E:distNextUntil}), (\ref{E:expansionUntil}), (\ref{E:untilFalse}), (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), (\ref{E:untilAndEquiv}), (\ref{E:untilImplicationOrdering}), (\ref{E:leftAssocUntil}), and (\ref{E:rightAssocUntil}).
 The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitImplicationOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).

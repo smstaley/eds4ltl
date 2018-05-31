@@ -27,3 +27,7 @@
 /NewTheoremCounterexample/build/
 /EventualLatchingCounterexample/build/
 /EventualLatchingCounterexample/dist/
+/AbsorptionUntilCounterexample/dist/
+/AbsorptionUntilCounterexample/build/
+/AlwaysWaitCounterexample/build/
+/AlwaysWaitCounterexample/dist/
