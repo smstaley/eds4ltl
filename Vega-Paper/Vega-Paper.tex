@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -3549,15 +3549,17 @@ And now,
   \begin{picture}(126,128)
   \thicklines
   \put(109,76) {\circle*{4}} \put(109,76) {\line(1,-1){62}}
-  \put(171,14) {\circle*{4}} \put(171,14) {\line(1,1){62}} \put(171,76) {\circle*{4}} \put(171,14) {\line(0,1){62}}
-  \put(233,76) {\circle*{4}} \put(233,76) {\line(1,-1){62}} \put(295,14) {\circle*{4}}
-  \put(78,82) {$\Next p\impl \Next q$} \put(144,82) {$\Always p\impl \Always q$}
+  \put(171,14) {\circle*{4}} \put(171,14) {\line(2,1){62}} \put(171,76) {\circle*{4}} \put(171,14) {\line(0,1){62}}
+  \put(233,45) {\circle*{4}} \put(233,44) {\line(0,1){31}} \put(233,76) {\circle*{4}}
+  \put(78,82) {$\Next p\impl \Next q$} 
+  \put(144,82) {$\Always p\impl \Always q$}
   \put(200,94){\fbox{\parbox{56pt}{\centering $\Event(p\impl q)$ $\Always p \impl \Event q$}}}
-  \put(144,0) {$\Always (p\impl q)$} \put(268,0) {$\Event p\impl \Event q$}
+  \put(144,0) {$\Always (p\impl q)$}
+  \put(240,40) {$\Event p\impl \Event q$}
   \put(110,40) {(\ref{E:alwaysImpNexts})}
   \put(174,56) {(\ref{E:distAlwaysImp})}
-  \put(208,40) {(\ref{E:alwaysImpEvents})}
-  \put(272,40) {(\ref{E:eventPImplEventQ})}
+  \put(208,20) {(\ref{E:alwaysImpEvents})}
+  \put(236,56) {(\ref{E:eventPImplEventQ})}
   \put(266,94) {(\ref{E:eventImpAlways})}
   \end{picture}
 \end{tabular}
@@ -6360,59 +6362,39 @@ The two axioms for the \textit{wait} operator correspond to (\ref{E:alwaysImpWai
 
 \subsection{Comparison of LTL deductive systems}\label{section-comparison}
 
+A striking feature of this survey is how each author chooses to include a set of theorems that all other authors omit.
+Ben-Ari has 13 unique theorems, Emerson has 14, Kröger and Merz have 10, Manna and Pnueli have 18, and Schneider has 19.
 
+There are 19 theorems that are common to all five sources in the survey, namely
+(\ref{E:selfDual}),
+(\ref{E:distNextImp}),
+(\ref{E:distNextOr}),
+(\ref{E:distNextAnd}),
+(\ref{E:expansionEvent}),
+(\ref{E:impEvent}),
+(\ref{E:IdemEvent}),
+(\ref{E:dNextEvent}),
+(\ref{E:distEventOr}),
+(\ref{E:expansionAlways}),
+(\ref{E:IdemAlways}),
+(\ref{E:dNextAlways}),
+(\ref{E:impAlways}),
+(\ref{E:impAlwaysN}),
+(\ref{E:distAlwaysAnd}),
+(\ref{E:alwaysImpEvents}),
+(\ref{E:distAlwaysImp}),
+(\ref{E:absEvent}), and
+(\ref{E:absAlways}).
 
-
-
-
-
-This paper presents 44 linear temporal logic theorems not included in any of the above cited references.
-Two are the axioms
-(\ref{E:absUntilAlways}) Absorption and
-(\ref{E:axiomUntilImpl}) $\Until$ implication.
-
-The remaining 41 are the theorems
-(\ref{E:nextTruth}) Truth of $\Next$,
-(\ref{E:nextFalse}) Falsehood of $\Next$,
+This system has 252 theorems, 19 of which are axioms.
+Of the axioms, seven are unique to this system, namely
 (\ref{E:untilFalse}),
-(\ref{E:zeroUntil}),
-(\ref{E:leftIdUntil}),
-(\ref{E:untilOrP}) Absorption,
-(\ref{E:untilOrQ}) Absorption,
-(\ref{E:untilAndQ}) Absorption,
-(\ref{E:untilAndOr}) Absorption,
-(\ref{E:untilOrAnd}) Absorption,
-(\ref{E:eventTrue}) Truth of $\Event$,
-(\ref{E:eventFalse}) Falsehood of $\Event$,
-(\ref{E:absOrIntoEvent}) Absorption of $\lor$ into $\Event$,
-(\ref{E:absEventIntoAnd}) Absorption of $\land$ into $\Event$,
-(\ref{E:alwaysTrue}) Truth of $\Always$,
-(\ref{E:alwaysFalse}) Falsehood of $\Always$,
-(\ref{E:absAndIntoAlways}) Absorption of $\land$ into $\Always$,
-(\ref{E:absAlwaysIntoOr}) Absorption of $\lor$ into $\Always$,
-(\ref{E:impNext}),
-(\ref{E:metatheorem}) Metatheorem,
-(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$,
-(\ref{E:leftZeroWait}) Left zero of $\Wait$,
-(\ref{E:idempWait}) Idempotency of $\Wait$,
-(\ref{E:rightZeroWait}) Right zero of $\Wait$,
-(\ref{E:leftIdentWait}) Left identity of $\Wait$,
-(\ref{E:untilImplWait}),
-(\ref{E:waitOrP}) Absorption,
-(\ref{E:waitOrQ}) Absorption,
-(\ref{E:waitAndQ}) Absorption,
-(\ref{E:waitAndOr}) Absorption,
-(\ref{E:waitOrAnd}) Absorption,
-(\ref{E:absEventIntoUntil}) Absorption of $\Event$ into $\Until$,
-(\ref{E:absAlwaysWait}) Absorption of $\Always$ into $\Wait$,
-(\ref{E:untilEntailAlways}),
-(\ref{E:untilEntailEvent}),
-(\ref{E:rightUntilAbsWait}) Absorption,
-(\ref{E:absorpEventWait}) Absorption,
-(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$,
-(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$,
-(\ref{E:notUntil}) Distributivity of $\neg$ over $\Until$,
-(\ref{E:notWait}) Distributivity of $\neg$ over $\Wait$.
+(\ref{E:untilImplicationOrdering}),
+(\ref{E:leftAssocUntil}),
+(\ref{E:rightAssocUntil}),
+(\ref{E:untilInduction1}),
+(\ref{E:untilInduction2}), and
+(\ref{E:eventInduction}).
 
 \section{Conclusion}
 
@@ -6427,10 +6409,9 @@ It takes unary operator \textit{next} $\Next$ and binary operator \textit{until}
 This paper presents an axiomatic deductive system of linear temporal logic whose theorems are proved with the equational
 logic $\mathcal{E}$ of Gries and Schneider \cite{LADM}.
 The equational deductive system $\mathcal{E}$ has several advantages over other logic systems.
-The primary advantage is that the equational system has only one proof rule, Leibniz.
+The primary advantage is that the equational system has only four inference rules.
 Consequently, proofs of theorems are easier to understand and more intuitive to those schooled in that system.
-Neither of the authors, the first of whom was an undergraduate student when most of this work was done,
-has formal training in linear temporal systems.
+One goal of this basic introduction is to make linear temporal logic accessible at the undergraduate level.
 
 In our judgement, the progress we were able to make in exploring the structure of linear temporal systems
 is directly attributable to our training in the equational deductive system $\mathcal{E}$.

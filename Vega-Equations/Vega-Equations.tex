@@ -9,8 +9,8 @@
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
-%\usepackage[plain]{optional}
-\usepackage[inventory]{optional}
+\usepackage[plain]{optional}
+%\usepackage[inventory]{optional}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}
@@ -78,7 +78,7 @@
 \pagestyle{myheadings} 
 \markboth{\textbf{Draft} \today} {\textbf{Draft} \today}
 
-\title{Theorems from EDS4LTL\\(Draft)}
+\title{Theorems from EDS4LTL}
 
 \author{
    J. Stanley Warford\\
@@ -111,7 +111,7 @@ Additional theorems, either not included in LADM or included but not numbered, a
 The second section is a collection of the axioms and theorems of linear temporal logic
 in Warford, Vega, and Staley's paper \textit{An Equational Deductive System for Linear Temporal Logic}
 (EDS4LTL),
-Pepperdine University Research Report, Natural Science Division, 2017.
+Pepperdine University Research Report, Natural Science Division, 2018.
 \end{abstract}
 
 \subsection*{Table of Precedences}
@@ -958,7 +958,7 @@ p\land \Event\neg p \impl \Event(p\land\Next\neg p)
 \spacer
 
 \begin{equation}\label{E:distAlwaysOr}
-\textbf{Distributivity of $\Always$ over $\lor$:}\quad (\Always p \lor \Always q) \impl \Always (p \lor q)
+\textbf{Distributivity of $\Always$ over $\lor$:}\quad \Always p \lor \Always q \impl \Always (p \lor q)
 \end{equation}
 \opt{inventory}{S62(3.12b), K29(T23), E8, B242, B266(T14.5)\\}
 
