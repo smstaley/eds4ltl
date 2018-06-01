@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-\usepackage[publication]{optional}
-%\usepackage[complete]{optional}
+%\usepackage[publication]{optional}
+\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -190,7 +190,7 @@ That is, manual proofs in such systems are easier to understand and to design th
 Propositional calculus is a formal system of logic based on the unary operator negation $\neg$,
 the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),
 and equivalence $\equiv$ (also written $\leftrightarrow$),
-variables (lowercase letters $p$, $q$, \dots), and the constants $true$ and $false$.
+variables (lowercase letters $p$, $q$, \dots), and the constants \textit{true} and \textit{false}.
 Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics to describe the propositional calculus.
 Typical of such descriptions with applications to computer science is the text by Ben-Ari \cite{Ben}.
 A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.
@@ -345,8 +345,8 @@ everywhere $z$ occurs in expression $E$.
 In a typical proof, Substitution and Leibniz are explicit, while Equanimity and Transitivity are implicit.
 
 Substitution allows the generalization of a single theorem to represent an infinite number of theorems.
-For example, because $p\impl false \equiv \lnot p$ is a theorem, then, with $p:=p\land q$, the expression
-$(p\land q)\impl false \equiv \lnot (p\land q)$ is also a theorem.
+For example, because $p\impl \mathit{false} \equiv \lnot p$ is a theorem, then, with $p:=p\land q$, the expression
+$(p\land q)\impl \mathit{false} \equiv \lnot (p\land q)$ is also a theorem.
 
 Roughly speaking, Leibniz allows for the substitution of equals for equals in a proof step.
 The general form of a proof step is
@@ -435,7 +435,7 @@ Here are four of the proof technique metatheorems.
       \>To prove $P_{1}\land P_{2}\impl Q$, assume $P_{1}$ and $P_{2}$, and prove $Q$.\\[\lgap]
       \>You cannot use textual substitution in $P_{1}$ or $P_{2}$.\\[\lgap]
 (4.7)\>\textbf{Mutual implication:}\quad To prove $P\equiv Q$, prove $P\impl Q$ and $Q\impl P$.\\[\lgap]
-(4.7.1)\>\textbf{Truth implication:}\quad To prove $P$, prove $true\impl P$.\\[\lgap]
+(4.7.1)\>\textbf{Truth implication:}\quad To prove $P$, prove $\mathit{true}\impl P$.\\[\lgap]
 (4.12)\>\textbf{Contrapositive:}\quad To prove $P\impl Q$, prove $\neg Q\impl \neg P$.
 \end{tabbing}
 
@@ -533,8 +533,8 @@ Within the parentheses the quantification consists of three parts:
 \item the body, which is an expression that is type compatible with the operator $\star$.
 \end{itemize}
 A vertical bar separates the operator and dummy variable from the range, and a colon separates the range from the body.
-An abbreviation is to omit the range when it is $true$.
-For example, $(\all i\drrb P)$ is an abbreviation for $(\all i\dr true \rb P)$.
+An abbreviation is to omit the range when it is \textit{true}.
+For example, $(\all i\drrb P)$ is an abbreviation for $(\all i\dr \mathit{true} \rb P)$.
 
 For example, the standard mathematical notation for writing the sum of the squares of the first $n$ positive integers is
 \[
@@ -560,7 +560,7 @@ For example, here are the first two axioms.
 \begin{tabbing}
 (99.99)\;\=(m)\;\=\kill
 For symmetric and associative binary operator $\star$ with identity $u$.\\[\lgap]
-(8.13)\>\textbf{Axiom, Empty range:}\quad $(\star x \dr false \rb P) =u$\\[\lgap]
+(8.13)\>\textbf{Axiom, Empty range:}\quad $(\star x \dr \mathit{false} \rb P) =u$\\[\lgap]
 (8.14)\>\textbf{Axiom, One-point rule:}\quad Provided $\neg occurs(\Lq x\Rq ,\Lq E\Rq)$,\\[\lgap]
       \>$(\star x\dr x=E\rb P) = P[x:=E]$
 \end{tabbing}
@@ -627,20 +627,20 @@ The symbol $\models$ means ``satisfies'', so the above expression is read as
 Or, using ``holds'', the same expression is read as, ``$x\ge 10$ holds in state 3 of sequence $\sigma$.''
 The following sections use $\models$ to formalize the interpretation of each temporal operator.
 
-There is a distinction between the constant $true$ and the truth value of an expression T in a given state.
-The constant $true$ is an expression that evaluates to T in every state.
-Similarly, there is a distinction between the constant $false$ and the truth value of an expression F in a given state.
-The constant $false$ is an expression that evaluates to F in every state.\\[\lllgap]
+There is a distinction between the constant \textit{true} and the truth value of an expression T in a given state.
+The constant \textit{true} is an expression that evaluates to T in every state.
+Similarly, there is a distinction between the constant \textit{false} and the truth value of an expression F in a given state.
+The constant \textit{false} is an expression that evaluates to F in every state.\\[\lllgap]
 \begin{tabular}{c|ccccccc}
-  $\sigma$      & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
+  $\sigma$         & $s_0$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & \dots \\
   \hline
-  $true$        & T     & T     & T     & T     & T     & \dots\\
-  $false$       & F     & F     & F     & F     & F     & \dots
+  \textit{true}    & T     & T     & T     & T     & T     & \dots\\
+  \textit{false}   & F     & F     & F     & F     & F     & \dots
 \end{tabular}\\[\lllgap]
 
 The propositional logic system of LADM \cite{LADM} describes a case analysis metatheorem as follows:
-If $E[z:=true]$ and $E[z:=false]$ are theorems, then so is $E[z:=p]$.
-This metatheorem does \textit{not} hold in LTL because the two cases, $z:=true$ and $z:=false$, only account for two out of an infinite number of possible sequences of T's and F's in $\sigma$.
+If $E[z:=\mathit{true}]$ and $E[z:=\mathit{false}]$ are theorems, then so is $E[z:=p]$.
+This metatheorem does \textit{not} hold in LTL because the two cases, $z:=\mathit{true}$ and $z:=\mathit{false}$, only account for two out of an infinite number of possible sequences of T's and F's in $\sigma$.
 
 \subsubsection*{The \textit{next} operator $\Next$}
 
@@ -709,21 +709,21 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models p))$\\[\lgap]
 	\> $=$  \>  \Hint{Case $k=j$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr j\le i < j \rb (\sigma,i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{$j\le i < j \equiv false$}\\[\lgap]
-	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr false \rb (\sigma,i) \models p))$\\[\lgap]
-	\> $=$  \>  \Hint{(8.13) Empty range rule $(\star x \dr false \rb P) =u$ with $true$ the identity of $\land$}\\[\lgap]
-	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land true$)\\[\lgap]
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
+	\> $=$  \>  \Hint{$j\le i < j \equiv \mathit{false}$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land (\all i \dr \mathit{false} \rb (\sigma,i) \models p))$\\[\lgap]
+	\> $=$  \>  \Hint{(8.13) Empty range rule $(\star x \dr \mathit{false} \rb P) =u$ with \textit{true} the identity of $\land$}\\[\lgap]
+	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q \land \mathit{true}$)\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land \mathit{true} \equiv p$}\\[\lgap]
 	\> \>   $(\ext k \dr k=j \rb (\sigma,k) \models q$)\\[\lgap]
 	\> $=$  \>  \Hint{(8.14) One-point rule $(\star x\dr x=E\rb P) = P[x:=E]$}\\[\lgap]
 	\> \>   $((\sigma,k) \models q)[k := j]$\\[\lgap]
 	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
 	\> \>   $(\sigma,j) \models q$\\[\lgap]
 	\> $=$  \>  \Hint{Case $q$ holds in state $s_j$}\\[\lgap]
-	\> \>   $true$ \quad \myqed
+	\> \>   \textit{true} \quad \myqed
 \end{tabbing}
-This result is theorem (\ref{E:zeroUntil}) $p \Until true \equiv true$ proved in Section \ref{section-until}.
-$true$ is the right zero of the \textit{until} operator.
+This result is theorem (\ref{E:zeroUntil}) $p \Until \mathit{true} \equiv \mathit{true}$ proved in Section \ref{section-until}.
+\textit{true} is the right zero of the \textit{until} operator.
 
 The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\[\lllgap]
 \begin{tabular}{c|ccccccccccc}
@@ -774,24 +774,24 @@ The bottom two rows show the evaluation of the expressions $\Event p$ and $\Even
 assuming that $p$ remains false indefinitely and $q$ continues to switch between true and false indefinitely.
 
 The \textit{eventually} operator is a special case of the \textit{until} operator.
-Namely, $true \Until q$ is equivalent to $\Event q$.
+Namely, $\mathit{true} \Until q$ is equivalent to $\Event q$.
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $(\sigma, j) \models true\Until q$\\[\lgap]
-	\> $=$  \>  \Hint{Semantics of $p\Until q$ with $p:=true$}\\[\lgap]
-	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models true))$\\[\lgap]
-	\> $=$  \>  \Hint{$true$ holds in all states}\\[\lgap]
-	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb true))$\\[\lgap]
-	\> $=$  \>  \Hint{(9.8) $(\all x\dr R\rb true)\equiv true$}\\[\lgap]
-	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land true)$\\[\lgap]
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
+	\> \>   $(\sigma, j) \models \mathit{true}\Until q$\\[\lgap]
+	\> $=$  \>  \Hint{Semantics of $p\Until q$ with $p:=\mathit{true}$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb (\sigma,i) \models \mathit{true}))$\\[\lgap]
+	\> $=$  \>  \Hint{\textit{true} holds in all states}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land (\all i \dr j\le i < k \rb \mathit{true}))$\\[\lgap]
+	\> $=$  \>  \Hint{(9.8) $(\all x\dr R\rb \mathit{true})\equiv \mathit{true}$}\\[\lgap]
+	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q \land \mathit{true})$\\[\lgap]
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land \mathit{true} \equiv p$}\\[\lgap]
 	\> \>   $(\ext k \dr k \ge j \rb (\sigma,k) \models q)$\\[\lgap]
 	\> $=$  \>  \Hint{Semantics of $\Event q$}\\[\lgap]
 	\> \>   $(\sigma, j) \models \Event q$ \quad \myqed
 \end{tabbing}
-This relationship is the basis of the definition of $\Event q$ in (\ref{E:defEvent}) $\Event q \equiv true \Until q$
+This relationship is the basis of the definition of $\Event q$ in (\ref{E:defEvent}) $\Event q \equiv \mathit{true} \Until q$
 assumed in Section \ref{section-event}.
 
 \subsubsection*{The \textit{always} operator $\Always$}
@@ -942,7 +942,7 @@ The corresponding rules for the binary operators are
 %$p\Until q$ holds in this case, because $p$ holds at $(\sigma,i)$ for $j\le i < k$, and $q$ holds at $(\sigma,k)$.
 %
 %Case 2. $\quad p\Until q$ holds at $(\sigma,m)$ for $m>k$.\\
-%$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and $true$ is the right zero of $\Until$.
+%$p\Until q$ holds in this case, because $q$ holds at $(\sigma,m)$ for $m\ge k$, and \textit{true} is the right zero of $\Until$.
 %
 %From Case 1 and Case 2, $p\Until q$ holds at $(\sigma,i)$ for $i\ge j$. \quad \myqed
 
@@ -977,11 +977,11 @@ while $p\Wait q$ does hold because $p$ always holds thereafter.
 
 LADM \cite{LADM} defines the dual $P_D$ of a boolean expression $P$ to be the expression constructed from $P$ by interchanging occurrences of
 \begin{align*}
-true       &\textrm{ and } false\textrm{,}\\
-\land      &\textrm{ and } \lor\textrm{,}\\
-\equiv     &\textrm{ and } \nequiv\textrm{,}\\
-\impl      &\textrm{ and } \nfoll\textrm{, and}\\
-\foll      &\textrm{ and } \nimpl\textrm{.}
+\mathit{true} &\textrm{ and } \mathit{false}\textrm{,}\\
+\land         &\textrm{ and } \lor\textrm{,}\\
+\equiv        &\textrm{ and } \nequiv\textrm{,}\\
+\impl         &\textrm{ and } \nfoll\textrm{, and}\\
+\foll         &\textrm{ and } \nimpl\textrm{.}
 \end{align*}
 With this definition of $P_D$, $P$ is valid iff $\neg P_D$ is valid, and $P\equiv Q$ is valid iff $P_D\equiv Q_D$ is valid.
 This observation is stated in the following metatheorem from LADM.
@@ -1021,7 +1021,7 @@ For simplicity, we avoid adding another operator to our system by restricting th
 %\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivity of $\Next$ over $\lor$ is a theorem}\\[\lgap]
 %  \> \>   $\Next (p \lor q) \equiv \Next p \lor \Next q$\\[\lgap]
 %    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
@@ -1035,19 +1035,19 @@ For simplicity, we avoid adding another operator to our system by restricting th
 % \subsubsection*{Until $\Until$ theorem using metatheorem duality}\label{section-duality-until}
 % 
 % $\Until$ theorems produce $\Wait$ theorems and vis-versa when using duality. We chose as an example
-% (\ref{E:untilFalse}) Axiom, Right zero of $\Until$:$\quad p \Until false \equiv false$ which, by duality can be used
-% to prove (\ref{E:leftZeroWait}) Left zero of $\Wait$: $\quad true \Wait q \equiv true$.
+% (\ref{E:untilFalse}) Axiom, Right zero of $\Until$:$\quad p \Until \mathit{false} \equiv \mathit{false}$ which, by duality can be used
+% to prove (\ref{E:leftZeroWait}) Left zero of $\Wait$: $\quad \mathit{true} \Wait q \equiv \mathit{true}$.
 % 
 % \emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$  \>  \Hint{(\ref{E:untilFalse}) Axiom, Right zero of $\Until$ with $p:=q$ is a theorem}\\[\lgap]
-%  \> \>   $q \Until false \equiv false$\\[\lgap]
+%  \> \>   $q \Until \mathit{false} \equiv \mathit{false}$\\[\lgap]
 %    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
-%    \> \>   $true \Wait (q \land true) \equiv true$\\[\lgap]
-%\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
-%\> \> $true \Wait q \equiv true$ \quad \myqed
+%    \> \>   $\mathit{true} \Wait (q \land \mathit{true}) \equiv \mathit{true}$\\[\lgap]
+%\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land \mathit{true} \equiv p$} \\[\lgap]
+%\> \> $\mathit{true} \Wait q \equiv \mathit{true}$ \quad \myqed
 %\end{tabbing}
 %
 %This proof is no shorter than the proof without duality, in this case, but it does show the
@@ -1055,19 +1055,19 @@ For simplicity, we avoid adding another operator to our system by restricting th
 %
 %\subsubsection*{Eventually $\Event$ theorem using metatheorem duality}\label{section-duality-eventually}
 %
-%For this example we prove (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law: $\quad \Always p \equiv p \Wait false$
-%from (\ref{E:defEvent}) Definition of $\Event$: $\quad \Event q \equiv true \Until q$.
+%For this example we prove (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law: $\quad \Always p \equiv p \Wait \mathit{false}$
+%from (\ref{E:defEvent}) Definition of $\Event$: $\quad \Event q \equiv \mathit{true} \Until q$.
 %
 %\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$ with $p:=q$ is a theorem}\\[\lgap]
-%  \> \>   $\Event p \equiv true \Until p$\\[\lgap]
+%  \> \>   $\Event p \equiv \mathit{true} \Until p$\\[\lgap]
 %    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
-%    \> \>   $\Always p \equiv p \Wait (false \land p)$\\[\lgap]
-%\> $=$ \> \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$} \\[\lgap]
-%\> \> $\Always p \equiv p \Wait false $ \quad \myqed
+%    \> \>   $\Always p \equiv p \Wait (\mathit{false} \land p)$\\[\lgap]
+%\> $=$ \> \Hint{(3.40) Zero of $\land$, $p\land \mathit{false}\equiv \mathit{false}$} \\[\lgap]
+%\> \> $\Always p \equiv p \Wait \mathit{false} $ \quad \myqed
 %\end{tabbing}
 %
 %\subsubsection*{Always $\Always$ theorem using metatheorem duality}\label{section-duality-always}
@@ -1080,7 +1080,7 @@ For simplicity, we avoid adding another operator to our system by restricting th
 %\emph{Proof}: The proof uses (2.3b) Metatheorem Duality.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$  \>  \Hint{(\ref{E:BenAriequiv2}) is a theorem}\\[\lgap]
 %  \> \>   $\Always ((p \lor \Always q) \land (\Always p \lor q)) \equiv \Always p \lor \Always q$\\[\lgap]
 %    \> $=$  \>  \Hint{(2.3b) Metatheorem Duality, $(P \equiv Q) \equiv (P_D \equiv Q_D)$}\\[\lgap]
@@ -1095,7 +1095,7 @@ For simplicity, we avoid adding another operator to our system by restricting th
 %\emph{Proof}: The proof uses (2.3a) Metatheorem Duality.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$  \>  \Hint{(\ref{E:waitOrdering}) Ordering is a theorem}\\[\lgap]
 %  \> \>   $\neg p \Wait q \lor \neg q \Wait p$\\[\lgap]
 %    \> $=$  \>  \Hint{(2.3a) Metatheorem Duality, $P \equiv \neg P_D$}\\[\lgap]
@@ -1212,20 +1212,20 @@ The proofs that it also distributes over $\land$ and $\equiv$ are similar.
 \end{tabbing}
 }
 
-Now, $true$ holds in the next state, and $false$ does not hold in the next state.
-In the equational logic of LADM, $true$ is theorem (3.4) and is equivalent to all other theorems.
+Now, \textit{true} holds in the next state, and \textit{false} does not hold in the next state.
+In the equational logic of LADM, \textit{true} is theorem (3.4) and is equivalent to all other theorems.
 Theorem (\ref{E:nextTruth}) shows that all propositional logic theorems hold at the next state
 and, by induction, hold in all states.
 The proof of (\ref{E:nextTruth}) uses (3.28) Excluded middle.
-The proof of (\ref{E:nextFalse}) uses (3.8) Definition of $false$, $false\equiv \neg true$.
+The proof of (\ref{E:nextFalse}) uses (3.8) Definition of \textit{false}, $\mathit{false}\equiv \neg \mathit{true}$.
 \begin{equation}\label{E:nextTruth}
-\textbf{Truth of $\Next$:}\quad \Next true \equiv true
+\textbf{Truth of $\Next$:}\quad \Next \mathit{true} \equiv \mathit{true}
 \end{equation}
 
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>   $\Next true$\\[\lgap]
+	\> \>   $\Next \mathit{true}$\\[\lgap]
 	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$}\\[\lgap]
 	\> \>   $\Next(p \lor \neg p)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:distNextOr}) Distributivty of $\Next$ over $\lor$}\\[\lgap]
@@ -1233,23 +1233,23 @@ The proof of (\ref{E:nextFalse}) uses (3.8) Definition of $false$, $false\equiv 
 	\> $=$  \>  \Hint{(\ref{E:selfDual}) Self-dual}\\[\lgap]
 	\> \>   $\Next p \lor \neg\Next p$\\[\lgap]
 	\> $=$  \>  \Hint{(3.28) Excluded middle $p\lor\neg p$ with $p := \Next p$}\\[\lgap]
-	\> \>   $true$ \quad \myqed
+	\> \>   \textit{true} \quad \myqed
 \end{tabbing}
 \begin{equation}\label{E:nextFalse}
-\textbf{Falsehood of $\Next$:}\quad \Next false \equiv false
+\textbf{Falsehood of $\Next$:}\quad \Next \mathit{false} \equiv \mathit{false}
 \end{equation}
 
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Next false \equiv false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$} \\[\lgap]
-  \> \>   $\Next\neg true \equiv \neg true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := true, \Next\neg true$}\\[\lgap]
-  \> \>   $\neg\Next\neg true \equiv true$\\[\lgap]
+  \> \>   $\Next \mathit{false} \equiv \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of \textit{false}, $\mathit{false}\equiv \neg \mathit{true}$} \\[\lgap]
+  \> \>   $\Next\neg \mathit{true} \equiv \neg \mathit{true}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$ with $p,q := \mathit{true}, \Next\neg \mathit{true}$}\\[\lgap]
+  \> \>   $\neg\Next\neg \mathit{true} \equiv \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:linearity}) Linearity}\\[\lgap]
-  \> \>   $\Next true \equiv true$\\[\lgap]
+  \> \>   $\Next \mathit{true} \equiv \mathit{true}$\\[\lgap]
   \> which is (\ref{E:nextTruth}) Truth of $\Next$. \quad \myqed
 \end{tabbing}
 }
@@ -1275,9 +1275,9 @@ Consequently, the \textit{until} operator is neither symmetric (\textit{i.e.} co
 \textbf{Axiom, Expansion of $\Until$:}\quad p \Until q \equiv q \lor (p \land \Next (p \Until q))
 \end{equation}
 
-The third axiom states that $false$ is the right zero of $\Until$ and is not noted in other LTL deductive systems.
+The third axiom states that \textit{false} is the right zero of $\Until$ and is not noted in other LTL deductive systems.
 \begin{equation}\label{E:untilFalse}
-\textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false
+\textbf{Axiom, Right zero of $\Until$:}\quad p \Until \mathit{false} \equiv \mathit{false}
 \end{equation}
 
 The next four axioms describe how the \textit{until} operator distributes over conjunction and disjunction.
@@ -1347,43 +1347,43 @@ And now,
   \> \>   $q\Until r$ \quad \myqed
 \end{tabbing}
 
-Theorem (\ref{E:zeroUntil}) shows that $true$ is a right zero of $\Until$, which is unusual because
-axiom (\ref{E:untilFalse}) shows that $false$ is also a right zero of $\Until$.
-Theorem (\ref{E:leftIdUntil}) shows that $false$ is the left identity of $\Until$.
+Theorem (\ref{E:zeroUntil}) shows that \textit{true} is a right zero of $\Until$, which is unusual because
+axiom (\ref{E:untilFalse}) shows that \textit{false} is also a right zero of $\Until$.
+Theorem (\ref{E:leftIdUntil}) shows that \textit{false} is the left identity of $\Until$.
 Proofs of both use (\ref{E:expansionUntil}) Expansion of $\Until$.
 Theorems (\ref{E:untilFalse}), (\ref{E:zeroUntil}), and (\ref{E:leftIdUntil}) cover three of the
-possibilities of constants $true$ and $false$ on either side of $\Until$.
+possibilities of constants \textit{true} and \textit{false} on either side of $\Until$.
 None of these three theorems seem to appear in the temporal logic literature.
-The fourth possibility with $true$ as the left argument is the basis of the definition of the \textit{eventually}
+The fourth possibility with \textit{true} as the left argument is the basis of the definition of the \textit{eventually}
 operator $\Event$ in Section \ref{section-event}.
 \begin{equation}\label{E:zeroUntil}
-\textbf{Right zero of $\Until$:}\quad p \Until true \equiv true
+\textbf{Right zero of $\Until$:}\quad p \Until \mathit{true} \equiv \mathit{true}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $p \Until true$\\[\lgap]
+  \> \>   $p \Until \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $true \lor (p \land \Next(p \Until true))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   $\mathit{true} \lor (p \land \Next(p \Until \mathit{true}))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$}\\[\lgap]
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:leftIdUntil}
-\textbf{Left identity of $\Until$:}\quad false \Until q \equiv q
+\textbf{Left identity of $\Until$:}\quad \mathit{false} \Until q \equiv q
 \end{equation}
 
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $false \Until q$\\[\lgap]
+  \> \>   $\mathit{false} \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $q \lor (false \land \Next(false \Until q))$\\[\lgap]
-  \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
-  \> \>   $q \lor false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$}\\[\lgap]
+  \> \>   $q \lor (\mathit{false} \land \Next(\mathit{false} \Until q))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land \mathit{false}\equiv \mathit{false}$}\\[\lgap]
+  \> \>   $q \lor \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p\lor \mathit{false}\equiv p$}\\[\lgap]
   \> \>   $q$ \quad \myqed
 \end{tabbing}
 }
@@ -1420,9 +1420,9 @@ The proofs of (\ref{E:untilImpOr}), (\ref{E:untilInsertion}), and (\ref{E:andImp
 \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
 \> \> $p \Until (q \lor \neg q)$\\[\lgap]
 \> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
-\> \> $p \Until true$\\[\lgap]
+\> \> $p \Until \mathit{true}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:notPUntilQUntilR}
@@ -1432,7 +1432,7 @@ The proofs of (\ref{E:untilImpOr}), (\ref{E:untilInsertion}), and (\ref{E:andImp
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \> $true$\\[\lgap]
+  \> \> \textit{true}\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $p:=\neg p$} \\[\lgap]
   \> \> $\neg p\Until(q\Until r) \impl (\neg p\lor q)\Until r$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
@@ -1449,7 +1449,7 @@ p \Until (\neg q \Until r) \land q\Until r \impl p\Until r
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \> $true$\\[\lgap]
+  \> \> \textit{true}\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $q:=\neg q$} \\[\lgap]
   \> \> $p\Until(\neg q\Until r) \impl (p\lor \neg q)\Until r$\\[\lgap]
   \> $=$  \>  \Hint{(3.59) Implication, $p\impl q \equivs \neg p \lor q$}\\[\lgap]
@@ -1481,9 +1481,9 @@ p\land \neg p \Until q \impl q
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $true$\\[\lgap]
-  \> $\impl$ \> \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering with $p,q,r:= false,p,q$} \\[\lgap]
-\> \> $false\Until p \land \neg p\Until q \impl false\Until q$\\[\lgap]
+\> \> \textit{true}\\[\lgap]
+  \> $\impl$ \> \Hint{(\ref{E:untilImplicationOrdering}) $\Until$ implication ordering with $p,q,r:= \mathit{false},p,q$} \\[\lgap]
+\> \> $\mathit{false}\Until p \land \neg p\Until q \impl \mathit{false}\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$, twice} \\[\lgap]
 \> \> $p \land \neg p\Until q \impl q$ \quad \myqed
 \end{tabbing}
@@ -1654,17 +1654,17 @@ The proof in the second direction follows.
 
 \subsection{Eventually}\label{section-event}
 
-Eventually $\Event$ is a special case of $\Until$ when the left hand side is $true$.
+Eventually $\Event$ is a special case of $\Until$ when the left hand side is \textit{true}.
 Equation (\ref{E:defEvent}) is its only defining axiom.
 \begin{equation}\label{E:defEvent}
-\textbf{Definition of $\Event$:}\quad \Event q \equiv true \Until q
+\textbf{Definition of $\Event$:}\quad \Event q \equiv \mathit{true} \Until q
 \end{equation}
 
 Theorem (\ref{E:absEventIntoUntil}) shows how the unary operator \textit{eventually} absorbs into the binary operator \textit{until}.
 Its proof uses (\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$.
 Theorems (\ref{E:absUntilIntoEvent2}) and (\ref{E:absUntilIntoEvent}) show also that the binary operator \textit{until} absorbs into the unary operator \textit{eventually}.
 They are proved by mutual implication.
-Theorem (\ref{E:eventuality}) shows that $p\Until q$ guarantees that $q$ will eventually be $true$.
+Theorem (\ref{E:eventuality}) shows that $p\Until q$ guarantees that $q$ will eventually be \textit{true}.
 Its proof uses (\ref{E:absEventIntoUntil}).
 Theorems (\ref{E:eventTrue}) and (\ref{E:eventFalse}), Truth and Falsehood of $\Event$, are unique to this system.
 Their proofs are simple.
@@ -1677,10 +1677,10 @@ Their proofs are simple.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $p \Until q\land \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $p \Until q\land true\Until q$\\[\lgap]
+  \> \>   $p \Until q\land \mathit{true}\Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilAndEquiv}) Right distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $(p\land true) \Until q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $(p\land \mathit{true}) \Until q$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
   \> \>   $p\Until q$ \quad \myqed
 \end{tabbing}
 }
@@ -1694,11 +1694,11 @@ The proof in the first direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until \Event q \lor \Event q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
-\>\> $p \Until q \lor true \Until q$\\[\lgap]
+\>\> $p \Until q \lor \mathit{true} \Until q$\\[\lgap]
 \> $\impl$ \> \Hint{(\ref{E:untilOrImp})  Right distributivity of $\Until$ over $\lor$} \\[\lgap]
-\> \> $(p \lor true) \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
-\> \> $true \Until q$\\[\lgap]
+\> \> $(p \lor \mathit{true}) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$} \\[\lgap]
+\> \> $\mathit{true} \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$
 \end{tabbing}
@@ -1720,11 +1720,11 @@ The proof in the first direction follows.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $p \Until \Event q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
-\>\> $p \Until (true \Until q)$\\[\lgap]
-\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $q,r := true,q$} \\[\lgap]
-\> \> $(p \lor true) \Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
-\> \> $true \Until q$\\[\lgap]
+\>\> $p \Until (\mathit{true} \Until q)$\\[\lgap]
+\> $\impl$ \> \Hint{(\ref{E:leftAssocUntil})  Right $\Until \lor$ ordering with $q,r := \mathit{true},q$} \\[\lgap]
+\> \> $(p \lor \mathit{true}) \Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$} \\[\lgap]
+\> \> $\mathit{true} \Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$
 \end{tabbing}
@@ -1751,31 +1751,31 @@ The proof in the second direction follows.
 \end{tabbing}
 }
 \begin{equation}\label{E:eventTrue}
-\textbf{Truth of $\Event$:}\quad \Event true \equiv true
+\textbf{Truth of $\Event$:}\quad \Event \mathit{true} \equiv \mathit{true}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event true$\\[\lgap]
+  \> \>   $\Event \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until true$\\[\lgap]
+  \> \>   $\mathit{true} \Until \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:idemUntil}) Idempotency of $\Until$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:eventFalse}
-\textbf{Falsehood of $\Event$:}\quad \Event false \equiv false
+\textbf{Falsehood of $\Event$:}\quad \Event \mathit{false} \equiv \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event false$\\[\lgap]
+  \> \>   $\Event \mathit{false}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until false$\\[\lgap]
+  \> \>   $\mathit{true} \Until \mathit{false}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
-  \> \>   $false$ \quad \myqed
+  \> \>   \textit{false} \quad \myqed
 \end{tabbing}
 }
 
@@ -1792,12 +1792,12 @@ The two weakening theorems (\ref{E:impEvent}) and (\ref{E:nextEvent}) follow dir
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until p$\\[\lgap]
+  \> \>   $\mathit{true} \Until p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:expansionUntil}) Expansion of $\Until$}\\[\lgap]
-  \> \>   $p \lor (true \land \Next(true \Until p))$\\[\lgap]
+  \> \>   $p \lor (\mathit{true} \land \Next(\mathit{true} \Until p))$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $p \lor (true \land \Next\Event p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $p \lor (\mathit{true} \land \Next\Event p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
   \> \>   $p \lor \Next\Event p$ \quad \myqed
 \end{tabbing}
 }
@@ -1871,8 +1871,8 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, with $p := \Event p$}\\[\lgap]
-  \> \>   $true \Until \Event p$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$, with $p,q := true, p$}\\[\lgap]
+  \> \>   $\mathit{true} \Until \Event p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:absUntilIntoEvent}) Absorption of $\Until$ into $\Event$, with $p,q := \mathit{true}, p$}\\[\lgap]
   \> \>   $\Event p$ \quad \myqed
 \end{tabbing}
 }
@@ -1885,11 +1885,11 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Next(true \Until p)$\\[\lgap]
+  \> \>   $\Next(\mathit{true} \Until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:distNextUntil}) Distributivity of $\Next$ over $\Until$}\\[\lgap]
-  \> \>   $\Next true \Until \Next p$\\[\lgap]
+  \> \>   $\Next \mathit{true} \Until \Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
-  \> \>   $true \Until \Next p$\\[\lgap]
+  \> \>   $\mathit{true} \Until \Next p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event\Next p$ \quad \myqed
 \end{tabbing}
@@ -1903,9 +1903,9 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event(p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until (p \lor q)$\\[\lgap]
+  \> \>   $\mathit{true} \Until (p \lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilOrEquiv}) Left distributivity of $\Until$ over $\lor$}\\[\lgap]
-  \> \>   $true \Until p \lor true \Until q$\\[\lgap]
+  \> \>   $\mathit{true} \Until p \lor \mathit{true} \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
   \> \>   $\Event p \lor \Event q$ \quad \myqed
 \end{tabbing}
@@ -1919,9 +1919,9 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event(p \land q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true \Until (p \land q)$\\[\lgap]
+  \> \>   $\mathit{true} \Until (p \land q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
-  \> \>   $true \Until p \land true \Until q$\\[\lgap]
+  \> \>   $\mathit{true} \Until p \land \mathit{true} \Until q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$, twice}\\[\lgap]
   \> \>   $\Event p \land \Event q$ \quad \myqed
 \end{tabbing}
@@ -1947,7 +1947,7 @@ The three induction axioms are unique to this system.
 \end{equation}
 
 The induction theorem (\ref{E:induction}) is common to many systems.
-It follows from (\ref{E:untilInduction2}) with $q:=false$.
+It follows from (\ref{E:untilInduction2}) with $q:=\mathit{false}$.
 Theorem (\ref{E:eventAsAlways}) expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:induction}
 \textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
@@ -1956,12 +1956,12 @@ Theorem (\ref{E:eventAsAlways}) expresses $\Event p$ in terms of $\Always p$ and
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilInduction2}) with $q := false$}\\[\lgap]
-  \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor p\Until false)$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilInduction2}) with $q := \mathit{false}$}\\[\lgap]
+  \> \>   $\Always (p \impl \Next (p\lor \mathit{false})) \impl (p \impl \Always p\lor p\Until \mathit{false})$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
-  \> \>   $\Always (p \impl \Next (p\lor false)) \impl (p \impl \Always p\lor false)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.30) Identity of $\lor$\;\; $p\lor false\equiv p$, twice}\\[\lgap]
+  \> \>   $\Always (p \impl \Next (p\lor \mathit{false})) \impl (p \impl \Always p\lor \mathit{false})$\\[\lgap]
+  \> $=$  \>  \Hint{(3.30) Identity of $\lor$\;\; $p\lor \mathit{false}\equiv p$, twice}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$ \quad \myqed
 \end{tabbing}
 }
@@ -2045,37 +2045,37 @@ Similarly, the validity of (\ref{E:dualAlwaysEvent}) can be asserted by invoking
 
 Theorems (\ref{E:alwaysTrue}) and (\ref{E:alwaysFalse}), Truth and Falsehood of $\Always$, are unique to this system.
 \begin{equation}\label{E:alwaysTrue}
-\textbf{Truth of $\Always$:}\quad \Always true \equiv true
+\textbf{Truth of $\Always$:}\quad \Always \mathit{true} \equiv \mathit{true}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always true$\\[\lgap]
+  \> \>   $\Always \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
-  \> \>   $\neg\Event\neg true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$}\\[\lgap]
-  \> \>   $\neg\Event false$\\[\lgap]
+  \> \>   $\neg\Event\neg \mathit{true}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of \textit{false}, $\mathit{false}\equiv \neg \mathit{true}$}\\[\lgap]
+  \> \>   $\neg\Event \mathit{false}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventFalse}) Falsehood of $\Event$}\\[\lgap]
-  \> \>   $\neg false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.13) Negation of $false$, $\neg false\equiv true$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   $\neg \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.13) Negation of \textit{false}, $\neg \mathit{false}\equiv \mathit{true}$}\\[\lgap]
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:alwaysFalse}
-\textbf{Falsehood of $\Always$:}\quad \Always false \equiv false
+\textbf{Falsehood of $\Always$:}\quad \Always \mathit{false} \equiv \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always false \equiv false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.8) Definition of $false$, $false\equiv \neg true$, twice}\\[\lgap]
-  \> \>   $\Always\neg true \equiv \neg true$\\[\lgap]
+  \> \>   $\Always \mathit{false} \equiv \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.8) Definition of \textit{false}, $\mathit{false}\equiv \neg \mathit{true}$, twice}\\[\lgap]
+  \> \>   $\Always\neg \mathit{true} \equiv \neg \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(3.11) $\neg p \equiv q \equiv p \equiv \neg q$}\\[\lgap]
-  \> \>   $\neg\Always\neg\ true \equiv true$\\[\lgap]
+  \> \>   $\neg\Always\neg\ \mathit{true} \equiv \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:eventAsAlways}) $\Event p \equiv \neg\Always\neg p$}\\[\lgap]
-  \> \>   $\Event true \equiv true$\\[\lgap]
+  \> \>   $\Event \mathit{true} \equiv \mathit{true}$\\[\lgap]
   \> which is (\ref{E:eventTrue}) Truth of $\Event$. \quad \myqed
 \end{tabbing}
 }
@@ -2263,8 +2263,8 @@ p \impl \Always p \equiv p \impl \Next\Always p
   \> $=$  \>  \Hint{(3.63.1) Distributivity of $\impl$ over $\land$, $p\impl q\land r\equivs (p\impl q)\land (p\impl r)$}\\[\lgap]
   \> \>   $(p\impl p)\land (p\impl\Next\Always p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$}\\[\lgap]
-  \> \>   $true\land (p\impl\Next\Always p)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> \>   $\mathit{true}\land (p\impl\Next\Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
   \> \>   $p \impl \Next\Always p$ \quad \myqed
 \end{tabbing}
 }
@@ -2408,16 +2408,16 @@ Note that if you assume $P$ in a step of an LTL proof of $Q$, you have \textit{n
 %\opt{doc}{
 %\emph{Proof}: The proof is by (4.4) Deduction.
 %Suppose $P$ and $P\impl Q$ are theorems.
-%Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$,
-%and $P \impl Q$ is equivalent to $true$.
+%Because all theorems are equivalent to each other, and (3.4) \textit{true} is a theorem, $P$ is equivalent to \textit{true},
+%and $P \impl Q$ is equivalent to \textit{true}.
 %Then, $\Always P\impl Q$ can be proved to be a theorem as follows.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 %\> \> $\Always P$\\[\lgap]
 %\> $\impl$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
 %\> \> $P$\\[\lgap]
-% \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
-% \> \> $ P \land true$\\[\lgap]
+% \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
+% \> \> $ P \land \mathit{true}$\\[\lgap]
 %  \> $=$  \>  \Hint{$P \impl Q$ is a theorem.}\\[\lgap]
 % \> \> $ P \land (P \impl Q)$\\[\lgap]
 %\> $\impl$  \>  \Hint{(3.77) Modus ponens, $p\land (p\impl q)\impl q$}\\[\lgap]
@@ -2448,8 +2448,8 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $q \Until r \impl (p \land q) \Until (p \land r)$\\[\lgap]
   \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
-  \> \>   $q \Until r \impl (true \land q) \Until (true \land r)$\\[\lgap]
- \> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+  \> \>   $q \Until r \impl (\mathit{true} \land q) \Until (\mathit{true} \land r)$\\[\lgap]
+ \> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land \mathit{true} \equiv p$} \\[\lgap]
   \> \>   $q \Until r \impl q \Until r$\\[\lgap]
     \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
 \end{tabbing}
@@ -2469,7 +2469,7 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event q  \impl p \Until q$\\[\lgap]
   \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
-  \> \>   $\Event q  \impl true \Until q$\\[\lgap]
+  \> \>   $\Event q  \impl \mathit{true} \Until q$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Event q  \impl  \Event q$\\[\lgap]
     \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
@@ -2481,10 +2481,10 @@ And now,
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
  % \> \>   $\Always p \land \Event q$\\[\lgap]
  % \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
- % \> \>   $\Always p \land true\Until q$\\[\lgap]
+ % \> \>   $\Always p \land \mathit{true}\Until q$\\[\lgap]
 %  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$}\\[\lgap]
- % \> \>   $(p \land true) \Until (p\land q)$\\[\lgap]
- % \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+ % \> \>   $(p \land \mathit{true}) \Until (p\land q)$\\[\lgap]
+ % \> $=$  \>  \Hint{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
 %  \> \>   $p \Until (p\land q)$\\[\lgap]
  % \> $\impl$  \>  \Hint{(\ref{E:untilAndImp}) Left distributivity of $\Until$ over $\land$}\\[\lgap]
 %  \> \>   $p \Until p\land p\Until q$\\[\lgap]
@@ -2575,16 +2575,16 @@ Theorem (\ref{E:alwaysAndEvent}) shows how $\Event$ distributes over $\land$.
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always p \land \Event q$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $\Always p \land true \Until q$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=true, q$}\\[\lgap]
-  \> \>   $(p \land true) \Until (p \land q)$\\[\lgap]
-  \> $\impl$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $p,q:=p\land true,p\land q$}\\[\lgap]
+  \> \>   $\Always p \land \mathit{true} \Until q$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:andUntilDist}) Distributivity of $\land$ over $\Until$ with $q,r :=\mathit{true}, q$}\\[\lgap]
+  \> \>   $(p \land \mathit{true}) \Until (p \land q)$\\[\lgap]
+  \> $\impl$  \>  \Hint{(\ref{E:eventuality}) Eventuality with $p,q:=p\land \mathit{true},p\land q$}\\[\lgap]
   \> \>   $\Event (p \land q)$ \quad \myqed
 \end{tabbing}
 }
 
 Theorems (\ref{E:excludedMid}), (\ref{E:excludedMidb}), and (\ref{E:excludedMidc}) are the linear temporal versions of the excluded middle axiom of propositional logic, (3.28) $p\lor\neg p$.
-Theorems (\ref{E:contradiction}), (\ref{E:contradictionb}), and (\ref{E:contradictionc}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv false$.
+Theorems (\ref{E:contradiction}), (\ref{E:contradictionb}), and (\ref{E:contradictionc}) are the linear temporal versions of the contradiction theorem of propositional logic, (3.42) $p\land\neg p\equiv \mathit{false}$.
 Theorems (\ref{E:AEexcludedMid}), (\ref{E:EAexcludedMid}), (\ref{E:AEcontradiction}), and (\ref{E:EAcontradiction}) are variations.
 These theorems are obvious, and their proofs are simple, which is perhaps why they do not appear in other systems.
 \begin{equation}\label{E:excludedMid}
@@ -2629,40 +2629,40 @@ These theorems are obvious, and their proofs are simple, which is perhaps why th
 \end{tabbing}
 }
 \begin{equation}\label{E:contradiction}
-\textbf{$\Event$ contradiction:}\quad \Event p \land \Always\neg p \equivs false
+\textbf{$\Event$ contradiction:}\quad \Event p \land \Always\neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}: (Ray McIntyre)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event p \land \Always\neg p \equivs false$\\[\lgap]
+  \> \>   $\Event p \land \Always\neg p \equivs \mathit{false}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualEvent}) Dual of $\Event$}\\[\lgap]
-  \> \>   $\Event p \land \neg\Event p \equivs false$\\[\lgap]
-  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event p$. \quad \myqed
+  \> \>   $\Event p \land \neg\Event p \equivs \mathit{false}$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs \mathit{false}$ with $p := \Event p$. \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:contradictionb}
-\textbf{$\Always$ contradiction:}\quad \Always p \land \Event\neg p \equivs false
+\textbf{$\Always$ contradiction:}\quad \Always p \land \Event\neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}: (Ray McIntyre)
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Event\neg p \equivs false$\\[\lgap]
+  \> \>   $\Always p \land \Event\neg p \equivs \mathit{false}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:dualAlways}) Dual of $\Always$}\\[\lgap]
-  \> \>   $\Always p \land \neg\Always p \equivs false$\\[\lgap]
-  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always p$. \quad \myqed
+  \> \>   $\Always p \land \neg\Always p \equivs \mathit{false}$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs \mathit{false}$ with $p := \Always p$. \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:contradictionc}
-\textbf{Temporal contradiction:}\quad \Always p \land \Always \neg p \equivs false
+\textbf{Temporal contradiction:}\quad \Always p \land \Always \neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always p \land \Always \neg p \equivs false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv false$}\\[\lgap]
+  \> \>   $\Always p \land \Always \neg p \equivs \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv \mathit{false}$}\\[\lgap]
   \> \>   $\neg(\Always p \land \Always \neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\Always p \lor \neg\Always \neg p$\\[\lgap]
@@ -2698,29 +2698,29 @@ These theorems are obvious, and their proofs are simple, which is perhaps why th
 \end{tabbing}
 }
 \begin{equation}\label{E:AEcontradiction}
-\textbf{$\Always \Event$ contradiction:}\quad \Always \Event p \land \Event \Always\neg p \equivs false
+\textbf{$\Always \Event$ contradiction:}\quad \Always \Event p \land \Event \Always\neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Always \Event p \land \Event \Always\neg p \equivs false$\\[\lgap]
+  \> \>   $\Always \Event p \land \Event \Always\neg p \equivs \mathit{false}$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:dualAlwaysEvent}) Dual of $\Always \Event$}\\[\lgap]
-  \> \>   $\Always \Event p \land \neg \Always \Event p \equivs false$\\[\lgap]
-  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Always\Event p$. \quad \myqed
+  \> \>   $\Always \Event p \land \neg \Always \Event p \equivs \mathit{false}$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs \mathit{false}$ with $p := \Always\Event p$. \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:EAcontradiction}
-\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land  \Always \Event\neg p \equivs false
+\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land  \Always \Event\neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event \Always p \land  \Always \Event\neg p \equivs false$\\[\lgap]
+  \> \>   $\Event \Always p \land  \Always \Event\neg p \equivs \mathit{false}$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:dualEventAlways}) Dual of $\Event \Always$}\\[\lgap]
-  \> \>   $\Event \Always p \land \neg \Event \Always p \equivs false$\\[\lgap]
-  \> which is (3.42) Contradiction, $p\land\neg p \equivs false$ with $p := \Event\Always p$. \quad \myqed
+  \> \>   $\Event \Always p \land \neg \Event \Always p \equivs \mathit{false}$\\[\lgap]
+  \> which is (3.42) Contradiction, $p\land\neg p \equivs \mathit{false}$ with $p := \Event\Always p$. \quad \myqed
 \end{tabbing}
 }
 
@@ -3056,8 +3056,8 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Next q \impl \Next (p \equiv q)$\\[\lgap]
   \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
-  \> \>   $\Next q \impl \Next (true \equiv q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
+  \> \>   $\Next q \impl \Next (\mathit{true} \equiv q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $\mathit{true} \equiv p \equiv p$}\\[\lgap]
   \> \>   $\Next q \impl \Next q$\\[\lgap]
   \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
   \end{tabbing}
@@ -3092,8 +3092,8 @@ And now,
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always q \impl \Always (p \equiv q)$\\[\lgap]
   \> $=$  \>  \Hint{Assume antecedent $p$}\\[\lgap]
-  \> \>   $\Always q \impl \Always (true \equiv q)$\\[\lgap]
-  \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv p \equiv p$}\\[\lgap]
+  \> \>   $\Always q \impl \Always (\mathit{true} \equiv q)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $\mathit{true} \equiv p \equiv p$}\\[\lgap]
   \> \>   $\Always q \impl \Always q$\\[\lgap]
   \> which is (3.71) Reflexivity of $\impl$, $p\impl p$. \quad \myqed
   \end{tabbing}
@@ -3138,9 +3138,9 @@ Proofs of the catenation rules (\ref{E:EventCatRule}), (\ref{E:AlwaysCatRule}), 
   \> $=$  \>  \Hint{(\ref{E:distEventOr}) Distributivity of $\Event$ over $\lor$}\\[\lgap]
   \> \>   $\Event p \lor \Event q \lor \neg\Event p$\\[\lgap]
   \> $=$  \>  \Hint{(3.28) Excluded middle, $p\lor\neg p$ with $p := \Event p$}\\[\lgap]
-  \> \>   $\Event q \lor true$\\[\lgap]
-  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   $\Event q \lor \mathit{true}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$}\\[\lgap]
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:distAlwaysImp}
@@ -3250,7 +3250,7 @@ Proofs of the catenation rules (\ref{E:EventCatRule}), (\ref{E:AlwaysCatRule}), 
   \> \>   $\Always ((p \impl \Always q) \land (q \impl \Always r))$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (q \impl \Always r)$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.39) Identity of $\land$, $p\land true\equiv p$}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ and (3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$}\\[\lgap]
   \> \>   $(p \impl \Always q) \land (\Always q \impl q) \land (q \impl \Always r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $(p \impl q) \land (q \impl \Always r)$\\[\lgap]
@@ -3346,12 +3346,12 @@ And now,
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:untilInduction1}) $\Until$ Induction with $r:=false$}\\[\lgap]
-  \> \>   $\Always (p \impl (\Next p\land q)\lor false) \impl (p \impl \Always q\lor q\Until false)$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:untilInduction1}) $\Until$ Induction with $r:=\mathit{false}$}\\[\lgap]
+  \> \>   $\Always (p \impl (\Next p\land q)\lor \mathit{false}) \impl (p \impl \Always q\lor q\Until \mathit{false})$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:untilFalse}) Right zero of $\Until$}\\[\lgap]
-  \> \>   $\Always (p \impl (\Next p\land q)\lor false) \impl (p \impl \Always q\lor false)$\\[\lgap]
-  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$ twice} \\[\lgap]
+  \> \>   $\Always (p \impl (\Next p\land q)\lor \mathit{false}) \impl (p \impl \Always q\lor \mathit{false})$\\[\lgap]
+  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor \mathit{false}\equiv p$ twice} \\[\lgap]
   \> \>   $\Always ( p \impl \Next p \land q) \impl (p \impl \Always q)$\quad \myqed
 \end{tabbing}
 }
@@ -3595,20 +3595,20 @@ The proof of each case is by (4.4) Deduction.
 
 Case 1. If $P$ is a theorem then $\Always P$ is a theorem.\\
 Suppose $P$ is a theorem.
-Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $P$ is equivalent to $true$.
+Because all theorems are equivalent to each other, and (3.4) \textit{true} is a theorem, $P$ is equivalent to \textit{true}.
 Then, $\Always P$ can be proved to be a theorem as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Always P$\\[\lgap]
 \> $=$ \> \Hint{$P$ is a theorem} \\[\lgap]
-\> \> $\Always true$\\[\lgap]
+\> \> $\Always \mathit{true}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-\> \> $true$
+\> \> \textit{true}
 \end{tabbing}
 
 Case 2. If $\Always P$ is a theorem then $P$ is a theorem.\\
 Suppose $\Always P$ is a theorem.
-Then, $\Always P$ is equivalent to $true$.
+Then, $\Always P$ is equivalent to \textit{true}.
 $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3616,7 +3616,7 @@ $P$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \> $\foll$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$} \\[\lgap]
 \> \> $\Always P$\\[\lgap]
 \> $=$ \> \Hint{$\Always P$ is a theorem} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 
 Proofs of the following three metatheorems are similar.
@@ -3627,7 +3627,7 @@ Proofs of the following three metatheorems are similar.
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
-Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Because all theorems are equivalent to each other, and (3.4) \textit{true} is a theorem, $\Always (P\impl Q)$ is equivalent to \textit{true}.
 Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3635,7 +3635,7 @@ Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth impli
 \> $\foll$ \> \Hint{(\ref{E:alwaysImpNexts}) Monotonicity of $\Next$} \\[\lgap]
 \> \> $\Always (P\impl Q)$\\[\lgap]
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:metaEvent}
@@ -3645,7 +3645,7 @@ Then, $\Next P\impl\Next Q$ can be proved to be a theorem by (4.7.1) Truth impli
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
-Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Because all theorems are equivalent to each other, and (3.4) \textit{true} is a theorem, $\Always (P\impl Q)$ is equivalent to \textit{true}.
 Then, $\Event P\impl\Event Q$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3653,7 +3653,7 @@ Then, $\Event P\impl\Event Q$ can be proved to be a theorem by (4.7.1) Truth imp
 \> $\foll$ \> \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$} \\[\lgap]
 \> \> $\Always (P\impl Q)$\\[\lgap]
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:metaAlways}
@@ -3663,7 +3663,7 @@ Then, $\Event P\impl\Event Q$ can be proved to be a theorem by (4.7.1) Truth imp
 \emph{Proof}: The proof is by (4.4) Deduction.
 Suppose $P\impl Q$ is a theorem.
 Then, by (\ref{E:metatheorem}) Metatheorem, $\Always (P\impl Q)$ is a theorem.
-Because all theorems are equivalent to each other, and (3.4) $true$ is a theorem, $\Always (P\impl Q)$ is equivalent to $true$.
+Because all theorems are equivalent to each other, and (3.4) \textit{true} is a theorem, $\Always (P\impl Q)$ is equivalent to \textit{true}.
 Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth implication as follows.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -3671,7 +3671,7 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 \> $\foll$ \> \Hint{(\ref{E:distAlwaysImp}) Monotonicity of $\Always$} \\[\lgap]
 \> \> $\Always (P\impl Q)$\\[\lgap]
 \> $=$ \> \Hint{$\Always (P\impl Q)$ is a theorem} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 
@@ -3702,18 +3702,18 @@ Because the consequent is the theorem to be proved, it suffices to prove the tru
    \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
   \> \>   $\Always (p \Until \Always q \impl p \Until q) \land \Always (p \Until \Always q \impl \Next (p \Until \Always q))$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A:  $\Always (p \Until \Always q \impl p \Until q)$}\\[\lgap]
-  \> \>   $true \land \Always (p \Until \Always q \impl \Next (p \Until \Always q))$\\[\lgap]
+  \> \>   $\mathit{true} \land \Always (p \Until \Always q \impl \Next (p \Until \Always q))$\\[\lgap]
    \> $=$  \>  \Hint{Lemma B:  $\Always (p \Until \Always q \impl \Next (p \Until \Always q))$}\\[\lgap]
-  \> \>   $true \land true$\\[\lgap]
+  \> \>   $\mathit{true} \land \mathit{true}$\\[\lgap]
     \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 Lemma A: $\Always (p \Until \Always q \impl p \Until q)$
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:impAlways}) Strengthening of $\Always$ with $p:=q$} \\[\lgap]
   \> \>   $\Always q \impl q$\\[\lgap]
    \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
@@ -3783,7 +3783,7 @@ The proof in the second direction follows.
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
   \> \>   $\Always (q \land r \impl q\Until r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \land r, q\Until r,p$}\\[\lgap]
@@ -3796,7 +3796,7 @@ The proof in the second direction follows.
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:andImplUntil})} \\[\lgap]
   \> \>   $\Always (p \land q \impl p\Until q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \land q, p\Until q$}\\[\lgap]
@@ -3818,11 +3818,11 @@ Because the consequent is the theorem to be proved, it suffices to prove the tru
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Always ((p \land q \impl p) \land (r \impl q \Until r))$\\[\lgap]
   \> $=$  \>  \Hint{(3.76b) Strengthening, $p\land q \impl p$ and (\ref{E:untilInsertion}) $\Until$ insertion}\\[\lgap]
-  \> \>   $\Always (true \land true$)\\[\lgap]
+  \> \>   $\Always (\mathit{true} \land \mathit{true}$)\\[\lgap]
   \> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p\land p \equiv p$}\\[\lgap]
-  \> \>   $\Always true$\\[\lgap]
+  \> \>   $\Always \mathit{true}$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 
@@ -3841,9 +3841,9 @@ Its proof uses (\ref{E:eventAlwaysImp}).
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
   \> \>   $\Event\Always p$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-  \> \>   $true\Until \Always p$\\[\lgap]
+  \> \>   $\mathit{true}\Until \Always p$\\[\lgap]
   \> $\impl$ \> \Hint{(\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication}\\[\lgap]
-  \> \>   $\Always (true\Until p)$\\[\lgap]
+  \> \>   $\Always (\mathit{true}\Until p)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
   \> \>   $\Always\Event p$ \quad \myqed
 \end{tabbing}
@@ -3864,14 +3864,14 @@ Its proof uses (\ref{E:eventAlwaysImp}).
 \end{tabbing}
 }
 \begin{equation}\label{E:EAcontradiction2}
-\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land \Event \Always \neg p \equivs false
+\textbf{$\Event \Always$ contradiction:}\quad \Event \Always p \land \Event \Always \neg p \equivs \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $\Event \Always p \land \Event \Always \neg p \equivs false$\\[\lgap]
-  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv false$}\\[\lgap]
+  \> \>   $\Event \Always p \land \Event \Always \neg p \equivs \mathit{false}$\\[\lgap]
+  \> $=$  \>  \Hint{(3.15) $\neg p\equiv p\equiv \mathit{false}$}\\[\lgap]
   \> \>   $\neg(\Event \Always p \land \Event \Always \neg p)$\\[\lgap]
   \> $=$  \>  \Hint{(3.47a) De Morgan $\neg (p \land q) \equiv \neg p \lor \neg q$}\\[\lgap]
   \> \>   $\neg\Event\Always p \lor \neg\Event \Always \neg p$\\[\lgap]
@@ -3893,10 +3893,10 @@ Its proof uses (\ref{E:eventAlwaysImp}).
 	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
 	\> \>   $\Always p \impl \Next (q \impl p \Until q)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:untilInsertion}) $\Until$ insertion}\\[\lgap]
-	\> \>   $\Always p \impl \Next true$\\[\lgap]
+	\> \>   $\Always p \impl \Next \mathit{true}$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
-	\> \>   $\Always p \impl true$\\[\lgap]
-	\> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$ \quad \myqed
+	\> \>   $\Always p \impl \mathit{true}$\\[\lgap]
+	\> which is (3.72) Right zero of $\impl$, $p\impl \mathit{true} \equivs \mathit{true}$ \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:untilframelawEvent}
@@ -4076,12 +4076,12 @@ The proof of monotonicity theorem (\ref{E:monoEventAlways}) does the same with (
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Event p \impl \Event q)$\\[\lgap]
-  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
+  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
   \>     \>  \Hintlast{with $p,q := \Event p, \Event q$}\\[\lgap]
   \> \>   ($\Always (p \impl q) \impl \Always (\Event p \impl \Event q))\;\land\; (\Always (\Event p \impl \Event q) \impl (\Always\Event p \impl \Always\Event q))$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
@@ -4095,12 +4095,12 @@ The proof of monotonicity theorem (\ref{E:monoEventAlways}) does the same with (
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
   \begin{tabbing}
   \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-   \> \>   $true$\\[\lgap]
+   \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:metaAlways}) Metatheorem $\Always$ and (\ref{E:distAlwaysImp}) Monotonicity of $\Always$}\\[\lgap]
   \> \>   $\Always\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:IdemAlways}) Absorption of $\Always$}\\[\lgap]
   \> \>   $\Always (p \impl q) \impl \Always (\Always p \impl \Always q)$\\[\lgap]
-  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land true\equiv p$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
+  \> $=$  \>  \Hintfirst{(3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$ and (\ref{E:alwaysImpEvents}) Monotonicity of $\Event$}\\[\lgap]
   \>     \>  \Hintlast{with $p,q := \Always p, \Always q$}\\[\lgap]
   \> \>   ($\Always (p \impl q) \impl \Always (\Always p \impl \Always q))\;\land\; (\Always (\Always p \impl \Always q) \impl (\Event\Always p \impl \Event\Always q))$\\[\lgap]
   \> $\impl$  \>  \Hint{(3.82a) Transitivity}\\[\lgap]
@@ -4161,7 +4161,7 @@ The proof in the first direction follows.
 The proof in the second direction is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) with $p,q:=\Event(p\lor q),\Always\neg p$}\\[\lgap]
   \> \>   $\Always \Event(p\lor q) \land \Event \Always\neg p \impl \Event (\Event(p\lor q) \land \Always\neg p)$\\[\lgap]
   \> $\impl$  \>  \Hint{Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$ and (3.82a) Transitivity}\\[\lgap]
@@ -4184,7 +4184,7 @@ Lemma: $\Event (\Event(p\lor q) \land \Always\neg p)\impl\Event q$
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$ with $p,q:=\neg p, p\lor q$}\\[\lgap]
   \> \>   $\Always \neg p \land \Event (p\lor q) \impl \Event (\neg p \land (p\lor q))$\\[\lgap]
   \> $=$ \> \Hint{(3.44a) Absorption, $p\land (\neg p\lor q)\equiv p\land q$}\\[\lgap]
@@ -4262,7 +4262,7 @@ Lemma: $\Event\Always(p\impl \Always q) \impl \Event(\Always\Event p\impl \Event
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:alwaysImpEvents}) Monotonicity of $\Event$ with $q:=\Always q$}\\[\lgap]
   \> \>   $\Always (p \impl \Always q) \impl (\Event p \impl \Event\Always q)$\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
@@ -4372,7 +4372,7 @@ Lemma C: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always (\Al
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $true$\\[\lgap]
+\> \>   \textit{true}\\[\lgap]
  \> $=$  \>  \Hint{Lemma B: $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q )$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Next (\Always R \land \neg \Always p \land \neg \Always q )$\\[\lgap]
  \> $=$  \>  \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
@@ -4385,7 +4385,7 @@ Lemma D: $\Always (\Always R \land \neg \Always p \land \neg \Always q) \impl \A
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
    \> $=$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p\impl p$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \impl \Always R \land \neg \Always p \land \neg \Always q$\\[\lgap]
   \> $\impl$  \>  \Hintfirst{(\ref{E:impAlways}) Strengthening of $\Always$ and (4.3) Monotonicity of $\land$ }\\[\lgap]
@@ -4433,7 +4433,7 @@ Lemma G: $\Always (\Always p \lor \Always q) \impl \Always R$
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(3.76a) Weakening, $p\impl p\lor q$}\\[\lgap]
   \> \> $\Always p \lor \Always q \impl \Always p \lor \Always q \lor (p \land q)$\\[\lgap]
   \> $=$ \> \Hint{Lemma A: $R \equiv \Always p \lor \Always q \lor (p \land q)$}\\[\lgap]
@@ -4453,7 +4453,7 @@ To prove
 by contradiction, prove that
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> $\neg (\Always R \impl \Always p \lor \Always q ) \impl false$
+  \> $\neg (\Always R \impl \Always p \lor \Always q ) \impl \mathit{false}$
 \end{tabbing}
 
 \emph{Proof}:
@@ -4469,10 +4469,10 @@ by contradiction, prove that
    \> $\impl$  \>  \Hintfirst{Lemma E: $\Always R \land \neg \Always p \land \neg \Always q \impl \Always p \land \Always q$}\\[\lgap]
   \>     \>  \Hintlast{and (4.3) Monotonicity of $\land$}\\[\lgap]
   \> \>   $\Always R \land \neg \Always p \land \neg \Always q \land \Always p \land \Always q$\\[\lgap]
-  \> $=$  \>  \Hint{(3.42) Contradiction, $p\land\neg p \equivs false$, twice}\\[\lgap]
-  \> \>   $\Always R \land false \land false $\\[\lgap]
-  \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land false\equiv false$}\\[\lgap]
-  \> \>   $false$
+  \> $=$  \>  \Hint{(3.42) Contradiction, $p\land\neg p \equivs \mathit{false}$, twice}\\[\lgap]
+  \> \>   $\Always R \land \mathit{false} \land \mathit{false} $\\[\lgap]
+  \> $=$  \>  \Hint{(3.40) Zero of $\land$, $p\land \mathit{false}\equiv \mathit{false}$}\\[\lgap]
+  \> \>   \textit{false}
 \end{tabbing}
 
 The proof of (\ref{E:BenAriequiv2}) in the second direction
@@ -4485,7 +4485,7 @@ is by (4.7.1) Truth implication.
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$  \>  \Hint{Lemma F: $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$}\\[\lgap]
   \> \>   $\Always p \lor \Always q \impl \Next (\Always p \lor \Always q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:metatheorem}) Metatheorem with the above theorem}\\[\lgap]
@@ -4506,7 +4506,7 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \>   $true$\\[\lgap]
+\> \>   \textit{true}\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:alwaysAndEvent}) Distributivity of $\Event$ over $\land$ and (\ref{E:metaAlways}) Metatheorem $\Always$}\\[\lgap]
 \> \>   $\Always (\Always p \land \Event q) \impl \Always\Event (p \land q)$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:distAlwaysAnd}) Distributivity of $\Always$ over $\land$}\\[\lgap]
@@ -4628,7 +4628,7 @@ p \Wait q  \equiv \Always (p \land \neg q) \lor p \Until q
   \> \>   $p \Wait q \land (\Always \neg q \lor (p \Wait q \land \Event q))$\\[\lgap]
   \> $=$  \>  \Hint{(3.45) Distributivity of $\lor$ over $\land$, $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$}\\[\lgap]
   \> \>   $p \Wait q \land ((\Always \neg q \lor p \Wait q) \land (\Always \neg q \lor \Event q))$\\[\lgap]
-  \> $=$  \>  \Hint{(\ref{E:excludedMid}) $\Event$ excluded middle and (3.39) Identity of $\land$, $p\land true\equiv p$ }\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:excludedMid}) $\Event$ excluded middle and (3.39) Identity of $\land$, $p\land \mathit{true}\equiv p$ }\\[\lgap]
   \> \>   $p \Wait q \land (\Always \neg q \lor p \Wait q)$\\[\lgap]
   \> $=$  \>  \Hint{(3.43a) Absorption, $p \land (p \lor q) \equiv p$}\\[\lgap]
   \> \>   $p \Wait q$ \quad \myqed
@@ -4806,25 +4806,25 @@ Left zero of the \textit{wait} operator (\ref{E:leftZeroWait}) corresponds to ri
 \> $=$ \> \Hint{(\ref{E:expansionWait}) Expansion, twice} \\[\lgap]
 \> \> $q\lor (p\land \Next (p\Wait q))\lor \neg q \lor (p\land \Next (p\Wait \neg q))$\\[\lgap]
 \> $=$ \> \Hint{(3.28) Excluded middle, $p\lor \neg p$} \\[\lgap]
-\> \> $true \lor (p\land \Next (p\Wait q)) \lor (p\land \Next (p\Wait \neg q))$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> $\mathit{true} \lor (p\land \Next (p\Wait q)) \lor (p\land \Next (p\Wait \neg q))$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$} \\[\lgap]
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:leftZeroWait}
-\textbf{Left zero of $\Wait$:}\quad true \Wait q \equiv true
+\textbf{Left zero of $\Wait$:}\quad \mathit{true} \Wait q \equiv \mathit{true}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $true \Wait q$\\[\lgap]
+\> \> $\mathit{true} \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always true \lor true\Until q$\\[\lgap]
+\> \> $\Always \mathit{true} \lor \mathit{true}\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:alwaysTrue}) Truth of $\Always$} \\[\lgap]
-\> \> $true \lor true\Until q$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true \equiv true$}\\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> $\mathit{true} \lor \mathit{true}\Until q$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true} \equiv \mathit{true}$}\\[\lgap]
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 
@@ -5044,9 +5044,9 @@ And now,
 \> $=$ \> \Hint{(\ref{E:disRuleWait}) Disjunction rule of $\Wait$} \\[\lgap]
 \> \> $(\neg q\lor q)\Wait q$\\[\lgap]
 \> $=$ \> \Hint{(3.28) Excluded middle $p\lor \neg p$} \\[\lgap]
-\> \> $true\Wait q$\\[\lgap]
+\> \> $\mathit{true}\Wait q$\\[\lgap]
 \> $=$ \> \Hint{\ref{E:leftZeroWait}) Left zero of $\Wait$} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:ruleUntil}
@@ -5060,7 +5060,7 @@ And now,
 \> $=$ \> \Hint{(\ref{E:disRuleUntil}) Disjunction rule of $\Until$} \\[\lgap]
 \> \> $(\neg q\lor q)\Until q$\\[\lgap]
 \> $=$ \> \Hint{(3.28) Excluded middle $p\lor \neg p$} \\[\lgap]
-\> \> $true\Until q$\\[\lgap]
+\> \> $\mathit{true}\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defEvent}) Definition of $\Event$} \\[\lgap]
 \> \> $\Event q$ \quad \myqed
 \end{tabbing}
@@ -5078,9 +5078,9 @@ And now,
 \> $\foll$ \> \Hint{(\ref{E:rightWaitOrDist}) Right distributivity of $\Wait$ over $\lor$} \\[\lgap]
 \> \> $\neg p \Wait p\lor q\Wait p$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
-\> \> $true\lor q\Wait p$\\[\lgap]
+\> \> $\mathit{true}\lor q\Wait p$\\[\lgap]
 \> $=$ \> \Hint{(3.29) Zero of $\lor$} \\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:eventPImplPImplUntilp}
@@ -5112,8 +5112,8 @@ And now,
 \> $=$ \> \Hint{(\ref{E:rightWaitAndDist}) Right distributivity of $\Wait$ over $\land$} \\[\lgap]
 \> \> $p\Wait q\land \neg q\Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:ruleWait}) Rule of $\Wait$} \\[\lgap]
-\> \> $p\Wait q\land true$\\[\lgap]
-\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land true \equiv p$} \\[\lgap]
+\> \> $p\Wait q\land \mathit{true}$\\[\lgap]
+\> $=$ \> \Hint{(3.39) Identity of $\land$, $p\land \mathit{true} \equiv p$} \\[\lgap]
 \> \> $p\Wait q$ \quad \myqed
 \end{tabbing}
 }
@@ -5219,8 +5219,8 @@ And now,
 }
 
 Theorem (\ref{E:idempWait}) shows that the \textit{wait} operator, like the \textit{until} operator, is idempotent.
-Theorem (\ref{E:rightZeroWait}) shows that $true$ is the right zero of \textit{wait}, as it is for \textit{until}.
-Theorem (\ref{E:leftIdentWait}) shows that $false$ is the left identity of \textit{wait}, as it is for \textit{until}.
+Theorem (\ref{E:rightZeroWait}) shows that \textit{true} is the right zero of \textit{wait}, as it is for \textit{until}.
+Theorem (\ref{E:leftIdentWait}) shows that \textit{false} is the left identity of \textit{wait}, as it is for \textit{until}.
 Theorem (\ref{E:waitToOr}) for the \textit{wait} operator corresponds to theorem (\ref{E:untilImpOr}) for the \textit{until} operator and shows that $p \Wait q$ is stronger than $p \lor q$.
 Theorem (\ref{E:orToWait}) shows that $\Always(p \lor q)$ is stronger than $p \Wait q$.
 Theorem (\ref{E:waitInsertion}), insertion for the \textit{wait} operator, corresponds to (\ref{E:untilInsertion}), insertion for the \textit{until} operator.
@@ -5241,36 +5241,36 @@ Theorem (\ref{E:waitInsertion}), insertion for the \textit{wait} operator, corre
 \end{tabbing}
 }
 \begin{equation}\label{E:rightZeroWait}
-\textbf{Right zero of $\Wait$:}\quad p \Wait true \equiv true
+\textbf{Right zero of $\Wait$:}\quad p \Wait \mathit{true} \equiv \mathit{true}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Wait true$\\[\lgap]
+\> \> $p \Wait \mathit{true}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always p \lor p\Until true$\\[\lgap]
+\> \> $\Always p \lor p\Until \mathit{true}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:zeroUntil}) Right zero of $\Until$} \\[\lgap]
-\> \> $\Always p \lor true$\\[\lgap]
-\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor true\equiv true$}\\[\lgap]
-\> \> $true$ \quad \myqed
+\> \> $\Always p \lor \mathit{true}$\\[\lgap]
+\> $=$ \> \Hint{(3.29) Zero of $\lor$, $p\lor \mathit{true}\equiv \mathit{true}$}\\[\lgap]
+\> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:leftIdentWait}
-\textbf{Left identity of $\Wait$:}\quad false \Wait q \equiv q
+\textbf{Left identity of $\Wait$:}\quad \mathit{false} \Wait q \equiv q
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $false \Wait q$\\[\lgap]
+\> \> $\mathit{false} \Wait q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always false \lor false\Until q$\\[\lgap]
+\> \> $\Always \mathit{false} \lor \mathit{false}\Until q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:leftIdUntil}) Left identity of $\Until$}\\[\lgap]
-\> \> $\Always false \lor q$\\[\lgap]
+\> \> $\Always \mathit{false} \lor q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:alwaysFalse}) Falsehood of $\Always$} \\[\lgap]
-\> \> $false \lor q$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+\> \> $\mathit{false} \lor q$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor \mathit{false}\equiv p$} \\[\lgap]
 	\> \> $q$ \quad \myqed
 \end{tabbing}
 }
@@ -5350,10 +5350,10 @@ and the $\Until$ frame laws from theorems (\ref{E:untilframelawnext}), (\ref{E:u
 	\> $=$  \>  \Hint{(\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$}\\[\lgap]
 	\> \>   $\Always p \impl \Next (q \impl p \Wait q)$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:waitInsertion}) $\Wait$ insertion}\\[\lgap]
-	\> \>   $\Always p \impl \Next true$\\[\lgap]
+	\> \>   $\Always p \impl \Next \mathit{true}$\\[\lgap]
 	\> $=$  \>  \Hint{(\ref{E:nextTruth}) Truth of $\Next$}\\[\lgap]
-	\> \>   $\Always p \impl true$\\[\lgap]
-    \> which is (3.72) Right zero of $\impl$, $p\impl true \equivs true$. \quad \myqed
+	\> \>   $\Always p \impl \mathit{true}$\\[\lgap]
+    \> which is (3.72) Right zero of $\impl$, $p\impl \mathit{true} \equivs \mathit{true}$. \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:waitframelawEvent}
@@ -5552,30 +5552,30 @@ All are unique to this system.
 \renewcommand\arraystretch{1.2}
 \begin{tabular}{ l l }
   \toprule
-  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until false \equiv false$
+  (\ref{E:untilFalse}) Right zero of $\Until$:\; $p \Until \mathit{false} \equiv \mathit{false}$
   &
-  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $true \Wait q \equiv true$ \\
+  (\ref{E:leftZeroWait}) Left zero of $\Wait$:\; $\mathit{true} \Wait q \equiv \mathit{true}$ \\
   \midrule
-  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until true \equiv true$
+  (\ref{E:zeroUntil}) Right zero of $\Until$:\; $p \Until \mathit{true} \equiv \mathit{true}$
   &
-  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait true \equiv true$ \\
+  (\ref{E:rightZeroWait}) Right zero of $\Wait$:\; $p \Wait \mathit{true} \equiv \mathit{true}$ \\
   \midrule
-  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $false \Until q \equiv q$
+  (\ref{E:leftIdUntil}) Left identity of $\Until$:\; $\mathit{false} \Until q \equiv q$
   &
-  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $false \Wait q \equiv q$ \\
+  (\ref{E:leftIdentWait}) Left identity of $\Wait$:\; $\mathit{false} \Wait q \equiv q$ \\
   \midrule
-  (\ref{E:defEvent}) $true \Until q \equiv \Event q$
+  (\ref{E:defEvent}) $\mathit{true} \Until q \equiv \Event q$
   &
-  (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law:\; $p \Wait false\equiv \Always p$ \\
+  (\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law:\; $p \Wait \mathit{false}\equiv \Always p$ \\
   \bottomrule
 \end{tabular}
 \renewcommand\arraystretch{1}
-\caption{The eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+\caption{The eight possibilities of \textit{true} and \textit{false} on the left hand side and right hand side of $\Until$ and $\Wait$.
 \label{true-false-wait-until}}
 \end{figure}
 The left and right absorption theorems for $\Wait$, (\ref{E:waitAbsL}) and (\ref{E:waitAbsR}), correspond to, and are proved from, the left and right absorption theorems for $\Until$, (\ref{E:untilIdem}) and (\ref{E:untilIdemR}).
 Theorem (\ref{E:alwaysAsWait}) corresponds to the definition of the $\Event$ operator (\ref{E:defEvent}).
-Figure \ref{true-false-wait-until} summarizes the eight possibilities of $true$ and $false$ on the left hand side and right hand side of $\Until$ and $\Wait$.
+Figure \ref{true-false-wait-until} summarizes the eight possibilities of \textit{true} and \textit{false} on the left hand side and right hand side of $\Until$ and $\Wait$.
 \begin{equation}\label{E:waitAbsL}
 \textbf{Left absorption of $\Wait$:}\quad p \Wait (p \Wait q) \equiv p \Wait q
 \end{equation}
@@ -5631,29 +5631,29 @@ The proof in the second direction follows.
 \end{tabbing}
 }
 \begin{equation}\label{E:alwaysAsWait}
-\textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false
+\textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait \mathit{false}
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $p \Wait false$\\[\lgap]
+\> \> $p \Wait \mathit{false}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
-\> \> $\Always p\lor p \Until false$\\[\lgap]
+\> \> $\Always p\lor p \Until \mathit{false}$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:untilFalse}) Right zero of $\Until$} \\[\lgap]
-\> \> $\Always p\lor false$\\[\lgap]
-\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+\> \> $\Always p\lor \mathit{false}$\\[\lgap]
+\> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor \mathit{false}\equiv p$} \\[\lgap]
 \> \> $\Always p$ \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:eventAsWait}
-\textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait false)
+\textbf{$\Event$ to $\Wait$ law:}\quad \Event p \equiv \neg(\neg p \Wait \mathit{false})
 \end{equation}
 \opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-\> \> $\neg(\neg p \Wait false)$\\[\lgap]
+\> \> $\neg(\neg p \Wait \mathit{false})$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:alwaysAsWait}) $\Always$ to $\Wait$ law with $p := \neg p$} \\[\lgap]
 \> \> $\neg\Always\neg p$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:eventAsAlways}) $\Event p \equiv \neg\Always\neg p$}\\[\lgap]
@@ -5758,9 +5758,9 @@ Theorem (\ref{E:absAlwaysWait}) corresponds to (\ref{E:absEventIntoUntil}) Absor
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 \> \> $\Event q \Wait q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
-\> \> $(true\Until q) \Wait q$\\[\lgap]
+\> \> $(\mathit{true}\Until q) \Wait q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:rightWaitAbsUtil}) Absorption}\\[\lgap]
-\> \> $true\Until q$\\[\lgap]
+\> \> $\mathit{true}\Until q$\\[\lgap]
 \> $=$  \>  \Hint{(\ref{E:defEvent}) Definition of $\Event$}\\[\lgap]
 \> \> $\Event q$ \quad \myqed
 \end{tabbing}
@@ -5973,7 +5973,7 @@ And now,
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (p \Until q \impl p\Wait q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
@@ -5987,7 +5987,7 @@ And now,
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (q \Until r \impl q\Wait r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
@@ -6001,7 +6001,7 @@ And now,
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (q \Until r \impl q\Wait r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoUntil}) Right monotonicity of $\Until$ with $p,q,r := q \Until r, q\Wait r,p$}\\[\lgap]
@@ -6015,7 +6015,7 @@ And now,
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImplWait}) $\Until$ implication} \\[\lgap]
   \> \>   $\Always (p \Until q \impl p\Wait q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p \Until q, p\Wait q$}\\[\lgap]
@@ -6088,7 +6088,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:untilImpOr})} \\[\lgap]
   \> \>   $\Always (p\Until q\impl p\lor q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Until q, p\lor q$}\\[\lgap]
@@ -6102,7 +6102,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
   \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:leftMonoWait}) Left monotonicity of $\Wait$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
@@ -6116,7 +6116,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
 %\emph{Proof}: The proof is by (4.7.1) Truth implication.
 %\begin{tabbing}
 %\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-%  \> \>   $true$\\[\lgap]
+%  \> \>   \textit{true}\\[\lgap]
 %  \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
 %  \> \>   $\Always (p\Wait q\impl p\lor q)$\\[\lgap]
 %  \> $\impl$  \>  \Hint{(\ref{E:leftMonoUntil}) Left monotonicity of $\Until$ with $p,q := p\Wait q, p\lor q$}\\[\lgap]
@@ -6129,7 +6129,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-  \> \>   $true$\\[\lgap]
+  \> \>   \textit{true}\\[\lgap]
   \> $=$ \> \Hint{(\ref{E:metatheorem}) Metatheorem and (\ref{E:waitToOr})} \\[\lgap]
   \> \>   $\Always (q\Wait r\impl q\lor r)$\\[\lgap]
   \> $\impl$  \>  \Hint{(\ref{E:rightMonoWait}) Right monotonicity of $\Wait$ with $p,q,r := q\Wait r, q\lor r,p$}\\[\lgap]
@@ -6217,7 +6217,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
   \> $=$  \>  \Hint{(3.47b) De Morgan, $\neg(p\lor q)\equivs \neg p\land\neg q$}\\[\lgap]
   \> \>   $\neg (p\lor q)\Wait (p\lor q)$\\[\lgap]
   \> $=$  \>  \Hint{(\ref{E:ruleWait}) Rule of $\Wait$ with $q := p\lor q$}\\[\lgap]
-  \> \>   $true$ \quad \myqed
+  \> \>   \textit{true} \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:waitImplicationOrdering}
@@ -6225,7 +6225,7 @@ Figure \ref{hasse2} is a Hasse diagram showing some implication relations of the
 \end{equation}
 \opt{complete}{
 \emph{Proof}: The proof is based on the following lemmas.\\[\llgap]
-Lemma A: $p \Until q \land \Always \neg q \equiv false$
+Lemma A: $p \Until q \land \Always \neg q \equiv \mathit{false}$
 
 \emph{Proof}:
 \begin{tabbing}
@@ -6234,8 +6234,8 @@ Lemma A: $p \Until q \land \Always \neg q \equiv false$
   \> $=$ \> \Hint{(\ref{E:untilFromWait}) $\Until$ in terms of $\Wait$} \\[\lgap]
   \> \>   $p \Wait q \land \Event q \land \Always \neg q$\\[\lgap]  
   \> $=$ \> \Hint{(\ref{E:contradiction}) $\Event$ contradiction} \\[\lgap]
-  \> \>   $p \Wait q \land false$\\[\lgap]  
-  \> \>   $ false$ \quad \myqed
+  \> \>   $p \Wait q \land \mathit{false}$\\[\lgap]  
+  \> \>   \textit{false} \quad \myqed
 \end{tabbing}
 Lemma B: $\Always p \land \neg\Always q \impl p\Wait r$
 
@@ -6268,8 +6268,8 @@ And now,
   \> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p\land (q\lor r)\equiv (p\land q)\lor (p\land r)$}\\[\lgap]
   \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \Always \neg q) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
   \> $=$  \>  \Hint{Lemma A}\\[\lgap]
-  \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; false \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
-  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor false\equiv p$} \\[\lgap]
+  \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; \mathit{false} \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
+  \> $=$ \> \Hint{(3.30) Identity of $\lor$, $p\lor \mathit{false}\equiv p$} \\[\lgap]
   \> \>   $(\Always p\land \Always \neg q) \;\lor\; (\Always p\land \neg q\Until r) \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
   \> $\impl$  \>  \Hint{Lemma B, Lemma C, and (4.2) Monotonicity of $\lor$}\\[\lgap]
   \> \>   $p\Wait r \;\lor\; p\Wait r \;\lor\; (p\Until q\land \neg q\Until r)$\\[\lgap]
@@ -6288,11 +6288,11 @@ Of these ten theorems, nine are identical, with the substitution of $\Wait$ for 
 In addition, (\ref{E:notWait}), the axiom that describes the distributivity of $\neg$ over $\Wait$, is identical to (\ref{E:notUntil}) with the interchange of $\Wait$ and $\Until$.
 The one theorem that distinguishes $\Wait$ from the defining axioms of $\Until$ is
 \begin{equation}
-(\ref{E:untilFalse})\quad \textbf{Axiom, Right zero of $\Until$:}\quad p \Until false \equiv false \nonumber
+(\ref{E:untilFalse})\quad \textbf{Axiom, Right zero of $\Until$:}\quad p \Until \mathit{false} \equiv \mathit{false} \nonumber
 \end{equation}
 for the \textit{until} operator versus
 \begin{equation}
-(\ref{E:alwaysAsWait})\quad \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait false \nonumber
+(\ref{E:alwaysAsWait})\quad \textbf{$\Always$ to $\Wait$ law:}\quad \Always p \equiv p \Wait \mathit{false} \nonumber
 \end{equation}
 for the \textit{wait} operator.
 
@@ -6340,7 +6340,7 @@ They introduce the symbol $\impl$ to stand for always implies, so that $\Always(
 Similarly, $p\equiv q$ of our system is written as $p\leftrightarrow q$, in theirs and $\Always(p\leftrightarrow q)$ is written as $p\Leftrightarrow q$.
 
 Manna and Pnueli define a proof system that combines the future operators $\Next$, $\Event$, $\Always$, $\Until$, and $\Wait$ with a set of corresponding past operators.
-For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait false$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
+For the future operators they take $\Next$ and $\Wait$ as basic and define $\Always p$ to be an abbreviation for $p\Wait \mathit{false}$ as in (\ref{E:alwaysAsWait}), $\Event p$ to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}), and $p\Until q$ to be an abbreviation for $p\Wait q \land \Event q$ as in (\ref{E:untilFromWait}).
 
 The four basic inference rules in the Manna and Pnueli deductive system are generalization and specialization, corresponding to (\ref{E:metatheorem}) Metatheorem, instantiation, corresponding to inference rule Substitution (Section 2.1), and modus ponens, corresponding to (3.77).
 The derived rules include particularization, corresponding to (\ref{E:impAlways}) Strengthening of $\Always$, entailment modus ponens, corresponding to $\Always(p\impl q)\land\Always p \impl \Always q$, and entailment transitivity, corresponding to $\Always(p\impl q)\land \Always(q\impl r) \impl \Always(p\impl r)$.
