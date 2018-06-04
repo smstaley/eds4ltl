@@ -4713,6 +4713,7 @@ where it is used as the normal form for simple obligation formulas.
 }
 
 Theorem (\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication corresponds to (\ref{E:axiomAlwaysUntilImpl}) $\Until\Always$ implication.
+Theorem (\ref{E:absorpWaitAlways}) Absorption of $\Wait$ into $\Always$ corresponds to (\ref{E:absUntilAlways}) Absorption of $\Until$ into $\Always$.
 Theorem (\ref{E:alwaysImpWait}) Perpetuity for the \textit{wait} operator corresponds to (\ref{E:eventuality}) Eventuality
 for the \textit{until} operator.
 The \textit{always} operator, which is universal, is in the antecedent of the implication in Perpetuity, while
@@ -4735,6 +4736,22 @@ the \textit{eventually} operator, which is existential, is in the consequent of 
 \> \> $\Always p\lor p \Until \Always q$\\[\lgap]
 \> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$ with $q := \Always q$} \\[\lgap]
 \> \> $p \Wait \Always q$ \quad \myqed
+\end{tabbing}
+}
+\begin{equation}\label{E:absorpWaitAlways}
+\textbf{Absorption of $\Wait$ into $\Always$:}\quad p \Wait \Always p \equiv \Always p
+\end{equation}
+\opt{complete}{
+\emph{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+\> \> $p \Wait \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:defWait}) Definition of $\Wait$} \\[\lgap]
+\> \> $\Always p \lor p \Until \Always p$\\[\lgap]
+\> $=$ \> \Hint{(\ref{E:absUntilAlways}) Absorption of $\Until$ into $\Always$} \\[\lgap]
+\> \> $\Always p \lor \Always p$\\[\lgap]
+\> $=$ \> \Hint{(3.26) Idempotency of $\lor$, $p \lor p \equiv p$} \\[\lgap]
+\> \> $\Always p$ \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:alwaysImpWait}
@@ -6386,7 +6403,7 @@ There are 19 theorems that are common to all five sources in the survey, namely
 (\ref{E:absEvent}), and
 (\ref{E:absAlways}).
 
-This system has 252 theorems, 19 of which are axioms.
+This system has 253 theorems, 19 of which are axioms.
 Of the axioms, seven are unique to this system, namely
 (\ref{E:untilFalse}),
 (\ref{E:untilImplicationOrdering}),
