@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -722,7 +722,7 @@ $q$ holds in state $s_j$ and $k=j$.
 	\> $=$  \>  \Hint{Case $q$ holds in state $s_j$}\\[\lgap]
 	\> \>   \textit{true} \quad \myqed
 \end{tabbing}
-This result is theorem (\ref{E:zeroUntil}) $p \Until \mathit{true} \equiv \mathit{true}$ proved in Section \ref{section-until}.
+This result is theorem (\ref{E:zeroUntil}) $p \Until \mathit{true} \equiv \mathit{true}$ listed in Section \ref{section-until}.
 \textit{true} is the right zero of the \textit{until} operator.
 
 The \textit{until} operator $\Until$ is not associative as shown by the following sequence.\\[\lllgap]
@@ -3674,6 +3674,8 @@ Then, $\Always P\impl\Always Q$ can be proved to be a theorem by (4.7.1) Truth i
 \> \> \textit{true} \quad \myqed
 \end{tabbing}
 }
+The proof of (\ref{E:untilAndImplUntilUntil}) in Section 3.8 illustrates the use of (\ref{E:metatheorem}) Metatheorem.
+The proof of (\ref{E:eventAlwaysPAndAlwaysEventQ}) illustrates the use of (\ref{E:metaEvent}) Metatheorem $\Event$ and  (\ref{E:metaAlways}) Metatheorem $\Always$.
 
 \subsection{Always, continued}\label{section-always-continued-2}
 
@@ -3682,7 +3684,6 @@ However, they play a key role here in the proofs of several later theorems that 
 The proof of (\ref{E:axiomAlwaysUntilImpl}) is based on (\ref{E:InductRuleAlways}) Induction rule $\Always$ with $p,q := p \Until \Always q, p \Until q$.
 It establishes the truth of the antecedent with the help of two lemmas, each of which is proved with metatheorem (\ref{E:metatheorem}).
 The strengthening and ordering theorems are also unique to this system.
-The short proof of (\ref{E:untilAndImplUntilUntil}) illustrates the use of methatheorem (\ref{E:metatheorem}).
 \begin{equation}\label{E:axiomAlwaysUntilImpl}
 \textbf{$\Until\Always$ implication:}\quad p\Until \Always q\impl \Always (p\Until q)
 \end{equation}
@@ -4114,7 +4115,6 @@ Theorem (\ref{E:distAlwaysEventAnd}) shows that $\Always\Event$ distributes over
 Similarly, Theorem (\ref{E:distEventAlwaysOr}) shows that $\Event\Always$ distributes over disjunction only in one direction.
 However, Theorems (\ref{E:distAlwaysEventOr}) and (\ref{E:distEventAlwaysAnd}) show that $\Always\Event$ distributes over
 disjunction and $\Event\Always$ distributes over conjunction in both directions.
-The proof of (\ref{E:distEventAlwaysOr}) illustrates the use of (\ref{E:metaEvent}) Metatheorem $\Event$.
 \begin{equation}\label{E:distAlwaysEventAnd}
 \textbf{Distributivity of $\Always\Event$ over $\land$:}\quad \Always\Event(p \land q) \impl \Always\Event p \land \Always\Event q
 \end{equation}
@@ -4133,7 +4133,7 @@ The proof of (\ref{E:distEventAlwaysOr}) illustrates the use of (\ref{E:metaEven
 \begin{equation}\label{E:distEventAlwaysOr}
 \textbf{Distributivity of $\Event\Always$ over $\lor$:}\quad \Event\Always p \lor \Event\Always q \impl \Event\Always (p \lor q)
 \end{equation}
-
+\opt{complete}{
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4144,6 +4144,7 @@ The proof of (\ref{E:distEventAlwaysOr}) illustrates the use of (\ref{E:metaEven
   \>          \>  \Hintlast{$\Event(\Always p \lor \Always q) \impl \Event\Always (p \lor q)$}\\[\lgap]
   \> \>   $\Event\Always (p \lor q)$ \quad \myqed
 \end{tabbing}
+}
 \begin{equation}\label{E:distAlwaysEventOr}
 \textbf{Distributivity of $\Always\Event$ over $\lor$:}\quad \Always\Event(p \lor q) \equiv \Always\Event p \lor \Always\Event q
 \end{equation}
@@ -4502,7 +4503,7 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \begin{equation}\label{E:eventAlwaysPAndAlwaysEventQ}
 \Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)
 \end{equation}
-\opt{complete}{
+
 \emph{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -4524,7 +4525,6 @@ If $p$ will eventually be always true, and it is always the case that $q$ will b
 \> $=$  \>  \Hint{(3.65) Shunting, $p\land q\impl r\equivs p\impl (q\impl r)$}\\[\lgap]
 \> \>   $\Event\Always p\land \Always\Event q \impl \Always\Event (p\land q)$ \quad \myqed
 \end{tabbing}
-}
 \begin{equation}\label{E:kroger49}
  \Always ((\Always p \impl \Event q) \land (q \impl \Next r)) \impl (\Always p \impl \Next \Always \Event r)
 \end{equation}
@@ -6422,7 +6422,7 @@ temporal logic community, but will serve as an example to promote $\mathcal{E}$ 
 
 David Gries provided a prepublication manuscript of LADM, which we immediately adopted and have used ever since.
 He has been a source of constant encouragement.
-Ravi Mohan and Ray McIntyre contributed to the proofs.
+Ray McIntyre, Ravi Mohan, Michael Ortiz, and Kyle Sundman contributed to the proofs.
 
 \bibliographystyle{plain}
 \bibliography{Vega-Paper}
