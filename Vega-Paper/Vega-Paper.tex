@@ -1,9 +1,10 @@
-% David Vega and Stan Warford
+% Stan Warford, David Vega, Scott Staley
 % Pepperdine University
 % File: Vega-Paper
 % !TEX TS-program = xelatex
 
-\documentclass[12pt, fleqn, leqno]{article}
+%\documentclass[12pt, fleqn, leqno]{article}                         % For Warford
+\documentclass[format=acmsmall, review=false, screen=true]{acmart}   % For submission to ACM Computing Reviews
 
 \usepackage{fontspec}
 \usepackage[slantedGreek]{mathptmx}
@@ -25,7 +26,7 @@
 \newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
 \newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
 \newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
-\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\mynequiv}{\ensuremath{\not\equiv}}     % Inequivalent
 \newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
 \newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
@@ -979,7 +980,7 @@ LADM \cite{LADM} defines the dual $P_D$ of a boolean expression $P$ to be the ex
 \begin{align*}
 \mathit{true} &\textrm{ and } \mathit{false}\textrm{,}\\
 \land         &\textrm{ and } \lor\textrm{,}\\
-\equiv        &\textrm{ and } \nequiv\textrm{,}\\
+\equiv        &\textrm{ and } \mynequiv\textrm{,}\\
 \impl         &\textrm{ and } \nfoll\textrm{, and}\\
 \foll         &\textrm{ and } \nimpl\textrm{.}
 \end{align*}
@@ -6443,4 +6444,5 @@ Ray McIntyre, Ravi Mohan, Michael Ortiz, and Kyle Sundman contributed to the pro
 
 \bibliographystyle{plain}
 \bibliography{Vega-Paper}
+
 \end{document}
