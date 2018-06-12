@@ -4,14 +4,54 @@
 
 \usepackage{booktabs} % For formal tables
 
-\usepackage[ruled]{algorithm2e} % For algorithms
-\renewcommand{\algorithmcfname}{ALGORITHM}
-\SetAlFnt{\small}
-\SetAlCapFnt{\small}
-\SetAlCapNameFnt{\small}
-\SetAlCapHSkip{0pt}
-\IncMargin{-\parindent}
+\newcommand{\lgap}{2pt}                             % Line gap
+\newcommand{\llgap}{6pt}                            % Larger line gap
+\newcommand{\lllgap}{12pt}                          % Gap between tables
+\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
+\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
+\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\mynequiv}{\ensuremath{\not\equiv}}     % Inequivalent
+\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
+\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
+\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
+\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
+% Macros for Temporal Operators
+\newcommand{\Until}{\;\mathcal{U}\;}
+\newcommand{\Wait}{\;\mathcal{W}\;}
+\newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
+\newcommand{\Event}{\Diamond\,}
+\newcommand{\Always}{\Box\,}
+
+\newcommand{\myqed}{\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\myqedtab}{\hspace{384pt}}              % For flush right qed symbol in tabbing environment. No longer used.
+\newcommand{\spacer}{\vspace{-30pt}}
+\newcommand{\firstspacer}{\vspace{-26pt}}
+
+% Thanks to David Gries for sharing the following macros
+% Macros for quantifications.
+\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
+\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
+\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
+\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
+\newcommand{\all}{\forall}                          % Universal quantification
+\newcommand{\ext}{\exists}                          % Existential quantification
+
+% Macros for proof hints
+\newcommand{\Gll} {\langle}                         % Open hint
+\newcommand{\Ggg} {\rangle}                         % Close hint
+\newlength{\Glllength}                              % Length of open hint symbol
+\settowidth{\Glllength}{$.\Gll$}
+\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
+\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
+\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
+\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
+
+% Single and double quotes
+\newcommand{\Lq}{\mbox{`}}
+\newcommand{\Rq}{\mbox{'}}
+\newcommand{\Lqq}{\mbox{``}}
+\newcommand{\Rqq}{\mbox{''}}
 
 % Metadata Information
 \acmJournal{CSUR}

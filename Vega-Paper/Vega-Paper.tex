@@ -135,7 +135,7 @@ While many LTL theorems are common in the different treatments, each treatment h
 This survey is a comprehensive collection of all the LTL theorems that we have found in the literature, together with many new theorems, all of which are presented in an axiomatic logic system.
 It serves as an introduction to LTL and should be accessible with a prerequisite only of the standard propositional and predicate logic at the undergraduate level.
 
-\subsubsection*{Axiomatic logic systems}
+\subsection{Axiomatic logic systems}
 
 All axiomatic logic systems have three components -- inference rules, axioms, and theorems.
 Both inference rules and axioms are assumed.
@@ -185,7 +185,7 @@ That is, manual proofs in such systems are easier to understand and to design th
 \label{logic-systems}}
 \end{figure}
 
-\subsubsection*{Propositional logic systems}
+\subsection{Propositional logic systems}
 
 Propositional calculus is a formal system of logic based on the unary operator negation $\neg$,
 the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (also written $\rightarrow$),
@@ -230,7 +230,7 @@ In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Ma
 Using equational logic as a tool, LADM brings all the advantages of $\mathcal{E}$ to these additional knowledge domains.
 The treatment is in marked contrast to the traditional one exemplified by the classic undergraduate text by Rosen \cite{Rosen}.
 
-\subsubsection*{Linear temporal logic systems}
+\subsection{Linear temporal logic systems}
 
 Linear temporal logic describes how the truth values of propositions change over time.
 It extends the propositional operators with the unary operators \textit{next} $\Next$, \textit{eventually} $\Event$, and \textit{always} $\Always$, and the binary operators \textit{until} $\Until$ and \textit{wait} $\Wait$.
@@ -272,7 +272,7 @@ The paper can serve as an introduction to linear temporal logic.
 
 \subsection{Equational Deductive Systems}\label{sec-equational-deductive-systems}
 
-\subsubsection*{Propositional calculus}
+\subsubsection{Propositional calculus}
 
 Expressions are the basis of propositional calculus in the equational system.
 Propositional theorems are simply boolean expressions that are true in all states.
@@ -325,7 +325,7 @@ For example, the expression $p = q = r$ has conjunctive meaning $(p = q) \land (
 can be taken as either $(p \equiv q) \equiv r$ or $p \equiv (q \equiv r)$.
 This property of equivales is the first axiom in the equational deductive system of LADM.
 
-\subsubsection*{Inference rules}
+\subsubsection{Inference rules}
 
 The inference rules for the equational deductive system are Substitution, Leibniz, Equanimity, and Transitivity.
 \[
@@ -422,7 +422,7 @@ Because $p \Until p\equiv p$ is equivalent to $p \lor (p \land \Next(p \Until p)
 and $p \lor (p \land \Next(p \Until p))\equiv p$ is equivalent to $p\equiv p$ (\textit{i.e.} $Y=Z$),
 by transitivity $p \Until p\equiv p$ is equivalent to $p\equiv p$ (\textit{i.e.} $X=Z$).
 
-\subsubsection*{Proof technique metatheorems}
+\subsubsection{Proof technique metatheorems}
 
 The logic system $\mathcal{E}$ of LADM \cite{LADM} has 13 axioms for the propositional calculus from which theorems are deduced
 with the above inference rules in the equational style.
@@ -518,7 +518,7 @@ The application of (4.2) is with the following textual substitution.
 \end{tabbing}
 In other words, because $p\Until q$ implies $\Event q$, $p\Until q\lor \Always p$ implies $\Event q\lor \Always p$.
 
-\subsubsection*{Predicate calculus}
+\subsubsection{Predicate calculus}
 
 The predicate calculus of the equational system has a consistent quantification notation that applies to Abelian monoids in both mathematics and logic.
 Denoting a general Abelian monoid as the infix operator $\star$, the form of a quantification is
@@ -591,6 +591,8 @@ Each state corresponds to a discrete point in time that represents one point in 
 possibly having several threads running concurrently but whose instruction executions have been serialized.
 As one instruction in the program executes, the state changes, and hence the truth value of an expression may change as well.
 
+\subsubsection{Models}
+
 A model $\sigma$ is an infinite anchored sequence \cite{Schn} of the form
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -641,6 +643,8 @@ The constant \textit{false} is an expression that evaluates to F in every state.
 The propositional logic system of LADM \cite{LADM} describes a case analysis metatheorem as follows:
 If $E[z:=\mathit{true}]$ and $E[z:=\mathit{false}]$ are theorems, then so is $E[z:=p]$.
 This metatheorem does \textit{not} hold in LTL because the two cases, $z:=\mathit{true}$ and $z:=\mathit{false}$, only account for two out of an infinite number of possible sequences of T's and F's in $\sigma$.
+
+\subsubsection{The temporal operators}
 
 \subsubsection*{The \textit{next} operator $\Next$}
 
@@ -973,7 +977,7 @@ From $s_0$ to $s_7$, $p\Until q$ and $p\Wait q$ hold in the same states.
 From $s_8$ on, however, $p\Until q$ does not hold because $q$ never holds thereafter,
 while $p\Wait q$ does hold because $p$ always holds thereafter.
 
-\subsubsection*{Duality}\label{section-duality}
+\subsubsection{Duality}\label{section-duality}
 
 LADM \cite{LADM} defines the dual $P_D$ of a boolean expression $P$ to be the expression constructed from $P$ by interchanging occurrences of
 \begin{align*}
