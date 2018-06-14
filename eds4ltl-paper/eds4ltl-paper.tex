@@ -4,6 +4,10 @@
 
 \usepackage{booktabs} % For formal tables
 
+\usepackage[publication]{optional}                  % Hide most proofs for publication
+%\usepackage[complete]{optional}                    % Typeset all proofs
+
+
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
 \newcommand{\lllgap}{12pt}                          % Gap between tables
@@ -27,6 +31,8 @@
 \newcommand{\myqedtab}{\hspace{384pt}}              % For flush right qed symbol in tabbing environment. No longer used.
 \newcommand{\spacer}{\vspace{-30pt}}
 \newcommand{\firstspacer}{\vspace{-26pt}}
+
+\DeclareMathOperator{\divides}{divides}
 
 % Thanks to David Gries for sharing the following macros
 % Macros for quantifications.
