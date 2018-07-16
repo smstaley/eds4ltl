@@ -3566,7 +3566,7 @@ For example, edge (\ref{E:exAlwaysNot}) represents the theorem that $\Always\neg
 The collection of theorems in this paper omit some implication theorems that are trivially derived by mutual transitivity.
 For example, one such theorem is that $\Always\neg p$ implies $\Event \neg p$, which follows from the theorems that $\Always\neg p$ implies $\Event\neg p$ and that $\Event\neg p$ is equivalent to $\Event \neg p$.
 The edge labeled by (\ref{E:exAlwaysNot}) thus represents four implication theorems, one for each combination of the two antecedents $\Always\neg p$ and $\neg\Event p$ and the two consequents $\Event\neg p$ and $\neg\Always p$.
-Likewise, the edges labeled by (\ref{E:alwaysImpEvents}) and (\ref{E:eventPImplEventQ}) each represent two implication theorems.
+Likewise, the edge labeled by (\ref{E:eventPImplEventQ}) represents two implication theorems.
 
 \subsection{Proof metatheorems}
 
@@ -6305,10 +6305,41 @@ for the \textit{wait} operator.
 
 \section{Comparison with previous work}\label{comparison-previous-work}
 
-As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Ben-Ari \cite{Ben}, Emerson \cite{Emer}, Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
-This section compares the axiomatization systems of those sources with this work.
+Linear temporal logic is just one of many different modal logic systems.
+This section shows how linear temporal logic fits in general systems of modal logic and compares this system with other LTL axiomatizations.
+
+\subsection{Modal logic systems}
+
+In the terminology of modal logic, each state of an anchored sequence is called a \textit{world}. \cite{Hughes}
+In LTL, each world represents the state of a computation at each discrete point of time, and so one world is related to another world as one point in time is related to another point in time, \textit{i.e.}, as occurring before or after it.
+In general, worlds need not have such an interpretation.
+Rather, a specific modal logic system is defined by a nonempty set of worlds $W$ and a relation $\rho$ over $W$.
+A frame is the ordered pair $\langle W,\rho\rangle$, and different modal systems are specified by different frames.
+
+The most general modal system, known as K, extends propositional calculus by adding the unary operator $\Always$ together with the axiom $\Always (p\impl q)\impl(\Always p\impl\Always q)$, which is our theorem (\ref{E:distAlwaysImp}) Monotonicity of $\Always$.
+The Hilbert style inference rules of Uniform Substitution and Modus Ponens are extended by adding the rule of Necessitation: If $P$ is a theorem then so is $\Always P$, which is Case 1 of our (\ref{E:metatheorem}) Metatheorem.
+The operator $\Event p$ is defined to be an abbreviation for $\neg\Always\neg p$ as in (\ref{E:eventAsAlways}).
+With these extensions, there is no restriction on relation $\rho$ in the frame $\langle W,\rho\rangle$ that defines K.
+
+A stronger modal system, known as T, extends K by adding the axiom $\Always p\impl p$, sometimes called the Axiom of Necessity, which is our theorem (\ref{E:impAlways}).
+Every theorem in K is also a theorem in T, but not every theorem in T is a theorem in K.
+It has been shown that theorems in T are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, \textit{i.e.}, in which for all $w\in W$, $w\rho w$. \cite{Hughes}
+
+A stronger yet modal system, known as S4, extends T by adding the single extra axiom $\Always p\impl \Always\Always p$, which is part of our theorem (\ref{E:IdemAlways}) Absorption of $\Always$, $\Always\Always p \equiv \Always p$ by virtue of mutual implication.
+Theorems in S4 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is both reflexive and transitive, \textit{i.e.}, in which for all $w,x,y\in W$, $w\rho x\land x\rho y\impl w\rho y$.
+
+Linear temporal systems model time as an anchored sequence.
+Each world is on a time line and is either contemporaneous with, or earlier than, itself and all worlds that come after it.
+This ``earlier than'' relation is defined formally as a connected relation, in which for all $w,x,y\in W$, $w\rho x\land w\rho y\impl x\rho y\lor y\rho x$.
+In other words, if $w$ is contemporaneous with or earlier than $x$, and $w$ is contemporaneous with or earlier than $y$, then either $x$ is contemporaneous with or earlier than $y$, or $y$ is contemporaneous with or earlier than $x$.
+
+The temporal modal system, known as S4.3 extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$.
+Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, transitive, and connected.
 
 \subsection{Survey of LTL deductive systems}\label{section-survey}
+
+As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Ben-Ari \cite{Ben}, Emerson \cite{Emer}, Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
+This section compares the axiomatization systems of those sources with this work.
 
 Ben-Ari \cite{Ben} takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and defines $\Event$ to be an abbreviation for $\neg \Always \neg$ as in (\ref{E:eventAsAlways}).
 The $\Wait$ operator is not covered in his system for LTL.
