@@ -5,12 +5,21 @@
 
 \documentclass[12pt, fleqn, leqno]{article}
 
-\usepackage{times}
+\usepackage{fontspec}
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
 \usepackage{eucal}                                  % For temporal operators, Until and Wait
 \usepackage[plain]{optional}
 %\usepackage[inventory]{optional}
+
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont[Ligatures={Common}]{Times}
+% Broken in MacOS High Sierra. See https://tex.stackexchange.com/questions/395645/italic-went-rogue-in-my-document-what-happened
+\setmainfont{Times}[ItalicFont    ={* Italic},
+                    BoldFont      ={* Bold},
+                    BoldItalicFont={* Bold Italic}]
+\setsansfont{Helvetica}
+\setmonofont[Scale=.95]{Courier}
 
 %\linespread{0.1}
 %\setlength{\parskip}{-10pt plus 0pt minus 0pt}

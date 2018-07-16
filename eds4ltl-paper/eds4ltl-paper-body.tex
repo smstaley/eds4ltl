@@ -791,15 +791,13 @@ LADM \cite{LADM} defines the dual $P_D$ of a boolean expression $P$ to be the ex
 \impl         &\textrm{ and } \nfoll\textrm{, and}\\
 \foll         &\textrm{ and } \nimpl\textrm{.}
 \end{align*}
-With this definition of $P_D$, $P$ is valid iff $\neg P_D$ is valid, and $P\equiv Q$ is valid iff $P_D\equiv Q_D$ is valid.
-This observation is stated in the following metatheorem from LADM.
+This definition of $P_D$ gives rise to the following metatheorem from LADM.
 \begin{tabbing}
 \hspace{\mymathindent} \= (2.3)\; \= \myqedtab \= \kill
   \> (2.3) \> \textbf{Metatheorem Duality}\\
-  \>       \> (a) \verb|valid(|$P$\verb|) |$\equiv$\verb| valid(|$\neg P_D$\verb|)|\\
-  \>       \> (b) \verb|valid(|$P \equiv Q$\verb|) |$\equiv$\verb| valid(|$P_D \equiv Q_D$\verb|)|
+  \>       \> (a) $P$ is valid iff $\neg P_D$ is valid\\
+  \>       \> (b) $P \equiv Q$ is valid iff $P_D \equiv Q_D$ is valid
 \end{tabbing}
-where \verb|valid(|$R$\verb|)| is a predicate that returns true iff $R$ is a valid expression.
 
 Linear temporal logic extends the definition of $P_D$ for the temporal operators to include interchanging occurrences of
 \begin{align*}
