@@ -6289,7 +6289,7 @@ And now,
 \end{tabbing}
 }
 \begin{equation}\label{E:lemmon}
-\textbf{Lemmon:}\quad \Always(\Always p\impl q)\lor \Always(\Always q\impl p)
+\textbf{Lemmon formula:}\quad \Always(\Always p\impl q)\lor \Always(\Always q\impl p)
 \end{equation}
 
 \emph{Proof}: The proof is by (4.7.1) Truth implication.
@@ -6327,7 +6327,7 @@ This section shows how linear temporal logic fits in general systems of modal lo
 
 \subsection{Modal logic systems}
 
-In the terminology of modal logic, each state of an anchored sequence is called a \textit{world}. \cite{Hughes}
+In the terminology of modal logic, each state of an anchored sequence is called a \textit{world}.
 In LTL, each world represents the state of a computation at each discrete point of time, and so one world is related to another world as one point in time is related to another point in time, \textit{i.e.}, as occurring before or after it.
 In general, worlds need not have such an interpretation.
 Rather, a specific modal logic system is defined by a nonempty set of worlds $W$ and a relation $\rho$ over $W$.
@@ -6349,13 +6349,22 @@ Linear temporal systems model time as an anchored sequence.
 Each world is on a time line and is either contemporaneous with, or earlier than, itself and all worlds that come after it.
 This ``earlier than'' relation is defined formally as a connected relation, in which for all $w,x,y\in W$, $w\rho x\land w\rho y\impl x\rho y\lor y\rho x$.
 In other words, if $w$ is contemporaneous with or earlier than $x$, and $w$ is contemporaneous with or earlier than $y$, then either $x$ is contemporaneous with or earlier than $y$, or $y$ is contemporaneous with or earlier than $x$.
-
-The temporal modal system, known as S4.3 extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$.
+The temporal modal system, known as S4.3 extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$, which is our theorem (\ref{E:lemmon}) Lemmon formula.
 Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, transitive, and connected.
+
+<Paragraph on S4.3\textit{Dum} if possible>
+
+<Extensions of $\Next$ and $\Until$>
+
+\subsection{Equational modal logic systems}
+
+<Gries and Schneider's Carnapian system> \cite{Gries95addingthe}
+
+<Schneider's text> \cite{Schn}
 
 \subsection{Survey of LTL deductive systems}\label{section-survey}
 
-As a check on comprehensiveness, we inventoried all the linear temporal logic theorems and inference rules in Ben-Ari \cite{Ben}, Emerson \cite{Emer}, Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}.
+As a check on comprehensiveness, we inventoried the linear temporal logic theorems and inference rules in Ben-Ari \cite{Ben}, Emerson \cite{Emer}, Kröger and Merz\cite{Kroger}, Manna and Pnueli \cite{Manna}, and Schneider \cite{Schn}, and included them all in this survey.
 This section compares the axiomatization systems of those sources with this work.
 
 Ben-Ari \cite{Ben} takes the temporal operators $\Always$, $\Next$ and $\Until$ as basic and defines $\Event$ to be an abbreviation for $\neg \Always \neg$ as in (\ref{E:eventAsAlways}).
