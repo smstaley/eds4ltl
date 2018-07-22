@@ -5854,6 +5854,23 @@ And now,
   \> \>   $p\Wait r$ \quad \myqed
 \end{tabbing}
 }
+\begin{equation}\label{E:lemmon}
+\textbf{Lemmon:}\quad \Always(\Always p\impl q)\lor \Always(\Always q\impl p)
+\end{equation}
+
+\emph{Proof}: The proof is by (4.7.1) Truth implication.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \> $\Always(\Always p\impl q)\lor \Always(\Always q\impl p)$\\[\lgap]
+\> $=$  \>  \Hint{(3.59) Implication $p\impl q \equivs \neg p \lor q$, twice}\\[\lgap]
+  \> \> $\Always(\neg \Always p\lor q)\lor \Always(\neg \Always q\lor p)$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:waitToOr}) twice, (\ref{E:distAlwaysImp}) Monotonicity of $\Always$, and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \> $\Always(\neg \Always p\Wait q)\lor \Always(\neg \Always q\Wait p)$\\[\lgap]
+  \> $\foll$  \>  \Hint{(\ref{E:alwaysWaitImpl}) $\Wait\Always$ implication and (4.2) Monotonicity of $\lor$}\\[\lgap]
+  \> \> $\neg \Always p\Wait \Always q\lor \neg \Always q\Wait \Always p$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:waitOrdering}) $\Wait$ ordering with $p,q:=\Always p, \Always q$}\\[\lgap]
+  \> \> \textit{true} \quad \myqed
+\end{tabbing}
 
 The ten axioms that define the behavior of the \textit{until} operator are (\ref{E:distNextUntil}), (\ref{E:expansionUntil}), (\ref{E:untilFalse}), (\ref{E:untilOrEquiv}), (\ref{E:untilOrImp}), (\ref{E:untilAndImp}), (\ref{E:untilAndEquiv}), (\ref{E:untilImplicationOrdering}), (\ref{E:leftAssocUntil}), and (\ref{E:rightAssocUntil}).
 The corresponding theorems for the \textit{wait} operator are (\ref{E:waitNextDist}), (\ref{E:expansionWait}), (\ref{E:alwaysAsWait}), (\ref{E:waitOrDist}), (\ref{E:rightWaitOrDist}), (\ref{E:leftWaitAndDist}), (\ref{E:rightWaitAndDist}), (\ref{E:waitImplicationOrdering}), (\ref{E:leftAssocWait}), and (\ref{E:rightAssocWait}).
@@ -5959,7 +5976,7 @@ There are 19 theorems that are common to all five sources in the survey, namely
 (\ref{E:absEvent}), and
 (\ref{E:absAlways}).
 
-This system has 253 theorems, 19 of which are axioms.
+This system has 254 theorems, 19 of which are axioms.
 Of the axioms, seven are unique to this system, namely
 (\ref{E:untilFalse}),
 (\ref{E:untilImplicationOrdering}),
