@@ -46,21 +46,21 @@ That is, manual proofs in such systems are easier to understand and to design th
 
 \begin{figure}[t]
 \centering
-\begin{picture}(440,46)
+\begin{picture}(208,88)
 \thicklines
-\put(0,24) {\fbox{\parbox{36pt}{\centering Input}}}
-\put(43,28) {\vector(1,0){20}}
-\put(63,24) {\fbox{\parbox{56pt}{\centering Processing}}}
-\put(126,28) {\vector(1,0){20}}
-\put(146,24) {\fbox{\parbox{42pt}{\centering Output}}}
-\put(40,0) {Computational systems}
+\put(0,80) {\fbox{\parbox{36pt}{\centering Input}}}
+\put(43,82) {\vector(1,0){20}}
+\put(63,80) {\fbox{\parbox{56pt}{\centering Processing}}}
+\put(126,82) {\vector(1,0){20}}
+\put(146,80) {\fbox{\parbox{42pt}{\centering Output}}}
+\put(40,60) {Computational systems}
 
-\put(220,24) {\fbox{\parbox{36pt}{\centering Axioms}}}
-\put(263,28) {\vector(1,0){20}}
-\put(283,24) {\fbox{\parbox{56pt}{\centering Inference\\rules}}}
-\put(346,28) {\vector(1,0){20}}
-\put(366,24) {\fbox{\parbox{48pt}{\centering Theorems}}}
-\put(250,0) {Axiomatic logic systems}
+\put(0,24) {\fbox{\parbox{36pt}{\centering Axioms}}}
+\put(43,26) {\vector(1,0){20}}
+\put(63,24) {\fbox{\parbox{56pt}{\centering Inference\\rules}}}
+\put(126,26) {\vector(1,0){20}}
+\put(146,24) {\fbox{\parbox{48pt}{\centering Theorems}}}
+\put(40,0) {Axiomatic logic systems}
 
 \end{picture}
 \caption{Computational systems and axiomatic logic systems.
@@ -211,10 +211,10 @@ This property of equivales is the first axiom in the equational deductive system
 
 The inference rules for the equational deductive system are Substitution, Leibniz, Equanimity, and Transitivity.
 \begin{align*}
-&\textbf{Substitution:}\quad \frac{E}{E[z:=F]}\\
-&\textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}\\
-&\textbf{Equanimity:}\quad \frac{X, \quad X=Y}{Y}\\
-&\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
+&\textrm{(I1)}\; \textbf{Substitution:}\quad \frac{E}{E[z:=F]}\\
+&\textrm{(I2)}\; \textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}\\
+&\textrm{(I3)}\; \textbf{Equanimity:}\quad \frac{X, \quad X=Y}{Y}\\
+&\textrm{(I4)}\; \textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
 \end{align*}
 where the square bracket in $E[z:=F]$ indicates textual substitution of expression $F$ for variable $z$
 everywhere $z$ occurs in expression $E$.
@@ -835,13 +835,10 @@ The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
-
-Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
-In (2.3b) Metatheorem Duality $(P \equiv Q) \equiv (P_D \equiv Q_D)$ with $P: \Next\neg p$ and $Q: \neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions.
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
-
+Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
 Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
 From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.
 
@@ -6188,15 +6185,13 @@ This section uses the following notation: $E^{z}_{X}$ means $E[z := X]$.\\[\lgap
 
 \begin{acks}
 
-The authors would like to thank Dr. Maura Turolla of Telecom
-Italia for providing specifications about the application scenario.
+The authors would like to thank David Gries, who provided a prepublication manuscript of LADM, which we immediately adopted and have used at our institution ever since.
+He has been a source of constant encouragement.
+Mordechai Ben-Ari's text \cite{Ben2} inspired us to use LTL to teach concurrent programming principles.
+Fred Schneider's graduate-level text \cite{Schn} inspired us to create this equational system to be accessible at the undergraduate level.
+Ray McIntyre, Ravi Mohan, Michael Ortiz, and Kyle Sundman contributed to the proofs.
 
-The work is supported by the \grantsponsor{GS501100001809}{National
-  Natural Science Foundation of
-  China}{http://dx.doi.org/10.13039/501100001809} under Grant
-No.:~\grantnum{GS501100001809}{61273304\_a}
-and~\grantnum[http://www.nnsf.cn/youngscientists]{GS501100001809}{Young
-  Scientists' Support Program}.
+Research supported the second author by Tooma Undergraduate Research Fellowship Program, Pepperdine University, Summer 2009 and academic year 2009-10.
 
 \end{acks}
 

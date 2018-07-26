@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -329,16 +329,16 @@ This property of equivales is the first axiom in the equational deductive system
 
 The inference rules for the equational deductive system are Substitution, Leibniz, Equanimity, and Transitivity.
 \[
-\textbf{Substitution:}\quad \frac{E}{E[z:=F]}
+\textrm{(I1)}\; \textbf{Substitution:}\quad \frac{E}{E[z:=F]}
 \]
 \[
-\textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
+\textrm{(I2)}\; \textbf{Leibniz:}\quad \frac{X=Y}{E[z:=X]=E[z:=Y]}
 \]
 \[
-\textbf{Equanimity:}\quad \frac{X, \quad X=Y}{Y}
+\textrm{(I3)}\; \textbf{Equanimity:}\quad \frac{X, \quad X=Y}{Y}
 \]
 \[
-\textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
+\textrm{(I4)}\; \textbf{Transitivity:}\quad \frac{X=Y, \quad Y=Z}{X=Z}
 \]
 where the square bracket in $E[z:=F]$ indicates textual substitution of expression $F$ for variable $z$
 everywhere $z$ occurs in expression $E$.
@@ -1128,13 +1128,10 @@ The following two axioms define the \textit{next} operator $\Next$.
 \begin{equation}\label{E:selfDual}
 \textbf{Axiom, Self-dual:}\quad \Next\neg p \equiv \neg\Next p
 \end{equation}
-
-Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
-In (2.3b) Metatheorem Duality $(P \equiv Q) \equiv (P_D \equiv Q_D)$ with $P: \Next\neg p$ and $Q: \neg\Next p$, both $P$ and $Q$ are equivalent to their dual expressions.
 \begin{equation}\label{E:distNextImp}
 \textbf{Axiom, Distributivity of $\Next$ over $\impl$:}\quad \Next (p \impl q) \equiv \Next p \impl \Next q
 \end{equation}
-
+Self duality states that $p$ not holding in the next state is equivalent to \textit{next} $p$ not holding in the current state.
 Distributivity states that $p$ implies $q$ in the next state is equivalent to \textit{next} $p$ implies \textit{next} $q$ in the current state.
 From this axiom, subsequent theorems prove that the \textit{next} operator distributes over all the propositional binary operators.
 
@@ -6323,7 +6320,7 @@ for the \textit{wait} operator.
 \section{Comparison with previous work}\label{comparison-previous-work}
 
 Linear temporal logic is just one of many different modal logic systems.
-This section shows how linear temporal logic fits in general systems of modal logic and compares this system with other LTL axiomatizations.
+This section shows how linear temporal logic fits in general systems of modal logic, how equational logic applies to modal logic, and compares this system with other LTL axiomatizations.
 
 \subsection{Modal logic systems}
 
@@ -6357,6 +6354,12 @@ Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho
 <Extensions of $\Next$ and $\Until$>
 
 \subsection{Equational modal logic systems}
+
+<Gries and Schnieder's Teaching Math> \cite{GriesTeachingMath}
+
+<Gries and Schnieder's Teaching Discrete> \cite{GriesTeachingDiscrete}
+
+<The calculational method> \cite{Backhouse}
 
 <Gries and Schneider's Carnapian system> \cite{Gries95addingthe}
 
@@ -6484,8 +6487,10 @@ temporal logic community, but will serve as an example to promote $\mathcal{E}$ 
 
 \section*{Acknowledgements}
 
-David Gries provided a prepublication manuscript of LADM, which we immediately adopted and have used ever since.
+The authors would like to thank David Gries, who provided a prepublication manuscript of LADM, which we immediately adopted and have used at our institution ever since.
 He has been a source of constant encouragement.
+Mordechai Ben-Ari's text \cite{Ben2} inspired us to use LTL to teach concurrent programming principles.
+Fred Schneider's graduate-level text \cite{Schn} inspired us to create this equational system to be accessible at the undergraduate level.
 Ray McIntyre, Ravi Mohan, Michael Ortiz, and Kyle Sundman contributed to the proofs.
 
 \bibliographystyle{plain}

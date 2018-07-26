@@ -1,11 +1,9 @@
 
-The authors would like to thank Dr. Maura Turolla of Telecom
-Italia for providing specifications about the application scenario.
+The authors would like to thank David Gries, who provided a prepublication manuscript of LADM, which we immediately adopted and have used at our institution ever since.
+He has been a source of constant encouragement.
+Mordechai Ben-Ari's text \cite{Ben2} inspired us to use LTL to teach concurrent programming principles.
+Fred Schneider's graduate-level text \cite{Schn} inspired us to create this equational system to be accessible at the undergraduate level.
+Ray McIntyre, Ravi Mohan, Michael Ortiz, and Kyle Sundman contributed to the proofs.
 
-The work is supported by the \grantsponsor{GS501100001809}{National
-  Natural Science Foundation of
-  China}{http://dx.doi.org/10.13039/501100001809} under Grant
-No.:~\grantnum{GS501100001809}{61273304\_a}
-and~\grantnum[http://www.nnsf.cn/youngscientists]{GS501100001809}{Young
-  Scientists' Support Program}.
+Research supported the second author by Tooma Undergraduate Research Fellowship Program, Pepperdine University, Summer 2009 and academic year 2009-10.
 
