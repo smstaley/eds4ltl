@@ -6347,7 +6347,7 @@ Each world is on a time line and is either contemporaneous with, or earlier than
 This ``earlier than'' relation is defined formally as a connected relation, in which for all $w,x,y\in W$, $w\rho x\land w\rho y\impl x\rho y\lor y\rho x$.
 In other words, if $w$ is contemporaneous with or earlier than $x$, and $w$ is contemporaneous with or earlier than $y$, then either $x$ is contemporaneous with or earlier than $y$, or $y$ is contemporaneous with or earlier than $x$.
 The temporal modal system, known as S4.3 extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$, which is our theorem (\ref{E:lemmon}) Lemmon formula.
-Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, transitive, and connected.
+Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, transitive, and connected. \cite{Hughes}
 
 <Paragraph on S4.3\textit{Dum} if possible>
 
@@ -6361,7 +6361,13 @@ Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho
 
 <The calculational method> \cite{Backhouse}
 
-<Gries and Schneider's Carnapian system> \cite{Gries95addingthe}
+Gries and Schneider extended equational logic to the Carnapian modal system known as C. \cite{Gries95addingthe}
+Theorems in C are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is the universal accessibility relation, \textit{i.e.}, each state is related to all states.
+Because C is not a linear temporal logic, the operator $\Always$ has a different interpretation from that in LTL.
+Denoting the Carnapian operator as $\Always_c$ the interpretation of $\Always_c P$, where $P$ is a propositional logic expression, is ``$P$ is true in all states,'' or, equivalently, ``$P$ is valid.''
+Gries and Schneider point out that this ``... logic can be used for proving theorems that could otherwise be handled only at the meta-level, and most likely informally.''
+As an example, (2.3b) Metatheorem Duality, $P\equiv Q$ is valid iff $P_D\equiv Q_D$ is valid, can be written equationally as $\Always_c(P\equiv Q)\equiv \Always_c(P_D\equiv Q_D)$.
+In such a system, metatheorems become formulas in the logic and are thus directly available for use in calculational reasoning.
 
 <Schneider's text> \cite{Schn}
 
