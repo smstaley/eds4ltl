@@ -680,16 +680,16 @@ p \land q \impl p \Until q
 
 \spacer
 
-\begin{equation}\label{E:eventInduction}
-\textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
-\end{equation}
-
-\spacer
-
 \begin{equation}\label{E:induction}
 \textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
 \end{equation}
 \opt{inventory}{M217(FX5), M264(Rule CI), S64(3.21e), B242, B263(Ax4)\\}
+
+\spacer
+
+\begin{equation}\label{E:eventInduction}
+\textbf{$\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
+\end{equation}
 
 \spacer
 

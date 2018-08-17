@@ -1626,7 +1626,7 @@ The following four theorems (\ref{E:IdemEvent}), (\ref{E:dNextEvent}), (\ref{E:d
 This system defines the \textit{always} operator $\Always$ in terms of the \textit{eventually} operator $\Event$.
 $\Always p$ is true when $p$ is true in the current state and in all future states.
 The defining equation (\ref{E:defAlways}) states that $p$ is always true iff it is not the case that $\neg p$ is eventually true.
-The three induction axioms are unique to this system.
+The two induction axioms are unique to this system.
 \begin{equation}\label{E:defAlways}
 \textbf{Definition of $\Always$:}\quad \Always p \equiv \neg\Event\neg p
 \end{equation}
@@ -1636,12 +1636,10 @@ The three induction axioms are unique to this system.
 \begin{equation}\label{E:untilInduction2}
 \textbf{Axiom, $\Until$ Induction:}\quad \Always (p \impl \Next (p\lor q)) \impl (p \impl \Always p\lor p\Until q)
 \end{equation}
-\begin{equation}\label{E:eventInduction}
-\textbf{Axiom, $\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
-\end{equation}
 
 The induction theorem (\ref{E:induction}) is common to many systems.
 It follows from (\ref{E:untilInduction2}) with $q:=\mathit{false}$.
+The negation of the dual of theorem (\ref{E:eventInduction}) is equivalent to theorem (\ref{E:induction}).
 Theorem (\ref{E:eventAsAlways}) expresses $\Event p$ in terms of $\Always p$ and is the dual of the defining equation (\ref{E:defAlways}).
 \begin{equation}\label{E:induction}
 \textbf{$\Always$ Induction:}\quad \Always (p \impl \Next p) \impl (p \impl \Always p)
@@ -1657,6 +1655,28 @@ Theorem (\ref{E:eventAsAlways}) expresses $\Event p$ in terms of $\Always p$ and
   \> \>   $\Always (p \impl \Next (p\lor \mathit{false})) \impl (p \impl \Always p\lor \mathit{false})$\\[\lgap]
   \> $=$  \>  \Hint{(3.30) Identity of $\lor$\;\; $p\lor \mathit{false}\equiv p$, twice}\\[\lgap]
   \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$ \quad \myqed
+\end{tabbing}
+}
+\begin{equation}\label{E:eventInduction}
+\textbf{$\Event$ Induction:}\quad \Always (\Next p \impl p) \impl (\Event p \impl p)
+\end{equation}
+\opt{complete}{
+\emph{Proof}: The proof is by (2.3a) Metatheorem Duality.	
+The negation of the dual of (\ref{E:eventInduction}) is
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+  \> \>   $\neg(\Event (\Next p \nfoll p) \nfoll (\Always p \nfoll p))$\\[\lgap]
+  \> $=$  \>  \Hint{Definition of / and (3.58) Consequence $p\foll q\equiv q\impl p$}\\[\lgap]
+  \> \>   $\neg\neg((\Always p \nfoll p) \impl \Event (\Next p \nfoll p))$\\[\lgap]
+  \> $=$  \>  \Hint{(3.12) Double negation, $\neg\neg p\equiv p$}\\[\lgap]
+  \> \>   $(\Always p \nfoll p) \impl \Event (\Next p \nfoll p)$\\[\lgap]
+  \> $=$  \>  \Hint{Definition of / and (3.58) Consequence $p\foll q\equiv q\impl p$, twice}\\[\lgap]
+  \> \>   $\neg(p \impl \Always p) \impl \Event \neg(p \impl \Next p)$\\[\lgap]
+  \> $=$  \>  \Hint{(3.61) Contrapositive $p\impl q \equivs \neg q\impl \neg p$}\\[\lgap]
+  \> \>   $\neg\Event \neg(p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
+  \> $=$  \>  \Hint{(\ref{E:defAlways}) Definition of $\Always$}\\[\lgap]
+  \> \>   $\Always (p \impl \Next p) \impl (p \impl \Always p)$\\[\lgap]
+  \> which is (\ref{E:induction}) $\Always$ Induction. \quad \myqed
 \end{tabbing}
 }
 \begin{equation}\label{E:eventAsAlways}
