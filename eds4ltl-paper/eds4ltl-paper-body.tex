@@ -5825,6 +5825,7 @@ Lemma A: $p \Until q \land \Always \neg q \equiv \mathit{false}$
   \> \>   $p \Wait q \land \Event q \land \Always \neg q$\\[\lgap]  
   \> $=$ \> \Hint{(\ref{E:contradiction}) $\Event$ contradiction} \\[\lgap]
   \> \>   $p \Wait q \land \mathit{false}$\\[\lgap]  
+  \> $=$ \> \Hint{(3.40) Zero of $\land$, $p\land \mathit{false}\equiv \mathit{false}$}\\[\lgap]
   \> \>   \textit{false} \quad \myqed
 \end{tabbing}
 Lemma B: $\Always p \land \neg\Always q \impl p\Wait r$
