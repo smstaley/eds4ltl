@@ -16,8 +16,8 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-%\usepackage[publication]{optional}
-\usepackage[complete]{optional}
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -6363,14 +6363,22 @@ It has been shown that theorems in T are valid on every frame $\langle W,\rho\ra
 A stronger yet modal system, known as S4, extends T by adding the single extra axiom $\Always p\impl \Always\Always p$, which is part of our theorem (\ref{E:IdemAlways}) Absorption of $\Always$, $\Always\Always p \equiv \Always p$ by virtue of mutual implication.
 Theorems in S4 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is both reflexive and transitive, \textit{i.e.}, in which for all $w,x,y\in W$, $w\rho x\land x\rho y\impl w\rho y$.
 
-Linear temporal systems model time as an anchored sequence.
+Linear temporal systems \cite{prior} model time as an anchored sequence.
 Each world is on a time line and is either contemporaneous with, or earlier than, itself and all worlds that come after it.
 This ``earlier than'' relation is defined formally as a connected relation, in which for all $w,x,y\in W$, $w\rho x\land w\rho y\impl x\rho y\lor y\rho x$.
 In other words, if $w$ is contemporaneous with or earlier than $x$, and $w$ is contemporaneous with or earlier than $y$, then either $x$ is contemporaneous with or earlier than $y$, or $y$ is contemporaneous with or earlier than $x$.
-The temporal modal system, known as S4.3 extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$, which is our theorem (\ref{E:lemmon}) Lemmon formula.
+The temporal modal system, known as S4.3 \cite{dummlemm}, extends S4 by the axiom $\Always(\Always p\impl q)\lor\Always(\Always q\impl p)$, which is our theorem (\ref{E:lemmon}) Lemmon formula.
 Theorems in S4.3 are valid on every frame $\langle W,\rho\rangle$ in which $\rho$ is reflexive, transitive, and connected. \cite{Hughes}
 
-<Paragraph on S4.3\textit{Dum} if possible>
+The Lemmon formula imposes linearity of the time line.
+The Dummett formula
+\begin{equation*}
+\Always(\Always(p\impl\Always p)\impl p) \impl (\Event\Always p\impl\Always p)
+\end{equation*}
+\noindent imposes discreteness of the time line. \cite{Kroger}
+The modal system S4.3 with the addition of the Dummett formula is known as S4.3\textit{Dum}.
+Our LTL system contains S4.3, because it includes as theorems the axioms of S4.3.
+The LTL systems we survey are close to S4.3\textit{Dum} but do not contain the Dummett formula as an axiom.
 
 <Extensions of $\Next$ and $\Until$>
 
@@ -6454,11 +6462,8 @@ It defines $\Event$ as in theorem (\ref{E:eventAsAlways}).
 It has five axioms for $\Next$ corresponding to (\ref{E:selfDual}) Self-dual, (\ref{E:distNextImp}) Distributivity of $\Next$ over $\impl$, (\ref{E:impAlwaysN}) Strengthening of $\Always$, (\ref{E:impAlwaysNA}) Strengthening of $\Always$, and (\ref{E:induction}) $\Always$ Induction.
 The two axioms for the \textit{wait} operator correspond to (\ref{E:alwaysImpWait}) Perpetuity and (\ref{E:expansionWait}) Expansion of $\Wait$.
 
-\subsection{Comparison of LTL deductive systems}\label{section-comparison}
-
 A striking feature of this survey is how each author chooses to include a set of theorems that all other authors omit.
 Ben-Ari has 13 unique theorems, Emerson has 14, Kröger and Merz have 10, Manna and Pnueli have 18, and Schneider has 19.
-
 There are 19 theorems that are common to all five sources in the survey, namely
 (\ref{E:selfDual}),
 (\ref{E:distNextImp}),
@@ -6480,15 +6485,15 @@ There are 19 theorems that are common to all five sources in the survey, namely
 (\ref{E:absEvent}), and
 (\ref{E:absAlways}).
 
-This system has 254 theorems, 19 of which are axioms.
-Of the axioms, seven are unique to this system, namely
+This system includes all the theorems from the survey.
+It has 254 theorems, 18 of which are axioms.
+Of the axioms, six are theorems unique to this system, namely
 (\ref{E:untilFalse}),
 (\ref{E:untilImplicationOrdering}),
 (\ref{E:leftAssocUntil}),
 (\ref{E:rightAssocUntil}),
-(\ref{E:untilInduction1}),
-(\ref{E:untilInduction2}), and
-(\ref{E:eventInduction}).
+(\ref{E:untilInduction1}), and
+(\ref{E:untilInduction2}).
 
 \section{Conclusion}
 
